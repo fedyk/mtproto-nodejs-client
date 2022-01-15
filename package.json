@@ -1,5 +1,5 @@
 {
-  "name": "@mtproto/core",
+  "name": "fedyk-mtproto-core",
   "version": "6.1.1",
   "description": "Telegram API JS (MTProto) client library for Node.js and browser",
   "keywords": [
