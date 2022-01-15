@@ -1,4 +1,4 @@
-const Configstore = require('configstore');
+const fs = require("fs")
 const baseDebug = require('../../src/utils/common/base-debug');
 
 const debug = baseDebug.extend('storage');
@@ -8,17 +8,22 @@ function getLocalStorage(options) {
     throw new Error('Specify the storageOptions.path for storing session');
   }
 
-  const localStorage = new Configstore(
-    '@mtproto/core',
-    {},
-    {
-      configPath: options.path,
-    }
-  );
+  let cache = {}
 
-  debug(`session located in ${localStorage.path}`);
+  if (fs.existsSync(options.path)) {
+    cache = require(options.path)
+  }
 
-  return localStorage;
+  function get(key) {
+    return cache[key]
+  }
+
+  function set(key, value) {
+    cache[key] = value
+    fs.writeFileSync(options.path, JSON.stringify(cache))
+  }
+
+  return { get, set }
 }
 
 module.exports = getLocalStorage;
