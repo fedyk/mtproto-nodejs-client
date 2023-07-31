@@ -1,40 +1,15 @@
 {
   "name": "mtproto-core",
   "version": "6.1.4",
+  "type": "module",
   "description": "Telegram API JS (MTProto) client library for Node.js and browser",
-  "keywords": [
-    "telegram",
-    "telegram-api",
-    "mtproto",
-    "tdlib",
-    "browser",
-    "node",
-    "nodejs",
-    "client",
-    "library",
-    "lib",
-    "api",
-    "messenger",
-    "telegram-web",
-    "telegram-online"
-  ],
-  "homepage": "https://mtproto-core.js.org/",
-  "bugs": {
-    "url": "https://github.com/alik0211/mtproto-core/issues"
-  },
-  "author": "Ali Gasymov <alik0211alik@gmail.com> (https://gasymov.com/)",
-  "repository": "github:alik0211/mtproto-core",
-  "files": [
-    "/envs",
-    "/src"
-  ],
-  "main": "./envs/node/index.js",
+  "repository": "github:fedyk/mtproto-core",
+  "main": "./index.js",
   "engines": {
-    "node": ">=12"
+    "node": ">=20"
   },
   "scripts": {
-    "start": "jest --watch",
-    "test": "jest",
+    "test": "node --test",
     "generate-builder": "node scripts/generate-builder.js",
     "generate-parser": "node scripts/generate-parser.js",
     "generate-tl": "run-p generate-builder generate-parser",
