@@ -344,7 +344,7 @@ const builderMap = {
   },
   'inputMediaUploadedPhoto': function(params) {
     this.int32(505969924);
-    const flags = (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1);
+    const flags = (this.has(params.spoiler) << 2) | (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1);
     this.int32(flags);
     this.predicate(params.file);
     this.flagVector(this.predicate, params.stickers);
@@ -352,7 +352,7 @@ const builderMap = {
   },
   'inputMediaPhoto': function(params) {
     this.int32(-1279654347);
-    const flags = (this.has(params.ttl_seconds) << 0);
+    const flags = (this.has(params.spoiler) << 1) | (this.has(params.ttl_seconds) << 0);
     this.int32(flags);
     this.predicate(params.id);
     this.flag(this.int, params.ttl_seconds);
@@ -372,12 +372,13 @@ const builderMap = {
     this.int32(480546647);
   },
   'inputChatUploadedPhoto': function(params) {
-    this.int32(-968723890);
-    const flags = (this.has(params.file) << 0) | (this.has(params.video) << 1) | (this.has(params.video_start_ts) << 2);
+    this.int32(-1110593856);
+    const flags = (this.has(params.file) << 0) | (this.has(params.video) << 1) | (this.has(params.video_start_ts) << 2) | (this.has(params.video_emoji_markup) << 3);
     this.int32(flags);
     this.flag(this.predicate, params.file);
     this.flag(this.predicate, params.video);
     this.flag(this.double, params.video_start_ts);
+    this.flag(this.predicate, params.video_emoji_markup);
   },
   'inputChatPhoto': function(params) {
     this.int32(-1991004873);
@@ -457,7 +458,7 @@ const builderMap = {
   },
   'userProfilePhoto': function(params) {
     this.int32(-2100168954);
-    const flags = (this.has(params.has_video) << 0) | (this.has(params.stripped_thumb) << 1);
+    const flags = (this.has(params.has_video) << 0) | (this.has(params.personal) << 2) | (this.has(params.stripped_thumb) << 1);
     this.int32(flags);
     this.long(params.photo_id);
     this.flag(this.bytes, params.stripped_thumb);
@@ -480,7 +481,7 @@ const builderMap = {
   },
   'chat': function(params) {
     this.int32(1103884886);
-    const flags = (this.has(params.creator) << 0) | (this.has(params.kicked) << 1) | (this.has(params.left) << 2) | (this.has(params.deactivated) << 5) | (this.has(params.call_active) << 23) | (this.has(params.call_not_empty) << 24) | (this.has(params.noforwards) << 25) | (this.has(params.migrated_to) << 6) | (this.has(params.admin_rights) << 14) | (this.has(params.default_banned_rights) << 18);
+    const flags = (this.has(params.creator) << 0) | (this.has(params.left) << 2) | (this.has(params.deactivated) << 5) | (this.has(params.call_active) << 23) | (this.has(params.call_not_empty) << 24) | (this.has(params.noforwards) << 25) | (this.has(params.migrated_to) << 6) | (this.has(params.admin_rights) << 14) | (this.has(params.default_banned_rights) << 18);
     this.int32(flags);
     this.long(params.id);
     this.string(params.title);
@@ -498,8 +499,8 @@ const builderMap = {
     this.string(params.title);
   },
   'chatFull': function(params) {
-    this.int32(1304281241);
-    const flags = (this.has(params.can_set_username) << 7) | (this.has(params.has_scheduled) << 8) | (this.has(params.chat_photo) << 2) | (this.has(params.exported_invite) << 13) | (this.has(params.bot_info) << 3) | (this.has(params.pinned_msg_id) << 6) | (this.has(params.folder_id) << 11) | (this.has(params.call) << 12) | (this.has(params.ttl_period) << 14) | (this.has(params.groupcall_default_join_as) << 15) | (this.has(params.theme_emoticon) << 16);
+    this.int32(-908914376);
+    const flags = (this.has(params.can_set_username) << 7) | (this.has(params.has_scheduled) << 8) | (this.has(params.translations_disabled) << 19) | (this.has(params.chat_photo) << 2) | (this.has(params.exported_invite) << 13) | (this.has(params.bot_info) << 3) | (this.has(params.pinned_msg_id) << 6) | (this.has(params.folder_id) << 11) | (this.has(params.call) << 12) | (this.has(params.ttl_period) << 14) | (this.has(params.groupcall_default_join_as) << 15) | (this.has(params.theme_emoticon) << 16) | (this.has(params.requests_pending) << 17) | (this.has(params.recent_requesters) << 17) | (this.has(params.available_reactions) << 18);
     this.int32(flags);
     this.long(params.id);
     this.string(params.about);
@@ -514,6 +515,9 @@ const builderMap = {
     this.flag(this.int, params.ttl_period);
     this.flag(this.predicate, params.groupcall_default_join_as);
     this.flag(this.string, params.theme_emoticon);
+    this.flag(this.int, params.requests_pending);
+    this.flagVector(this.long, params.recent_requesters);
+    this.flag(this.predicate, params.available_reactions);
   },
   'chatParticipant': function(params) {
     this.int32(-1070776313);
@@ -553,8 +557,8 @@ const builderMap = {
     this.flag(this.predicate, params.peer_id);
   },
   'message': function(params) {
-    this.int32(-2049520670);
-    const flags = (this.has(params.out) << 1) | (this.has(params.mentioned) << 4) | (this.has(params.media_unread) << 5) | (this.has(params.silent) << 13) | (this.has(params.post) << 14) | (this.has(params.from_scheduled) << 18) | (this.has(params.legacy) << 19) | (this.has(params.edit_hide) << 21) | (this.has(params.pinned) << 24) | (this.has(params.noforwards) << 26) | (this.has(params.from_id) << 8) | (this.has(params.fwd_from) << 2) | (this.has(params.via_bot_id) << 11) | (this.has(params.reply_to) << 3) | (this.has(params.media) << 9) | (this.has(params.reply_markup) << 6) | (this.has(params.entities) << 7) | (this.has(params.views) << 10) | (this.has(params.forwards) << 10) | (this.has(params.replies) << 23) | (this.has(params.edit_date) << 15) | (this.has(params.post_author) << 16) | (this.has(params.grouped_id) << 17) | (this.has(params.restriction_reason) << 22) | (this.has(params.ttl_period) << 25);
+    this.int32(940666592);
+    const flags = (this.has(params.out) << 1) | (this.has(params.mentioned) << 4) | (this.has(params.media_unread) << 5) | (this.has(params.silent) << 13) | (this.has(params.post) << 14) | (this.has(params.from_scheduled) << 18) | (this.has(params.legacy) << 19) | (this.has(params.edit_hide) << 21) | (this.has(params.pinned) << 24) | (this.has(params.noforwards) << 26) | (this.has(params.from_id) << 8) | (this.has(params.fwd_from) << 2) | (this.has(params.via_bot_id) << 11) | (this.has(params.reply_to) << 3) | (this.has(params.media) << 9) | (this.has(params.reply_markup) << 6) | (this.has(params.entities) << 7) | (this.has(params.views) << 10) | (this.has(params.forwards) << 10) | (this.has(params.replies) << 23) | (this.has(params.edit_date) << 15) | (this.has(params.post_author) << 16) | (this.has(params.grouped_id) << 17) | (this.has(params.reactions) << 20) | (this.has(params.restriction_reason) << 22) | (this.has(params.ttl_period) << 25);
     this.int32(flags);
     this.int(params.id);
     this.flag(this.predicate, params.from_id);
@@ -573,6 +577,7 @@ const builderMap = {
     this.flag(this.int, params.edit_date);
     this.flag(this.string, params.post_author);
     this.flag(this.long, params.grouped_id);
+    this.flag(this.predicate, params.reactions);
     this.flagVector(this.predicate, params.restriction_reason);
     this.flag(this.int, params.ttl_period);
   },
@@ -593,7 +598,7 @@ const builderMap = {
   },
   'messageMediaPhoto': function(params) {
     this.int32(1766936791);
-    const flags = (this.has(params.photo) << 0) | (this.has(params.ttl_seconds) << 2);
+    const flags = (this.has(params.spoiler) << 3) | (this.has(params.photo) << 0) | (this.has(params.ttl_seconds) << 2);
     this.int32(flags);
     this.flag(this.predicate, params.photo);
     this.flag(this.int, params.ttl_seconds);
@@ -641,8 +646,8 @@ const builderMap = {
     this.long(params.user_id);
   },
   'dialog': function(params) {
-    this.int32(739712882);
-    const flags = (this.has(params.pinned) << 2) | (this.has(params.unread_mark) << 3) | (this.has(params.pts) << 0) | (this.has(params.draft) << 1) | (this.has(params.folder_id) << 4);
+    this.int32(-712374074);
+    const flags = (this.has(params.pinned) << 2) | (this.has(params.unread_mark) << 3) | (this.has(params.pts) << 0) | (this.has(params.draft) << 1) | (this.has(params.folder_id) << 4) | (this.has(params.ttl_period) << 5);
     this.int32(flags);
     this.predicate(params.peer);
     this.int(params.top_message);
@@ -650,10 +655,12 @@ const builderMap = {
     this.int(params.read_outbox_max_id);
     this.int(params.unread_count);
     this.int(params.unread_mentions_count);
+    this.int(params.unread_reactions_count);
     this.predicate(params.notify_settings);
     this.flag(this.int, params.pts);
     this.flag(this.predicate, params.draft);
     this.flag(this.int, params.folder_id);
+    this.flag(this.int, params.ttl_period);
   },
   'photoEmpty': function(params) {
     this.int32(590459437);
@@ -711,10 +718,12 @@ const builderMap = {
     this.flag(this.int, params.timeout);
   },
   'auth.authorization': function(params) {
-    this.int32(-855308010);
-    const flags = (this.has(params.tmp_sessions) << 0);
+    this.int32(782418132);
+    const flags = (this.has(params.setup_password_required) << 1) | (this.has(params.otherwise_relogin_days) << 1) | (this.has(params.tmp_sessions) << 0) | (this.has(params.future_auth_token) << 2);
     this.int32(flags);
+    this.flag(this.int, params.otherwise_relogin_days);
     this.flag(this.int, params.tmp_sessions);
+    this.flag(this.bytes, params.future_auth_token);
     this.predicate(params.user);
   },
   'auth.exportedAuthorization': function(params) {
@@ -733,28 +742,32 @@ const builderMap = {
     this.int32(1251338318);
   },
   'inputPeerNotifySettings': function(params) {
-    this.int32(-1673717362);
+    this.int32(-551616469);
     const flags = (this.has(params.show_previews) << 0) | (this.has(params.silent) << 1) | (this.has(params.mute_until) << 2) | (this.has(params.sound) << 3);
     this.int32(flags);
     this.flag(this.Bool, params.show_previews);
     this.flag(this.Bool, params.silent);
     this.flag(this.int, params.mute_until);
-    this.flag(this.string, params.sound);
+    this.flag(this.predicate, params.sound);
   },
   'peerNotifySettings': function(params) {
-    this.int32(-1353671392);
-    const flags = (this.has(params.show_previews) << 0) | (this.has(params.silent) << 1) | (this.has(params.mute_until) << 2) | (this.has(params.sound) << 3);
+    this.int32(-1472527322);
+    const flags = (this.has(params.show_previews) << 0) | (this.has(params.silent) << 1) | (this.has(params.mute_until) << 2) | (this.has(params.ios_sound) << 3) | (this.has(params.android_sound) << 4) | (this.has(params.other_sound) << 5);
     this.int32(flags);
     this.flag(this.Bool, params.show_previews);
     this.flag(this.Bool, params.silent);
     this.flag(this.int, params.mute_until);
-    this.flag(this.string, params.sound);
+    this.flag(this.predicate, params.ios_sound);
+    this.flag(this.predicate, params.android_sound);
+    this.flag(this.predicate, params.other_sound);
   },
   'peerSettings': function(params) {
-    this.int32(1933519201);
-    const flags = (this.has(params.report_spam) << 0) | (this.has(params.add_contact) << 1) | (this.has(params.block_contact) << 2) | (this.has(params.share_contact) << 3) | (this.has(params.need_contacts_exception) << 4) | (this.has(params.report_geo) << 5) | (this.has(params.autoarchived) << 7) | (this.has(params.invite_members) << 8) | (this.has(params.geo_distance) << 6);
+    this.int32(-1525149427);
+    const flags = (this.has(params.report_spam) << 0) | (this.has(params.add_contact) << 1) | (this.has(params.block_contact) << 2) | (this.has(params.share_contact) << 3) | (this.has(params.need_contacts_exception) << 4) | (this.has(params.report_geo) << 5) | (this.has(params.autoarchived) << 7) | (this.has(params.invite_members) << 8) | (this.has(params.request_chat_broadcast) << 10) | (this.has(params.geo_distance) << 6) | (this.has(params.request_chat_title) << 9) | (this.has(params.request_chat_date) << 9);
     this.int32(flags);
     this.flag(this.int, params.geo_distance);
+    this.flag(this.string, params.request_chat_title);
+    this.flag(this.int, params.request_chat_date);
   },
   'wallPaper': function(params) {
     this.int32(-1539849235);
@@ -782,13 +795,15 @@ const builderMap = {
     this.int32(-1041980751);
   },
   'userFull': function(params) {
-    this.int32(-694681851);
-    const flags = (this.has(params.blocked) << 0) | (this.has(params.phone_calls_available) << 4) | (this.has(params.phone_calls_private) << 5) | (this.has(params.can_pin_message) << 7) | (this.has(params.has_scheduled) << 12) | (this.has(params.video_calls_available) << 13) | (this.has(params.about) << 1) | (this.has(params.profile_photo) << 2) | (this.has(params.bot_info) << 3) | (this.has(params.pinned_msg_id) << 6) | (this.has(params.folder_id) << 11) | (this.has(params.ttl_period) << 14) | (this.has(params.theme_emoticon) << 15);
+    this.int32(-1813324973);
+    const flags = (this.has(params.blocked) << 0) | (this.has(params.phone_calls_available) << 4) | (this.has(params.phone_calls_private) << 5) | (this.has(params.can_pin_message) << 7) | (this.has(params.has_scheduled) << 12) | (this.has(params.video_calls_available) << 13) | (this.has(params.voice_messages_forbidden) << 20) | (this.has(params.translations_disabled) << 23) | (this.has(params.about) << 1) | (this.has(params.personal_photo) << 21) | (this.has(params.profile_photo) << 2) | (this.has(params.fallback_photo) << 22) | (this.has(params.bot_info) << 3) | (this.has(params.pinned_msg_id) << 6) | (this.has(params.folder_id) << 11) | (this.has(params.ttl_period) << 14) | (this.has(params.theme_emoticon) << 15) | (this.has(params.private_forward_name) << 16) | (this.has(params.bot_group_admin_rights) << 17) | (this.has(params.bot_broadcast_admin_rights) << 18) | (this.has(params.premium_gifts) << 19) | (this.has(params.wallpaper) << 24);
     this.int32(flags);
-    this.predicate(params.user);
+    this.long(params.id);
     this.flag(this.string, params.about);
     this.predicate(params.settings);
+    this.flag(this.predicate, params.personal_photo);
     this.flag(this.predicate, params.profile_photo);
+    this.flag(this.predicate, params.fallback_photo);
     this.predicate(params.notify_settings);
     this.flag(this.predicate, params.bot_info);
     this.flag(this.int, params.pinned_msg_id);
@@ -796,6 +811,11 @@ const builderMap = {
     this.flag(this.int, params.folder_id);
     this.flag(this.int, params.ttl_period);
     this.flag(this.string, params.theme_emoticon);
+    this.flag(this.string, params.private_forward_name);
+    this.flag(this.predicate, params.bot_group_admin_rights);
+    this.flag(this.predicate, params.bot_broadcast_admin_rights);
+    this.flagVector(this.predicate, params.premium_gifts);
+    this.flag(this.predicate, params.wallpaper);
   },
   'contact': function(params) {
     this.int32(341499403);
@@ -948,18 +968,11 @@ const builderMap = {
     this.predicate(params.status);
   },
   'updateUserName': function(params) {
-    this.int32(-1007549728);
+    this.int32(-1484486364);
     this.long(params.user_id);
     this.string(params.first_name);
     this.string(params.last_name);
-    this.string(params.username);
-  },
-  'updateUserPhoto': function(params) {
-    this.int32(-232290676);
-    this.long(params.user_id);
-    this.int(params.date);
-    this.predicate(params.photo);
-    this.Bool(params.previous);
+    this.vector(this.predicate, params.usernames);
   },
   'updates.state': function(params) {
     this.int32(-1519637954);
@@ -1074,7 +1087,7 @@ const builderMap = {
   },
   'dcOption': function(params) {
     this.int32(414687501);
-    const flags = (this.has(params.ipv6) << 0) | (this.has(params.media_only) << 1) | (this.has(params.tcpo_only) << 2) | (this.has(params.cdn) << 3) | (this.has(params.static) << 4) | (this.has(params.secret) << 10);
+    const flags = (this.has(params.ipv6) << 0) | (this.has(params.media_only) << 1) | (this.has(params.tcpo_only) << 2) | (this.has(params.cdn) << 3) | (this.has(params.static) << 4) | (this.has(params.this_port_only) << 5) | (this.has(params.secret) << 10);
     this.int32(flags);
     this.int(params.id);
     this.string(params.ip_address);
@@ -1082,8 +1095,8 @@ const builderMap = {
     this.flag(this.bytes, params.secret);
   },
   'config': function(params) {
-    this.int32(856375399);
-    const flags = (this.has(params.phonecalls_enabled) << 1) | (this.has(params.default_p2p_contacts) << 3) | (this.has(params.preload_featured_stickers) << 4) | (this.has(params.ignore_phone_entities) << 5) | (this.has(params.revoke_pm_inbox) << 6) | (this.has(params.blocked_mode) << 8) | (this.has(params.pfs_enabled) << 13) | (this.has(params.tmp_sessions) << 0) | (this.has(params.autoupdate_url_prefix) << 7) | (this.has(params.gif_search_username) << 9) | (this.has(params.venue_search_username) << 10) | (this.has(params.img_search_username) << 11) | (this.has(params.static_maps_provider) << 12) | (this.has(params.suggested_lang_code) << 2) | (this.has(params.lang_pack_version) << 2) | (this.has(params.base_lang_pack_version) << 2);
+    this.int32(-870702050);
+    const flags = (this.has(params.default_p2p_contacts) << 3) | (this.has(params.preload_featured_stickers) << 4) | (this.has(params.revoke_pm_inbox) << 6) | (this.has(params.blocked_mode) << 8) | (this.has(params.force_try_ipv6) << 14) | (this.has(params.tmp_sessions) << 0) | (this.has(params.autoupdate_url_prefix) << 7) | (this.has(params.gif_search_username) << 9) | (this.has(params.venue_search_username) << 10) | (this.has(params.img_search_username) << 11) | (this.has(params.static_maps_provider) << 12) | (this.has(params.suggested_lang_code) << 2) | (this.has(params.lang_pack_version) << 2) | (this.has(params.base_lang_pack_version) << 2) | (this.has(params.reactions_default) << 15) | (this.has(params.autologin_token) << 16);
     this.int32(flags);
     this.int(params.date);
     this.int(params.expires);
@@ -1102,17 +1115,13 @@ const builderMap = {
     this.int(params.notify_default_delay_ms);
     this.int(params.push_chat_period_ms);
     this.int(params.push_chat_limit);
-    this.int(params.saved_gifs_limit);
     this.int(params.edit_time_limit);
     this.int(params.revoke_time_limit);
     this.int(params.revoke_pm_time_limit);
     this.int(params.rating_e_decay);
     this.int(params.stickers_recent_limit);
-    this.int(params.stickers_faved_limit);
     this.int(params.channels_read_media_period);
     this.flag(this.int, params.tmp_sessions);
-    this.int(params.pinned_dialogs_count_max);
-    this.int(params.pinned_infolder_count_max);
     this.int(params.call_receive_timeout_ms);
     this.int(params.call_ring_timeout_ms);
     this.int(params.call_connect_timeout_ms);
@@ -1129,6 +1138,8 @@ const builderMap = {
     this.flag(this.string, params.suggested_lang_code);
     this.flag(this.int, params.lang_pack_version);
     this.flag(this.int, params.base_lang_pack_version);
+    this.flag(this.predicate, params.reactions_default);
+    this.flag(this.string, params.autologin_token);
   },
   'nearestDc': function(params) {
     this.int32(-1910892683);
@@ -1224,10 +1235,10 @@ const builderMap = {
     this.int32(-1038136962);
   },
   'encryptedFile': function(params) {
-    this.int32(1248893260);
+    this.int32(-1476358952);
     this.long(params.id);
     this.long(params.access_hash);
-    this.int(params.size);
+    this.long(params.size);
     this.int(params.dc_id);
     this.int(params.key_fingerprint);
   },
@@ -1318,7 +1329,7 @@ const builderMap = {
   },
   'inputMediaUploadedDocument': function(params) {
     this.int32(1530447553);
-    const flags = (this.has(params.nosound_video) << 3) | (this.has(params.force_file) << 4) | (this.has(params.thumb) << 2) | (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1);
+    const flags = (this.has(params.nosound_video) << 3) | (this.has(params.force_file) << 4) | (this.has(params.spoiler) << 5) | (this.has(params.thumb) << 2) | (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1);
     this.int32(flags);
     this.predicate(params.file);
     this.flag(this.predicate, params.thumb);
@@ -1329,7 +1340,7 @@ const builderMap = {
   },
   'inputMediaDocument': function(params) {
     this.int32(860303448);
-    const flags = (this.has(params.ttl_seconds) << 0) | (this.has(params.query) << 1);
+    const flags = (this.has(params.spoiler) << 2) | (this.has(params.ttl_seconds) << 0) | (this.has(params.query) << 1);
     this.int32(flags);
     this.predicate(params.id);
     this.flag(this.int, params.ttl_seconds);
@@ -1337,7 +1348,7 @@ const builderMap = {
   },
   'messageMediaDocument': function(params) {
     this.int32(-1666158377);
-    const flags = (this.has(params.document) << 0) | (this.has(params.ttl_seconds) << 2);
+    const flags = (this.has(params.nopremium) << 3) | (this.has(params.spoiler) << 4) | (this.has(params.document) << 0) | (this.has(params.ttl_seconds) << 2);
     this.int32(flags);
     this.flag(this.predicate, params.document);
     this.flag(this.int, params.ttl_seconds);
@@ -1363,7 +1374,7 @@ const builderMap = {
     this.long(params.id);
   },
   'document': function(params) {
-    this.int32(512177195);
+    this.int32(-1881881384);
     const flags = (this.has(params.thumbs) << 0) | (this.has(params.video_thumbs) << 1);
     this.int32(flags);
     this.long(params.id);
@@ -1371,7 +1382,7 @@ const builderMap = {
     this.bytes(params.file_reference);
     this.int(params.date);
     this.string(params.mime_type);
-    this.int(params.size);
+    this.long(params.size);
     this.flagVector(this.predicate, params.thumbs);
     this.flagVector(this.predicate, params.video_thumbs);
     this.int(params.dc_id);
@@ -1664,12 +1675,13 @@ const builderMap = {
     this.string(params.region);
   },
   'account.authorizations': function(params) {
-    this.int32(307276766);
+    this.int32(1275039392);
+    this.int(params.authorization_ttl_days);
     this.vector(this.predicate, params.authorizations);
   },
   'account.password': function(params) {
-    this.int32(408623183);
-    const flags = (this.has(params.has_recovery) << 0) | (this.has(params.has_secure_values) << 1) | (this.has(params.has_password) << 2) | (this.has(params.current_algo) << 2) | (this.has(params.srp_B) << 2) | (this.has(params.srp_id) << 2) | (this.has(params.hint) << 3) | (this.has(params.email_unconfirmed_pattern) << 4) | (this.has(params.pending_reset_date) << 5);
+    this.int32(-1787080453);
+    const flags = (this.has(params.has_recovery) << 0) | (this.has(params.has_secure_values) << 1) | (this.has(params.has_password) << 2) | (this.has(params.current_algo) << 2) | (this.has(params.srp_B) << 2) | (this.has(params.srp_id) << 2) | (this.has(params.hint) << 3) | (this.has(params.email_unconfirmed_pattern) << 4) | (this.has(params.pending_reset_date) << 5) | (this.has(params.login_email_pattern) << 6);
     this.int32(flags);
     this.flag(this.predicate, params.current_algo);
     this.flag(this.bytes, params.srp_B);
@@ -1680,6 +1692,7 @@ const builderMap = {
     this.predicate(params.new_secure_algo);
     this.bytes(params.secure_random);
     this.flag(this.int, params.pending_reset_date);
+    this.flag(this.string, params.login_email_pattern);
   },
   'account.passwordSettings': function(params) {
     this.int32(-1705233435);
@@ -1726,8 +1739,8 @@ const builderMap = {
     this.int(params.flags);
   },
   'chatInviteExported': function(params) {
-    this.int32(-1316944408);
-    const flags = (this.has(params.revoked) << 0) | (this.has(params.permanent) << 5) | (this.has(params.start_date) << 4) | (this.has(params.expire_date) << 1) | (this.has(params.usage_limit) << 2) | (this.has(params.usage) << 3);
+    this.int32(179611673);
+    const flags = (this.has(params.revoked) << 0) | (this.has(params.permanent) << 5) | (this.has(params.request_needed) << 6) | (this.has(params.start_date) << 4) | (this.has(params.expire_date) << 1) | (this.has(params.usage_limit) << 2) | (this.has(params.usage) << 3) | (this.has(params.requested) << 7) | (this.has(params.title) << 8);
     this.int32(flags);
     this.string(params.link);
     this.long(params.admin_id);
@@ -1736,16 +1749,19 @@ const builderMap = {
     this.flag(this.int, params.expire_date);
     this.flag(this.int, params.usage_limit);
     this.flag(this.int, params.usage);
+    this.flag(this.int, params.requested);
+    this.flag(this.string, params.title);
   },
   'chatInviteAlready': function(params) {
     this.int32(1516793212);
     this.predicate(params.chat);
   },
   'chatInvite': function(params) {
-    this.int32(-540871282);
-    const flags = (this.has(params.channel) << 0) | (this.has(params.broadcast) << 1) | (this.has(params.public) << 2) | (this.has(params.megagroup) << 3) | (this.has(params.participants) << 4);
+    this.int32(806110401);
+    const flags = (this.has(params.channel) << 0) | (this.has(params.broadcast) << 1) | (this.has(params.public) << 2) | (this.has(params.megagroup) << 3) | (this.has(params.request_needed) << 6) | (this.has(params.about) << 5) | (this.has(params.participants) << 4);
     this.int32(flags);
     this.string(params.title);
+    this.flag(this.string, params.about);
     this.predicate(params.photo);
     this.int(params.participants_count);
     this.flagVector(this.predicate, params.participants);
@@ -1773,8 +1789,8 @@ const builderMap = {
     this.string(params.short_name);
   },
   'stickerSet': function(params) {
-    this.int32(-673242758);
-    const flags = (this.has(params.archived) << 1) | (this.has(params.official) << 2) | (this.has(params.masks) << 3) | (this.has(params.animated) << 5) | (this.has(params.installed_date) << 0) | (this.has(params.thumbs) << 4) | (this.has(params.thumb_dc_id) << 4) | (this.has(params.thumb_version) << 4);
+    this.int32(768691932);
+    const flags = (this.has(params.archived) << 1) | (this.has(params.official) << 2) | (this.has(params.masks) << 3) | (this.has(params.animated) << 5) | (this.has(params.videos) << 6) | (this.has(params.emojis) << 7) | (this.has(params.installed_date) << 0) | (this.has(params.thumbs) << 4) | (this.has(params.thumb_dc_id) << 4) | (this.has(params.thumb_version) << 4) | (this.has(params.thumb_document_id) << 8);
     this.int32(flags);
     this.flag(this.int, params.installed_date);
     this.long(params.id);
@@ -1784,19 +1800,23 @@ const builderMap = {
     this.flagVector(this.predicate, params.thumbs);
     this.flag(this.int, params.thumb_dc_id);
     this.flag(this.int, params.thumb_version);
+    this.flag(this.long, params.thumb_document_id);
     this.int(params.count);
     this.int(params.hash);
   },
   'messages.stickerSet': function(params) {
-    this.int32(-1240849242);
+    this.int32(1846886166);
     this.predicate(params.set);
     this.vector(this.predicate, params.packs);
+    this.vector(this.predicate, params.keywords);
     this.vector(this.predicate, params.documents);
   },
   'user': function(params) {
-    this.int32(1073147056);
-    const flags = (this.has(params.self) << 10) | (this.has(params.contact) << 11) | (this.has(params.mutual_contact) << 12) | (this.has(params.deleted) << 13) | (this.has(params.bot) << 14) | (this.has(params.bot_chat_history) << 15) | (this.has(params.bot_nochats) << 16) | (this.has(params.verified) << 17) | (this.has(params.restricted) << 18) | (this.has(params.min) << 20) | (this.has(params.bot_inline_geo) << 21) | (this.has(params.support) << 23) | (this.has(params.scam) << 24) | (this.has(params.apply_min_photo) << 25) | (this.has(params.fake) << 26) | (this.has(params.access_hash) << 0) | (this.has(params.first_name) << 1) | (this.has(params.last_name) << 2) | (this.has(params.username) << 3) | (this.has(params.phone) << 4) | (this.has(params.photo) << 5) | (this.has(params.status) << 6) | (this.has(params.bot_info_version) << 14) | (this.has(params.restriction_reason) << 18) | (this.has(params.bot_inline_placeholder) << 19) | (this.has(params.lang_code) << 22);
+    this.int32(-1885878744);
+    const flags = (this.has(params.self) << 10) | (this.has(params.contact) << 11) | (this.has(params.mutual_contact) << 12) | (this.has(params.deleted) << 13) | (this.has(params.bot) << 14) | (this.has(params.bot_chat_history) << 15) | (this.has(params.bot_nochats) << 16) | (this.has(params.verified) << 17) | (this.has(params.restricted) << 18) | (this.has(params.min) << 20) | (this.has(params.bot_inline_geo) << 21) | (this.has(params.support) << 23) | (this.has(params.scam) << 24) | (this.has(params.apply_min_photo) << 25) | (this.has(params.fake) << 26) | (this.has(params.bot_attach_menu) << 27) | (this.has(params.premium) << 28) | (this.has(params.attach_menu_enabled) << 29) | (this.has(params.access_hash) << 0) | (this.has(params.first_name) << 1) | (this.has(params.last_name) << 2) | (this.has(params.username) << 3) | (this.has(params.phone) << 4) | (this.has(params.photo) << 5) | (this.has(params.status) << 6) | (this.has(params.bot_info_version) << 14) | (this.has(params.restriction_reason) << 18) | (this.has(params.bot_inline_placeholder) << 19) | (this.has(params.lang_code) << 22) | (this.has(params.emoji_status) << 30);
     this.int32(flags);
+    const flags2 = (this.has(params.bot_can_edit) << 1) | (this.has(params.usernames) << 0);
+    this.int32(flags2);
     this.long(params.id);
     this.flag(this.long, params.access_hash);
     this.flag(this.string, params.first_name);
@@ -1809,6 +1829,8 @@ const builderMap = {
     this.flagVector(this.predicate, params.restriction_reason);
     this.flag(this.string, params.bot_inline_placeholder);
     this.flag(this.string, params.lang_code);
+    this.flag(this.predicate, params.emoji_status);
+    this.flagVector(this.predicate, params.usernames);
   },
   'botCommand': function(params) {
     this.int32(-1032140601);
@@ -1816,10 +1838,15 @@ const builderMap = {
     this.string(params.description);
   },
   'botInfo': function(params) {
-    this.int32(460632885);
-    this.long(params.user_id);
-    this.string(params.description);
-    this.vector(this.predicate, params.commands);
+    this.int32(-1892676777);
+    const flags = (this.has(params.user_id) << 0) | (this.has(params.description) << 1) | (this.has(params.description_photo) << 4) | (this.has(params.description_document) << 5) | (this.has(params.commands) << 2) | (this.has(params.menu_button) << 3);
+    this.int32(flags);
+    this.flag(this.long, params.user_id);
+    this.flag(this.string, params.description);
+    this.flag(this.predicate, params.description_photo);
+    this.flag(this.predicate, params.description_document);
+    this.flagVector(this.predicate, params.commands);
+    this.flag(this.predicate, params.menu_button);
   },
   'keyboardButton': function(params) {
     this.int32(-1560655744);
@@ -1842,7 +1869,7 @@ const builderMap = {
   },
   'replyKeyboardMarkup': function(params) {
     this.int32(-2049074735);
-    const flags = (this.has(params.resize) << 0) | (this.has(params.single_use) << 1) | (this.has(params.selective) << 2) | (this.has(params.placeholder) << 3);
+    const flags = (this.has(params.resize) << 0) | (this.has(params.single_use) << 1) | (this.has(params.selective) << 2) | (this.has(params.persistent) << 4) | (this.has(params.placeholder) << 3);
     this.int32(flags);
     this.vector(this.predicate, params.rows);
     this.flag(this.string, params.placeholder);
@@ -1944,9 +1971,11 @@ const builderMap = {
     this.long(params.access_hash);
   },
   'channel': function(params) {
-    this.int32(-2107528095);
-    const flags = (this.has(params.creator) << 0) | (this.has(params.left) << 2) | (this.has(params.broadcast) << 5) | (this.has(params.verified) << 7) | (this.has(params.megagroup) << 8) | (this.has(params.restricted) << 9) | (this.has(params.signatures) << 11) | (this.has(params.min) << 12) | (this.has(params.scam) << 19) | (this.has(params.has_link) << 20) | (this.has(params.has_geo) << 21) | (this.has(params.slowmode_enabled) << 22) | (this.has(params.call_active) << 23) | (this.has(params.call_not_empty) << 24) | (this.has(params.fake) << 25) | (this.has(params.gigagroup) << 26) | (this.has(params.noforwards) << 27) | (this.has(params.access_hash) << 13) | (this.has(params.username) << 6) | (this.has(params.restriction_reason) << 9) | (this.has(params.admin_rights) << 14) | (this.has(params.banned_rights) << 15) | (this.has(params.default_banned_rights) << 18) | (this.has(params.participants_count) << 17);
+    this.int32(-2094689180);
+    const flags = (this.has(params.creator) << 0) | (this.has(params.left) << 2) | (this.has(params.broadcast) << 5) | (this.has(params.verified) << 7) | (this.has(params.megagroup) << 8) | (this.has(params.restricted) << 9) | (this.has(params.signatures) << 11) | (this.has(params.min) << 12) | (this.has(params.scam) << 19) | (this.has(params.has_link) << 20) | (this.has(params.has_geo) << 21) | (this.has(params.slowmode_enabled) << 22) | (this.has(params.call_active) << 23) | (this.has(params.call_not_empty) << 24) | (this.has(params.fake) << 25) | (this.has(params.gigagroup) << 26) | (this.has(params.noforwards) << 27) | (this.has(params.join_to_send) << 28) | (this.has(params.join_request) << 29) | (this.has(params.forum) << 30) | (this.has(params.access_hash) << 13) | (this.has(params.username) << 6) | (this.has(params.restriction_reason) << 9) | (this.has(params.admin_rights) << 14) | (this.has(params.banned_rights) << 15) | (this.has(params.default_banned_rights) << 18) | (this.has(params.participants_count) << 17);
     this.int32(flags);
+    const flags2 = (this.has(params.usernames) << 0);
+    this.int32(flags2);
     this.long(params.id);
     this.flag(this.long, params.access_hash);
     this.string(params.title);
@@ -1958,6 +1987,7 @@ const builderMap = {
     this.flag(this.predicate, params.banned_rights);
     this.flag(this.predicate, params.default_banned_rights);
     this.flag(this.int, params.participants_count);
+    this.flagVector(this.predicate, params.usernames);
   },
   'channelForbidden': function(params) {
     this.int32(399807445);
@@ -1975,9 +2005,11 @@ const builderMap = {
     this.vector(this.predicate, params.users);
   },
   'channelFull': function(params) {
-    this.int32(-374179305);
-    const flags = (this.has(params.can_view_participants) << 3) | (this.has(params.can_set_username) << 6) | (this.has(params.can_set_stickers) << 7) | (this.has(params.hidden_prehistory) << 10) | (this.has(params.can_set_location) << 16) | (this.has(params.has_scheduled) << 19) | (this.has(params.can_view_stats) << 20) | (this.has(params.blocked) << 22) | (this.has(params.participants_count) << 0) | (this.has(params.admins_count) << 1) | (this.has(params.kicked_count) << 2) | (this.has(params.banned_count) << 2) | (this.has(params.online_count) << 13) | (this.has(params.exported_invite) << 23) | (this.has(params.migrated_from_chat_id) << 4) | (this.has(params.migrated_from_max_id) << 4) | (this.has(params.pinned_msg_id) << 5) | (this.has(params.stickerset) << 8) | (this.has(params.available_min_id) << 9) | (this.has(params.folder_id) << 11) | (this.has(params.linked_chat_id) << 14) | (this.has(params.location) << 15) | (this.has(params.slowmode_seconds) << 17) | (this.has(params.slowmode_next_send_date) << 18) | (this.has(params.stats_dc) << 12) | (this.has(params.call) << 21) | (this.has(params.ttl_period) << 24) | (this.has(params.pending_suggestions) << 25) | (this.has(params.groupcall_default_join_as) << 26) | (this.has(params.theme_emoticon) << 27);
+    this.int32(-231385849);
+    const flags = (this.has(params.can_view_participants) << 3) | (this.has(params.can_set_username) << 6) | (this.has(params.can_set_stickers) << 7) | (this.has(params.hidden_prehistory) << 10) | (this.has(params.can_set_location) << 16) | (this.has(params.has_scheduled) << 19) | (this.has(params.can_view_stats) << 20) | (this.has(params.blocked) << 22) | (this.has(params.participants_count) << 0) | (this.has(params.admins_count) << 1) | (this.has(params.kicked_count) << 2) | (this.has(params.banned_count) << 2) | (this.has(params.online_count) << 13) | (this.has(params.exported_invite) << 23) | (this.has(params.migrated_from_chat_id) << 4) | (this.has(params.migrated_from_max_id) << 4) | (this.has(params.pinned_msg_id) << 5) | (this.has(params.stickerset) << 8) | (this.has(params.available_min_id) << 9) | (this.has(params.folder_id) << 11) | (this.has(params.linked_chat_id) << 14) | (this.has(params.location) << 15) | (this.has(params.slowmode_seconds) << 17) | (this.has(params.slowmode_next_send_date) << 18) | (this.has(params.stats_dc) << 12) | (this.has(params.call) << 21) | (this.has(params.ttl_period) << 24) | (this.has(params.pending_suggestions) << 25) | (this.has(params.groupcall_default_join_as) << 26) | (this.has(params.theme_emoticon) << 27) | (this.has(params.requests_pending) << 28) | (this.has(params.recent_requesters) << 28) | (this.has(params.default_send_as) << 29) | (this.has(params.available_reactions) << 30);
     this.int32(flags);
+    const flags2 = (this.has(params.can_delete_channel) << 0) | (this.has(params.antispam) << 1) | (this.has(params.participants_hidden) << 2) | (this.has(params.translations_disabled) << 3);
+    this.int32(flags2);
     this.long(params.id);
     this.string(params.about);
     this.flag(this.int, params.participants_count);
@@ -2009,6 +2041,10 @@ const builderMap = {
     this.flagVector(this.string, params.pending_suggestions);
     this.flag(this.predicate, params.groupcall_default_join_as);
     this.flag(this.string, params.theme_emoticon);
+    this.flag(this.int, params.requests_pending);
+    this.flagVector(this.long, params.recent_requesters);
+    this.flag(this.predicate, params.default_send_as);
+    this.flag(this.predicate, params.available_reactions);
   },
   'messageRange': function(params) {
     this.int32(182649427);
@@ -2016,13 +2052,14 @@ const builderMap = {
     this.int(params.max_id);
   },
   'messages.channelMessages': function(params) {
-    this.int32(1682413576);
+    this.int32(-948520370);
     const flags = (this.has(params.inexact) << 1) | (this.has(params.offset_id_offset) << 2);
     this.int32(flags);
     this.int(params.pts);
     this.int(params.count);
     this.flag(this.int, params.offset_id_offset);
     this.vector(this.predicate, params.messages);
+    this.vector(this.predicate, params.topics);
     this.vector(this.predicate, params.chats);
     this.vector(this.predicate, params.users);
   },
@@ -2113,7 +2150,9 @@ const builderMap = {
     this.int(params.date);
   },
   'channelParticipantSelf': function(params) {
-    this.int32(682146919);
+    this.int32(900251559);
+    const flags = (this.has(params.via_request) << 0);
+    this.int32(flags);
     this.long(params.user_id);
     this.long(params.inviter_id);
     this.int(params.date);
@@ -2193,12 +2232,14 @@ const builderMap = {
   },
   'updateStickerSetsOrder': function(params) {
     this.int32(196268545);
-    const flags = (this.has(params.masks) << 0);
+    const flags = (this.has(params.masks) << 0) | (this.has(params.emojis) << 1);
     this.int32(flags);
     this.vector(this.long, params.order);
   },
   'updateStickerSets': function(params) {
-    this.int32(1135492588);
+    this.int32(834816008);
+    const flags = (this.has(params.masks) << 0) | (this.has(params.emojis) << 1);
+    this.int32(flags);
   },
   'messages.savedGifsNotModified': function(params) {
     this.int32(-402498398);
@@ -2270,12 +2311,13 @@ const builderMap = {
     this.predicate(params.send_message);
   },
   'messages.botResults': function(params) {
-    this.int32(-1803769784);
-    const flags = (this.has(params.gallery) << 0) | (this.has(params.next_offset) << 1) | (this.has(params.switch_pm) << 2);
+    this.int32(-534646026);
+    const flags = (this.has(params.gallery) << 0) | (this.has(params.next_offset) << 1) | (this.has(params.switch_pm) << 2) | (this.has(params.switch_webview) << 3);
     this.int32(flags);
     this.long(params.query_id);
     this.flag(this.string, params.next_offset);
     this.flag(this.predicate, params.switch_pm);
+    this.flag(this.predicate, params.switch_webview);
     this.vector(this.predicate, params.results);
     this.int(params.cache_time);
     this.vector(this.predicate, params.users);
@@ -2386,11 +2428,12 @@ const builderMap = {
     this.string(params.text);
   },
   'keyboardButtonSwitchInline': function(params) {
-    this.int32(90744648);
-    const flags = (this.has(params.same_peer) << 0);
+    this.int32(-1816527947);
+    const flags = (this.has(params.same_peer) << 0) | (this.has(params.peer_types) << 1);
     this.int32(flags);
     this.string(params.text);
     this.string(params.query);
+    this.flagVector(this.predicate, params.peer_types);
   },
   'replyInlineMarkup': function(params) {
     this.int32(1218642516);
@@ -2607,8 +2650,11 @@ const builderMap = {
     this.int(params.max_id);
   },
   'updateDraftMessage': function(params) {
-    this.int32(-299124375);
+    this.int32(457829485);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
     this.predicate(params.peer);
+    this.flag(this.int, params.top_msg_id);
     this.predicate(params.draft);
   },
   'draftMessageEmpty': function(params) {
@@ -2634,7 +2680,9 @@ const builderMap = {
     this.int(params.count);
   },
   'messages.featuredStickers': function(params) {
-    this.int32(-2067782896);
+    this.int32(-1103615738);
+    const flags = (this.has(params.premium) << 0);
+    this.int32(flags);
     this.long(params.hash);
     this.int(params.count);
     this.vector(this.predicate, params.sets);
@@ -2681,14 +2729,14 @@ const builderMap = {
   },
   'inputMediaPhotoExternal': function(params) {
     this.int32(-440664550);
-    const flags = (this.has(params.ttl_seconds) << 0);
+    const flags = (this.has(params.spoiler) << 1) | (this.has(params.ttl_seconds) << 0);
     this.int32(flags);
     this.string(params.url);
     this.flag(this.int, params.ttl_seconds);
   },
   'inputMediaDocumentExternal': function(params) {
     this.int32(-78455655);
-    const flags = (this.has(params.ttl_seconds) << 0);
+    const flags = (this.has(params.spoiler) << 1) | (this.has(params.ttl_seconds) << 0);
     this.int32(flags);
     this.string(params.url);
     this.flag(this.int, params.ttl_seconds);
@@ -3006,17 +3054,18 @@ const builderMap = {
     this.long(params.amount);
   },
   'invoice': function(params) {
-    this.int32(215516896);
-    const flags = (this.has(params.test) << 0) | (this.has(params.name_requested) << 1) | (this.has(params.phone_requested) << 2) | (this.has(params.email_requested) << 3) | (this.has(params.shipping_address_requested) << 4) | (this.has(params.flexible) << 5) | (this.has(params.phone_to_provider) << 6) | (this.has(params.email_to_provider) << 7) | (this.has(params.max_tip_amount) << 8) | (this.has(params.suggested_tip_amounts) << 8);
+    this.int32(1048946971);
+    const flags = (this.has(params.test) << 0) | (this.has(params.name_requested) << 1) | (this.has(params.phone_requested) << 2) | (this.has(params.email_requested) << 3) | (this.has(params.shipping_address_requested) << 4) | (this.has(params.flexible) << 5) | (this.has(params.phone_to_provider) << 6) | (this.has(params.email_to_provider) << 7) | (this.has(params.recurring) << 9) | (this.has(params.max_tip_amount) << 8) | (this.has(params.suggested_tip_amounts) << 8) | (this.has(params.recurring_terms_url) << 9);
     this.int32(flags);
     this.string(params.currency);
     this.vector(this.predicate, params.prices);
     this.flag(this.long, params.max_tip_amount);
     this.flagVector(this.long, params.suggested_tip_amounts);
+    this.flag(this.string, params.recurring_terms_url);
   },
   'inputMediaInvoice': function(params) {
-    this.int32(-646342540);
-    const flags = (this.has(params.photo) << 0) | (this.has(params.start_param) << 1);
+    this.int32(-1900697899);
+    const flags = (this.has(params.photo) << 0) | (this.has(params.start_param) << 1) | (this.has(params.extended_media) << 2);
     this.int32(flags);
     this.string(params.title);
     this.string(params.description);
@@ -3026,6 +3075,7 @@ const builderMap = {
     this.string(params.provider);
     this.predicate(params.provider_data);
     this.flag(this.string, params.start_param);
+    this.flag(this.predicate, params.extended_media);
   },
   'paymentCharge': function(params) {
     this.int32(-368917890);
@@ -3034,7 +3084,7 @@ const builderMap = {
   },
   'messageActionPaymentSentMe': function(params) {
     this.int32(-1892568281);
-    const flags = (this.has(params.info) << 0) | (this.has(params.shipping_option_id) << 1);
+    const flags = (this.has(params.recurring_init) << 2) | (this.has(params.recurring_used) << 3) | (this.has(params.info) << 0) | (this.has(params.shipping_option_id) << 1);
     this.int32(flags);
     this.string(params.currency);
     this.long(params.total_amount);
@@ -3044,8 +3094,8 @@ const builderMap = {
     this.predicate(params.charge);
   },
   'messageMediaInvoice': function(params) {
-    this.int32(-2074799289);
-    const flags = (this.has(params.shipping_address_requested) << 1) | (this.has(params.test) << 3) | (this.has(params.photo) << 0) | (this.has(params.receipt_msg_id) << 2);
+    this.int32(-156940077);
+    const flags = (this.has(params.shipping_address_requested) << 1) | (this.has(params.test) << 3) | (this.has(params.photo) << 0) | (this.has(params.receipt_msg_id) << 2) | (this.has(params.extended_media) << 4);
     this.int32(flags);
     this.string(params.title);
     this.string(params.description);
@@ -3054,6 +3104,7 @@ const builderMap = {
     this.string(params.currency);
     this.long(params.total_amount);
     this.string(params.start_param);
+    this.flag(this.predicate, params.extended_media);
   },
   'postAddress': function(params) {
     this.int32(512535275);
@@ -3078,9 +3129,12 @@ const builderMap = {
     this.string(params.text);
   },
   'messageActionPaymentSent': function(params) {
-    this.int32(1080663248);
+    this.int32(-1776926890);
+    const flags = (this.has(params.recurring_init) << 2) | (this.has(params.recurring_used) << 3) | (this.has(params.invoice_slug) << 0);
+    this.int32(flags);
     this.string(params.currency);
     this.long(params.total_amount);
+    this.flag(this.string, params.invoice_slug);
   },
   'paymentSavedCredentialsCard': function(params) {
     this.int32(-842892769);
@@ -3116,18 +3170,22 @@ const builderMap = {
     this.bytes(params.bytes);
   },
   'payments.paymentForm': function(params) {
-    this.int32(378828315);
-    const flags = (this.has(params.can_save_credentials) << 2) | (this.has(params.password_missing) << 3) | (this.has(params.native_provider) << 4) | (this.has(params.native_params) << 4) | (this.has(params.saved_info) << 0) | (this.has(params.saved_credentials) << 1);
+    this.int32(-1610250415);
+    const flags = (this.has(params.can_save_credentials) << 2) | (this.has(params.password_missing) << 3) | (this.has(params.photo) << 5) | (this.has(params.native_provider) << 4) | (this.has(params.native_params) << 4) | (this.has(params.additional_methods) << 6) | (this.has(params.saved_info) << 0) | (this.has(params.saved_credentials) << 1);
     this.int32(flags);
     this.long(params.form_id);
     this.long(params.bot_id);
+    this.string(params.title);
+    this.string(params.description);
+    this.flag(this.predicate, params.photo);
     this.predicate(params.invoice);
     this.long(params.provider_id);
     this.string(params.url);
     this.flag(this.string, params.native_provider);
     this.flag(this.predicate, params.native_params);
+    this.flagVector(this.predicate, params.additional_methods);
     this.flag(this.predicate, params.saved_info);
-    this.flag(this.predicate, params.saved_credentials);
+    this.flagVector(this.predicate, params.saved_credentials);
     this.vector(this.predicate, params.users);
   },
   'payments.validatedRequestedInfo': function(params) {
@@ -3208,12 +3266,13 @@ const builderMap = {
     this.long(params.total_amount);
   },
   'inputStickerSetItem': function(params) {
-    this.int32(-6249322);
-    const flags = (this.has(params.mask_coords) << 0);
+    this.int32(853188252);
+    const flags = (this.has(params.mask_coords) << 0) | (this.has(params.keywords) << 1);
     this.int32(flags);
     this.predicate(params.document);
     this.string(params.emoji);
     this.flag(this.predicate, params.mask_coords);
+    this.flag(this.string, params.keywords);
   },
   'updatePhoneCall': function(params) {
     this.int32(-1425052898);
@@ -3288,7 +3347,9 @@ const builderMap = {
     this.flag(this.int, params.duration);
   },
   'phoneConnection': function(params) {
-    this.int32(-1655957568);
+    this.int32(-1665063993);
+    const flags = (this.has(params.tcp) << 0);
+    this.int32(flags);
     this.long(params.id);
     this.string(params.ip);
     this.string(params.ipv6);
@@ -3516,7 +3577,7 @@ const builderMap = {
   },
   'channelAdminLogEventsFilter': function(params) {
     this.int32(-368018716);
-    const flags = (this.has(params.join) << 0) | (this.has(params.leave) << 1) | (this.has(params.invite) << 2) | (this.has(params.ban) << 3) | (this.has(params.unban) << 4) | (this.has(params.kick) << 5) | (this.has(params.unkick) << 6) | (this.has(params.promote) << 7) | (this.has(params.demote) << 8) | (this.has(params.info) << 9) | (this.has(params.settings) << 10) | (this.has(params.pinned) << 11) | (this.has(params.edit) << 12) | (this.has(params.delete) << 13) | (this.has(params.group_call) << 14) | (this.has(params.invites) << 15) | (this.has(params.send) << 16);
+    const flags = (this.has(params.join) << 0) | (this.has(params.leave) << 1) | (this.has(params.invite) << 2) | (this.has(params.ban) << 3) | (this.has(params.unban) << 4) | (this.has(params.kick) << 5) | (this.has(params.unkick) << 6) | (this.has(params.promote) << 7) | (this.has(params.demote) << 8) | (this.has(params.info) << 9) | (this.has(params.settings) << 10) | (this.has(params.pinned) << 11) | (this.has(params.edit) << 12) | (this.has(params.delete) << 13) | (this.has(params.group_call) << 14) | (this.has(params.invites) << 15) | (this.has(params.send) << 16) | (this.has(params.forums) << 17);
     this.int32(flags);
   },
   'topPeerCategoryPhoneCalls': function(params) {
@@ -3548,8 +3609,11 @@ const builderMap = {
     this.int32(-451831443);
   },
   'updateChannelReadMessagesContents': function(params) {
-    this.int32(1153291573);
+    this.int32(-366410403);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
     this.long(params.channel_id);
+    this.flag(this.int, params.top_msg_id);
     this.vector(this.int, params.messages);
   },
   'inputMessagesFilterMyMentions': function(params) {
@@ -3689,8 +3753,11 @@ const builderMap = {
     this.int(params.length);
   },
   'messageActionBotAllowed': function(params) {
-    this.int32(-1410748418);
-    this.string(params.domain);
+    this.int32(-988359047);
+    const flags = (this.has(params.attach_menu) << 1) | (this.has(params.domain) << 0) | (this.has(params.app) << 2);
+    this.int32(flags);
+    this.flag(this.string, params.domain);
+    this.flag(this.predicate, params.app);
   },
   'inputDialogPeer': function(params) {
     this.int32(-55902537);
@@ -3709,8 +3776,8 @@ const builderMap = {
     this.vector(this.predicate, params.sets);
   },
   'fileHash': function(params) {
-    this.int32(1648543603);
-    this.int(params.offset);
+    this.int32(-207944868);
+    this.long(params.offset);
     this.int(params.limit);
     this.bytes(params.hash);
   },
@@ -3757,10 +3824,10 @@ const builderMap = {
     this.int32(1679398724);
   },
   'secureFile': function(params) {
-    this.int32(-534283678);
+    this.int32(2097791614);
     this.long(params.id);
     this.long(params.access_hash);
-    this.int(params.size);
+    this.long(params.size);
     this.int(params.dc_id);
     this.int(params.date);
     this.bytes(params.file_hash);
@@ -4292,12 +4359,12 @@ const builderMap = {
   },
   'chatAdminRights': function(params) {
     this.int32(1605510357);
-    const flags = (this.has(params.change_info) << 0) | (this.has(params.post_messages) << 1) | (this.has(params.edit_messages) << 2) | (this.has(params.delete_messages) << 3) | (this.has(params.ban_users) << 4) | (this.has(params.invite_users) << 5) | (this.has(params.pin_messages) << 7) | (this.has(params.add_admins) << 9) | (this.has(params.anonymous) << 10) | (this.has(params.manage_call) << 11) | (this.has(params.other) << 12);
+    const flags = (this.has(params.change_info) << 0) | (this.has(params.post_messages) << 1) | (this.has(params.edit_messages) << 2) | (this.has(params.delete_messages) << 3) | (this.has(params.ban_users) << 4) | (this.has(params.invite_users) << 5) | (this.has(params.pin_messages) << 7) | (this.has(params.add_admins) << 9) | (this.has(params.anonymous) << 10) | (this.has(params.manage_call) << 11) | (this.has(params.other) << 12) | (this.has(params.manage_topics) << 13);
     this.int32(flags);
   },
   'chatBannedRights': function(params) {
     this.int32(-1626209256);
-    const flags = (this.has(params.view_messages) << 0) | (this.has(params.send_messages) << 1) | (this.has(params.send_media) << 2) | (this.has(params.send_stickers) << 3) | (this.has(params.send_gifs) << 4) | (this.has(params.send_games) << 5) | (this.has(params.send_inline) << 6) | (this.has(params.embed_links) << 7) | (this.has(params.send_polls) << 8) | (this.has(params.change_info) << 10) | (this.has(params.invite_users) << 15) | (this.has(params.pin_messages) << 17);
+    const flags = (this.has(params.view_messages) << 0) | (this.has(params.send_messages) << 1) | (this.has(params.send_media) << 2) | (this.has(params.send_stickers) << 3) | (this.has(params.send_gifs) << 4) | (this.has(params.send_games) << 5) | (this.has(params.send_inline) << 6) | (this.has(params.embed_links) << 7) | (this.has(params.send_polls) << 8) | (this.has(params.change_info) << 10) | (this.has(params.invite_users) << 15) | (this.has(params.pin_messages) << 17) | (this.has(params.manage_topics) << 18) | (this.has(params.send_photos) << 19) | (this.has(params.send_videos) << 20) | (this.has(params.send_roundvideos) << 21) | (this.has(params.send_audios) << 22) | (this.has(params.send_voices) << 23) | (this.has(params.send_docs) << 24) | (this.has(params.send_plain) << 25);
     this.int32(flags);
     this.int(params.until_date);
   },
@@ -4338,9 +4405,12 @@ const builderMap = {
     this.vector(this.predicate, params.wallpapers);
   },
   'codeSettings': function(params) {
-    this.int32(-557924733);
-    const flags = (this.has(params.allow_flashcall) << 0) | (this.has(params.current_number) << 1) | (this.has(params.allow_app_hash) << 4);
+    this.int32(-1390068360);
+    const flags = (this.has(params.allow_flashcall) << 0) | (this.has(params.current_number) << 1) | (this.has(params.allow_app_hash) << 4) | (this.has(params.allow_missed_call) << 5) | (this.has(params.allow_firebase) << 7) | (this.has(params.logout_tokens) << 6) | (this.has(params.token) << 8) | (this.has(params.app_sandbox) << 8);
     this.int32(flags);
+    this.flagVector(this.bytes, params.logout_tokens);
+    this.flag(this.string, params.token);
+    this.flag(this.Bool, params.app_sandbox);
   },
   'wallPaperSettings': function(params) {
     this.int32(499236004);
@@ -4354,12 +4424,12 @@ const builderMap = {
     this.flag(this.int, params.rotation);
   },
   'autoDownloadSettings': function(params) {
-    this.int32(-532532493);
+    this.int32(-1896171181);
     const flags = (this.has(params.disabled) << 0) | (this.has(params.video_preload_large) << 1) | (this.has(params.audio_preload_next) << 2) | (this.has(params.phonecalls_less_data) << 3);
     this.int32(flags);
     this.int(params.photo_size_max);
-    this.int(params.video_size_max);
-    this.int(params.file_size_max);
+    this.long(params.video_size_max);
+    this.long(params.file_size_max);
     this.int(params.video_upload_maxbitrate);
   },
   'account.autoDownloadSettings': function(params) {
@@ -4662,15 +4732,16 @@ const builderMap = {
     this.string(params.slug);
   },
   'theme': function(params) {
-    this.int32(-402474788);
-    const flags = (this.has(params.creator) << 0) | (this.has(params.default) << 1) | (this.has(params.for_chat) << 5) | (this.has(params.document) << 2) | (this.has(params.settings) << 3) | (this.has(params.installs_count) << 4);
+    this.int32(-1609668650);
+    const flags = (this.has(params.creator) << 0) | (this.has(params.default) << 1) | (this.has(params.for_chat) << 5) | (this.has(params.document) << 2) | (this.has(params.settings) << 3) | (this.has(params.emoticon) << 6) | (this.has(params.installs_count) << 4);
     this.int32(flags);
     this.long(params.id);
     this.long(params.access_hash);
     this.string(params.slug);
     this.string(params.title);
     this.flag(this.predicate, params.document);
-    this.flag(this.predicate, params.settings);
+    this.flagVector(this.predicate, params.settings);
+    this.flag(this.string, params.emoticon);
     this.flag(this.int, params.installs_count);
   },
   'account.themesNotModified': function(params) {
@@ -5106,7 +5177,7 @@ const builderMap = {
   },
   'messageReplyHeader': function(params) {
     this.int32(-1495959709);
-    const flags = (this.has(params.reply_to_peer_id) << 0) | (this.has(params.reply_to_top_id) << 1);
+    const flags = (this.has(params.reply_to_scheduled) << 2) | (this.has(params.forum_topic) << 3) | (this.has(params.reply_to_peer_id) << 0) | (this.has(params.reply_to_top_id) << 1);
     this.int32(flags);
     this.int(params.reply_to_msg_id);
     this.flag(this.predicate, params.reply_to_peer_id);
@@ -5205,7 +5276,7 @@ const builderMap = {
   },
   'groupCall': function(params) {
     this.int32(-711498484);
-    const flags = (this.has(params.join_muted) << 1) | (this.has(params.can_change_join_muted) << 2) | (this.has(params.join_date_asc) << 6) | (this.has(params.schedule_start_subscribed) << 8) | (this.has(params.can_start_video) << 9) | (this.has(params.record_video_active) << 11) | (this.has(params.title) << 3) | (this.has(params.stream_dc_id) << 4) | (this.has(params.record_start_date) << 5) | (this.has(params.schedule_date) << 7) | (this.has(params.unmuted_video_count) << 10);
+    const flags = (this.has(params.join_muted) << 1) | (this.has(params.can_change_join_muted) << 2) | (this.has(params.join_date_asc) << 6) | (this.has(params.schedule_start_subscribed) << 8) | (this.has(params.can_start_video) << 9) | (this.has(params.record_video_active) << 11) | (this.has(params.rtmp_stream) << 12) | (this.has(params.listeners_hidden) << 13) | (this.has(params.title) << 3) | (this.has(params.stream_dc_id) << 4) | (this.has(params.record_start_date) << 5) | (this.has(params.schedule_date) << 7) | (this.has(params.unmuted_video_count) << 10);
     this.int32(flags);
     this.long(params.id);
     this.long(params.access_hash);
@@ -5345,8 +5416,11 @@ const builderMap = {
     this.vector(this.int, params.messages);
   },
   'messageActionSetMessagesTTL': function(params) {
-    this.int32(-1441072131);
+    this.int32(1007897979);
+    const flags = (this.has(params.auto_setting_from) << 0);
+    this.int32(flags);
     this.int(params.period);
+    this.flag(this.long, params.auto_setting_from);
   },
   'updatePeerHistoryTTL': function(params) {
     this.int32(-1147422299);
@@ -5370,7 +5444,7 @@ const builderMap = {
   },
   'updateChannelParticipant': function(params) {
     this.int32(-1738720581);
-    const flags = (this.has(params.prev_participant) << 0) | (this.has(params.new_participant) << 1) | (this.has(params.invite) << 2);
+    const flags = (this.has(params.via_chatlist) << 3) | (this.has(params.prev_participant) << 0) | (this.has(params.new_participant) << 1) | (this.has(params.invite) << 2);
     this.int32(flags);
     this.long(params.channel_id);
     this.int(params.date);
@@ -5389,9 +5463,13 @@ const builderMap = {
     this.int(params.qts);
   },
   'chatInviteImporter': function(params) {
-    this.int32(190633460);
+    this.int32(-1940201511);
+    const flags = (this.has(params.requested) << 0) | (this.has(params.via_chatlist) << 3) | (this.has(params.about) << 2) | (this.has(params.approved_by) << 1);
+    this.int32(flags);
     this.long(params.user_id);
     this.int(params.date);
+    this.flag(this.string, params.about);
+    this.flag(this.long, params.approved_by);
   },
   'messages.exportedChatInvites': function(params) {
     this.int32(-1111085620);
@@ -5428,7 +5506,9 @@ const builderMap = {
     this.vector(this.predicate, params.users);
   },
   'channelAdminLogEventActionParticipantJoinByInvite': function(params) {
-    this.int32(1557846647);
+    this.int32(-23084712);
+    const flags = (this.has(params.via_chatlist) << 0);
+    this.int32(flags);
     this.predicate(params.invite);
   },
   'channelAdminLogEventActionExportedInviteDelete': function(params) {
@@ -5571,20 +5651,6 @@ const builderMap = {
     this.long(params.bot_id);
     this.vector(this.predicate, params.commands);
   },
-  'chatTheme': function(params) {
-    this.int32(-318022605);
-    this.string(params.emoticon);
-    this.predicate(params.theme);
-    this.predicate(params.dark_theme);
-  },
-  'account.chatThemesNotModified': function(params) {
-    this.int32(-535699004);
-  },
-  'account.chatThemes': function(params) {
-    this.int32(-28524867);
-    this.int(params.hash);
-    this.vector(this.predicate, params.themes);
-  },
   'messageActionSetChatTheme': function(params) {
     this.int32(-1434950843);
     this.string(params.emoticon);
@@ -5593,17 +5659,25 @@ const builderMap = {
     this.int32(-1336228175);
   },
   'sponsoredMessage': function(params) {
-    this.int32(708589599);
-    const flags = (this.has(params.start_param) << 0) | (this.has(params.entities) << 1);
+    this.int32(-64636888);
+    const flags = (this.has(params.recommended) << 5) | (this.has(params.show_peer_photo) << 6) | (this.has(params.from_id) << 3) | (this.has(params.chat_invite) << 4) | (this.has(params.chat_invite_hash) << 4) | (this.has(params.channel_post) << 2) | (this.has(params.start_param) << 0) | (this.has(params.entities) << 1) | (this.has(params.sponsor_info) << 7) | (this.has(params.additional_info) << 8);
     this.int32(flags);
     this.bytes(params.random_id);
-    this.predicate(params.from_id);
+    this.flag(this.predicate, params.from_id);
+    this.flag(this.predicate, params.chat_invite);
+    this.flag(this.string, params.chat_invite_hash);
+    this.flag(this.int, params.channel_post);
     this.flag(this.string, params.start_param);
     this.string(params.message);
     this.flagVector(this.predicate, params.entities);
+    this.flag(this.string, params.sponsor_info);
+    this.flag(this.string, params.additional_info);
   },
   'messages.sponsoredMessages': function(params) {
-    this.int32(1705297877);
+    this.int32(-907141753);
+    const flags = (this.has(params.posts_between) << 0);
+    this.int32(flags);
+    this.flag(this.int, params.posts_between);
     this.vector(this.predicate, params.messages);
     this.vector(this.predicate, params.chats);
     this.vector(this.predicate, params.users);
@@ -5627,6 +5701,1024 @@ const builderMap = {
     this.long(params.owner_id);
     this.int(params.id);
     this.long(params.access_hash);
+  },
+  'searchResultsCalendarPeriod': function(params) {
+    this.int32(-911191137);
+    this.int(params.date);
+    this.int(params.min_msg_id);
+    this.int(params.max_msg_id);
+    this.int(params.count);
+  },
+  'messages.searchResultsCalendar': function(params) {
+    this.int32(343859772);
+    const flags = (this.has(params.inexact) << 0) | (this.has(params.offset_id_offset) << 1);
+    this.int32(flags);
+    this.int(params.count);
+    this.int(params.min_date);
+    this.int(params.min_msg_id);
+    this.flag(this.int, params.offset_id_offset);
+    this.vector(this.predicate, params.periods);
+    this.vector(this.predicate, params.messages);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'searchResultPosition': function(params) {
+    this.int32(2137295719);
+    this.int(params.msg_id);
+    this.int(params.date);
+    this.int(params.offset);
+  },
+  'messages.searchResultsPositions': function(params) {
+    this.int32(1404185519);
+    this.int(params.count);
+    this.vector(this.predicate, params.positions);
+  },
+  'messageActionChatJoinedByRequest': function(params) {
+    this.int32(-339958837);
+  },
+  'updatePendingJoinRequests': function(params) {
+    this.int32(1885586395);
+    this.predicate(params.peer);
+    this.int(params.requests_pending);
+    this.vector(this.long, params.recent_requesters);
+  },
+  'updateBotChatInviteRequester': function(params) {
+    this.int32(299870598);
+    this.predicate(params.peer);
+    this.int(params.date);
+    this.long(params.user_id);
+    this.string(params.about);
+    this.predicate(params.invite);
+    this.int(params.qts);
+  },
+  'channelAdminLogEventActionParticipantJoinByRequest': function(params) {
+    this.int32(-1347021750);
+    this.predicate(params.invite);
+    this.long(params.approved_by);
+  },
+  'inputKeyboardButtonUserProfile': function(params) {
+    this.int32(-376962181);
+    this.string(params.text);
+    this.predicate(params.user_id);
+  },
+  'keyboardButtonUserProfile': function(params) {
+    this.int32(814112961);
+    this.string(params.text);
+    this.long(params.user_id);
+  },
+  'channels.sendAsPeers': function(params) {
+    this.int32(-191450938);
+    this.vector(this.predicate, params.peers);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'channelAdminLogEventActionToggleNoForwards': function(params) {
+    this.int32(-886388890);
+    this.Bool(params.new_value);
+  },
+  'messages.stickerSetNotModified': function(params) {
+    this.int32(-738646805);
+  },
+  'users.userFull': function(params) {
+    this.int32(997004590);
+    this.predicate(params.full_user);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'messages.peerSettings': function(params) {
+    this.int32(1753266509);
+    this.predicate(params.settings);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'channelAdminLogEventActionSendMessage': function(params) {
+    this.int32(663693416);
+    this.predicate(params.message);
+  },
+  'auth.codeTypeMissedCall': function(params) {
+    this.int32(-702884114);
+  },
+  'auth.sentCodeTypeMissedCall': function(params) {
+    this.int32(-2113903484);
+    this.string(params.prefix);
+    this.int(params.length);
+  },
+  'auth.loggedOut': function(params) {
+    this.int32(-1012759713);
+    const flags = (this.has(params.future_auth_token) << 0);
+    this.int32(flags);
+    this.flag(this.bytes, params.future_auth_token);
+  },
+  'updateMessageReactions': function(params) {
+    this.int32(1578843320);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+    this.flag(this.int, params.top_msg_id);
+    this.predicate(params.reactions);
+  },
+  'reactionCount': function(params) {
+    this.int32(-1546531968);
+    const flags = (this.has(params.chosen_order) << 0);
+    this.int32(flags);
+    this.flag(this.int, params.chosen_order);
+    this.predicate(params.reaction);
+    this.int(params.count);
+  },
+  'messageReactions': function(params) {
+    this.int32(1328256121);
+    const flags = (this.has(params.min) << 0) | (this.has(params.can_see_list) << 2) | (this.has(params.recent_reactions) << 1);
+    this.int32(flags);
+    this.vector(this.predicate, params.results);
+    this.flagVector(this.predicate, params.recent_reactions);
+  },
+  'messages.messageReactionsList': function(params) {
+    this.int32(834488621);
+    const flags = (this.has(params.next_offset) << 0);
+    this.int32(flags);
+    this.int(params.count);
+    this.vector(this.predicate, params.reactions);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+    this.flag(this.string, params.next_offset);
+  },
+  'availableReaction': function(params) {
+    this.int32(-1065882623);
+    const flags = (this.has(params.inactive) << 0) | (this.has(params.premium) << 2) | (this.has(params.around_animation) << 1) | (this.has(params.center_icon) << 1);
+    this.int32(flags);
+    this.string(params.reaction);
+    this.string(params.title);
+    this.predicate(params.static_icon);
+    this.predicate(params.appear_animation);
+    this.predicate(params.select_animation);
+    this.predicate(params.activate_animation);
+    this.predicate(params.effect_animation);
+    this.flag(this.predicate, params.around_animation);
+    this.flag(this.predicate, params.center_icon);
+  },
+  'messages.availableReactionsNotModified': function(params) {
+    this.int32(-1626924713);
+  },
+  'messages.availableReactions': function(params) {
+    this.int32(1989032621);
+    this.int(params.hash);
+    this.vector(this.predicate, params.reactions);
+  },
+  'messageEntitySpoiler': function(params) {
+    this.int32(852137487);
+    this.int(params.offset);
+    this.int(params.length);
+  },
+  'channelAdminLogEventActionChangeAvailableReactions': function(params) {
+    this.int32(-1102180616);
+    this.predicate(params.prev_value);
+    this.predicate(params.new_value);
+  },
+  'messagePeerReaction': function(params) {
+    this.int32(-1938180548);
+    const flags = (this.has(params.big) << 0) | (this.has(params.unread) << 1) | (this.has(params.my) << 2);
+    this.int32(flags);
+    this.predicate(params.peer_id);
+    this.int(params.date);
+    this.predicate(params.reaction);
+  },
+  'groupCallStreamChannel': function(params) {
+    this.int32(-2132064081);
+    this.int(params.channel);
+    this.int(params.scale);
+    this.long(params.last_timestamp_ms);
+  },
+  'phone.groupCallStreamChannels': function(params) {
+    this.int32(-790330702);
+    this.vector(this.predicate, params.channels);
+  },
+  'inputReportReasonIllegalDrugs': function(params) {
+    this.int32(177124030);
+  },
+  'inputReportReasonPersonalDetails': function(params) {
+    this.int32(-1631091139);
+  },
+  'phone.groupCallStreamRtmpUrl': function(params) {
+    this.int32(767505458);
+    this.string(params.url);
+    this.string(params.key);
+  },
+  'attachMenuBotIconColor': function(params) {
+    this.int32(1165423600);
+    this.string(params.name);
+    this.int(params.color);
+  },
+  'attachMenuBotIcon': function(params) {
+    this.int32(-1297663893);
+    const flags = (this.has(params.colors) << 0);
+    this.int32(flags);
+    this.string(params.name);
+    this.predicate(params.icon);
+    this.flagVector(this.predicate, params.colors);
+  },
+  'attachMenuBot': function(params) {
+    this.int32(-928371502);
+    const flags = (this.has(params.inactive) << 0) | (this.has(params.has_settings) << 1) | (this.has(params.request_write_access) << 2);
+    this.int32(flags);
+    this.long(params.bot_id);
+    this.string(params.short_name);
+    this.vector(this.predicate, params.peer_types);
+    this.vector(this.predicate, params.icons);
+  },
+  'attachMenuBotsNotModified': function(params) {
+    this.int32(-237467044);
+  },
+  'attachMenuBots': function(params) {
+    this.int32(1011024320);
+    this.long(params.hash);
+    this.vector(this.predicate, params.bots);
+    this.vector(this.predicate, params.users);
+  },
+  'attachMenuBotsBot': function(params) {
+    this.int32(-1816172929);
+    this.predicate(params.bot);
+    this.vector(this.predicate, params.users);
+  },
+  'updateAttachMenuBots': function(params) {
+    this.int32(397910539);
+  },
+  'webViewResultUrl': function(params) {
+    this.int32(202659196);
+    this.long(params.query_id);
+    this.string(params.url);
+  },
+  'simpleWebViewResultUrl': function(params) {
+    this.int32(-2010155333);
+    this.string(params.url);
+  },
+  'webViewMessageSent': function(params) {
+    this.int32(211046684);
+    const flags = (this.has(params.msg_id) << 0);
+    this.int32(flags);
+    this.flag(this.predicate, params.msg_id);
+  },
+  'updateWebViewResultSent': function(params) {
+    this.int32(361936797);
+    this.long(params.query_id);
+  },
+  'keyboardButtonWebView': function(params) {
+    this.int32(326529584);
+    this.string(params.text);
+    this.string(params.url);
+  },
+  'keyboardButtonSimpleWebView': function(params) {
+    this.int32(-1598009252);
+    this.string(params.text);
+    this.string(params.url);
+  },
+  'messageActionWebViewDataSentMe': function(params) {
+    this.int32(1205698681);
+    this.string(params.text);
+    this.string(params.data);
+  },
+  'messageActionWebViewDataSent': function(params) {
+    this.int32(-1262252875);
+    this.string(params.text);
+  },
+  'updateBotMenuButton': function(params) {
+    this.int32(347625491);
+    this.long(params.bot_id);
+    this.predicate(params.button);
+  },
+  'botMenuButtonDefault': function(params) {
+    this.int32(1966318984);
+  },
+  'botMenuButtonCommands': function(params) {
+    this.int32(1113113093);
+  },
+  'botMenuButton': function(params) {
+    this.int32(-944407322);
+    this.string(params.text);
+    this.string(params.url);
+  },
+  'account.savedRingtonesNotModified': function(params) {
+    this.int32(-67704655);
+  },
+  'account.savedRingtones': function(params) {
+    this.int32(-1041683259);
+    this.long(params.hash);
+    this.vector(this.predicate, params.ringtones);
+  },
+  'updateSavedRingtones': function(params) {
+    this.int32(1960361625);
+  },
+  'notificationSoundDefault': function(params) {
+    this.int32(-1746354498);
+  },
+  'notificationSoundNone': function(params) {
+    this.int32(1863070943);
+  },
+  'notificationSoundLocal': function(params) {
+    this.int32(-2096391452);
+    this.string(params.title);
+    this.string(params.data);
+  },
+  'notificationSoundRingtone': function(params) {
+    this.int32(-9666487);
+    this.long(params.id);
+  },
+  'account.savedRingtone': function(params) {
+    this.int32(-1222230163);
+  },
+  'account.savedRingtoneConverted': function(params) {
+    this.int32(523271863);
+    this.predicate(params.document);
+  },
+  'attachMenuPeerTypeSameBotPM': function(params) {
+    this.int32(2104224014);
+  },
+  'attachMenuPeerTypeBotPM': function(params) {
+    this.int32(-1020528102);
+  },
+  'attachMenuPeerTypePM': function(params) {
+    this.int32(-247016673);
+  },
+  'attachMenuPeerTypeChat': function(params) {
+    this.int32(84480319);
+  },
+  'attachMenuPeerTypeBroadcast': function(params) {
+    this.int32(2080104188);
+  },
+  'chatInvitePublicJoinRequests': function(params) {
+    this.int32(-317687113);
+  },
+  'inputInvoiceMessage': function(params) {
+    this.int32(-977967015);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+  },
+  'inputInvoiceSlug': function(params) {
+    this.int32(-1020867857);
+    this.string(params.slug);
+  },
+  'payments.exportedInvoice': function(params) {
+    this.int32(-1362048039);
+    this.string(params.url);
+  },
+  'updateTranscribedAudio': function(params) {
+    this.int32(8703322);
+    const flags = (this.has(params.pending) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+    this.long(params.transcription_id);
+    this.string(params.text);
+  },
+  'messages.transcribedAudio': function(params) {
+    this.int32(-1821037486);
+    const flags = (this.has(params.pending) << 0);
+    this.int32(flags);
+    this.long(params.transcription_id);
+    this.string(params.text);
+  },
+  'dialogFilterDefault': function(params) {
+    this.int32(909284270);
+  },
+  'help.premiumPromo': function(params) {
+    this.int32(1395946908);
+    this.string(params.status_text);
+    this.vector(this.predicate, params.status_entities);
+    this.vector(this.string, params.video_sections);
+    this.vector(this.predicate, params.videos);
+    this.vector(this.predicate, params.period_options);
+    this.vector(this.predicate, params.users);
+  },
+  'messageEntityCustomEmoji': function(params) {
+    this.int32(-925956616);
+    this.int(params.offset);
+    this.int(params.length);
+    this.long(params.document_id);
+  },
+  'documentAttributeCustomEmoji': function(params) {
+    this.int32(-48981863);
+    const flags = (this.has(params.free) << 0) | (this.has(params.text_color) << 1);
+    this.int32(flags);
+    this.string(params.alt);
+    this.predicate(params.stickerset);
+  },
+  'stickerSetFullCovered': function(params) {
+    this.int32(1087454222);
+    this.predicate(params.set);
+    this.vector(this.predicate, params.packs);
+    this.vector(this.predicate, params.keywords);
+    this.vector(this.predicate, params.documents);
+  },
+  'inputStorePaymentPremiumSubscription': function(params) {
+    this.int32(-1502273946);
+    const flags = (this.has(params.restore) << 0) | (this.has(params.upgrade) << 1);
+    this.int32(flags);
+  },
+  'inputStorePaymentGiftPremium': function(params) {
+    this.int32(1634697192);
+    this.predicate(params.user_id);
+    this.string(params.currency);
+    this.long(params.amount);
+  },
+  'messageActionGiftPremium': function(params) {
+    this.int32(-935499028);
+    const flags = (this.has(params.crypto_currency) << 0) | (this.has(params.crypto_amount) << 0);
+    this.int32(flags);
+    this.string(params.currency);
+    this.long(params.amount);
+    this.int(params.months);
+    this.flag(this.string, params.crypto_currency);
+    this.flag(this.long, params.crypto_amount);
+  },
+  'premiumGiftOption': function(params) {
+    this.int32(1958953753);
+    const flags = (this.has(params.store_product) << 0);
+    this.int32(flags);
+    this.int(params.months);
+    this.string(params.currency);
+    this.long(params.amount);
+    this.string(params.bot_url);
+    this.flag(this.string, params.store_product);
+  },
+  'inputStickerSetPremiumGifts': function(params) {
+    this.int32(-930399486);
+  },
+  'updateReadFeaturedEmojiStickers': function(params) {
+    this.int32(-78886548);
+  },
+  'inputPrivacyKeyVoiceMessages': function(params) {
+    this.int32(-1360618136);
+  },
+  'privacyKeyVoiceMessages': function(params) {
+    this.int32(110621716);
+  },
+  'paymentFormMethod': function(params) {
+    this.int32(-1996951013);
+    this.string(params.url);
+    this.string(params.title);
+  },
+  'inputWebFileAudioAlbumThumbLocation': function(params) {
+    this.int32(-193992412);
+    const flags = (this.has(params.small) << 2) | (this.has(params.document) << 0) | (this.has(params.title) << 1) | (this.has(params.performer) << 1);
+    this.int32(flags);
+    this.flag(this.predicate, params.document);
+    this.flag(this.string, params.title);
+    this.flag(this.string, params.performer);
+  },
+  'emojiStatusEmpty': function(params) {
+    this.int32(769727150);
+  },
+  'emojiStatus': function(params) {
+    this.int32(-1835310691);
+    this.long(params.document_id);
+  },
+  'emojiStatusUntil': function(params) {
+    this.int32(-97474361);
+    this.long(params.document_id);
+    this.int(params.until);
+  },
+  'updateUserEmojiStatus': function(params) {
+    this.int32(674706841);
+    this.long(params.user_id);
+    this.predicate(params.emoji_status);
+  },
+  'updateRecentEmojiStatuses': function(params) {
+    this.int32(821314523);
+  },
+  'account.emojiStatusesNotModified': function(params) {
+    this.int32(-796072379);
+  },
+  'account.emojiStatuses': function(params) {
+    this.int32(-1866176559);
+    this.long(params.hash);
+    this.vector(this.predicate, params.statuses);
+  },
+  'reactionEmpty': function(params) {
+    this.int32(2046153753);
+  },
+  'reactionEmoji': function(params) {
+    this.int32(455247544);
+    this.string(params.emoticon);
+  },
+  'reactionCustomEmoji': function(params) {
+    this.int32(-1992950669);
+    this.long(params.document_id);
+  },
+  'chatReactionsNone': function(params) {
+    this.int32(-352570692);
+  },
+  'chatReactionsAll': function(params) {
+    this.int32(1385335754);
+    const flags = (this.has(params.allow_custom) << 0);
+    this.int32(flags);
+  },
+  'chatReactionsSome': function(params) {
+    this.int32(1713193015);
+    this.vector(this.predicate, params.reactions);
+  },
+  'messages.reactionsNotModified': function(params) {
+    this.int32(-1334846497);
+  },
+  'messages.reactions': function(params) {
+    this.int32(-352454890);
+    this.long(params.hash);
+    this.vector(this.predicate, params.reactions);
+  },
+  'updateRecentReactions': function(params) {
+    this.int32(1870160884);
+  },
+  'updateMoveStickerSetToTop': function(params) {
+    this.int32(-2030252155);
+    const flags = (this.has(params.masks) << 0) | (this.has(params.emojis) << 1);
+    this.int32(flags);
+    this.long(params.stickerset);
+  },
+  'auth.sentCodeTypeEmailCode': function(params) {
+    this.int32(-196020837);
+    const flags = (this.has(params.apple_signin_allowed) << 0) | (this.has(params.google_signin_allowed) << 1) | (this.has(params.reset_available_period) << 3) | (this.has(params.reset_pending_date) << 4);
+    this.int32(flags);
+    this.string(params.email_pattern);
+    this.int(params.length);
+    this.flag(this.int, params.reset_available_period);
+    this.flag(this.int, params.reset_pending_date);
+  },
+  'auth.sentCodeTypeSetUpEmailRequired': function(params) {
+    this.int32(-1521934870);
+    const flags = (this.has(params.apple_signin_allowed) << 0) | (this.has(params.google_signin_allowed) << 1);
+    this.int32(flags);
+  },
+  'emailVerifyPurposeLoginSetup': function(params) {
+    this.int32(1128644211);
+    this.string(params.phone_number);
+    this.string(params.phone_code_hash);
+  },
+  'emailVerifyPurposeLoginChange': function(params) {
+    this.int32(1383932651);
+  },
+  'emailVerifyPurposePassport': function(params) {
+    this.int32(-1141565819);
+  },
+  'emailVerificationCode': function(params) {
+    this.int32(-1842457175);
+    this.string(params.code);
+  },
+  'emailVerificationGoogle': function(params) {
+    this.int32(-611279166);
+    this.string(params.token);
+  },
+  'emailVerificationApple': function(params) {
+    this.int32(-1764723459);
+    this.string(params.token);
+  },
+  'account.emailVerified': function(params) {
+    this.int32(731303195);
+    this.string(params.email);
+  },
+  'account.emailVerifiedLogin': function(params) {
+    this.int32(-507835039);
+    this.string(params.email);
+    this.predicate(params.sent_code);
+  },
+  'premiumSubscriptionOption': function(params) {
+    this.int32(1596792306);
+    const flags = (this.has(params.current) << 1) | (this.has(params.can_purchase_upgrade) << 2) | (this.has(params.transaction) << 3) | (this.has(params.store_product) << 0);
+    this.int32(flags);
+    this.flag(this.string, params.transaction);
+    this.int(params.months);
+    this.string(params.currency);
+    this.long(params.amount);
+    this.string(params.bot_url);
+    this.flag(this.string, params.store_product);
+  },
+  'inputStickerSetEmojiGenericAnimations': function(params) {
+    this.int32(80008398);
+  },
+  'inputStickerSetEmojiDefaultStatuses': function(params) {
+    this.int32(701560302);
+  },
+  'sendAsPeer': function(params) {
+    this.int32(-1206095820);
+    const flags = (this.has(params.premium_required) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+  },
+  'messageExtendedMediaPreview': function(params) {
+    this.int32(-1386050360);
+    const flags = (this.has(params.w) << 0) | (this.has(params.h) << 0) | (this.has(params.thumb) << 1) | (this.has(params.video_duration) << 2);
+    this.int32(flags);
+    this.flag(this.int, params.w);
+    this.flag(this.int, params.h);
+    this.flag(this.predicate, params.thumb);
+    this.flag(this.int, params.video_duration);
+  },
+  'messageExtendedMedia': function(params) {
+    this.int32(-297296796);
+    this.predicate(params.media);
+  },
+  'updateMessageExtendedMedia': function(params) {
+    this.int32(1517529484);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+    this.predicate(params.extended_media);
+  },
+  'stickerKeyword': function(params) {
+    this.int32(-50416996);
+    this.long(params.document_id);
+    this.vector(this.string, params.keyword);
+  },
+  'username': function(params) {
+    this.int32(-1274595769);
+    const flags = (this.has(params.editable) << 0) | (this.has(params.active) << 1);
+    this.int32(flags);
+    this.string(params.username);
+  },
+  'channelAdminLogEventActionChangeUsernames': function(params) {
+    this.int32(-263212119);
+    this.vector(this.string, params.prev_value);
+    this.vector(this.string, params.new_value);
+  },
+  'channelAdminLogEventActionToggleForum': function(params) {
+    this.int32(46949251);
+    this.Bool(params.new_value);
+  },
+  'channelAdminLogEventActionCreateTopic': function(params) {
+    this.int32(1483767080);
+    this.predicate(params.topic);
+  },
+  'channelAdminLogEventActionEditTopic': function(params) {
+    this.int32(-261103096);
+    this.predicate(params.prev_topic);
+    this.predicate(params.new_topic);
+  },
+  'channelAdminLogEventActionDeleteTopic': function(params) {
+    this.int32(-1374254839);
+    this.predicate(params.topic);
+  },
+  'channelAdminLogEventActionPinTopic': function(params) {
+    this.int32(1569535291);
+    const flags = (this.has(params.prev_topic) << 0) | (this.has(params.new_topic) << 1);
+    this.int32(flags);
+    this.flag(this.predicate, params.prev_topic);
+    this.flag(this.predicate, params.new_topic);
+  },
+  'forumTopicDeleted': function(params) {
+    this.int32(37687451);
+    this.int(params.id);
+  },
+  'forumTopic': function(params) {
+    this.int32(1903173033);
+    const flags = (this.has(params.my) << 1) | (this.has(params.closed) << 2) | (this.has(params.pinned) << 3) | (this.has(params.short) << 5) | (this.has(params.hidden) << 6) | (this.has(params.icon_emoji_id) << 0) | (this.has(params.draft) << 4);
+    this.int32(flags);
+    this.int(params.id);
+    this.int(params.date);
+    this.string(params.title);
+    this.int(params.icon_color);
+    this.flag(this.long, params.icon_emoji_id);
+    this.int(params.top_message);
+    this.int(params.read_inbox_max_id);
+    this.int(params.read_outbox_max_id);
+    this.int(params.unread_count);
+    this.int(params.unread_mentions_count);
+    this.int(params.unread_reactions_count);
+    this.predicate(params.from_id);
+    this.predicate(params.notify_settings);
+    this.flag(this.predicate, params.draft);
+  },
+  'messages.forumTopics': function(params) {
+    this.int32(913709011);
+    const flags = (this.has(params.order_by_create_date) << 0);
+    this.int32(flags);
+    this.int(params.count);
+    this.vector(this.predicate, params.topics);
+    this.vector(this.predicate, params.messages);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+    this.int(params.pts);
+  },
+  'messageActionTopicCreate': function(params) {
+    this.int32(228168278);
+    const flags = (this.has(params.icon_emoji_id) << 0);
+    this.int32(flags);
+    this.string(params.title);
+    this.int(params.icon_color);
+    this.flag(this.long, params.icon_emoji_id);
+  },
+  'messageActionTopicEdit': function(params) {
+    this.int32(-1064024032);
+    const flags = (this.has(params.title) << 0) | (this.has(params.icon_emoji_id) << 1) | (this.has(params.closed) << 2) | (this.has(params.hidden) << 3);
+    this.int32(flags);
+    this.flag(this.string, params.title);
+    this.flag(this.long, params.icon_emoji_id);
+    this.flag(this.Bool, params.closed);
+    this.flag(this.Bool, params.hidden);
+  },
+  'updateChannelPinnedTopic': function(params) {
+    this.int32(422509539);
+    const flags = (this.has(params.pinned) << 0);
+    this.int32(flags);
+    this.long(params.channel_id);
+    this.int(params.topic_id);
+  },
+  'inputNotifyForumTopic': function(params) {
+    this.int32(1548122514);
+    this.predicate(params.peer);
+    this.int(params.top_msg_id);
+  },
+  'notifyForumTopic': function(params) {
+    this.int32(577659656);
+    this.predicate(params.peer);
+    this.int(params.top_msg_id);
+  },
+  'inputStickerSetEmojiDefaultTopicIcons': function(params) {
+    this.int32(1153562857);
+  },
+  'messages.sponsoredMessagesEmpty': function(params) {
+    this.int32(406407439);
+  },
+  'updateChannelPinnedTopics': function(params) {
+    this.int32(-31881726);
+    const flags = (this.has(params.order) << 0);
+    this.int32(flags);
+    this.long(params.channel_id);
+    this.flagVector(this.int, params.order);
+  },
+  'defaultHistoryTTL': function(params) {
+    this.int32(1135897376);
+    this.int(params.period);
+  },
+  'auth.codeTypeFragmentSms': function(params) {
+    this.int32(116234636);
+  },
+  'auth.sentCodeTypeFragmentSms': function(params) {
+    this.int32(-648651719);
+    this.string(params.url);
+    this.int(params.length);
+  },
+  'exportedContactToken': function(params) {
+    this.int32(1103040667);
+    this.string(params.url);
+    this.int(params.expires);
+  },
+  'channelAdminLogEventActionToggleAntiSpam': function(params) {
+    this.int32(1693675004);
+    this.Bool(params.new_value);
+  },
+  'messageActionSuggestProfilePhoto': function(params) {
+    this.int32(1474192222);
+    this.predicate(params.photo);
+  },
+  'stickerSetNoCovered': function(params) {
+    this.int32(2008112412);
+    this.predicate(params.set);
+  },
+  'updateUser': function(params) {
+    this.int32(542282808);
+    this.long(params.user_id);
+  },
+  'auth.sentCodeSuccess': function(params) {
+    this.int32(596704836);
+    this.predicate(params.authorization);
+  },
+  'messageActionRequestedPeer': function(params) {
+    this.int32(-25742243);
+    this.int(params.button_id);
+    this.predicate(params.peer);
+  },
+  'requestPeerTypeUser': function(params) {
+    this.int32(1597737472);
+    const flags = (this.has(params.bot) << 0) | (this.has(params.premium) << 1);
+    this.int32(flags);
+    this.flag(this.Bool, params.bot);
+    this.flag(this.Bool, params.premium);
+  },
+  'requestPeerTypeChat': function(params) {
+    this.int32(-906990053);
+    const flags = (this.has(params.creator) << 0) | (this.has(params.bot_participant) << 5) | (this.has(params.has_username) << 3) | (this.has(params.forum) << 4) | (this.has(params.user_admin_rights) << 1) | (this.has(params.bot_admin_rights) << 2);
+    this.int32(flags);
+    this.flag(this.Bool, params.has_username);
+    this.flag(this.Bool, params.forum);
+    this.flag(this.predicate, params.user_admin_rights);
+    this.flag(this.predicate, params.bot_admin_rights);
+  },
+  'requestPeerTypeBroadcast': function(params) {
+    this.int32(865857388);
+    const flags = (this.has(params.creator) << 0) | (this.has(params.has_username) << 3) | (this.has(params.user_admin_rights) << 1) | (this.has(params.bot_admin_rights) << 2);
+    this.int32(flags);
+    this.flag(this.Bool, params.has_username);
+    this.flag(this.predicate, params.user_admin_rights);
+    this.flag(this.predicate, params.bot_admin_rights);
+  },
+  'keyboardButtonRequestPeer': function(params) {
+    this.int32(218842764);
+    this.string(params.text);
+    this.int(params.button_id);
+    this.predicate(params.peer_type);
+  },
+  'emojiListNotModified': function(params) {
+    this.int32(1209970170);
+  },
+  'emojiList': function(params) {
+    this.int32(2048790993);
+    this.long(params.hash);
+    this.vector(this.long, params.document_id);
+  },
+  'auth.sentCodeTypeFirebaseSms': function(params) {
+    this.int32(-444918734);
+    const flags = (this.has(params.nonce) << 0) | (this.has(params.receipt) << 1) | (this.has(params.push_timeout) << 1);
+    this.int32(flags);
+    this.flag(this.bytes, params.nonce);
+    this.flag(this.string, params.receipt);
+    this.flag(this.int, params.push_timeout);
+    this.int(params.length);
+  },
+  'emojiGroup': function(params) {
+    this.int32(2056961449);
+    this.string(params.title);
+    this.long(params.icon_emoji_id);
+    this.vector(this.string, params.emoticons);
+  },
+  'messages.emojiGroupsNotModified': function(params) {
+    this.int32(1874111879);
+  },
+  'messages.emojiGroups': function(params) {
+    this.int32(-2011186869);
+    this.int(params.hash);
+    this.vector(this.predicate, params.groups);
+  },
+  'videoSizeEmojiMarkup': function(params) {
+    this.int32(-128171716);
+    this.long(params.emoji_id);
+    this.vector(this.int, params.background_colors);
+  },
+  'videoSizeStickerMarkup': function(params) {
+    this.int32(228623102);
+    this.predicate(params.stickerset);
+    this.long(params.sticker_id);
+    this.vector(this.int, params.background_colors);
+  },
+  'textWithEntities': function(params) {
+    this.int32(1964978502);
+    this.string(params.text);
+    this.vector(this.predicate, params.entities);
+  },
+  'messages.translateResult': function(params) {
+    this.int32(870003448);
+    this.vector(this.predicate, params.result);
+  },
+  'autoSaveSettings': function(params) {
+    this.int32(-934791986);
+    const flags = (this.has(params.photos) << 0) | (this.has(params.videos) << 1) | (this.has(params.video_max_size) << 2);
+    this.int32(flags);
+    this.flag(this.long, params.video_max_size);
+  },
+  'autoSaveException': function(params) {
+    this.int32(-2124403385);
+    this.predicate(params.peer);
+    this.predicate(params.settings);
+  },
+  'account.autoSaveSettings': function(params) {
+    this.int32(1279133341);
+    this.predicate(params.users_settings);
+    this.predicate(params.chats_settings);
+    this.predicate(params.broadcasts_settings);
+    this.vector(this.predicate, params.exceptions);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'updateAutoSaveSettings': function(params) {
+    this.int32(-335171433);
+  },
+  'help.appConfigNotModified': function(params) {
+    this.int32(2094949405);
+  },
+  'help.appConfig': function(params) {
+    this.int32(-585598930);
+    this.int(params.hash);
+    this.predicate(params.config);
+  },
+  'inputBotAppID': function(params) {
+    this.int32(-1457472134);
+    this.long(params.id);
+    this.long(params.access_hash);
+  },
+  'inputBotAppShortName': function(params) {
+    this.int32(-1869872121);
+    this.predicate(params.bot_id);
+    this.string(params.short_name);
+  },
+  'botAppNotModified': function(params) {
+    this.int32(1571189943);
+  },
+  'botApp': function(params) {
+    this.int32(-1778593322);
+    const flags = (this.has(params.document) << 0);
+    this.int32(flags);
+    this.long(params.id);
+    this.long(params.access_hash);
+    this.string(params.short_name);
+    this.string(params.title);
+    this.string(params.description);
+    this.predicate(params.photo);
+    this.flag(this.predicate, params.document);
+    this.long(params.hash);
+  },
+  'messages.botApp': function(params) {
+    this.int32(-347034123);
+    const flags = (this.has(params.inactive) << 0) | (this.has(params.request_write_access) << 1);
+    this.int32(flags);
+    this.predicate(params.app);
+  },
+  'appWebViewResultUrl': function(params) {
+    this.int32(1008422669);
+    this.string(params.url);
+  },
+  'inlineBotWebView': function(params) {
+    this.int32(-1250781739);
+    this.string(params.text);
+    this.string(params.url);
+  },
+  'readParticipantDate': function(params) {
+    this.int32(1246753138);
+    this.long(params.user_id);
+    this.int(params.date);
+  },
+  'updateGroupInvitePrivacyForbidden': function(params) {
+    this.int32(-856651050);
+    this.long(params.user_id);
+  },
+  'dialogFilterChatlist': function(params) {
+    this.int32(-699792216);
+    const flags = (this.has(params.has_my_invites) << 26) | (this.has(params.emoticon) << 25);
+    this.int32(flags);
+    this.int(params.id);
+    this.string(params.title);
+    this.flag(this.string, params.emoticon);
+    this.vector(this.predicate, params.pinned_peers);
+    this.vector(this.predicate, params.include_peers);
+  },
+  'inputChatlistDialogFilter': function(params) {
+    this.int32(-203367885);
+    this.int(params.filter_id);
+  },
+  'exportedChatlistInvite': function(params) {
+    this.int32(206668204);
+    const flags = 0;
+    this.int32(flags);
+    this.string(params.title);
+    this.string(params.url);
+    this.vector(this.predicate, params.peers);
+  },
+  'chatlists.exportedChatlistInvite': function(params) {
+    this.int32(283567014);
+    this.predicate(params.filter);
+    this.predicate(params.invite);
+  },
+  'chatlists.exportedInvites': function(params) {
+    this.int32(279670215);
+    this.vector(this.predicate, params.invites);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'chatlists.chatlistInviteAlready': function(params) {
+    this.int32(-91752871);
+    this.int(params.filter_id);
+    this.vector(this.predicate, params.missing_peers);
+    this.vector(this.predicate, params.already_peers);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'chatlists.chatlistInvite': function(params) {
+    this.int32(500007837);
+    const flags = (this.has(params.emoticon) << 0);
+    this.int32(flags);
+    this.string(params.title);
+    this.flag(this.string, params.emoticon);
+    this.vector(this.predicate, params.peers);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'chatlists.chatlistUpdates': function(params) {
+    this.int32(-1816295539);
+    this.vector(this.predicate, params.missing_peers);
+    this.vector(this.predicate, params.chats);
+    this.vector(this.predicate, params.users);
+  },
+  'messageActionSetChatWallPaper': function(params) {
+    this.int32(-1136350937);
+    this.predicate(params.wallpaper);
+  },
+  'messageActionSetSameChatWallPaper': function(params) {
+    this.int32(-1065845395);
+    this.predicate(params.wallpaper);
+  },
+  'bots.botInfo': function(params) {
+    this.int32(-391678544);
+    this.string(params.name);
+    this.string(params.about);
+    this.string(params.description);
+  },
+  'inlineQueryPeerTypeBotPM': function(params) {
+    this.int32(238759180);
   },
   'invokeAfterMsg': function(params) {
     this.int32(-878758099);
@@ -5653,13 +6745,16 @@ const builderMap = {
     this.string(params.last_name);
   },
   'auth.signIn': function(params) {
-    this.int32(-1126886015);
+    this.int32(-1923962543);
+    const flags = (this.has(params.phone_code) << 0) | (this.has(params.email_verification) << 1);
+    this.int32(flags);
     this.string(params.phone_number);
     this.string(params.phone_code_hash);
-    this.string(params.phone_code);
+    this.flag(this.string, params.phone_code);
+    this.flag(this.predicate, params.email_verification);
   },
   'auth.logOut': function(params) {
-    this.int32(1461180992);
+    this.int32(1047706137);
   },
   'auth.resetAuthorizations': function(params) {
     this.int32(-1616179942);
@@ -5735,7 +6830,7 @@ const builderMap = {
     this.vector(this.predicate, params.id);
   },
   'users.getFullUser': function(params) {
-    this.int32(-902781519);
+    this.int32(-1240508136);
     this.predicate(params.id);
   },
   'contacts.getContactIDs': function(params) {
@@ -5824,11 +6919,13 @@ const builderMap = {
     this.int(params.max_id);
   },
   'messages.deleteHistory': function(params) {
-    this.int32(469850889);
-    const flags = (this.has(params.just_clear) << 0) | (this.has(params.revoke) << 1);
+    this.int32(-1332768214);
+    const flags = (this.has(params.just_clear) << 0) | (this.has(params.revoke) << 1) | (this.has(params.min_date) << 2) | (this.has(params.max_date) << 3);
     this.int32(flags);
     this.predicate(params.peer);
     this.int(params.max_id);
+    this.flag(this.int, params.min_date);
+    this.flag(this.int, params.max_date);
   },
   'messages.deleteMessages': function(params) {
     this.int32(-443640366);
@@ -5849,46 +6946,52 @@ const builderMap = {
     this.predicate(params.action);
   },
   'messages.sendMessage': function(params) {
-    this.int32(1376532592);
-    const flags = (this.has(params.no_webpage) << 1) | (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.reply_markup) << 2) | (this.has(params.entities) << 3) | (this.has(params.schedule_date) << 10);
+    this.int32(482476935);
+    const flags = (this.has(params.no_webpage) << 1) | (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.noforwards) << 14) | (this.has(params.update_stickersets_order) << 15) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.top_msg_id) << 9) | (this.has(params.reply_markup) << 2) | (this.has(params.entities) << 3) | (this.has(params.schedule_date) << 10) | (this.has(params.send_as) << 13);
     this.int32(flags);
     this.predicate(params.peer);
     this.flag(this.int, params.reply_to_msg_id);
+    this.flag(this.int, params.top_msg_id);
     this.string(params.message);
     this.long(params.random_id);
     this.flag(this.predicate, params.reply_markup);
     this.flagVector(this.predicate, params.entities);
     this.flag(this.int, params.schedule_date);
+    this.flag(this.predicate, params.send_as);
   },
   'messages.sendMedia': function(params) {
-    this.int32(881978281);
-    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.reply_markup) << 2) | (this.has(params.entities) << 3) | (this.has(params.schedule_date) << 10);
+    this.int32(1967638886);
+    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.noforwards) << 14) | (this.has(params.update_stickersets_order) << 15) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.top_msg_id) << 9) | (this.has(params.reply_markup) << 2) | (this.has(params.entities) << 3) | (this.has(params.schedule_date) << 10) | (this.has(params.send_as) << 13);
     this.int32(flags);
     this.predicate(params.peer);
     this.flag(this.int, params.reply_to_msg_id);
+    this.flag(this.int, params.top_msg_id);
     this.predicate(params.media);
     this.string(params.message);
     this.long(params.random_id);
     this.flag(this.predicate, params.reply_markup);
     this.flagVector(this.predicate, params.entities);
     this.flag(this.int, params.schedule_date);
+    this.flag(this.predicate, params.send_as);
   },
   'messages.forwardMessages': function(params) {
-    this.int32(-637606386);
-    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.with_my_score) << 8) | (this.has(params.drop_author) << 11) | (this.has(params.drop_media_captions) << 12) | (this.has(params.schedule_date) << 10);
+    this.int32(-966673468);
+    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.with_my_score) << 8) | (this.has(params.drop_author) << 11) | (this.has(params.drop_media_captions) << 12) | (this.has(params.noforwards) << 14) | (this.has(params.top_msg_id) << 9) | (this.has(params.schedule_date) << 10) | (this.has(params.send_as) << 13);
     this.int32(flags);
     this.predicate(params.from_peer);
     this.vector(this.int, params.id);
     this.vector(this.long, params.random_id);
     this.predicate(params.to_peer);
+    this.flag(this.int, params.top_msg_id);
     this.flag(this.int, params.schedule_date);
+    this.flag(this.predicate, params.send_as);
   },
   'messages.reportSpam': function(params) {
     this.int32(-820669733);
     this.predicate(params.peer);
   },
   'messages.getPeerSettings': function(params) {
-    this.int32(913498268);
+    this.int32(-270948702);
     this.predicate(params.peer);
   },
   'messages.report': function(params) {
@@ -5930,9 +7033,12 @@ const builderMap = {
     this.predicate(params.user_id);
   },
   'messages.createChat': function(params) {
-    this.int32(164303470);
+    this.int32(3450904);
+    const flags = (this.has(params.ttl_period) << 0);
+    this.int32(flags);
     this.vector(this.predicate, params.users);
     this.string(params.title);
+    this.flag(this.int, params.ttl_period);
   },
   'updates.getState': function(params) {
     this.int32(-304838614);
@@ -5947,16 +7053,21 @@ const builderMap = {
     this.int(params.qts);
   },
   'photos.updateProfilePhoto': function(params) {
-    this.int32(1926525996);
+    this.int32(166207545);
+    const flags = (this.has(params.fallback) << 0) | (this.has(params.bot) << 1);
+    this.int32(flags);
+    this.flag(this.predicate, params.bot);
     this.predicate(params.id);
   },
   'photos.uploadProfilePhoto': function(params) {
-    this.int32(-1980559511);
-    const flags = (this.has(params.file) << 0) | (this.has(params.video) << 1) | (this.has(params.video_start_ts) << 2);
+    this.int32(59286453);
+    const flags = (this.has(params.fallback) << 3) | (this.has(params.bot) << 5) | (this.has(params.file) << 0) | (this.has(params.video) << 1) | (this.has(params.video_start_ts) << 2) | (this.has(params.video_emoji_markup) << 4);
     this.int32(flags);
+    this.flag(this.predicate, params.bot);
     this.flag(this.predicate, params.file);
     this.flag(this.predicate, params.video);
     this.flag(this.double, params.video_start_ts);
+    this.flag(this.predicate, params.video_emoji_markup);
   },
   'photos.deletePhotos': function(params) {
     this.int32(-2016444625);
@@ -5969,11 +7080,11 @@ const builderMap = {
     this.bytes(params.bytes);
   },
   'upload.getFile': function(params) {
-    this.int32(-1319462148);
+    this.int32(-1101843010);
     const flags = (this.has(params.precise) << 0) | (this.has(params.cdn_supported) << 1);
     this.int32(flags);
     this.predicate(params.location);
-    this.int(params.offset);
+    this.long(params.offset);
     this.int(params.limit);
   },
   'help.getConfig': function(params) {
@@ -6112,8 +7223,11 @@ const builderMap = {
     this.vector(this.predicate, params.rules);
   },
   'account.deleteAccount': function(params) {
-    this.int32(1099779595);
+    this.int32(-1564422284);
+    const flags = (this.has(params.password) << 0);
+    this.int32(flags);
     this.string(params.reason);
+    this.flag(this.predicate, params.password);
   },
   'account.getAccountTTL': function(params) {
     this.int32(150761757);
@@ -6207,12 +7321,13 @@ const builderMap = {
     this.predicate(params.query);
   },
   'messages.exportChatInvite': function(params) {
-    this.int32(347716823);
-    const flags = (this.has(params.legacy_revoke_permanent) << 2) | (this.has(params.expire_date) << 0) | (this.has(params.usage_limit) << 1);
+    this.int32(-1607670315);
+    const flags = (this.has(params.legacy_revoke_permanent) << 2) | (this.has(params.request_needed) << 3) | (this.has(params.expire_date) << 0) | (this.has(params.usage_limit) << 1) | (this.has(params.title) << 4);
     this.int32(flags);
     this.predicate(params.peer);
     this.flag(this.int, params.expire_date);
     this.flag(this.int, params.usage_limit);
+    this.flag(this.string, params.title);
   },
   'messages.checkChatInvite': function(params) {
     this.int32(1051570619);
@@ -6223,8 +7338,9 @@ const builderMap = {
     this.string(params.hash);
   },
   'messages.getStickerSet': function(params) {
-    this.int32(639215886);
+    this.int32(-928977804);
     this.predicate(params.stickerset);
+    this.int(params.hash);
   },
   'messages.installStickerSet': function(params) {
     this.int32(-946871200);
@@ -6262,15 +7378,10 @@ const builderMap = {
     this.predicate(params.channel);
     this.vector(this.int, params.id);
   },
-  'channels.deleteUserHistory': function(params) {
-    this.int32(-787622117);
-    this.predicate(params.channel);
-    this.predicate(params.user_id);
-  },
   'channels.reportSpam': function(params) {
-    this.int32(-32999408);
+    this.int32(-196443371);
     this.predicate(params.channel);
-    this.predicate(params.user_id);
+    this.predicate(params.participant);
     this.vector(this.int, params.id);
   },
   'channels.getMessages': function(params) {
@@ -6300,13 +7411,14 @@ const builderMap = {
     this.predicate(params.channel);
   },
   'channels.createChannel': function(params) {
-    this.int32(1029681423);
-    const flags = (this.has(params.broadcast) << 0) | (this.has(params.megagroup) << 1) | (this.has(params.for_import) << 3) | (this.has(params.geo_point) << 2) | (this.has(params.address) << 2);
+    this.int32(-1862244601);
+    const flags = (this.has(params.broadcast) << 0) | (this.has(params.megagroup) << 1) | (this.has(params.for_import) << 3) | (this.has(params.forum) << 5) | (this.has(params.geo_point) << 2) | (this.has(params.address) << 2) | (this.has(params.ttl_period) << 4);
     this.int32(flags);
     this.string(params.title);
     this.string(params.about);
     this.flag(this.predicate, params.geo_point);
     this.flag(this.string, params.address);
+    this.flag(this.int, params.ttl_period);
   },
   'channels.editAdmin': function(params) {
     this.int32(-751007486);
@@ -6387,14 +7499,14 @@ const builderMap = {
   },
   'messages.reorderStickerSets': function(params) {
     this.int32(2016638777);
-    const flags = (this.has(params.masks) << 0);
+    const flags = (this.has(params.masks) << 0) | (this.has(params.emojis) << 1);
     this.int32(flags);
     this.vector(this.long, params.order);
   },
   'messages.getDocumentByHash': function(params) {
-    this.int32(864953444);
+    this.int32(-1309538785);
     this.bytes(params.sha256);
-    this.int(params.size);
+    this.long(params.size);
     this.string(params.mime_type);
   },
   'messages.getSavedGifs': function(params) {
@@ -6417,25 +7529,28 @@ const builderMap = {
     this.string(params.offset);
   },
   'messages.setInlineBotResults': function(params) {
-    this.int32(-346119674);
-    const flags = (this.has(params.gallery) << 0) | (this.has(params.private) << 1) | (this.has(params.next_offset) << 2) | (this.has(params.switch_pm) << 3);
+    this.int32(-1156406247);
+    const flags = (this.has(params.gallery) << 0) | (this.has(params.private) << 1) | (this.has(params.next_offset) << 2) | (this.has(params.switch_pm) << 3) | (this.has(params.switch_webview) << 4);
     this.int32(flags);
     this.long(params.query_id);
     this.vector(this.predicate, params.results);
     this.int(params.cache_time);
     this.flag(this.string, params.next_offset);
     this.flag(this.predicate, params.switch_pm);
+    this.flag(this.predicate, params.switch_webview);
   },
   'messages.sendInlineBotResult': function(params) {
-    this.int32(570955184);
-    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.hide_via) << 11) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.schedule_date) << 10);
+    this.int32(-738468661);
+    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.hide_via) << 11) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.top_msg_id) << 9) | (this.has(params.schedule_date) << 10) | (this.has(params.send_as) << 13);
     this.int32(flags);
     this.predicate(params.peer);
     this.flag(this.int, params.reply_to_msg_id);
+    this.flag(this.int, params.top_msg_id);
     this.long(params.random_id);
     this.long(params.query_id);
     this.string(params.id);
     this.flag(this.int, params.schedule_date);
+    this.flag(this.predicate, params.send_as);
   },
   'channels.exportMessageLink': function(params) {
     this.int32(-432034325);
@@ -6522,10 +7637,11 @@ const builderMap = {
     this.vector(this.predicate, params.peers);
   },
   'messages.saveDraft': function(params) {
-    this.int32(-1137057461);
-    const flags = (this.has(params.no_webpage) << 1) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.entities) << 3);
+    this.int32(-1271718337);
+    const flags = (this.has(params.no_webpage) << 1) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.top_msg_id) << 2) | (this.has(params.entities) << 3);
     this.int32(flags);
     this.flag(this.int, params.reply_to_msg_id);
+    this.flag(this.int, params.top_msg_id);
     this.predicate(params.peer);
     this.string(params.message);
     this.flagVector(this.predicate, params.entities);
@@ -6561,7 +7677,7 @@ const builderMap = {
   },
   'messages.getArchivedStickers': function(params) {
     this.int32(1475442322);
-    const flags = (this.has(params.masks) << 0);
+    const flags = (this.has(params.masks) << 0) | (this.has(params.emojis) << 1);
     this.int32(flags);
     this.long(params.offset_id);
     this.int(params.limit);
@@ -6627,10 +7743,6 @@ const builderMap = {
     this.long(params.max_id);
     this.int(params.limit);
   },
-  'messages.getAllChats': function(params) {
-    this.int32(-2023787330);
-    this.vector(this.long, params.except_ids);
-  },
   'help.setBotUpdatesStatus': function(params) {
     this.int32(-333262899);
     this.int(params.pending_updates_count);
@@ -6675,11 +7787,10 @@ const builderMap = {
     this.int(params.limit);
   },
   'payments.getPaymentForm': function(params) {
-    this.int32(-1976353651);
+    this.int32(924093883);
     const flags = (this.has(params.theme_params) << 0);
     this.int32(flags);
-    this.predicate(params.peer);
-    this.int(params.msg_id);
+    this.predicate(params.invoice);
     this.flag(this.predicate, params.theme_params);
   },
   'payments.getPaymentReceipt': function(params) {
@@ -6688,20 +7799,18 @@ const builderMap = {
     this.int(params.msg_id);
   },
   'payments.validateRequestedInfo': function(params) {
-    this.int32(-619695760);
+    this.int32(-1228345045);
     const flags = (this.has(params.save) << 0);
     this.int32(flags);
-    this.predicate(params.peer);
-    this.int(params.msg_id);
+    this.predicate(params.invoice);
     this.predicate(params.info);
   },
   'payments.sendPaymentForm': function(params) {
-    this.int32(818134173);
+    this.int32(755192367);
     const flags = (this.has(params.requested_info_id) << 0) | (this.has(params.shipping_option_id) << 1) | (this.has(params.tip_amount) << 2);
     this.int32(flags);
     this.long(params.form_id);
-    this.predicate(params.peer);
-    this.int(params.msg_id);
+    this.predicate(params.invoice);
     this.flag(this.string, params.requested_info_id);
     this.flag(this.string, params.shipping_option_id);
     this.predicate(params.credentials);
@@ -6737,7 +7846,7 @@ const builderMap = {
   },
   'stickers.createStickerSet': function(params) {
     this.int32(-1876841625);
-    const flags = (this.has(params.masks) << 0) | (this.has(params.animated) << 1) | (this.has(params.thumb) << 2) | (this.has(params.software) << 3);
+    const flags = (this.has(params.masks) << 0) | (this.has(params.animated) << 1) | (this.has(params.videos) << 4) | (this.has(params.emojis) << 5) | (this.has(params.text_color) << 6) | (this.has(params.thumb) << 2) | (this.has(params.software) << 3);
     this.int32(flags);
     this.predicate(params.user_id);
     this.string(params.title);
@@ -6817,9 +7926,9 @@ const builderMap = {
     this.predicate(params.debug);
   },
   'upload.getCdnFile': function(params) {
-    this.int32(536919235);
+    this.int32(962554330);
     this.bytes(params.file_token);
-    this.int(params.offset);
+    this.long(params.offset);
     this.int(params.limit);
   },
   'upload.reuploadCdnFile': function(params) {
@@ -6870,9 +7979,9 @@ const builderMap = {
     this.int(params.limit);
   },
   'upload.getCdnFileHashes': function(params) {
-    this.int32(1302676017);
+    this.int32(-1847836879);
     this.bytes(params.file_token);
-    this.int(params.offset);
+    this.long(params.offset);
   },
   'messages.sendScreenshotNotification': function(params) {
     this.int32(-914493408);
@@ -6903,8 +8012,11 @@ const builderMap = {
     this.int32(-2020263951);
   },
   'messages.getUnreadMentions': function(params) {
-    this.int32(1180140658);
+    this.int32(-251140208);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
     this.predicate(params.peer);
+    this.flag(this.int, params.top_msg_id);
     this.int(params.offset_id);
     this.int(params.add_offset);
     this.int(params.limit);
@@ -6912,7 +8024,9 @@ const builderMap = {
     this.int(params.min_id);
   },
   'channels.deleteHistory': function(params) {
-    this.int32(-1355375294);
+    this.int32(-1683319225);
+    const flags = (this.has(params.for_everyone) << 0);
+    this.int32(flags);
     this.predicate(params.channel);
     this.int(params.max_id);
   },
@@ -6926,8 +8040,11 @@ const builderMap = {
     this.Bool(params.enabled);
   },
   'messages.readMentions': function(params) {
-    this.int32(251759059);
+    this.int32(921026381);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
     this.predicate(params.peer);
+    this.flag(this.int, params.top_msg_id);
   },
   'messages.getRecentLocations': function(params) {
     this.int32(1881817312);
@@ -6936,13 +8053,15 @@ const builderMap = {
     this.long(params.hash);
   },
   'messages.sendMultiMedia': function(params) {
-    this.int32(-872345397);
-    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.schedule_date) << 10);
+    this.int32(-1225713124);
+    const flags = (this.has(params.silent) << 5) | (this.has(params.background) << 6) | (this.has(params.clear_draft) << 7) | (this.has(params.noforwards) << 14) | (this.has(params.update_stickersets_order) << 15) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.top_msg_id) << 9) | (this.has(params.schedule_date) << 10) | (this.has(params.send_as) << 13);
     this.int32(flags);
     this.predicate(params.peer);
     this.flag(this.int, params.reply_to_msg_id);
+    this.flag(this.int, params.top_msg_id);
     this.vector(this.predicate, params.multi_media);
     this.flag(this.int, params.schedule_date);
+    this.flag(this.predicate, params.send_as);
   },
   'messages.uploadEncryptedFile': function(params) {
     this.int32(1347929239);
@@ -6967,9 +8086,9 @@ const builderMap = {
     this.long(params.hash);
   },
   'upload.getFileHashes': function(params) {
-    this.int32(-956147407);
+    this.int32(-1856595926);
     this.predicate(params.location);
-    this.int(params.offset);
+    this.long(params.offset);
   },
   'help.getTermsOfServiceUpdate': function(params) {
     this.int32(749019089);
@@ -7025,13 +8144,14 @@ const builderMap = {
     this.string(params.phone_code);
   },
   'account.sendVerifyEmailCode': function(params) {
-    this.int32(1880182943);
+    this.int32(-1730136133);
+    this.predicate(params.purpose);
     this.string(params.email);
   },
   'account.verifyEmail': function(params) {
-    this.int32(-323339813);
-    this.string(params.email);
-    this.string(params.code);
+    this.int32(53322959);
+    this.predicate(params.purpose);
+    this.predicate(params.verification);
   },
   'help.getDeepLinkInfo': function(params) {
     this.int32(1072547679);
@@ -7045,10 +8165,10 @@ const builderMap = {
     this.int(params.offset);
   },
   'account.initTakeoutSession': function(params) {
-    this.int32(-262453244);
+    this.int32(-1896617296);
     const flags = (this.has(params.contacts) << 0) | (this.has(params.message_users) << 1) | (this.has(params.message_chats) << 2) | (this.has(params.message_megagroups) << 3) | (this.has(params.message_channels) << 4) | (this.has(params.files) << 5) | (this.has(params.file_max_size) << 5);
     this.int32(flags);
-    this.flag(this.int, params.file_max_size);
+    this.flag(this.long, params.file_max_size);
   },
   'account.finishTakeoutSession': function(params) {
     this.int32(489050862);
@@ -7085,7 +8205,8 @@ const builderMap = {
     this.int32(2119757468);
   },
   'help.getAppConfig': function(params) {
-    this.int32(-1735311088);
+    this.int32(1642330196);
+    this.int(params.hash);
   },
   'help.saveAppLog': function(params) {
     this.int32(1862465352);
@@ -7173,7 +8294,9 @@ const builderMap = {
     this.predicate(params.wallpaper);
   },
   'account.uploadWallPaper': function(params) {
-    this.int32(-578472351);
+    this.int32(-476410109);
+    const flags = (this.has(params.for_chat) << 0);
+    this.int32(flags);
     this.predicate(params.file);
     this.string(params.mime_type);
     this.predicate(params.settings);
@@ -7222,13 +8345,12 @@ const builderMap = {
     this.int32(1749536939);
     this.vector(this.predicate, params.folder_peers);
   },
-  'folders.deleteFolder': function(params) {
-    this.int32(472471681);
-    this.int(params.folder_id);
-  },
   'messages.getSearchCounters': function(params) {
-    this.int32(1932455680);
+    this.int32(11435201);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
     this.predicate(params.peer);
+    this.flag(this.int, params.top_msg_id);
     this.vector(this.predicate, params.filters);
   },
   'channels.getGroupsForDiscussion': function(params) {
@@ -7328,16 +8450,16 @@ const builderMap = {
     this.string(params.mime_type);
   },
   'account.createTheme': function(params) {
-    this.int32(-2077048289);
+    this.int32(1697530880);
     const flags = (this.has(params.document) << 2) | (this.has(params.settings) << 3);
     this.int32(flags);
     this.string(params.slug);
     this.string(params.title);
     this.flag(this.predicate, params.document);
-    this.flag(this.predicate, params.settings);
+    this.flagVector(this.predicate, params.settings);
   },
   'account.updateTheme': function(params) {
-    this.int32(1555261397);
+    this.int32(737414348);
     const flags = (this.has(params.slug) << 0) | (this.has(params.title) << 1) | (this.has(params.document) << 2) | (this.has(params.settings) << 3);
     this.int32(flags);
     this.string(params.format);
@@ -7345,7 +8467,7 @@ const builderMap = {
     this.flag(this.string, params.slug);
     this.flag(this.string, params.title);
     this.flag(this.predicate, params.document);
-    this.flag(this.predicate, params.settings);
+    this.flagVector(this.predicate, params.settings);
   },
   'account.saveTheme': function(params) {
     this.int32(-229175188);
@@ -7353,17 +8475,17 @@ const builderMap = {
     this.Bool(params.unsave);
   },
   'account.installTheme': function(params) {
-    this.int32(2061776695);
-    const flags = (this.has(params.dark) << 0) | (this.has(params.format) << 1) | (this.has(params.theme) << 1);
+    this.int32(-953697477);
+    const flags = (this.has(params.dark) << 0) | (this.has(params.theme) << 1) | (this.has(params.format) << 2) | (this.has(params.base_theme) << 3);
     this.int32(flags);
-    this.flag(this.string, params.format);
     this.flag(this.predicate, params.theme);
+    this.flag(this.string, params.format);
+    this.flag(this.predicate, params.base_theme);
   },
   'account.getTheme': function(params) {
-    this.int32(-1919060949);
+    this.int32(978872812);
     this.string(params.format);
     this.predicate(params.theme);
-    this.long(params.document_id);
   },
   'account.getThemes': function(params) {
     this.int32(1913054296);
@@ -7450,9 +8572,12 @@ const builderMap = {
     this.flag(this.long, params.x);
   },
   'stickers.setStickerSetThumb': function(params) {
-    this.int32(-1707717072);
+    this.int32(-1486204014);
+    const flags = (this.has(params.thumb) << 0) | (this.has(params.thumb_document_id) << 1);
+    this.int32(flags);
     this.predicate(params.stickerset);
-    this.predicate(params.thumb);
+    this.flag(this.predicate, params.thumb);
+    this.flag(this.long, params.thumb_document_id);
   },
   'bots.setBotCommands': function(params) {
     this.int32(85399130);
@@ -7547,12 +8672,15 @@ const builderMap = {
     this.int(params.msg_id);
   },
   'messages.unpinAllMessages': function(params) {
-    this.int32(-265962357);
+    this.int32(-299714136);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
     this.predicate(params.peer);
+    this.flag(this.int, params.top_msg_id);
   },
   'phone.createGroupCall': function(params) {
     this.int32(1221445336);
-    const flags = (this.has(params.title) << 0) | (this.has(params.schedule_date) << 1);
+    const flags = (this.has(params.rtmp_stream) << 2) | (this.has(params.title) << 0) | (this.has(params.schedule_date) << 1);
     this.int32(flags);
     this.predicate(params.peer);
     this.int(params.random_id);
@@ -7654,13 +8782,15 @@ const builderMap = {
     this.string(params.link);
   },
   'messages.editExportedChatInvite': function(params) {
-    this.int32(48562110);
-    const flags = (this.has(params.revoked) << 2) | (this.has(params.expire_date) << 0) | (this.has(params.usage_limit) << 1);
+    this.int32(-1110823051);
+    const flags = (this.has(params.revoked) << 2) | (this.has(params.expire_date) << 0) | (this.has(params.usage_limit) << 1) | (this.has(params.request_needed) << 3) | (this.has(params.title) << 4);
     this.int32(flags);
     this.predicate(params.peer);
     this.string(params.link);
     this.flag(this.int, params.expire_date);
     this.flag(this.int, params.usage_limit);
+    this.flag(this.Bool, params.request_needed);
+    this.flag(this.string, params.title);
   },
   'messages.deleteRevokedExportedChatInvites': function(params) {
     this.int32(1452833749);
@@ -7677,9 +8807,12 @@ const builderMap = {
     this.predicate(params.peer);
   },
   'messages.getChatInviteImporters': function(params) {
-    this.int32(654013065);
+    this.int32(-553329330);
+    const flags = (this.has(params.requested) << 0) | (this.has(params.link) << 1) | (this.has(params.q) << 2);
+    this.int32(flags);
     this.predicate(params.peer);
-    this.string(params.link);
+    this.flag(this.string, params.link);
+    this.flag(this.string, params.q);
     this.int(params.offset_date);
     this.predicate(params.offset_user);
     this.int(params.limit);
@@ -7792,8 +8925,8 @@ const builderMap = {
     this.string(params.code);
   },
   'account.getChatThemes': function(params) {
-    this.int32(-690545285);
-    this.int(params.hash);
+    this.int32(-700916087);
+    this.long(params.hash);
   },
   'messages.setChatTheme': function(params) {
     this.int32(-432283329);
@@ -7810,9 +8943,663 @@ const builderMap = {
     this.predicate(params.channel);
   },
   'messages.getMessageReadParticipants': function(params) {
-    this.int32(745510839);
+    this.int32(834782287);
     this.predicate(params.peer);
     this.int(params.msg_id);
+  },
+  'messages.getSearchResultsCalendar': function(params) {
+    this.int32(1240514025);
+    this.predicate(params.peer);
+    this.predicate(params.filter);
+    this.int(params.offset_id);
+    this.int(params.offset_date);
+  },
+  'messages.getSearchResultsPositions': function(params) {
+    this.int32(1855292323);
+    this.predicate(params.peer);
+    this.predicate(params.filter);
+    this.int(params.offset_id);
+    this.int(params.limit);
+  },
+  'messages.hideChatJoinRequest': function(params) {
+    this.int32(2145904661);
+    const flags = (this.has(params.approved) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.predicate(params.user_id);
+  },
+  'messages.hideAllChatJoinRequests': function(params) {
+    this.int32(-528091926);
+    const flags = (this.has(params.approved) << 0) | (this.has(params.link) << 1);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.flag(this.string, params.link);
+  },
+  'messages.toggleNoForwards': function(params) {
+    this.int32(-1323389022);
+    this.predicate(params.peer);
+    this.Bool(params.enabled);
+  },
+  'messages.saveDefaultSendAs': function(params) {
+    this.int32(-855777386);
+    this.predicate(params.peer);
+    this.predicate(params.send_as);
+  },
+  'channels.getSendAs': function(params) {
+    this.int32(231174382);
+    this.predicate(params.peer);
+  },
+  'account.setAuthorizationTTL': function(params) {
+    this.int32(-1081501024);
+    this.int(params.authorization_ttl_days);
+  },
+  'account.changeAuthorizationSettings': function(params) {
+    this.int32(1089766498);
+    const flags = (this.has(params.encrypted_requests_disabled) << 0) | (this.has(params.call_requests_disabled) << 1);
+    this.int32(flags);
+    this.long(params.hash);
+    this.flag(this.Bool, params.encrypted_requests_disabled);
+    this.flag(this.Bool, params.call_requests_disabled);
+  },
+  'channels.deleteParticipantHistory': function(params) {
+    this.int32(913655003);
+    this.predicate(params.channel);
+    this.predicate(params.participant);
+  },
+  'messages.sendReaction': function(params) {
+    this.int32(-754091820);
+    const flags = (this.has(params.big) << 1) | (this.has(params.add_to_recent) << 2) | (this.has(params.reaction) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+    this.flagVector(this.predicate, params.reaction);
+  },
+  'messages.getMessagesReactions': function(params) {
+    this.int32(-1950707482);
+    this.predicate(params.peer);
+    this.vector(this.int, params.id);
+  },
+  'messages.getMessageReactionsList': function(params) {
+    this.int32(1176190792);
+    const flags = (this.has(params.reaction) << 0) | (this.has(params.offset) << 1);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.int(params.id);
+    this.flag(this.predicate, params.reaction);
+    this.flag(this.string, params.offset);
+    this.int(params.limit);
+  },
+  'messages.setChatAvailableReactions': function(params) {
+    this.int32(-21928079);
+    this.predicate(params.peer);
+    this.predicate(params.available_reactions);
+  },
+  'messages.getAvailableReactions': function(params) {
+    this.int32(417243308);
+    this.int(params.hash);
+  },
+  'messages.setDefaultReaction': function(params) {
+    this.int32(1330094102);
+    this.predicate(params.reaction);
+  },
+  'messages.translateText': function(params) {
+    this.int32(1662529584);
+    const flags = (this.has(params.peer) << 0) | (this.has(params.id) << 0) | (this.has(params.text) << 1);
+    this.int32(flags);
+    this.flag(this.predicate, params.peer);
+    this.flagVector(this.int, params.id);
+    this.flagVector(this.predicate, params.text);
+    this.string(params.to_lang);
+  },
+  'messages.getUnreadReactions': function(params) {
+    this.int32(841173339);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.flag(this.int, params.top_msg_id);
+    this.int(params.offset_id);
+    this.int(params.add_offset);
+    this.int(params.limit);
+    this.int(params.max_id);
+    this.int(params.min_id);
+  },
+  'messages.readReactions': function(params) {
+    this.int32(1420459918);
+    const flags = (this.has(params.top_msg_id) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.flag(this.int, params.top_msg_id);
+  },
+  'contacts.resolvePhone': function(params) {
+    this.int32(-1963375804);
+    this.string(params.phone);
+  },
+  'phone.getGroupCallStreamChannels': function(params) {
+    this.int32(447879488);
+    this.predicate(params.call);
+  },
+  'phone.getGroupCallStreamRtmpUrl': function(params) {
+    this.int32(-558650433);
+    this.predicate(params.peer);
+    this.Bool(params.revoke);
+  },
+  'messages.searchSentMedia': function(params) {
+    this.int32(276705696);
+    this.string(params.q);
+    this.predicate(params.filter);
+    this.int(params.limit);
+  },
+  'messages.getAttachMenuBots': function(params) {
+    this.int32(385663691);
+    this.long(params.hash);
+  },
+  'messages.getAttachMenuBot': function(params) {
+    this.int32(1998676370);
+    this.predicate(params.bot);
+  },
+  'messages.toggleBotInAttachMenu': function(params) {
+    this.int32(1777704297);
+    const flags = (this.has(params.write_allowed) << 0);
+    this.int32(flags);
+    this.predicate(params.bot);
+    this.Bool(params.enabled);
+  },
+  'messages.requestWebView': function(params) {
+    this.int32(395003915);
+    const flags = (this.has(params.from_bot_menu) << 4) | (this.has(params.silent) << 5) | (this.has(params.url) << 1) | (this.has(params.start_param) << 3) | (this.has(params.theme_params) << 2) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.top_msg_id) << 9) | (this.has(params.send_as) << 13);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.predicate(params.bot);
+    this.flag(this.string, params.url);
+    this.flag(this.string, params.start_param);
+    this.flag(this.predicate, params.theme_params);
+    this.string(params.platform);
+    this.flag(this.int, params.reply_to_msg_id);
+    this.flag(this.int, params.top_msg_id);
+    this.flag(this.predicate, params.send_as);
+  },
+  'messages.prolongWebView': function(params) {
+    this.int32(2146648841);
+    const flags = (this.has(params.silent) << 5) | (this.has(params.reply_to_msg_id) << 0) | (this.has(params.top_msg_id) << 9) | (this.has(params.send_as) << 13);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.predicate(params.bot);
+    this.long(params.query_id);
+    this.flag(this.int, params.reply_to_msg_id);
+    this.flag(this.int, params.top_msg_id);
+    this.flag(this.predicate, params.send_as);
+  },
+  'messages.requestSimpleWebView': function(params) {
+    this.int32(698084494);
+    const flags = (this.has(params.from_switch_webview) << 1) | (this.has(params.theme_params) << 0);
+    this.int32(flags);
+    this.predicate(params.bot);
+    this.string(params.url);
+    this.flag(this.predicate, params.theme_params);
+    this.string(params.platform);
+  },
+  'messages.sendWebViewResultMessage': function(params) {
+    this.int32(172168437);
+    this.string(params.bot_query_id);
+    this.predicate(params.result);
+  },
+  'messages.sendWebViewData': function(params) {
+    this.int32(-603831608);
+    this.predicate(params.bot);
+    this.long(params.random_id);
+    this.string(params.button_text);
+    this.string(params.data);
+  },
+  'bots.setBotMenuButton': function(params) {
+    this.int32(1157944655);
+    this.predicate(params.user_id);
+    this.predicate(params.button);
+  },
+  'bots.getBotMenuButton': function(params) {
+    this.int32(-1671369944);
+    this.predicate(params.user_id);
+  },
+  'account.getSavedRingtones': function(params) {
+    this.int32(-510647672);
+    this.long(params.hash);
+  },
+  'account.saveRingtone': function(params) {
+    this.int32(1038768899);
+    this.predicate(params.id);
+    this.Bool(params.unsave);
+  },
+  'account.uploadRingtone': function(params) {
+    this.int32(-2095414366);
+    this.predicate(params.file);
+    this.string(params.file_name);
+    this.string(params.mime_type);
+  },
+  'bots.setBotBroadcastDefaultAdminRights': function(params) {
+    this.int32(2021942497);
+    this.predicate(params.admin_rights);
+  },
+  'bots.setBotGroupDefaultAdminRights': function(params) {
+    this.int32(-1839281686);
+    this.predicate(params.admin_rights);
+  },
+  'phone.saveCallLog': function(params) {
+    this.int32(1092913030);
+    this.predicate(params.peer);
+    this.predicate(params.file);
+  },
+  'channels.toggleJoinToSend': function(params) {
+    this.int32(-456419968);
+    this.predicate(params.channel);
+    this.Bool(params.enabled);
+  },
+  'channels.toggleJoinRequest': function(params) {
+    this.int32(1277789622);
+    this.predicate(params.channel);
+    this.Bool(params.enabled);
+  },
+  'payments.exportInvoice': function(params) {
+    this.int32(261206117);
+    this.predicate(params.invoice_media);
+  },
+  'messages.transcribeAudio': function(params) {
+    this.int32(647928393);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+  },
+  'messages.rateTranscribedAudio': function(params) {
+    this.int32(2132608815);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+    this.long(params.transcription_id);
+    this.Bool(params.good);
+  },
+  'payments.assignAppStoreTransaction': function(params) {
+    this.int32(-2131921795);
+    this.bytes(params.receipt);
+    this.predicate(params.purpose);
+  },
+  'payments.assignPlayMarketTransaction': function(params) {
+    this.int32(-537046829);
+    this.predicate(params.receipt);
+    this.predicate(params.purpose);
+  },
+  'payments.canPurchasePremium': function(params) {
+    this.int32(-1614700874);
+    this.predicate(params.purpose);
+  },
+  'help.getPremiumPromo': function(params) {
+    this.int32(-1206152236);
+  },
+  'messages.getCustomEmojiDocuments': function(params) {
+    this.int32(-643100844);
+    this.vector(this.long, params.document_id);
+  },
+  'messages.getEmojiStickers': function(params) {
+    this.int32(-67329649);
+    this.long(params.hash);
+  },
+  'messages.getFeaturedEmojiStickers': function(params) {
+    this.int32(248473398);
+    this.long(params.hash);
+  },
+  'account.updateEmojiStatus': function(params) {
+    this.int32(-70001045);
+    this.predicate(params.emoji_status);
+  },
+  'account.getDefaultEmojiStatuses': function(params) {
+    this.int32(-696962170);
+    this.long(params.hash);
+  },
+  'account.getRecentEmojiStatuses': function(params) {
+    this.int32(257392901);
+    this.long(params.hash);
+  },
+  'account.clearRecentEmojiStatuses': function(params) {
+    this.int32(404757166);
+  },
+  'messages.reportReaction': function(params) {
+    this.int32(1063567478);
+    this.predicate(params.peer);
+    this.int(params.id);
+    this.predicate(params.reaction_peer);
+  },
+  'messages.getTopReactions': function(params) {
+    this.int32(-1149164102);
+    this.int(params.limit);
+    this.long(params.hash);
+  },
+  'messages.getRecentReactions': function(params) {
+    this.int32(960896434);
+    this.int(params.limit);
+    this.long(params.hash);
+  },
+  'messages.clearRecentReactions': function(params) {
+    this.int32(-1644236876);
+  },
+  'messages.getExtendedMedia': function(params) {
+    this.int32(-2064119788);
+    this.predicate(params.peer);
+    this.vector(this.int, params.id);
+  },
+  'auth.importWebTokenAuthorization': function(params) {
+    this.int32(767062953);
+    this.int(params.api_id);
+    this.string(params.api_hash);
+    this.string(params.web_auth_token);
+  },
+  'account.reorderUsernames': function(params) {
+    this.int32(-279966037);
+    this.vector(this.string, params.order);
+  },
+  'account.toggleUsername': function(params) {
+    this.int32(1490465654);
+    this.string(params.username);
+    this.Bool(params.active);
+  },
+  'channels.reorderUsernames': function(params) {
+    this.int32(-1268978403);
+    this.predicate(params.channel);
+    this.vector(this.string, params.order);
+  },
+  'channels.toggleUsername': function(params) {
+    this.int32(1358053637);
+    this.predicate(params.channel);
+    this.string(params.username);
+    this.Bool(params.active);
+  },
+  'channels.deactivateAllUsernames': function(params) {
+    this.int32(170155475);
+    this.predicate(params.channel);
+  },
+  'channels.toggleForum': function(params) {
+    this.int32(-1540781271);
+    this.predicate(params.channel);
+    this.Bool(params.enabled);
+  },
+  'channels.createForumTopic': function(params) {
+    this.int32(-200539612);
+    const flags = (this.has(params.icon_color) << 0) | (this.has(params.icon_emoji_id) << 3) | (this.has(params.send_as) << 2);
+    this.int32(flags);
+    this.predicate(params.channel);
+    this.string(params.title);
+    this.flag(this.int, params.icon_color);
+    this.flag(this.long, params.icon_emoji_id);
+    this.long(params.random_id);
+    this.flag(this.predicate, params.send_as);
+  },
+  'channels.getForumTopics': function(params) {
+    this.int32(233136337);
+    const flags = (this.has(params.q) << 0);
+    this.int32(flags);
+    this.predicate(params.channel);
+    this.flag(this.string, params.q);
+    this.int(params.offset_date);
+    this.int(params.offset_id);
+    this.int(params.offset_topic);
+    this.int(params.limit);
+  },
+  'channels.getForumTopicsByID': function(params) {
+    this.int32(-1333584199);
+    this.predicate(params.channel);
+    this.vector(this.int, params.topics);
+  },
+  'channels.editForumTopic': function(params) {
+    this.int32(-186670715);
+    const flags = (this.has(params.title) << 0) | (this.has(params.icon_emoji_id) << 1) | (this.has(params.closed) << 2) | (this.has(params.hidden) << 3);
+    this.int32(flags);
+    this.predicate(params.channel);
+    this.int(params.topic_id);
+    this.flag(this.string, params.title);
+    this.flag(this.long, params.icon_emoji_id);
+    this.flag(this.Bool, params.closed);
+    this.flag(this.Bool, params.hidden);
+  },
+  'channels.updatePinnedForumTopic': function(params) {
+    this.int32(1814925350);
+    this.predicate(params.channel);
+    this.int(params.topic_id);
+    this.Bool(params.pinned);
+  },
+  'channels.deleteTopicHistory': function(params) {
+    this.int32(876830509);
+    this.predicate(params.channel);
+    this.int(params.top_msg_id);
+  },
+  'channels.reorderPinnedForumTopics': function(params) {
+    this.int32(693150095);
+    const flags = (this.has(params.force) << 0);
+    this.int32(flags);
+    this.predicate(params.channel);
+    this.vector(this.int, params.order);
+  },
+  'channels.toggleAntiSpam': function(params) {
+    this.int32(1760814315);
+    this.predicate(params.channel);
+    this.Bool(params.enabled);
+  },
+  'channels.reportAntiSpamFalsePositive': function(params) {
+    this.int32(-1471109485);
+    this.predicate(params.channel);
+    this.int(params.msg_id);
+  },
+  'messages.setDefaultHistoryTTL': function(params) {
+    this.int32(-1632299963);
+    this.int(params.period);
+  },
+  'messages.getDefaultHistoryTTL': function(params) {
+    this.int32(1703637384);
+  },
+  'contacts.exportContactToken': function(params) {
+    this.int32(-127582169);
+  },
+  'contacts.importContactToken': function(params) {
+    this.int32(318789512);
+    this.string(params.token);
+  },
+  'photos.uploadContactProfilePhoto': function(params) {
+    this.int32(-515093903);
+    const flags = (this.has(params.suggest) << 3) | (this.has(params.save) << 4) | (this.has(params.file) << 0) | (this.has(params.video) << 1) | (this.has(params.video_start_ts) << 2) | (this.has(params.video_emoji_markup) << 5);
+    this.int32(flags);
+    this.predicate(params.user_id);
+    this.flag(this.predicate, params.file);
+    this.flag(this.predicate, params.video);
+    this.flag(this.double, params.video_start_ts);
+    this.flag(this.predicate, params.video_emoji_markup);
+  },
+  'channels.toggleParticipantsHidden': function(params) {
+    this.int32(1785624660);
+    this.predicate(params.channel);
+    this.Bool(params.enabled);
+  },
+  'messages.sendBotRequestedPeer': function(params) {
+    this.int32(-29831141);
+    this.predicate(params.peer);
+    this.int(params.msg_id);
+    this.int(params.button_id);
+    this.predicate(params.requested_peer);
+  },
+  'account.getDefaultProfilePhotoEmojis': function(params) {
+    this.int32(-495647960);
+    this.long(params.hash);
+  },
+  'account.getDefaultGroupPhotoEmojis': function(params) {
+    this.int32(-1856479058);
+    this.long(params.hash);
+  },
+  'auth.requestFirebaseSms': function(params) {
+    this.int32(-1991881904);
+    const flags = (this.has(params.safety_net_token) << 0) | (this.has(params.ios_push_secret) << 1);
+    this.int32(flags);
+    this.string(params.phone_number);
+    this.string(params.phone_code_hash);
+    this.flag(this.string, params.safety_net_token);
+    this.flag(this.string, params.ios_push_secret);
+  },
+  'messages.getEmojiGroups': function(params) {
+    this.int32(1955122779);
+    this.int(params.hash);
+  },
+  'messages.getEmojiStatusGroups': function(params) {
+    this.int32(785209037);
+    this.int(params.hash);
+  },
+  'messages.getEmojiProfilePhotoGroups': function(params) {
+    this.int32(564480243);
+    this.int(params.hash);
+  },
+  'messages.searchCustomEmoji': function(params) {
+    this.int32(739360983);
+    this.string(params.emoticon);
+    this.long(params.hash);
+  },
+  'messages.togglePeerTranslations': function(params) {
+    this.int32(-461589127);
+    const flags = (this.has(params.disabled) << 0);
+    this.int32(flags);
+    this.predicate(params.peer);
+  },
+  'account.getAutoSaveSettings': function(params) {
+    this.int32(-1379156774);
+  },
+  'account.saveAutoSaveSettings': function(params) {
+    this.int32(-694451359);
+    const flags = (this.has(params.users) << 0) | (this.has(params.chats) << 1) | (this.has(params.broadcasts) << 2) | (this.has(params.peer) << 3);
+    this.int32(flags);
+    this.flag(this.predicate, params.peer);
+    this.predicate(params.settings);
+  },
+  'account.deleteAutoSaveExceptions': function(params) {
+    this.int32(1404829728);
+  },
+  'stickers.changeSticker': function(params) {
+    this.int32(-179077444);
+    const flags = (this.has(params.emoji) << 0) | (this.has(params.mask_coords) << 1) | (this.has(params.keywords) << 2);
+    this.int32(flags);
+    this.predicate(params.sticker);
+    this.flag(this.string, params.emoji);
+    this.flag(this.predicate, params.mask_coords);
+    this.flag(this.string, params.keywords);
+  },
+  'stickers.renameStickerSet': function(params) {
+    this.int32(306912256);
+    this.predicate(params.stickerset);
+    this.string(params.title);
+  },
+  'stickers.deleteStickerSet': function(params) {
+    this.int32(-2022685804);
+    this.predicate(params.stickerset);
+  },
+  'messages.getBotApp': function(params) {
+    this.int32(889046467);
+    this.predicate(params.app);
+    this.long(params.hash);
+  },
+  'messages.requestAppWebView': function(params) {
+    this.int32(-1940243652);
+    const flags = (this.has(params.write_allowed) << 0) | (this.has(params.start_param) << 1) | (this.has(params.theme_params) << 2);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.predicate(params.app);
+    this.flag(this.string, params.start_param);
+    this.flag(this.predicate, params.theme_params);
+    this.string(params.platform);
+  },
+  'bots.setBotInfo': function(params) {
+    this.int32(282013987);
+    const flags = (this.has(params.bot) << 2) | (this.has(params.name) << 3) | (this.has(params.about) << 0) | (this.has(params.description) << 1);
+    this.int32(flags);
+    this.flag(this.predicate, params.bot);
+    this.string(params.lang_code);
+    this.flag(this.string, params.name);
+    this.flag(this.string, params.about);
+    this.flag(this.string, params.description);
+  },
+  'bots.getBotInfo': function(params) {
+    this.int32(-589753091);
+    const flags = (this.has(params.bot) << 0);
+    this.int32(flags);
+    this.flag(this.predicate, params.bot);
+    this.string(params.lang_code);
+  },
+  'auth.resetLoginEmail': function(params) {
+    this.int32(2123760019);
+    this.string(params.phone_number);
+    this.string(params.phone_code_hash);
+  },
+  'chatlists.exportChatlistInvite': function(params) {
+    this.int32(-2072885362);
+    this.predicate(params.chatlist);
+    this.string(params.title);
+    this.vector(this.predicate, params.peers);
+  },
+  'chatlists.deleteExportedInvite': function(params) {
+    this.int32(1906072670);
+    this.predicate(params.chatlist);
+    this.string(params.slug);
+  },
+  'chatlists.editExportedInvite': function(params) {
+    this.int32(1698543165);
+    const flags = (this.has(params.title) << 1) | (this.has(params.peers) << 2);
+    this.int32(flags);
+    this.predicate(params.chatlist);
+    this.string(params.slug);
+    this.flag(this.string, params.title);
+    this.flagVector(this.predicate, params.peers);
+  },
+  'chatlists.getExportedInvites': function(params) {
+    this.int32(-838608253);
+    this.predicate(params.chatlist);
+  },
+  'chatlists.checkChatlistInvite': function(params) {
+    this.int32(1103171583);
+    this.string(params.slug);
+  },
+  'chatlists.joinChatlistInvite': function(params) {
+    this.int32(-1498291302);
+    this.string(params.slug);
+    this.vector(this.predicate, params.peers);
+  },
+  'chatlists.getChatlistUpdates': function(params) {
+    this.int32(-1992190687);
+    this.predicate(params.chatlist);
+  },
+  'chatlists.joinChatlistUpdates': function(params) {
+    this.int32(-527828747);
+    this.predicate(params.chatlist);
+    this.vector(this.predicate, params.peers);
+  },
+  'chatlists.hideChatlistUpdates': function(params) {
+    this.int32(1726252795);
+    this.predicate(params.chatlist);
+  },
+  'chatlists.getLeaveChatlistSuggestions': function(params) {
+    this.int32(-37955820);
+    this.predicate(params.chatlist);
+  },
+  'chatlists.leaveChatlist': function(params) {
+    this.int32(1962598714);
+    this.predicate(params.chatlist);
+    this.vector(this.predicate, params.peers);
+  },
+  'bots.reorderUsernames': function(params) {
+    this.int32(-1760972350);
+    this.predicate(params.bot);
+    this.vector(this.string, params.order);
+  },
+  'bots.toggleUsername': function(params) {
+    this.int32(87861619);
+    this.predicate(params.bot);
+    this.string(params.username);
+    this.Bool(params.active);
+  },
+  'messages.setChatWallPaper': function(params) {
+    this.int32(-1879389471);
+    const flags = (this.has(params.wallpaper) << 0) | (this.has(params.settings) << 2) | (this.has(params.id) << 1);
+    this.int32(flags);
+    this.predicate(params.peer);
+    this.flag(this.predicate, params.wallpaper);
+    this.flag(this.predicate, params.settings);
+    this.flag(this.int, params.id);
   },
 };
 module.exports = builderMap;
