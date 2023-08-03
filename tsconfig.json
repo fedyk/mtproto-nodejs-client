@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "NodeNext",
+    "strict": true
+  },
+  "include": [
+    "*.ts"
+  ]
+}
