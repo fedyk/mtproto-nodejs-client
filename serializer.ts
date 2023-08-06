@@ -34,7 +34,7 @@ export class Serializer {
     this.offset += 4;
   }
 
-  long(value: number) {
+  long(value: number | number[]) {
     if (Array.isArray(value)) {
       if (value.length === 2) {
         const [low, high] = value;

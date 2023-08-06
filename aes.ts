@@ -52,7 +52,7 @@ export class ModeOfOperationIGE {
     return ciphertext;
   }
 
-  decrypt(ciphertext: string) {
+  decrypt(ciphertext: Uint8Array) {
     if (ciphertext.length % 16 !== 0) {
       throw new Error('invalid ciphertext size (must be multiple of 16 bytes)');
     }
@@ -79,11 +79,9 @@ export class ModeOfOperationIGE {
        */
       // @ts-ignore
       block = this._aes.decrypt(block);
-      // @ts-ignore
       block = xorBytes(block, this._ivp);
       copyArray(block, plaintext, i);
 
-      // @ts-ignore
       this._ivp = nextIvp;
       this._iv2p = plaintext.slice(i, i + 16);
     }

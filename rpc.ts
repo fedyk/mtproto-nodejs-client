@@ -1,18 +1,19 @@
+import events from "node:events";
 import Debug from "debug";
 import bigInt, { BigInteger } from "big-integer";
 import debounce from "lodash.debounce";
 import { Serializer, SerializerFn } from "./serializer.js";
 import { RSA } from "./rsa.js";
-import type { DC, IStorage } from "./types.js";
+import type { DC } from "./types.js";
 import { builderMap } from "./builder.js";
 import { Transport } from "./transport.js";
 import { Deserializer } from "./deserializer.js";
 import { ModeOfOperationIGE } from "./aes.js";
 import { pqPrimeFactorization } from "./pg.js";
 import { SHA1, SHA256, bigIntToBytes, bytesIsEqual, bytesToBigInt, bytesToBytesRaw, concatBytes, getRandomBytes, getRandomInt, intsToLong, longToBytesRaw, xorBytes } from "./common.js"
-import EventEmitter from "events";
-import { Methods } from "./mtptoto-types.js";
+import { Methods, Updates } from "./mtptoto-types.js";
 import { RPCError } from "./errors.js";
+import { Storage } from "./storage.js";
 
 export interface MessageWaitResponse {
   method: string
@@ -22,14 +23,18 @@ export interface MessageWaitResponse {
   isAck?: boolean
 }
 
+export interface RPCEventEmitter extends events.EventEmitter {
+  on<T extends Updates>(eventName: T["_"], listener: (arg0: T) => void): this;
+  emit<T extends Updates>(eventName: T["_"], arg0: T): boolean
+}
+
 export class RPC {
   api_id: string
   api_hash: string
   initConnectionParams: any
   dc: DC;
-  // context: MTProto;
-  storage: IStorage;
-  updates: EventEmitter;
+  storage: Storage;
+  updates: RPCEventEmitter;
   transport: Transport;
   debug: Debug.Debugger;
 
@@ -60,16 +65,14 @@ export class RPC {
     api_hash: string
     initConnectionParams: any
     dc: DC;
-    // context: MTProto;
-    storage: IStorage
-    updates: EventEmitter;
+    storage: Storage
+    updates: RPCEventEmitter;
     transport: Transport;
   }) {
     this.api_id = api_id
     this.api_hash = api_hash
     this.initConnectionParams = initConnectionParams
     this.dc = dc;
-    // this.context = context;
     this.storage = storage;
     this.updates = updates;
     this.transport = transport;
@@ -96,10 +99,6 @@ export class RPC {
         return;
       }
 
-      /**
-       * @todo fix TS issue here
-       */
-      // @ts-ignore
       const serializer = new Serializer(builderMap.mt_msgs_ack, {
         msg_ids: this.pendingAcks,
       });
@@ -171,12 +170,11 @@ export class RPC {
     } else {
       this.nonce = getRandomBytes(16);
       this.handleMessage = this.handlePQResponse;
-      // @ts-ignore
       this.sendPlainMessage(builderMap.mt_req_pq_multi, { nonce: this.nonce });
     }
   }
 
-  async handleTransportMessage(buffer: Buffer) {
+  handleTransportMessage(buffer: Buffer) {
     this.handleMessage(buffer);
   }
 
@@ -212,7 +210,6 @@ export class RPC {
     this.newNonce = getRandomBytes(32);
     this.serverNonce = server_nonce;
 
-    // @ts-ignore
     const serializer = new Serializer(builderMap.mt_p_q_inner_data, {
       pq: pq,
       p: p,
@@ -235,7 +232,6 @@ export class RPC {
 
     const encryptedData = RSA.encrypt(publicKey, innerData);
 
-    // @ts-ignore
     this.sendPlainMessage(builderMap.mt_req_DH_params, {
       nonce: this.nonce,
       server_nonce: this.serverNonce,
@@ -373,7 +369,6 @@ export class RPC {
       throw new Error("`this.g` can't be empty")
     }
 
-    // @ts-ignore
     const serializer = new Serializer(builderMap.mt_client_DH_inner_data, {
       nonce: this.nonce,
       server_nonce: this.serverNonce,
@@ -402,7 +397,6 @@ export class RPC {
       )
     );
 
-    // @ts-ignore
     this.sendPlainMessage(builderMap.mt_set_client_DH_params, {
       nonce: this.nonce,
       server_nonce: this.serverNonce,
@@ -522,25 +516,18 @@ export class RPC {
   }
 
   async handleEncryptedMessage(buffer: ArrayBufferLike) {
-    // @ts-ignore
-    const authKey = new Uint8Array(await this.getStorageItem('authKey'));
+    const authKey = new Uint8Array(
+      await this.getStorageItem('authKey') as number[]
+    );
 
     const deserializer = new Deserializer(buffer);
     const authKeyId = deserializer.long();
     const messageKey = deserializer.int128();
-
     const encryptedData = deserializer.byteView.slice(deserializer.offset);
+    const plaintextData = this.getAESInstance(authKey, messageKey, true).decrypt(encryptedData);
 
-    const plaintextData = (
-      // @ts-ignore
-      await this.getAESInstance(authKey, messageKey, true)
-      // @ts-ignore
-    ).decrypt(encryptedData);
-
-    const computedMessageKey = (
-      await SHA256(
-        concatBytes(authKey.slice(96, 128), plaintextData)
-      )
+    const computedMessageKey = SHA256(
+      concatBytes(authKey.slice(96, 128), plaintextData)
     ).slice(8, 24);
 
     if (!bytesIsEqual(messageKey, computedMessageKey)) {
@@ -731,7 +718,6 @@ export class RPC {
       ...this.initConnectionParams,
     };
 
-    // @ts-ignore
     const serializer = new Serializer(builderMap.invokeWithLayer, {
       layer: 158,
       query: {
@@ -751,7 +737,6 @@ export class RPC {
     return new Promise(async (resolve, reject) => {
 
       const messageId = await this.sendEncryptedMessage(bytes);
-      // @ts-ignore
       const messageIdAsKey = intsToLong(messageId[0], messageId[1]);
 
       this.messagesWaitResponse.set(messageIdAsKey, {
@@ -777,15 +762,18 @@ export class RPC {
   // 8. message_data_length (int32)
   // 9. message_data
   // 10. padding 12..1024
-  async sendEncryptedMessage(data: Uint8Array, options = {}) {
-    // @ts-ignore
+  async sendEncryptedMessage(data: Uint8Array, options: {
+    isContentRelated?: boolean
+  } = {}) {
     const { isContentRelated = true } = options;
 
-    // @ts-ignore
-    const authKey = new Uint8Array(await this.getStorageItem('authKey'));
+    const authKey = new Uint8Array(
+      await this.getStorageItem('authKey') as number[]
+    );
 
-    // @ts-ignore
-    const serverSalt = new Uint8Array(await this.getStorageItem('serverSalt'));
+    const serverSalt = new Uint8Array(
+      await this.getStorageItem('serverSalt') as number[]
+    );
 
     const messageId = await this.getMessageId();
     const seqNo = this.getSeqNo(isContentRelated);
@@ -798,7 +786,6 @@ export class RPC {
     const plainDataSerializer = new Serializer(function () {
       this.bytesRaw(serverSalt);
       this.bytesRaw(sessionId);
-      // @ts-ignore
       this.long(messageId);
       this.int32(seqNo);
       this.uint32(data.length);
@@ -808,16 +795,10 @@ export class RPC {
 
     const plainData = plainDataSerializer.getBytes();
 
-    const messageKeyLarge = await SHA256(
-      concatBytes(authKey.slice(88, 120), plainData)
-    );
+    const messageKeyLarge = SHA256(concatBytes(authKey.slice(88, 120), plainData));
     const messageKey = messageKeyLarge.slice(8, 24);
 
-
-    const encryptedData = (
-      // @ts-ignore
-      await this.getAESInstance(authKey, messageKey, false)
-    ).encrypt(plainData);
+    const encryptedData = this.getAESInstance(authKey, messageKey, false).encrypt(plainData);
 
     const authKeyId = (SHA1(authKey)).slice(-8);
     const serializer = new Serializer(function () {
@@ -840,9 +821,7 @@ export class RPC {
     const messageId = await this.getMessageId();
 
     const header = new Serializer(function () {
-      // @ts-ignore
       this.long([0, 0]);
-      // @ts-ignore
       this.long(messageId);
       this.uint32(requestLength);
     });
@@ -859,19 +838,21 @@ export class RPC {
     this.transport.send(resultBytes);
   }
 
-  async getMessageId() {
-    // @TODO: Check timeOffset
+  async getMessageId(): Promise<[number, number]> {
     const timeOffset = await this.storage.get('timeOffset');
 
+    if (typeof timeOffset !== "number") {
+      throw new RangeError("`timeOffset` needs to be a number")
+    }
+
     const timeTicks = Date.now();
-    // @ts-ignore
     const timeSec = Math.floor(timeTicks / 1000) + timeOffset;
     const timeMSec = timeTicks % 1000;
     const random = getRandomInt(65535);
 
     const { lastMessageId } = this;
 
-    let messageId = [timeSec, (timeMSec << 21) | (random << 3) | 4];
+    let messageId: [number, number] = [timeSec, (timeMSec << 21) | (random << 3) | 4];
 
     if (lastMessageId[0] > messageId[0] ||
       (lastMessageId[0] == messageId[0] && lastMessageId[1] >= messageId[1])) {
@@ -905,12 +886,12 @@ export class RPC {
     ];
   }
 
-  async getAESInstance(authKey: Uint8Array, messageKey: Uint8Array, isServer: boolean) {
+  getAESInstance(authKey: Uint8Array, messageKey: Uint8Array, isServer: boolean) {
     const x = isServer ? 8 : 0;
-    const sha256a = await SHA256(
+    const sha256a = SHA256(
       concatBytes(messageKey, authKey.slice(x, 36 + x))
     );
-    const sha256b = await SHA256(
+    const sha256b = SHA256(
       concatBytes(authKey.slice(40 + x, 76 + x), messageKey)
     );
     const aesKey = concatBytes(
@@ -923,14 +904,15 @@ export class RPC {
       sha256a.slice(8, 24),
       sha256b.slice(24, 32)
     );
+
     return new ModeOfOperationIGE(aesKey, aesIV);
   }
 
-  async setStorageItem(key: string, value: any) {
+  setStorageItem(key: string, value: any) {
     return this.storage.set(`${this.dc.id}${key}`, value);
   }
 
-  async getStorageItem(key: string) {
+  getStorageItem(key: string) {
     return this.storage.get(`${this.dc.id}${key}`);
   }
 }

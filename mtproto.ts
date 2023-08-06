@@ -1,9 +1,10 @@
 import events from "node:events"
 import Debug from "debug"
 import type { DC, IStorage } from "./types.js"
-import { RPC } from "./rpc.js"
+import { RPC, RPCEventEmitter,  } from "./rpc.js"
 import { Transport } from "./transport.js"
 import { Methods } from "./mtptoto-types.js"
+import { Storage } from "./storage.js"
 
 export const debug = Debug("mtproto")
 
@@ -56,39 +57,6 @@ const PRODUCTION_DC_LIST: DC[] = [
   },
 ];
 
-class Storage implements IStorage {
-  cache: Record<string, string>
-  localStorage: IStorage
-
-  constructor(options: {
-    instance: IStorage
-  }) {
-    this.cache = {};
-
-    this.localStorage = options?.instance
-  }
-
-  async set(key: string, value: any) {
-    this.cache[key] = value;
-
-    await this.localStorage.set(key, JSON.stringify(value));
-  }
-
-  async get(key: string) {
-    if (key in this.cache) {
-      return this.cache[key];
-    }
-
-    const fromLocalStorage = await this.localStorage.get(key);
-
-    if (fromLocalStorage) {
-      this.cache[key] = JSON.parse(fromLocalStorage);
-
-      return this.cache[key];
-    }
-  }
-}
-
 export class MTProto {
   api_id: string
   api_hash: string
@@ -96,7 +64,7 @@ export class MTProto {
   dcList: DC[]
   rpcs: Map<number, RPC>
   storage: Storage
-  updates: events.EventEmitter
+  updates: RPCEventEmitter
 
   constructor(options: {
     test: boolean

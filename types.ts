@@ -1,5 +1,5 @@
 export interface IStorage {
-  get(key: string): Promise<string | undefined> | string | undefined
+  get(key: string): Promise<string | undefined>
   set(key: string, value: any): Promise<void> | void
 }
 
