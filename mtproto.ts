@@ -3,6 +3,7 @@ import Debug from "debug"
 import type { DC, IStorage } from "./types.js"
 import { RPC } from "./rpc.js"
 import { Transport } from "./transport.js"
+import { Methods } from "./mtptoto-types.js"
 
 export const debug = Debug("mtproto")
 
@@ -127,17 +128,13 @@ export class MTProto {
     this.rpcs.clear()
   }
 
-  async call(method: string, params: any = {}, options?: {
-    dcId: number
+  async call<T extends Methods>(method: T["method"], params?: T["params"], options?: {
+    dcId?: number
     syncAuth?: boolean
-  }) {
+  }): Promise<T["response"]> {
     const syncAuth = options?.syncAuth || true
-
-    // @TODO: defaultDcId may be a string
     const dcId = options?.dcId || (await this.storage.get('defaultDcId')) || 2;
-
     const rpc = this.getRPC(Number(dcId));
-
     const result = await rpc.call(method, params);
 
     // @ts-ignore

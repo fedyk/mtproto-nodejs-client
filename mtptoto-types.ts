@@ -8115,25 +8115,536 @@ export interface $Bots$BotInfo {
 export interface $InlineQueryPeerTypeBotPM {
   _: "inlineQueryPeerTypeBotPM";
 }
-export interface $InvokeAfterMsg<X> {
+export type Methods = InvokeAfterMsg |
+  InvokeAfterMsgs |
+  Auth$SendCode |
+  Auth$SignUp |
+  Auth$SignIn |
+  Auth$LogOut |
+  Auth$ResetAuthorizations |
+  Auth$ExportAuthorization |
+  Auth$ImportAuthorization |
+  Auth$BindTempAuthKey |
+  Account$RegisterDevice |
+  Account$UnregisterDevice |
+  Account$UpdateNotifySettings |
+  Account$GetNotifySettings |
+  Account$ResetNotifySettings |
+  Account$UpdateProfile |
+  Account$UpdateStatus |
+  Account$GetWallPapers |
+  Account$ReportPeer |
+  Users$GetUsers |
+  Users$GetFullUser |
+  Contacts$GetContactIDs |
+  Contacts$GetStatuses |
+  Contacts$GetContacts |
+  Contacts$ImportContacts |
+  Contacts$DeleteContacts |
+  Contacts$DeleteByPhones |
+  Contacts$Block |
+  Contacts$Unblock |
+  Contacts$GetBlocked |
+  Messages$GetMessages |
+  Messages$GetDialogs |
+  Messages$GetHistory |
+  Messages$Search |
+  Messages$ReadHistory |
+  Messages$DeleteHistory |
+  Messages$DeleteMessages |
+  Messages$ReceivedMessages |
+  Messages$SetTyping |
+  Messages$SendMessage |
+  Messages$SendMedia |
+  Messages$ForwardMessages |
+  Messages$ReportSpam |
+  Messages$GetPeerSettings |
+  Messages$Report |
+  Messages$GetChats |
+  Messages$GetFullChat |
+  Messages$EditChatTitle |
+  Messages$EditChatPhoto |
+  Messages$AddChatUser |
+  Messages$DeleteChatUser |
+  Messages$CreateChat |
+  Updates$GetState |
+  Updates$GetDifference |
+  Photos$UpdateProfilePhoto |
+  Photos$UploadProfilePhoto |
+  Photos$DeletePhotos |
+  Upload$SaveFilePart |
+  Upload$GetFile |
+  Help$GetConfig |
+  Help$GetNearestDc |
+  Help$GetAppUpdate |
+  Help$GetInviteText |
+  Photos$GetUserPhotos |
+  Messages$GetDhConfig |
+  Messages$RequestEncryption |
+  Messages$AcceptEncryption |
+  Messages$DiscardEncryption |
+  Messages$SetEncryptedTyping |
+  Messages$ReadEncryptedHistory |
+  Messages$SendEncrypted |
+  Messages$SendEncryptedFile |
+  Messages$SendEncryptedService |
+  Messages$ReceivedQueue |
+  Messages$ReportEncryptedSpam |
+  Upload$SaveBigFilePart |
+  InitConnection |
+  Help$GetSupport |
+  Messages$ReadMessageContents |
+  Account$CheckUsername |
+  Account$UpdateUsername |
+  Contacts$Search |
+  Account$GetPrivacy |
+  Account$SetPrivacy |
+  Account$DeleteAccount |
+  Account$GetAccountTTL |
+  Account$SetAccountTTL |
+  InvokeWithLayer |
+  Contacts$ResolveUsername |
+  Account$SendChangePhoneCode |
+  Account$ChangePhone |
+  Messages$GetStickers |
+  Messages$GetAllStickers |
+  Account$UpdateDeviceLocked |
+  Auth$ImportBotAuthorization |
+  Messages$GetWebPagePreview |
+  Account$GetAuthorizations |
+  Account$ResetAuthorization |
+  Account$GetPassword |
+  Account$GetPasswordSettings |
+  Account$UpdatePasswordSettings |
+  Auth$CheckPassword |
+  Auth$RequestPasswordRecovery |
+  Auth$RecoverPassword |
+  InvokeWithoutUpdates |
+  Messages$ExportChatInvite |
+  Messages$CheckChatInvite |
+  Messages$ImportChatInvite |
+  Messages$GetStickerSet |
+  Messages$InstallStickerSet |
+  Messages$UninstallStickerSet |
+  Messages$StartBot |
+  Help$GetAppChangelog |
+  Messages$GetMessagesViews |
+  Channels$ReadHistory |
+  Channels$DeleteMessages |
+  Channels$ReportSpam |
+  Channels$GetMessages |
+  Channels$GetParticipants |
+  Channels$GetParticipant |
+  Channels$GetChannels |
+  Channels$GetFullChannel |
+  Channels$CreateChannel |
+  Channels$EditAdmin |
+  Channels$EditTitle |
+  Channels$EditPhoto |
+  Channels$CheckUsername |
+  Channels$UpdateUsername |
+  Channels$JoinChannel |
+  Channels$LeaveChannel |
+  Channels$InviteToChannel |
+  Channels$DeleteChannel |
+  Updates$GetChannelDifference |
+  Messages$EditChatAdmin |
+  Messages$MigrateChat |
+  Messages$SearchGlobal |
+  Messages$ReorderStickerSets |
+  Messages$GetDocumentByHash |
+  Messages$GetSavedGifs |
+  Messages$SaveGif |
+  Messages$GetInlineBotResults |
+  Messages$SetInlineBotResults |
+  Messages$SendInlineBotResult |
+  Channels$ExportMessageLink |
+  Channels$ToggleSignatures |
+  Auth$ResendCode |
+  Auth$CancelCode |
+  Messages$GetMessageEditData |
+  Messages$EditMessage |
+  Messages$EditInlineBotMessage |
+  Messages$GetBotCallbackAnswer |
+  Messages$SetBotCallbackAnswer |
+  Contacts$GetTopPeers |
+  Contacts$ResetTopPeerRating |
+  Messages$GetPeerDialogs |
+  Messages$SaveDraft |
+  Messages$GetAllDrafts |
+  Messages$GetFeaturedStickers |
+  Messages$ReadFeaturedStickers |
+  Messages$GetRecentStickers |
+  Messages$SaveRecentSticker |
+  Messages$ClearRecentStickers |
+  Messages$GetArchivedStickers |
+  Account$SendConfirmPhoneCode |
+  Account$ConfirmPhone |
+  Channels$GetAdminedPublicChannels |
+  Messages$GetMaskStickers |
+  Messages$GetAttachedStickers |
+  Auth$DropTempAuthKeys |
+  Messages$SetGameScore |
+  Messages$SetInlineGameScore |
+  Messages$GetGameHighScores |
+  Messages$GetInlineGameHighScores |
+  Messages$GetCommonChats |
+  Help$SetBotUpdatesStatus |
+  Messages$GetWebPage |
+  Messages$ToggleDialogPin |
+  Messages$ReorderPinnedDialogs |
+  Messages$GetPinnedDialogs |
+  Bots$SendCustomRequest |
+  Bots$AnswerWebhookJSONQuery |
+  Upload$GetWebFile |
+  Payments$GetPaymentForm |
+  Payments$GetPaymentReceipt |
+  Payments$ValidateRequestedInfo |
+  Payments$SendPaymentForm |
+  Account$GetTmpPassword |
+  Payments$GetSavedInfo |
+  Payments$ClearSavedInfo |
+  Messages$SetBotShippingResults |
+  Messages$SetBotPrecheckoutResults |
+  Stickers$CreateStickerSet |
+  Stickers$RemoveStickerFromSet |
+  Stickers$ChangeStickerPosition |
+  Stickers$AddStickerToSet |
+  Messages$UploadMedia |
+  Phone$GetCallConfig |
+  Phone$RequestCall |
+  Phone$AcceptCall |
+  Phone$ConfirmCall |
+  Phone$ReceivedCall |
+  Phone$DiscardCall |
+  Phone$SetCallRating |
+  Phone$SaveCallDebug |
+  Upload$GetCdnFile |
+  Upload$ReuploadCdnFile |
+  Help$GetCdnConfig |
+  Langpack$GetLangPack |
+  Langpack$GetStrings |
+  Langpack$GetDifference |
+  Langpack$GetLanguages |
+  Channels$EditBanned |
+  Channels$GetAdminLog |
+  Upload$GetCdnFileHashes |
+  Messages$SendScreenshotNotification |
+  Channels$SetStickers |
+  Messages$GetFavedStickers |
+  Messages$FaveSticker |
+  Channels$ReadMessageContents |
+  Contacts$ResetSaved |
+  Messages$GetUnreadMentions |
+  Channels$DeleteHistory |
+  Help$GetRecentMeUrls |
+  Channels$TogglePreHistoryHidden |
+  Messages$ReadMentions |
+  Messages$GetRecentLocations |
+  Messages$SendMultiMedia |
+  Messages$UploadEncryptedFile |
+  Account$GetWebAuthorizations |
+  Account$ResetWebAuthorization |
+  Account$ResetWebAuthorizations |
+  Messages$SearchStickerSets |
+  Upload$GetFileHashes |
+  Help$GetTermsOfServiceUpdate |
+  Help$AcceptTermsOfService |
+  Account$GetAllSecureValues |
+  Account$GetSecureValue |
+  Account$SaveSecureValue |
+  Account$DeleteSecureValue |
+  Users$SetSecureValueErrors |
+  Account$GetAuthorizationForm |
+  Account$AcceptAuthorization |
+  Account$SendVerifyPhoneCode |
+  Account$VerifyPhone |
+  Account$SendVerifyEmailCode |
+  Account$VerifyEmail |
+  Help$GetDeepLinkInfo |
+  Contacts$GetSaved |
+  Channels$GetLeftChannels |
+  Account$InitTakeoutSession |
+  Account$FinishTakeoutSession |
+  Messages$GetSplitRanges |
+  InvokeWithMessagesRange |
+  InvokeWithTakeout |
+  Messages$MarkDialogUnread |
+  Messages$GetDialogUnreadMarks |
+  Contacts$ToggleTopPeers |
+  Messages$ClearAllDrafts |
+  Help$GetAppConfig |
+  Help$SaveAppLog |
+  Help$GetPassportConfig |
+  Langpack$GetLanguage |
+  Messages$UpdatePinnedMessage |
+  Account$ConfirmPasswordEmail |
+  Account$ResendPasswordEmail |
+  Account$CancelPasswordEmail |
+  Help$GetSupportName |
+  Help$GetUserInfo |
+  Help$EditUserInfo |
+  Account$GetContactSignUpNotification |
+  Account$SetContactSignUpNotification |
+  Account$GetNotifyExceptions |
+  Messages$SendVote |
+  Messages$GetPollResults |
+  Messages$GetOnlines |
+  Messages$EditChatAbout |
+  Messages$EditChatDefaultBannedRights |
+  Account$GetWallPaper |
+  Account$UploadWallPaper |
+  Account$SaveWallPaper |
+  Account$InstallWallPaper |
+  Account$ResetWallPapers |
+  Account$GetAutoDownloadSettings |
+  Account$SaveAutoDownloadSettings |
+  Messages$GetEmojiKeywords |
+  Messages$GetEmojiKeywordsDifference |
+  Messages$GetEmojiKeywordsLanguages |
+  Messages$GetEmojiURL |
+  Folders$EditPeerFolders |
+  Messages$GetSearchCounters |
+  Channels$GetGroupsForDiscussion |
+  Channels$SetDiscussionGroup |
+  Messages$RequestUrlAuth |
+  Messages$AcceptUrlAuth |
+  Messages$HidePeerSettingsBar |
+  Contacts$AddContact |
+  Contacts$AcceptContact |
+  Channels$EditCreator |
+  Contacts$GetLocated |
+  Channels$EditLocation |
+  Channels$ToggleSlowMode |
+  Messages$GetScheduledHistory |
+  Messages$GetScheduledMessages |
+  Messages$SendScheduledMessages |
+  Messages$DeleteScheduledMessages |
+  Account$UploadTheme |
+  Account$CreateTheme |
+  Account$UpdateTheme |
+  Account$SaveTheme |
+  Account$InstallTheme |
+  Account$GetTheme |
+  Account$GetThemes |
+  Auth$ExportLoginToken |
+  Auth$ImportLoginToken |
+  Auth$AcceptLoginToken |
+  Account$SetContentSettings |
+  Account$GetContentSettings |
+  Channels$GetInactiveChannels |
+  Account$GetMultiWallPapers |
+  Messages$GetPollVotes |
+  Messages$ToggleStickerSets |
+  Payments$GetBankCardData |
+  Messages$GetDialogFilters |
+  Messages$GetSuggestedDialogFilters |
+  Messages$UpdateDialogFilter |
+  Messages$UpdateDialogFiltersOrder |
+  Stats$GetBroadcastStats |
+  Stats$LoadAsyncGraph |
+  Stickers$SetStickerSetThumb |
+  Bots$SetBotCommands |
+  Messages$GetOldFeaturedStickers |
+  Help$GetPromoData |
+  Help$HidePromoData |
+  Phone$SendSignalingData |
+  Stats$GetMegagroupStats |
+  Account$GetGlobalPrivacySettings |
+  Account$SetGlobalPrivacySettings |
+  Help$DismissSuggestion |
+  Help$GetCountriesList |
+  Messages$GetReplies |
+  Messages$GetDiscussionMessage |
+  Messages$ReadDiscussion |
+  Contacts$BlockFromReplies |
+  Stats$GetMessagePublicForwards |
+  Stats$GetMessageStats |
+  Messages$UnpinAllMessages |
+  Phone$CreateGroupCall |
+  Phone$JoinGroupCall |
+  Phone$LeaveGroupCall |
+  Phone$InviteToGroupCall |
+  Phone$DiscardGroupCall |
+  Phone$ToggleGroupCallSettings |
+  Phone$GetGroupCall |
+  Phone$GetGroupParticipants |
+  Phone$CheckGroupCall |
+  Messages$DeleteChat |
+  Messages$DeletePhoneCallHistory |
+  Messages$CheckHistoryImport |
+  Messages$InitHistoryImport |
+  Messages$UploadImportedMedia |
+  Messages$StartHistoryImport |
+  Messages$GetExportedChatInvites |
+  Messages$GetExportedChatInvite |
+  Messages$EditExportedChatInvite |
+  Messages$DeleteRevokedExportedChatInvites |
+  Messages$DeleteExportedChatInvite |
+  Messages$GetAdminsWithInvites |
+  Messages$GetChatInviteImporters |
+  Messages$SetHistoryTTL |
+  Account$ReportProfilePhoto |
+  Channels$ConvertToGigagroup |
+  Messages$CheckHistoryImportPeer |
+  Phone$ToggleGroupCallRecord |
+  Phone$EditGroupCallParticipant |
+  Phone$EditGroupCallTitle |
+  Phone$GetGroupCallJoinAs |
+  Phone$ExportGroupCallInvite |
+  Phone$ToggleGroupCallStartSubscription |
+  Phone$StartScheduledGroupCall |
+  Phone$SaveDefaultGroupCallJoinAs |
+  Phone$JoinGroupCallPresentation |
+  Phone$LeaveGroupCallPresentation |
+  Stickers$CheckShortName |
+  Stickers$SuggestShortName |
+  Bots$ResetBotCommands |
+  Bots$GetBotCommands |
+  Account$ResetPassword |
+  Account$DeclinePasswordReset |
+  Auth$CheckRecoveryPassword |
+  Account$GetChatThemes |
+  Messages$SetChatTheme |
+  Channels$ViewSponsoredMessage |
+  Channels$GetSponsoredMessages |
+  Messages$GetMessageReadParticipants |
+  Messages$GetSearchResultsCalendar |
+  Messages$GetSearchResultsPositions |
+  Messages$HideChatJoinRequest |
+  Messages$HideAllChatJoinRequests |
+  Messages$ToggleNoForwards |
+  Messages$SaveDefaultSendAs |
+  Channels$GetSendAs |
+  Account$SetAuthorizationTTL |
+  Account$ChangeAuthorizationSettings |
+  Channels$DeleteParticipantHistory |
+  Messages$SendReaction |
+  Messages$GetMessagesReactions |
+  Messages$GetMessageReactionsList |
+  Messages$SetChatAvailableReactions |
+  Messages$GetAvailableReactions |
+  Messages$SetDefaultReaction |
+  Messages$TranslateText |
+  Messages$GetUnreadReactions |
+  Messages$ReadReactions |
+  Contacts$ResolvePhone |
+  Phone$GetGroupCallStreamChannels |
+  Phone$GetGroupCallStreamRtmpUrl |
+  Messages$SearchSentMedia |
+  Messages$GetAttachMenuBots |
+  Messages$GetAttachMenuBot |
+  Messages$ToggleBotInAttachMenu |
+  Messages$RequestWebView |
+  Messages$ProlongWebView |
+  Messages$RequestSimpleWebView |
+  Messages$SendWebViewResultMessage |
+  Messages$SendWebViewData |
+  Bots$SetBotMenuButton |
+  Bots$GetBotMenuButton |
+  Account$GetSavedRingtones |
+  Account$SaveRingtone |
+  Account$UploadRingtone |
+  Bots$SetBotBroadcastDefaultAdminRights |
+  Bots$SetBotGroupDefaultAdminRights |
+  Phone$SaveCallLog |
+  Channels$ToggleJoinToSend |
+  Channels$ToggleJoinRequest |
+  Payments$ExportInvoice |
+  Messages$TranscribeAudio |
+  Messages$RateTranscribedAudio |
+  Payments$AssignAppStoreTransaction |
+  Payments$AssignPlayMarketTransaction |
+  Payments$CanPurchasePremium |
+  Help$GetPremiumPromo |
+  Messages$GetCustomEmojiDocuments |
+  Messages$GetEmojiStickers |
+  Messages$GetFeaturedEmojiStickers |
+  Account$UpdateEmojiStatus |
+  Account$GetDefaultEmojiStatuses |
+  Account$GetRecentEmojiStatuses |
+  Account$ClearRecentEmojiStatuses |
+  Messages$ReportReaction |
+  Messages$GetTopReactions |
+  Messages$GetRecentReactions |
+  Messages$ClearRecentReactions |
+  Messages$GetExtendedMedia |
+  Auth$ImportWebTokenAuthorization |
+  Account$ReorderUsernames |
+  Account$ToggleUsername |
+  Channels$ReorderUsernames |
+  Channels$ToggleUsername |
+  Channels$DeactivateAllUsernames |
+  Channels$ToggleForum |
+  Channels$CreateForumTopic |
+  Channels$GetForumTopics |
+  Channels$GetForumTopicsByID |
+  Channels$EditForumTopic |
+  Channels$UpdatePinnedForumTopic |
+  Channels$DeleteTopicHistory |
+  Channels$ReorderPinnedForumTopics |
+  Channels$ToggleAntiSpam |
+  Channels$ReportAntiSpamFalsePositive |
+  Messages$SetDefaultHistoryTTL |
+  Messages$GetDefaultHistoryTTL |
+  Contacts$ExportContactToken |
+  Contacts$ImportContactToken |
+  Photos$UploadContactProfilePhoto |
+  Channels$ToggleParticipantsHidden |
+  Messages$SendBotRequestedPeer |
+  Account$GetDefaultProfilePhotoEmojis |
+  Account$GetDefaultGroupPhotoEmojis |
+  Auth$RequestFirebaseSms |
+  Messages$GetEmojiGroups |
+  Messages$GetEmojiStatusGroups |
+  Messages$GetEmojiProfilePhotoGroups |
+  Messages$SearchCustomEmoji |
+  Messages$TogglePeerTranslations |
+  Account$GetAutoSaveSettings |
+  Account$SaveAutoSaveSettings |
+  Account$DeleteAutoSaveExceptions |
+  Stickers$ChangeSticker |
+  Stickers$RenameStickerSet |
+  Stickers$DeleteStickerSet |
+  Messages$GetBotApp |
+  Messages$RequestAppWebView |
+  Bots$SetBotInfo |
+  Bots$GetBotInfo |
+  Auth$ResetLoginEmail |
+  Chatlists$ExportChatlistInvite |
+  Chatlists$DeleteExportedInvite |
+  Chatlists$EditExportedInvite |
+  Chatlists$GetExportedInvites |
+  Chatlists$CheckChatlistInvite |
+  Chatlists$JoinChatlistInvite |
+  Chatlists$GetChatlistUpdates |
+  Chatlists$JoinChatlistUpdates |
+  Chatlists$HideChatlistUpdates |
+  Chatlists$GetLeaveChatlistSuggestions |
+  Chatlists$LeaveChatlist |
+  Bots$ReorderUsernames |
+  Bots$ToggleUsername |
+  Messages$SetChatWallPaper
+
+export interface InvokeAfterMsg {
   method: "invokeAfterMsg";
   params: {
     msg_id: number;
     query: unknown;
   }
-  response: X
+  response: unknown
 }
 
-export interface $InvokeAfterMsgs<X> {
+export interface InvokeAfterMsgs {
   method: "invokeAfterMsgs";
   params: {
     msg_ids: number[];
     query: unknown;
   }
-  response: X
+  response: unknown
 }
 
-export interface $Auth$SendCode {
+export interface Auth$SendCode {
   method: "auth.sendCode";
   params: {
     phone_number: string;
@@ -8144,7 +8655,7 @@ export interface $Auth$SendCode {
   response: Auth$SentCode
 }
 
-export interface $Auth$SignUp {
+export interface Auth$SignUp {
   method: "auth.signUp";
   params: {
     phone_number: string;
@@ -8155,7 +8666,7 @@ export interface $Auth$SignUp {
   response: Auth$Authorization
 }
 
-export interface $Auth$SignIn {
+export interface Auth$SignIn {
   method: "auth.signIn";
   params: {
     flags?: Number;
@@ -8167,21 +8678,21 @@ export interface $Auth$SignIn {
   response: Auth$Authorization
 }
 
-export interface $Auth$LogOut {
+export interface Auth$LogOut {
   method: "auth.logOut";
   params: {
   }
   response: Auth$LoggedOut
 }
 
-export interface $Auth$ResetAuthorizations {
+export interface Auth$ResetAuthorizations {
   method: "auth.resetAuthorizations";
   params: {
   }
   response: Bool
 }
 
-export interface $Auth$ExportAuthorization {
+export interface Auth$ExportAuthorization {
   method: "auth.exportAuthorization";
   params: {
     dc_id: number;
@@ -8189,7 +8700,7 @@ export interface $Auth$ExportAuthorization {
   response: Auth$ExportedAuthorization
 }
 
-export interface $Auth$ImportAuthorization {
+export interface Auth$ImportAuthorization {
   method: "auth.importAuthorization";
   params: {
     id: number;
@@ -8198,7 +8709,7 @@ export interface $Auth$ImportAuthorization {
   response: Auth$Authorization
 }
 
-export interface $Auth$BindTempAuthKey {
+export interface Auth$BindTempAuthKey {
   method: "auth.bindTempAuthKey";
   params: {
     perm_auth_key_id: number;
@@ -8209,7 +8720,7 @@ export interface $Auth$BindTempAuthKey {
   response: Bool
 }
 
-export interface $Account$RegisterDevice {
+export interface Account$RegisterDevice {
   method: "account.registerDevice";
   params: {
     flags?: Number;
@@ -8223,7 +8734,7 @@ export interface $Account$RegisterDevice {
   response: Bool
 }
 
-export interface $Account$UnregisterDevice {
+export interface Account$UnregisterDevice {
   method: "account.unregisterDevice";
   params: {
     token_type: number;
@@ -8233,7 +8744,7 @@ export interface $Account$UnregisterDevice {
   response: Bool
 }
 
-export interface $Account$UpdateNotifySettings {
+export interface Account$UpdateNotifySettings {
   method: "account.updateNotifySettings";
   params: {
     peer: InputNotifyPeer;
@@ -8242,7 +8753,7 @@ export interface $Account$UpdateNotifySettings {
   response: Bool
 }
 
-export interface $Account$GetNotifySettings {
+export interface Account$GetNotifySettings {
   method: "account.getNotifySettings";
   params: {
     peer: InputNotifyPeer;
@@ -8250,14 +8761,14 @@ export interface $Account$GetNotifySettings {
   response: PeerNotifySettings
 }
 
-export interface $Account$ResetNotifySettings {
+export interface Account$ResetNotifySettings {
   method: "account.resetNotifySettings";
   params: {
   }
   response: Bool
 }
 
-export interface $Account$UpdateProfile {
+export interface Account$UpdateProfile {
   method: "account.updateProfile";
   params: {
     flags?: Number;
@@ -8268,7 +8779,7 @@ export interface $Account$UpdateProfile {
   response: User
 }
 
-export interface $Account$UpdateStatus {
+export interface Account$UpdateStatus {
   method: "account.updateStatus";
   params: {
     offline: Bool;
@@ -8276,7 +8787,7 @@ export interface $Account$UpdateStatus {
   response: Bool
 }
 
-export interface $Account$GetWallPapers {
+export interface Account$GetWallPapers {
   method: "account.getWallPapers";
   params: {
     hash: number;
@@ -8284,7 +8795,7 @@ export interface $Account$GetWallPapers {
   response: Account$WallPapers
 }
 
-export interface $Account$ReportPeer {
+export interface Account$ReportPeer {
   method: "account.reportPeer";
   params: {
     peer: InputPeer;
@@ -8294,7 +8805,7 @@ export interface $Account$ReportPeer {
   response: Bool
 }
 
-export interface $Users$GetUsers {
+export interface Users$GetUsers {
   method: "users.getUsers";
   params: {
     id: InputUser;
@@ -8302,7 +8813,7 @@ export interface $Users$GetUsers {
   response: User[]
 }
 
-export interface $Users$GetFullUser {
+export interface Users$GetFullUser {
   method: "users.getFullUser";
   params: {
     id: InputUser;
@@ -8310,7 +8821,7 @@ export interface $Users$GetFullUser {
   response: Users$UserFull
 }
 
-export interface $Contacts$GetContactIDs {
+export interface Contacts$GetContactIDs {
   method: "contacts.getContactIDs";
   params: {
     hash: number;
@@ -8318,14 +8829,14 @@ export interface $Contacts$GetContactIDs {
   response: Number[]
 }
 
-export interface $Contacts$GetStatuses {
+export interface Contacts$GetStatuses {
   method: "contacts.getStatuses";
   params: {
   }
   response: ContactStatus[]
 }
 
-export interface $Contacts$GetContacts {
+export interface Contacts$GetContacts {
   method: "contacts.getContacts";
   params: {
     hash: number;
@@ -8333,7 +8844,7 @@ export interface $Contacts$GetContacts {
   response: Contacts$Contacts
 }
 
-export interface $Contacts$ImportContacts {
+export interface Contacts$ImportContacts {
   method: "contacts.importContacts";
   params: {
     contacts: InputContact;
@@ -8341,7 +8852,7 @@ export interface $Contacts$ImportContacts {
   response: Contacts$ImportedContacts
 }
 
-export interface $Contacts$DeleteContacts {
+export interface Contacts$DeleteContacts {
   method: "contacts.deleteContacts";
   params: {
     id: InputUser;
@@ -8349,7 +8860,7 @@ export interface $Contacts$DeleteContacts {
   response: Updates
 }
 
-export interface $Contacts$DeleteByPhones {
+export interface Contacts$DeleteByPhones {
   method: "contacts.deleteByPhones";
   params: {
     phones: string[];
@@ -8357,7 +8868,7 @@ export interface $Contacts$DeleteByPhones {
   response: Bool
 }
 
-export interface $Contacts$Block {
+export interface Contacts$Block {
   method: "contacts.block";
   params: {
     id: InputPeer;
@@ -8365,7 +8876,7 @@ export interface $Contacts$Block {
   response: Bool
 }
 
-export interface $Contacts$Unblock {
+export interface Contacts$Unblock {
   method: "contacts.unblock";
   params: {
     id: InputPeer;
@@ -8373,7 +8884,7 @@ export interface $Contacts$Unblock {
   response: Bool
 }
 
-export interface $Contacts$GetBlocked {
+export interface Contacts$GetBlocked {
   method: "contacts.getBlocked";
   params: {
     offset: number;
@@ -8382,7 +8893,7 @@ export interface $Contacts$GetBlocked {
   response: Contacts$Blocked
 }
 
-export interface $Messages$GetMessages {
+export interface Messages$GetMessages {
   method: "messages.getMessages";
   params: {
     id: InputMessage;
@@ -8390,7 +8901,7 @@ export interface $Messages$GetMessages {
   response: Messages$Messages
 }
 
-export interface $Messages$GetDialogs {
+export interface Messages$GetDialogs {
   method: "messages.getDialogs";
   params: {
     flags?: Number;
@@ -8405,7 +8916,7 @@ export interface $Messages$GetDialogs {
   response: Messages$Dialogs
 }
 
-export interface $Messages$GetHistory {
+export interface Messages$GetHistory {
   method: "messages.getHistory";
   params: {
     peer: InputPeer;
@@ -8420,7 +8931,7 @@ export interface $Messages$GetHistory {
   response: Messages$Messages
 }
 
-export interface $Messages$Search {
+export interface Messages$Search {
   method: "messages.search";
   params: {
     flags?: Number;
@@ -8441,7 +8952,7 @@ export interface $Messages$Search {
   response: Messages$Messages
 }
 
-export interface $Messages$ReadHistory {
+export interface Messages$ReadHistory {
   method: "messages.readHistory";
   params: {
     peer: InputPeer;
@@ -8450,7 +8961,7 @@ export interface $Messages$ReadHistory {
   response: Messages$AffectedMessages
 }
 
-export interface $Messages$DeleteHistory {
+export interface Messages$DeleteHistory {
   method: "messages.deleteHistory";
   params: {
     flags?: Number;
@@ -8464,7 +8975,7 @@ export interface $Messages$DeleteHistory {
   response: Messages$AffectedHistory
 }
 
-export interface $Messages$DeleteMessages {
+export interface Messages$DeleteMessages {
   method: "messages.deleteMessages";
   params: {
     flags?: Number;
@@ -8474,7 +8985,7 @@ export interface $Messages$DeleteMessages {
   response: Messages$AffectedMessages
 }
 
-export interface $Messages$ReceivedMessages {
+export interface Messages$ReceivedMessages {
   method: "messages.receivedMessages";
   params: {
     max_id: number;
@@ -8482,7 +8993,7 @@ export interface $Messages$ReceivedMessages {
   response: ReceivedNotifyMessage[]
 }
 
-export interface $Messages$SetTyping {
+export interface Messages$SetTyping {
   method: "messages.setTyping";
   params: {
     flags?: Number;
@@ -8493,7 +9004,7 @@ export interface $Messages$SetTyping {
   response: Bool
 }
 
-export interface $Messages$SendMessage {
+export interface Messages$SendMessage {
   method: "messages.sendMessage";
   params: {
     flags?: Number;
@@ -8516,7 +9027,7 @@ export interface $Messages$SendMessage {
   response: Updates
 }
 
-export interface $Messages$SendMedia {
+export interface Messages$SendMedia {
   method: "messages.sendMedia";
   params: {
     flags?: Number;
@@ -8539,7 +9050,7 @@ export interface $Messages$SendMedia {
   response: Updates
 }
 
-export interface $Messages$ForwardMessages {
+export interface Messages$ForwardMessages {
   method: "messages.forwardMessages";
   params: {
     flags?: Number;
@@ -8560,7 +9071,7 @@ export interface $Messages$ForwardMessages {
   response: Updates
 }
 
-export interface $Messages$ReportSpam {
+export interface Messages$ReportSpam {
   method: "messages.reportSpam";
   params: {
     peer: InputPeer;
@@ -8568,7 +9079,7 @@ export interface $Messages$ReportSpam {
   response: Bool
 }
 
-export interface $Messages$GetPeerSettings {
+export interface Messages$GetPeerSettings {
   method: "messages.getPeerSettings";
   params: {
     peer: InputPeer;
@@ -8576,7 +9087,7 @@ export interface $Messages$GetPeerSettings {
   response: Messages$PeerSettings
 }
 
-export interface $Messages$Report {
+export interface Messages$Report {
   method: "messages.report";
   params: {
     peer: InputPeer;
@@ -8587,7 +9098,7 @@ export interface $Messages$Report {
   response: Bool
 }
 
-export interface $Messages$GetChats {
+export interface Messages$GetChats {
   method: "messages.getChats";
   params: {
     id: number[];
@@ -8595,7 +9106,7 @@ export interface $Messages$GetChats {
   response: Messages$Chats
 }
 
-export interface $Messages$GetFullChat {
+export interface Messages$GetFullChat {
   method: "messages.getFullChat";
   params: {
     chat_id: number;
@@ -8603,7 +9114,7 @@ export interface $Messages$GetFullChat {
   response: Messages$ChatFull
 }
 
-export interface $Messages$EditChatTitle {
+export interface Messages$EditChatTitle {
   method: "messages.editChatTitle";
   params: {
     chat_id: number;
@@ -8612,7 +9123,7 @@ export interface $Messages$EditChatTitle {
   response: Updates
 }
 
-export interface $Messages$EditChatPhoto {
+export interface Messages$EditChatPhoto {
   method: "messages.editChatPhoto";
   params: {
     chat_id: number;
@@ -8621,7 +9132,7 @@ export interface $Messages$EditChatPhoto {
   response: Updates
 }
 
-export interface $Messages$AddChatUser {
+export interface Messages$AddChatUser {
   method: "messages.addChatUser";
   params: {
     chat_id: number;
@@ -8631,7 +9142,7 @@ export interface $Messages$AddChatUser {
   response: Updates
 }
 
-export interface $Messages$DeleteChatUser {
+export interface Messages$DeleteChatUser {
   method: "messages.deleteChatUser";
   params: {
     flags?: Number;
@@ -8642,7 +9153,7 @@ export interface $Messages$DeleteChatUser {
   response: Updates
 }
 
-export interface $Messages$CreateChat {
+export interface Messages$CreateChat {
   method: "messages.createChat";
   params: {
     flags?: Number;
@@ -8653,14 +9164,14 @@ export interface $Messages$CreateChat {
   response: Updates
 }
 
-export interface $Updates$GetState {
+export interface Updates$GetState {
   method: "updates.getState";
   params: {
   }
   response: Updates$State
 }
 
-export interface $Updates$GetDifference {
+export interface Updates$GetDifference {
   method: "updates.getDifference";
   params: {
     flags?: Number;
@@ -8672,7 +9183,7 @@ export interface $Updates$GetDifference {
   response: Updates$Difference
 }
 
-export interface $Photos$UpdateProfilePhoto {
+export interface Photos$UpdateProfilePhoto {
   method: "photos.updateProfilePhoto";
   params: {
     flags?: Number;
@@ -8683,7 +9194,7 @@ export interface $Photos$UpdateProfilePhoto {
   response: Photos$Photo
 }
 
-export interface $Photos$UploadProfilePhoto {
+export interface Photos$UploadProfilePhoto {
   method: "photos.uploadProfilePhoto";
   params: {
     flags?: Number;
@@ -8697,7 +9208,7 @@ export interface $Photos$UploadProfilePhoto {
   response: Photos$Photo
 }
 
-export interface $Photos$DeletePhotos {
+export interface Photos$DeletePhotos {
   method: "photos.deletePhotos";
   params: {
     id: InputPhoto;
@@ -8705,7 +9216,7 @@ export interface $Photos$DeletePhotos {
   response: Number[]
 }
 
-export interface $Upload$SaveFilePart {
+export interface Upload$SaveFilePart {
   method: "upload.saveFilePart";
   params: {
     file_id: number;
@@ -8715,7 +9226,7 @@ export interface $Upload$SaveFilePart {
   response: Bool
 }
 
-export interface $Upload$GetFile {
+export interface Upload$GetFile {
   method: "upload.getFile";
   params: {
     flags?: Number;
@@ -8728,21 +9239,21 @@ export interface $Upload$GetFile {
   response: Upload$File
 }
 
-export interface $Help$GetConfig {
+export interface Help$GetConfig {
   method: "help.getConfig";
   params: {
   }
   response: Config
 }
 
-export interface $Help$GetNearestDc {
+export interface Help$GetNearestDc {
   method: "help.getNearestDc";
   params: {
   }
   response: NearestDc
 }
 
-export interface $Help$GetAppUpdate {
+export interface Help$GetAppUpdate {
   method: "help.getAppUpdate";
   params: {
     source: string;
@@ -8750,14 +9261,14 @@ export interface $Help$GetAppUpdate {
   response: Help$AppUpdate
 }
 
-export interface $Help$GetInviteText {
+export interface Help$GetInviteText {
   method: "help.getInviteText";
   params: {
   }
   response: Help$InviteText
 }
 
-export interface $Photos$GetUserPhotos {
+export interface Photos$GetUserPhotos {
   method: "photos.getUserPhotos";
   params: {
     user_id: InputUser;
@@ -8768,7 +9279,7 @@ export interface $Photos$GetUserPhotos {
   response: Photos$Photos
 }
 
-export interface $Messages$GetDhConfig {
+export interface Messages$GetDhConfig {
   method: "messages.getDhConfig";
   params: {
     version: number;
@@ -8777,7 +9288,7 @@ export interface $Messages$GetDhConfig {
   response: Messages$DhConfig
 }
 
-export interface $Messages$RequestEncryption {
+export interface Messages$RequestEncryption {
   method: "messages.requestEncryption";
   params: {
     user_id: InputUser;
@@ -8787,7 +9298,7 @@ export interface $Messages$RequestEncryption {
   response: EncryptedChat
 }
 
-export interface $Messages$AcceptEncryption {
+export interface Messages$AcceptEncryption {
   method: "messages.acceptEncryption";
   params: {
     peer: InputEncryptedChat;
@@ -8797,7 +9308,7 @@ export interface $Messages$AcceptEncryption {
   response: EncryptedChat
 }
 
-export interface $Messages$DiscardEncryption {
+export interface Messages$DiscardEncryption {
   method: "messages.discardEncryption";
   params: {
     flags?: Number;
@@ -8807,7 +9318,7 @@ export interface $Messages$DiscardEncryption {
   response: Bool
 }
 
-export interface $Messages$SetEncryptedTyping {
+export interface Messages$SetEncryptedTyping {
   method: "messages.setEncryptedTyping";
   params: {
     peer: InputEncryptedChat;
@@ -8816,7 +9327,7 @@ export interface $Messages$SetEncryptedTyping {
   response: Bool
 }
 
-export interface $Messages$ReadEncryptedHistory {
+export interface Messages$ReadEncryptedHistory {
   method: "messages.readEncryptedHistory";
   params: {
     peer: InputEncryptedChat;
@@ -8825,7 +9336,7 @@ export interface $Messages$ReadEncryptedHistory {
   response: Bool
 }
 
-export interface $Messages$SendEncrypted {
+export interface Messages$SendEncrypted {
   method: "messages.sendEncrypted";
   params: {
     flags?: Number;
@@ -8837,7 +9348,7 @@ export interface $Messages$SendEncrypted {
   response: Messages$SentEncryptedMessage
 }
 
-export interface $Messages$SendEncryptedFile {
+export interface Messages$SendEncryptedFile {
   method: "messages.sendEncryptedFile";
   params: {
     flags?: Number;
@@ -8850,7 +9361,7 @@ export interface $Messages$SendEncryptedFile {
   response: Messages$SentEncryptedMessage
 }
 
-export interface $Messages$SendEncryptedService {
+export interface Messages$SendEncryptedService {
   method: "messages.sendEncryptedService";
   params: {
     peer: InputEncryptedChat;
@@ -8860,7 +9371,7 @@ export interface $Messages$SendEncryptedService {
   response: Messages$SentEncryptedMessage
 }
 
-export interface $Messages$ReceivedQueue {
+export interface Messages$ReceivedQueue {
   method: "messages.receivedQueue";
   params: {
     max_qts: number;
@@ -8868,7 +9379,7 @@ export interface $Messages$ReceivedQueue {
   response: Number[]
 }
 
-export interface $Messages$ReportEncryptedSpam {
+export interface Messages$ReportEncryptedSpam {
   method: "messages.reportEncryptedSpam";
   params: {
     peer: InputEncryptedChat;
@@ -8876,7 +9387,7 @@ export interface $Messages$ReportEncryptedSpam {
   response: Bool
 }
 
-export interface $Upload$SaveBigFilePart {
+export interface Upload$SaveBigFilePart {
   method: "upload.saveBigFilePart";
   params: {
     file_id: number;
@@ -8887,7 +9398,7 @@ export interface $Upload$SaveBigFilePart {
   response: Bool
 }
 
-export interface $InitConnection<X> {
+export interface InitConnection {
   method: "initConnection";
   params: {
     flags?: Number;
@@ -8902,17 +9413,17 @@ export interface $InitConnection<X> {
     params?: JSONValue;
     query: unknown;
   }
-  response: X
+  response: unknown
 }
 
-export interface $Help$GetSupport {
+export interface Help$GetSupport {
   method: "help.getSupport";
   params: {
   }
   response: Help$Support
 }
 
-export interface $Messages$ReadMessageContents {
+export interface Messages$ReadMessageContents {
   method: "messages.readMessageContents";
   params: {
     id: number[];
@@ -8920,7 +9431,7 @@ export interface $Messages$ReadMessageContents {
   response: Messages$AffectedMessages
 }
 
-export interface $Account$CheckUsername {
+export interface Account$CheckUsername {
   method: "account.checkUsername";
   params: {
     username: string;
@@ -8928,7 +9439,7 @@ export interface $Account$CheckUsername {
   response: Bool
 }
 
-export interface $Account$UpdateUsername {
+export interface Account$UpdateUsername {
   method: "account.updateUsername";
   params: {
     username: string;
@@ -8936,7 +9447,7 @@ export interface $Account$UpdateUsername {
   response: User
 }
 
-export interface $Contacts$Search {
+export interface Contacts$Search {
   method: "contacts.search";
   params: {
     q: string;
@@ -8945,7 +9456,7 @@ export interface $Contacts$Search {
   response: Contacts$Found
 }
 
-export interface $Account$GetPrivacy {
+export interface Account$GetPrivacy {
   method: "account.getPrivacy";
   params: {
     key: InputPrivacyKey;
@@ -8953,7 +9464,7 @@ export interface $Account$GetPrivacy {
   response: Account$PrivacyRules
 }
 
-export interface $Account$SetPrivacy {
+export interface Account$SetPrivacy {
   method: "account.setPrivacy";
   params: {
     key: InputPrivacyKey;
@@ -8962,7 +9473,7 @@ export interface $Account$SetPrivacy {
   response: Account$PrivacyRules
 }
 
-export interface $Account$DeleteAccount {
+export interface Account$DeleteAccount {
   method: "account.deleteAccount";
   params: {
     flags?: Number;
@@ -8972,14 +9483,14 @@ export interface $Account$DeleteAccount {
   response: Bool
 }
 
-export interface $Account$GetAccountTTL {
+export interface Account$GetAccountTTL {
   method: "account.getAccountTTL";
   params: {
   }
   response: AccountDaysTTL
 }
 
-export interface $Account$SetAccountTTL {
+export interface Account$SetAccountTTL {
   method: "account.setAccountTTL";
   params: {
     ttl: AccountDaysTTL;
@@ -8987,16 +9498,16 @@ export interface $Account$SetAccountTTL {
   response: Bool
 }
 
-export interface $InvokeWithLayer<X> {
+export interface InvokeWithLayer {
   method: "invokeWithLayer";
   params: {
     layer: number;
     query: unknown;
   }
-  response: X
+  response: unknown
 }
 
-export interface $Contacts$ResolveUsername {
+export interface Contacts$ResolveUsername {
   method: "contacts.resolveUsername";
   params: {
     username: string;
@@ -9004,7 +9515,7 @@ export interface $Contacts$ResolveUsername {
   response: Contacts$ResolvedPeer
 }
 
-export interface $Account$SendChangePhoneCode {
+export interface Account$SendChangePhoneCode {
   method: "account.sendChangePhoneCode";
   params: {
     phone_number: string;
@@ -9013,7 +9524,7 @@ export interface $Account$SendChangePhoneCode {
   response: Auth$SentCode
 }
 
-export interface $Account$ChangePhone {
+export interface Account$ChangePhone {
   method: "account.changePhone";
   params: {
     phone_number: string;
@@ -9023,7 +9534,7 @@ export interface $Account$ChangePhone {
   response: User
 }
 
-export interface $Messages$GetStickers {
+export interface Messages$GetStickers {
   method: "messages.getStickers";
   params: {
     emoticon: string;
@@ -9032,7 +9543,7 @@ export interface $Messages$GetStickers {
   response: Messages$Stickers
 }
 
-export interface $Messages$GetAllStickers {
+export interface Messages$GetAllStickers {
   method: "messages.getAllStickers";
   params: {
     hash: number;
@@ -9040,7 +9551,7 @@ export interface $Messages$GetAllStickers {
   response: Messages$AllStickers
 }
 
-export interface $Account$UpdateDeviceLocked {
+export interface Account$UpdateDeviceLocked {
   method: "account.updateDeviceLocked";
   params: {
     period: number;
@@ -9048,7 +9559,7 @@ export interface $Account$UpdateDeviceLocked {
   response: Bool
 }
 
-export interface $Auth$ImportBotAuthorization {
+export interface Auth$ImportBotAuthorization {
   method: "auth.importBotAuthorization";
   params: {
     flags: number;
@@ -9059,7 +9570,7 @@ export interface $Auth$ImportBotAuthorization {
   response: Auth$Authorization
 }
 
-export interface $Messages$GetWebPagePreview {
+export interface Messages$GetWebPagePreview {
   method: "messages.getWebPagePreview";
   params: {
     flags?: Number;
@@ -9069,14 +9580,14 @@ export interface $Messages$GetWebPagePreview {
   response: MessageMedia
 }
 
-export interface $Account$GetAuthorizations {
+export interface Account$GetAuthorizations {
   method: "account.getAuthorizations";
   params: {
   }
   response: Account$Authorizations
 }
 
-export interface $Account$ResetAuthorization {
+export interface Account$ResetAuthorization {
   method: "account.resetAuthorization";
   params: {
     hash: number;
@@ -9084,14 +9595,14 @@ export interface $Account$ResetAuthorization {
   response: Bool
 }
 
-export interface $Account$GetPassword {
+export interface Account$GetPassword {
   method: "account.getPassword";
   params: {
   }
   response: Account$Password
 }
 
-export interface $Account$GetPasswordSettings {
+export interface Account$GetPasswordSettings {
   method: "account.getPasswordSettings";
   params: {
     password: InputCheckPasswordSRP;
@@ -9099,7 +9610,7 @@ export interface $Account$GetPasswordSettings {
   response: Account$PasswordSettings
 }
 
-export interface $Account$UpdatePasswordSettings {
+export interface Account$UpdatePasswordSettings {
   method: "account.updatePasswordSettings";
   params: {
     password: InputCheckPasswordSRP;
@@ -9108,7 +9619,7 @@ export interface $Account$UpdatePasswordSettings {
   response: Bool
 }
 
-export interface $Auth$CheckPassword {
+export interface Auth$CheckPassword {
   method: "auth.checkPassword";
   params: {
     password: InputCheckPasswordSRP;
@@ -9116,14 +9627,14 @@ export interface $Auth$CheckPassword {
   response: Auth$Authorization
 }
 
-export interface $Auth$RequestPasswordRecovery {
+export interface Auth$RequestPasswordRecovery {
   method: "auth.requestPasswordRecovery";
   params: {
   }
   response: Auth$PasswordRecovery
 }
 
-export interface $Auth$RecoverPassword {
+export interface Auth$RecoverPassword {
   method: "auth.recoverPassword";
   params: {
     flags?: Number;
@@ -9133,15 +9644,15 @@ export interface $Auth$RecoverPassword {
   response: Auth$Authorization
 }
 
-export interface $InvokeWithoutUpdates<X> {
+export interface InvokeWithoutUpdates {
   method: "invokeWithoutUpdates";
   params: {
     query: unknown;
   }
-  response: X
+  response: unknown
 }
 
-export interface $Messages$ExportChatInvite {
+export interface Messages$ExportChatInvite {
   method: "messages.exportChatInvite";
   params: {
     flags?: Number;
@@ -9155,7 +9666,7 @@ export interface $Messages$ExportChatInvite {
   response: ExportedChatInvite
 }
 
-export interface $Messages$CheckChatInvite {
+export interface Messages$CheckChatInvite {
   method: "messages.checkChatInvite";
   params: {
     hash: string;
@@ -9163,7 +9674,7 @@ export interface $Messages$CheckChatInvite {
   response: ChatInvite
 }
 
-export interface $Messages$ImportChatInvite {
+export interface Messages$ImportChatInvite {
   method: "messages.importChatInvite";
   params: {
     hash: string;
@@ -9171,7 +9682,7 @@ export interface $Messages$ImportChatInvite {
   response: Updates
 }
 
-export interface $Messages$GetStickerSet {
+export interface Messages$GetStickerSet {
   method: "messages.getStickerSet";
   params: {
     stickerset: InputStickerSet;
@@ -9180,7 +9691,7 @@ export interface $Messages$GetStickerSet {
   response: Messages$StickerSet
 }
 
-export interface $Messages$InstallStickerSet {
+export interface Messages$InstallStickerSet {
   method: "messages.installStickerSet";
   params: {
     stickerset: InputStickerSet;
@@ -9189,7 +9700,7 @@ export interface $Messages$InstallStickerSet {
   response: Messages$StickerSetInstallResult
 }
 
-export interface $Messages$UninstallStickerSet {
+export interface Messages$UninstallStickerSet {
   method: "messages.uninstallStickerSet";
   params: {
     stickerset: InputStickerSet;
@@ -9197,7 +9708,7 @@ export interface $Messages$UninstallStickerSet {
   response: Bool
 }
 
-export interface $Messages$StartBot {
+export interface Messages$StartBot {
   method: "messages.startBot";
   params: {
     bot: InputUser;
@@ -9208,7 +9719,7 @@ export interface $Messages$StartBot {
   response: Updates
 }
 
-export interface $Help$GetAppChangelog {
+export interface Help$GetAppChangelog {
   method: "help.getAppChangelog";
   params: {
     prev_app_version: string;
@@ -9216,7 +9727,7 @@ export interface $Help$GetAppChangelog {
   response: Updates
 }
 
-export interface $Messages$GetMessagesViews {
+export interface Messages$GetMessagesViews {
   method: "messages.getMessagesViews";
   params: {
     peer: InputPeer;
@@ -9226,7 +9737,7 @@ export interface $Messages$GetMessagesViews {
   response: Messages$MessageViews
 }
 
-export interface $Channels$ReadHistory {
+export interface Channels$ReadHistory {
   method: "channels.readHistory";
   params: {
     channel: InputChannel;
@@ -9235,7 +9746,7 @@ export interface $Channels$ReadHistory {
   response: Bool
 }
 
-export interface $Channels$DeleteMessages {
+export interface Channels$DeleteMessages {
   method: "channels.deleteMessages";
   params: {
     channel: InputChannel;
@@ -9244,7 +9755,7 @@ export interface $Channels$DeleteMessages {
   response: Messages$AffectedMessages
 }
 
-export interface $Channels$ReportSpam {
+export interface Channels$ReportSpam {
   method: "channels.reportSpam";
   params: {
     channel: InputChannel;
@@ -9254,7 +9765,7 @@ export interface $Channels$ReportSpam {
   response: Bool
 }
 
-export interface $Channels$GetMessages {
+export interface Channels$GetMessages {
   method: "channels.getMessages";
   params: {
     channel: InputChannel;
@@ -9263,7 +9774,7 @@ export interface $Channels$GetMessages {
   response: Messages$Messages
 }
 
-export interface $Channels$GetParticipants {
+export interface Channels$GetParticipants {
   method: "channels.getParticipants";
   params: {
     channel: InputChannel;
@@ -9275,7 +9786,7 @@ export interface $Channels$GetParticipants {
   response: Channels$ChannelParticipants
 }
 
-export interface $Channels$GetParticipant {
+export interface Channels$GetParticipant {
   method: "channels.getParticipant";
   params: {
     channel: InputChannel;
@@ -9284,7 +9795,7 @@ export interface $Channels$GetParticipant {
   response: Channels$ChannelParticipant
 }
 
-export interface $Channels$GetChannels {
+export interface Channels$GetChannels {
   method: "channels.getChannels";
   params: {
     id: InputChannel;
@@ -9292,7 +9803,7 @@ export interface $Channels$GetChannels {
   response: Messages$Chats
 }
 
-export interface $Channels$GetFullChannel {
+export interface Channels$GetFullChannel {
   method: "channels.getFullChannel";
   params: {
     channel: InputChannel;
@@ -9300,7 +9811,7 @@ export interface $Channels$GetFullChannel {
   response: Messages$ChatFull
 }
 
-export interface $Channels$CreateChannel {
+export interface Channels$CreateChannel {
   method: "channels.createChannel";
   params: {
     flags?: Number;
@@ -9317,7 +9828,7 @@ export interface $Channels$CreateChannel {
   response: Updates
 }
 
-export interface $Channels$EditAdmin {
+export interface Channels$EditAdmin {
   method: "channels.editAdmin";
   params: {
     channel: InputChannel;
@@ -9328,7 +9839,7 @@ export interface $Channels$EditAdmin {
   response: Updates
 }
 
-export interface $Channels$EditTitle {
+export interface Channels$EditTitle {
   method: "channels.editTitle";
   params: {
     channel: InputChannel;
@@ -9337,7 +9848,7 @@ export interface $Channels$EditTitle {
   response: Updates
 }
 
-export interface $Channels$EditPhoto {
+export interface Channels$EditPhoto {
   method: "channels.editPhoto";
   params: {
     channel: InputChannel;
@@ -9346,7 +9857,7 @@ export interface $Channels$EditPhoto {
   response: Updates
 }
 
-export interface $Channels$CheckUsername {
+export interface Channels$CheckUsername {
   method: "channels.checkUsername";
   params: {
     channel: InputChannel;
@@ -9355,7 +9866,7 @@ export interface $Channels$CheckUsername {
   response: Bool
 }
 
-export interface $Channels$UpdateUsername {
+export interface Channels$UpdateUsername {
   method: "channels.updateUsername";
   params: {
     channel: InputChannel;
@@ -9364,7 +9875,7 @@ export interface $Channels$UpdateUsername {
   response: Bool
 }
 
-export interface $Channels$JoinChannel {
+export interface Channels$JoinChannel {
   method: "channels.joinChannel";
   params: {
     channel: InputChannel;
@@ -9372,7 +9883,7 @@ export interface $Channels$JoinChannel {
   response: Updates
 }
 
-export interface $Channels$LeaveChannel {
+export interface Channels$LeaveChannel {
   method: "channels.leaveChannel";
   params: {
     channel: InputChannel;
@@ -9380,7 +9891,7 @@ export interface $Channels$LeaveChannel {
   response: Updates
 }
 
-export interface $Channels$InviteToChannel {
+export interface Channels$InviteToChannel {
   method: "channels.inviteToChannel";
   params: {
     channel: InputChannel;
@@ -9389,7 +9900,7 @@ export interface $Channels$InviteToChannel {
   response: Updates
 }
 
-export interface $Channels$DeleteChannel {
+export interface Channels$DeleteChannel {
   method: "channels.deleteChannel";
   params: {
     channel: InputChannel;
@@ -9397,7 +9908,7 @@ export interface $Channels$DeleteChannel {
   response: Updates
 }
 
-export interface $Updates$GetChannelDifference {
+export interface Updates$GetChannelDifference {
   method: "updates.getChannelDifference";
   params: {
     flags?: Number;
@@ -9410,7 +9921,7 @@ export interface $Updates$GetChannelDifference {
   response: Updates$ChannelDifference
 }
 
-export interface $Messages$EditChatAdmin {
+export interface Messages$EditChatAdmin {
   method: "messages.editChatAdmin";
   params: {
     chat_id: number;
@@ -9420,7 +9931,7 @@ export interface $Messages$EditChatAdmin {
   response: Bool
 }
 
-export interface $Messages$MigrateChat {
+export interface Messages$MigrateChat {
   method: "messages.migrateChat";
   params: {
     chat_id: number;
@@ -9428,7 +9939,7 @@ export interface $Messages$MigrateChat {
   response: Updates
 }
 
-export interface $Messages$SearchGlobal {
+export interface Messages$SearchGlobal {
   method: "messages.searchGlobal";
   params: {
     flags?: Number;
@@ -9445,7 +9956,7 @@ export interface $Messages$SearchGlobal {
   response: Messages$Messages
 }
 
-export interface $Messages$ReorderStickerSets {
+export interface Messages$ReorderStickerSets {
   method: "messages.reorderStickerSets";
   params: {
     flags?: Number;
@@ -9456,7 +9967,7 @@ export interface $Messages$ReorderStickerSets {
   response: Bool
 }
 
-export interface $Messages$GetDocumentByHash {
+export interface Messages$GetDocumentByHash {
   method: "messages.getDocumentByHash";
   params: {
     sha256: Uint8Array;
@@ -9466,7 +9977,7 @@ export interface $Messages$GetDocumentByHash {
   response: Document
 }
 
-export interface $Messages$GetSavedGifs {
+export interface Messages$GetSavedGifs {
   method: "messages.getSavedGifs";
   params: {
     hash: number;
@@ -9474,7 +9985,7 @@ export interface $Messages$GetSavedGifs {
   response: Messages$SavedGifs
 }
 
-export interface $Messages$SaveGif {
+export interface Messages$SaveGif {
   method: "messages.saveGif";
   params: {
     id: InputDocument;
@@ -9483,7 +9994,7 @@ export interface $Messages$SaveGif {
   response: Bool
 }
 
-export interface $Messages$GetInlineBotResults {
+export interface Messages$GetInlineBotResults {
   method: "messages.getInlineBotResults";
   params: {
     flags?: Number;
@@ -9496,7 +10007,7 @@ export interface $Messages$GetInlineBotResults {
   response: Messages$BotResults
 }
 
-export interface $Messages$SetInlineBotResults {
+export interface Messages$SetInlineBotResults {
   method: "messages.setInlineBotResults";
   params: {
     flags?: Number;
@@ -9512,7 +10023,7 @@ export interface $Messages$SetInlineBotResults {
   response: Bool
 }
 
-export interface $Messages$SendInlineBotResult {
+export interface Messages$SendInlineBotResult {
   method: "messages.sendInlineBotResult";
   params: {
     flags?: Number;
@@ -9532,7 +10043,7 @@ export interface $Messages$SendInlineBotResult {
   response: Updates
 }
 
-export interface $Channels$ExportMessageLink {
+export interface Channels$ExportMessageLink {
   method: "channels.exportMessageLink";
   params: {
     flags?: Number;
@@ -9544,7 +10055,7 @@ export interface $Channels$ExportMessageLink {
   response: ExportedMessageLink
 }
 
-export interface $Channels$ToggleSignatures {
+export interface Channels$ToggleSignatures {
   method: "channels.toggleSignatures";
   params: {
     channel: InputChannel;
@@ -9553,7 +10064,7 @@ export interface $Channels$ToggleSignatures {
   response: Updates
 }
 
-export interface $Auth$ResendCode {
+export interface Auth$ResendCode {
   method: "auth.resendCode";
   params: {
     phone_number: string;
@@ -9562,7 +10073,7 @@ export interface $Auth$ResendCode {
   response: Auth$SentCode
 }
 
-export interface $Auth$CancelCode {
+export interface Auth$CancelCode {
   method: "auth.cancelCode";
   params: {
     phone_number: string;
@@ -9571,7 +10082,7 @@ export interface $Auth$CancelCode {
   response: Bool
 }
 
-export interface $Messages$GetMessageEditData {
+export interface Messages$GetMessageEditData {
   method: "messages.getMessageEditData";
   params: {
     peer: InputPeer;
@@ -9580,7 +10091,7 @@ export interface $Messages$GetMessageEditData {
   response: Messages$MessageEditData
 }
 
-export interface $Messages$EditMessage {
+export interface Messages$EditMessage {
   method: "messages.editMessage";
   params: {
     flags?: Number;
@@ -9596,7 +10107,7 @@ export interface $Messages$EditMessage {
   response: Updates
 }
 
-export interface $Messages$EditInlineBotMessage {
+export interface Messages$EditInlineBotMessage {
   method: "messages.editInlineBotMessage";
   params: {
     flags?: Number;
@@ -9610,7 +10121,7 @@ export interface $Messages$EditInlineBotMessage {
   response: Bool
 }
 
-export interface $Messages$GetBotCallbackAnswer {
+export interface Messages$GetBotCallbackAnswer {
   method: "messages.getBotCallbackAnswer";
   params: {
     flags?: Number;
@@ -9623,7 +10134,7 @@ export interface $Messages$GetBotCallbackAnswer {
   response: Messages$BotCallbackAnswer
 }
 
-export interface $Messages$SetBotCallbackAnswer {
+export interface Messages$SetBotCallbackAnswer {
   method: "messages.setBotCallbackAnswer";
   params: {
     flags?: Number;
@@ -9636,7 +10147,7 @@ export interface $Messages$SetBotCallbackAnswer {
   response: Bool
 }
 
-export interface $Contacts$GetTopPeers {
+export interface Contacts$GetTopPeers {
   method: "contacts.getTopPeers";
   params: {
     flags?: Number;
@@ -9655,7 +10166,7 @@ export interface $Contacts$GetTopPeers {
   response: Contacts$TopPeers
 }
 
-export interface $Contacts$ResetTopPeerRating {
+export interface Contacts$ResetTopPeerRating {
   method: "contacts.resetTopPeerRating";
   params: {
     category: TopPeerCategory;
@@ -9664,7 +10175,7 @@ export interface $Contacts$ResetTopPeerRating {
   response: Bool
 }
 
-export interface $Messages$GetPeerDialogs {
+export interface Messages$GetPeerDialogs {
   method: "messages.getPeerDialogs";
   params: {
     peers: InputDialogPeer;
@@ -9672,7 +10183,7 @@ export interface $Messages$GetPeerDialogs {
   response: Messages$PeerDialogs
 }
 
-export interface $Messages$SaveDraft {
+export interface Messages$SaveDraft {
   method: "messages.saveDraft";
   params: {
     flags?: Number;
@@ -9686,14 +10197,14 @@ export interface $Messages$SaveDraft {
   response: Bool
 }
 
-export interface $Messages$GetAllDrafts {
+export interface Messages$GetAllDrafts {
   method: "messages.getAllDrafts";
   params: {
   }
   response: Updates
 }
 
-export interface $Messages$GetFeaturedStickers {
+export interface Messages$GetFeaturedStickers {
   method: "messages.getFeaturedStickers";
   params: {
     hash: number;
@@ -9701,7 +10212,7 @@ export interface $Messages$GetFeaturedStickers {
   response: Messages$FeaturedStickers
 }
 
-export interface $Messages$ReadFeaturedStickers {
+export interface Messages$ReadFeaturedStickers {
   method: "messages.readFeaturedStickers";
   params: {
     id: number[];
@@ -9709,7 +10220,7 @@ export interface $Messages$ReadFeaturedStickers {
   response: Bool
 }
 
-export interface $Messages$GetRecentStickers {
+export interface Messages$GetRecentStickers {
   method: "messages.getRecentStickers";
   params: {
     flags?: Number;
@@ -9719,7 +10230,7 @@ export interface $Messages$GetRecentStickers {
   response: Messages$RecentStickers
 }
 
-export interface $Messages$SaveRecentSticker {
+export interface Messages$SaveRecentSticker {
   method: "messages.saveRecentSticker";
   params: {
     flags?: Number;
@@ -9730,7 +10241,7 @@ export interface $Messages$SaveRecentSticker {
   response: Bool
 }
 
-export interface $Messages$ClearRecentStickers {
+export interface Messages$ClearRecentStickers {
   method: "messages.clearRecentStickers";
   params: {
     flags?: Number;
@@ -9739,7 +10250,7 @@ export interface $Messages$ClearRecentStickers {
   response: Bool
 }
 
-export interface $Messages$GetArchivedStickers {
+export interface Messages$GetArchivedStickers {
   method: "messages.getArchivedStickers";
   params: {
     flags?: Number;
@@ -9751,7 +10262,7 @@ export interface $Messages$GetArchivedStickers {
   response: Messages$ArchivedStickers
 }
 
-export interface $Account$SendConfirmPhoneCode {
+export interface Account$SendConfirmPhoneCode {
   method: "account.sendConfirmPhoneCode";
   params: {
     hash: string;
@@ -9760,7 +10271,7 @@ export interface $Account$SendConfirmPhoneCode {
   response: Auth$SentCode
 }
 
-export interface $Account$ConfirmPhone {
+export interface Account$ConfirmPhone {
   method: "account.confirmPhone";
   params: {
     phone_code_hash: string;
@@ -9769,7 +10280,7 @@ export interface $Account$ConfirmPhone {
   response: Bool
 }
 
-export interface $Channels$GetAdminedPublicChannels {
+export interface Channels$GetAdminedPublicChannels {
   method: "channels.getAdminedPublicChannels";
   params: {
     flags?: Number;
@@ -9779,7 +10290,7 @@ export interface $Channels$GetAdminedPublicChannels {
   response: Messages$Chats
 }
 
-export interface $Messages$GetMaskStickers {
+export interface Messages$GetMaskStickers {
   method: "messages.getMaskStickers";
   params: {
     hash: number;
@@ -9787,7 +10298,7 @@ export interface $Messages$GetMaskStickers {
   response: Messages$AllStickers
 }
 
-export interface $Messages$GetAttachedStickers {
+export interface Messages$GetAttachedStickers {
   method: "messages.getAttachedStickers";
   params: {
     media: InputStickeredMedia;
@@ -9795,7 +10306,7 @@ export interface $Messages$GetAttachedStickers {
   response: StickerSetCovered[]
 }
 
-export interface $Auth$DropTempAuthKeys {
+export interface Auth$DropTempAuthKeys {
   method: "auth.dropTempAuthKeys";
   params: {
     except_auth_keys: number[];
@@ -9803,7 +10314,7 @@ export interface $Auth$DropTempAuthKeys {
   response: Bool
 }
 
-export interface $Messages$SetGameScore {
+export interface Messages$SetGameScore {
   method: "messages.setGameScore";
   params: {
     flags?: Number;
@@ -9817,7 +10328,7 @@ export interface $Messages$SetGameScore {
   response: Updates
 }
 
-export interface $Messages$SetInlineGameScore {
+export interface Messages$SetInlineGameScore {
   method: "messages.setInlineGameScore";
   params: {
     flags?: Number;
@@ -9830,7 +10341,7 @@ export interface $Messages$SetInlineGameScore {
   response: Bool
 }
 
-export interface $Messages$GetGameHighScores {
+export interface Messages$GetGameHighScores {
   method: "messages.getGameHighScores";
   params: {
     peer: InputPeer;
@@ -9840,7 +10351,7 @@ export interface $Messages$GetGameHighScores {
   response: Messages$HighScores
 }
 
-export interface $Messages$GetInlineGameHighScores {
+export interface Messages$GetInlineGameHighScores {
   method: "messages.getInlineGameHighScores";
   params: {
     id: InputBotInlineMessageID;
@@ -9849,7 +10360,7 @@ export interface $Messages$GetInlineGameHighScores {
   response: Messages$HighScores
 }
 
-export interface $Messages$GetCommonChats {
+export interface Messages$GetCommonChats {
   method: "messages.getCommonChats";
   params: {
     user_id: InputUser;
@@ -9859,7 +10370,7 @@ export interface $Messages$GetCommonChats {
   response: Messages$Chats
 }
 
-export interface $Help$SetBotUpdatesStatus {
+export interface Help$SetBotUpdatesStatus {
   method: "help.setBotUpdatesStatus";
   params: {
     pending_updates_count: number;
@@ -9868,7 +10379,7 @@ export interface $Help$SetBotUpdatesStatus {
   response: Bool
 }
 
-export interface $Messages$GetWebPage {
+export interface Messages$GetWebPage {
   method: "messages.getWebPage";
   params: {
     url: string;
@@ -9877,7 +10388,7 @@ export interface $Messages$GetWebPage {
   response: WebPage
 }
 
-export interface $Messages$ToggleDialogPin {
+export interface Messages$ToggleDialogPin {
   method: "messages.toggleDialogPin";
   params: {
     flags?: Number;
@@ -9887,7 +10398,7 @@ export interface $Messages$ToggleDialogPin {
   response: Bool
 }
 
-export interface $Messages$ReorderPinnedDialogs {
+export interface Messages$ReorderPinnedDialogs {
   method: "messages.reorderPinnedDialogs";
   params: {
     flags?: Number;
@@ -9898,7 +10409,7 @@ export interface $Messages$ReorderPinnedDialogs {
   response: Bool
 }
 
-export interface $Messages$GetPinnedDialogs {
+export interface Messages$GetPinnedDialogs {
   method: "messages.getPinnedDialogs";
   params: {
     folder_id: number;
@@ -9906,7 +10417,7 @@ export interface $Messages$GetPinnedDialogs {
   response: Messages$PeerDialogs
 }
 
-export interface $Bots$SendCustomRequest {
+export interface Bots$SendCustomRequest {
   method: "bots.sendCustomRequest";
   params: {
     custom_method: string;
@@ -9915,7 +10426,7 @@ export interface $Bots$SendCustomRequest {
   response: DataJSON
 }
 
-export interface $Bots$AnswerWebhookJSONQuery {
+export interface Bots$AnswerWebhookJSONQuery {
   method: "bots.answerWebhookJSONQuery";
   params: {
     query_id: number;
@@ -9924,7 +10435,7 @@ export interface $Bots$AnswerWebhookJSONQuery {
   response: Bool
 }
 
-export interface $Upload$GetWebFile {
+export interface Upload$GetWebFile {
   method: "upload.getWebFile";
   params: {
     location: InputWebFileLocation;
@@ -9934,7 +10445,7 @@ export interface $Upload$GetWebFile {
   response: Upload$WebFile
 }
 
-export interface $Payments$GetPaymentForm {
+export interface Payments$GetPaymentForm {
   method: "payments.getPaymentForm";
   params: {
     flags?: Number;
@@ -9944,7 +10455,7 @@ export interface $Payments$GetPaymentForm {
   response: Payments$PaymentForm
 }
 
-export interface $Payments$GetPaymentReceipt {
+export interface Payments$GetPaymentReceipt {
   method: "payments.getPaymentReceipt";
   params: {
     peer: InputPeer;
@@ -9953,7 +10464,7 @@ export interface $Payments$GetPaymentReceipt {
   response: Payments$PaymentReceipt
 }
 
-export interface $Payments$ValidateRequestedInfo {
+export interface Payments$ValidateRequestedInfo {
   method: "payments.validateRequestedInfo";
   params: {
     flags?: Number;
@@ -9964,7 +10475,7 @@ export interface $Payments$ValidateRequestedInfo {
   response: Payments$ValidatedRequestedInfo
 }
 
-export interface $Payments$SendPaymentForm {
+export interface Payments$SendPaymentForm {
   method: "payments.sendPaymentForm";
   params: {
     flags?: Number;
@@ -9978,7 +10489,7 @@ export interface $Payments$SendPaymentForm {
   response: Payments$PaymentResult
 }
 
-export interface $Account$GetTmpPassword {
+export interface Account$GetTmpPassword {
   method: "account.getTmpPassword";
   params: {
     password: InputCheckPasswordSRP;
@@ -9987,14 +10498,14 @@ export interface $Account$GetTmpPassword {
   response: Account$TmpPassword
 }
 
-export interface $Payments$GetSavedInfo {
+export interface Payments$GetSavedInfo {
   method: "payments.getSavedInfo";
   params: {
   }
   response: Payments$SavedInfo
 }
 
-export interface $Payments$ClearSavedInfo {
+export interface Payments$ClearSavedInfo {
   method: "payments.clearSavedInfo";
   params: {
     flags?: Number;
@@ -10004,7 +10515,7 @@ export interface $Payments$ClearSavedInfo {
   response: Bool
 }
 
-export interface $Messages$SetBotShippingResults {
+export interface Messages$SetBotShippingResults {
   method: "messages.setBotShippingResults";
   params: {
     flags?: Number;
@@ -10015,7 +10526,7 @@ export interface $Messages$SetBotShippingResults {
   response: Bool
 }
 
-export interface $Messages$SetBotPrecheckoutResults {
+export interface Messages$SetBotPrecheckoutResults {
   method: "messages.setBotPrecheckoutResults";
   params: {
     flags?: Number;
@@ -10026,7 +10537,7 @@ export interface $Messages$SetBotPrecheckoutResults {
   response: Bool
 }
 
-export interface $Stickers$CreateStickerSet {
+export interface Stickers$CreateStickerSet {
   method: "stickers.createStickerSet";
   params: {
     flags?: Number;
@@ -10045,7 +10556,7 @@ export interface $Stickers$CreateStickerSet {
   response: Messages$StickerSet
 }
 
-export interface $Stickers$RemoveStickerFromSet {
+export interface Stickers$RemoveStickerFromSet {
   method: "stickers.removeStickerFromSet";
   params: {
     sticker: InputDocument;
@@ -10053,7 +10564,7 @@ export interface $Stickers$RemoveStickerFromSet {
   response: Messages$StickerSet
 }
 
-export interface $Stickers$ChangeStickerPosition {
+export interface Stickers$ChangeStickerPosition {
   method: "stickers.changeStickerPosition";
   params: {
     sticker: InputDocument;
@@ -10062,7 +10573,7 @@ export interface $Stickers$ChangeStickerPosition {
   response: Messages$StickerSet
 }
 
-export interface $Stickers$AddStickerToSet {
+export interface Stickers$AddStickerToSet {
   method: "stickers.addStickerToSet";
   params: {
     stickerset: InputStickerSet;
@@ -10071,7 +10582,7 @@ export interface $Stickers$AddStickerToSet {
   response: Messages$StickerSet
 }
 
-export interface $Messages$UploadMedia {
+export interface Messages$UploadMedia {
   method: "messages.uploadMedia";
   params: {
     peer: InputPeer;
@@ -10080,14 +10591,14 @@ export interface $Messages$UploadMedia {
   response: MessageMedia
 }
 
-export interface $Phone$GetCallConfig {
+export interface Phone$GetCallConfig {
   method: "phone.getCallConfig";
   params: {
   }
   response: DataJSON
 }
 
-export interface $Phone$RequestCall {
+export interface Phone$RequestCall {
   method: "phone.requestCall";
   params: {
     flags?: Number;
@@ -10100,7 +10611,7 @@ export interface $Phone$RequestCall {
   response: Phone$PhoneCall
 }
 
-export interface $Phone$AcceptCall {
+export interface Phone$AcceptCall {
   method: "phone.acceptCall";
   params: {
     peer: InputPhoneCall;
@@ -10110,7 +10621,7 @@ export interface $Phone$AcceptCall {
   response: Phone$PhoneCall
 }
 
-export interface $Phone$ConfirmCall {
+export interface Phone$ConfirmCall {
   method: "phone.confirmCall";
   params: {
     peer: InputPhoneCall;
@@ -10121,7 +10632,7 @@ export interface $Phone$ConfirmCall {
   response: Phone$PhoneCall
 }
 
-export interface $Phone$ReceivedCall {
+export interface Phone$ReceivedCall {
   method: "phone.receivedCall";
   params: {
     peer: InputPhoneCall;
@@ -10129,7 +10640,7 @@ export interface $Phone$ReceivedCall {
   response: Bool
 }
 
-export interface $Phone$DiscardCall {
+export interface Phone$DiscardCall {
   method: "phone.discardCall";
   params: {
     flags?: Number;
@@ -10142,7 +10653,7 @@ export interface $Phone$DiscardCall {
   response: Updates
 }
 
-export interface $Phone$SetCallRating {
+export interface Phone$SetCallRating {
   method: "phone.setCallRating";
   params: {
     flags?: Number;
@@ -10154,7 +10665,7 @@ export interface $Phone$SetCallRating {
   response: Updates
 }
 
-export interface $Phone$SaveCallDebug {
+export interface Phone$SaveCallDebug {
   method: "phone.saveCallDebug";
   params: {
     peer: InputPhoneCall;
@@ -10163,7 +10674,7 @@ export interface $Phone$SaveCallDebug {
   response: Bool
 }
 
-export interface $Upload$GetCdnFile {
+export interface Upload$GetCdnFile {
   method: "upload.getCdnFile";
   params: {
     file_token: Uint8Array;
@@ -10173,7 +10684,7 @@ export interface $Upload$GetCdnFile {
   response: Upload$CdnFile
 }
 
-export interface $Upload$ReuploadCdnFile {
+export interface Upload$ReuploadCdnFile {
   method: "upload.reuploadCdnFile";
   params: {
     file_token: Uint8Array;
@@ -10182,14 +10693,14 @@ export interface $Upload$ReuploadCdnFile {
   response: FileHash[]
 }
 
-export interface $Help$GetCdnConfig {
+export interface Help$GetCdnConfig {
   method: "help.getCdnConfig";
   params: {
   }
   response: CdnConfig
 }
 
-export interface $Langpack$GetLangPack {
+export interface Langpack$GetLangPack {
   method: "langpack.getLangPack";
   params: {
     lang_pack: string;
@@ -10198,7 +10709,7 @@ export interface $Langpack$GetLangPack {
   response: LangPackDifference
 }
 
-export interface $Langpack$GetStrings {
+export interface Langpack$GetStrings {
   method: "langpack.getStrings";
   params: {
     lang_pack: string;
@@ -10208,7 +10719,7 @@ export interface $Langpack$GetStrings {
   response: LangPackString[]
 }
 
-export interface $Langpack$GetDifference {
+export interface Langpack$GetDifference {
   method: "langpack.getDifference";
   params: {
     lang_pack: string;
@@ -10218,7 +10729,7 @@ export interface $Langpack$GetDifference {
   response: LangPackDifference
 }
 
-export interface $Langpack$GetLanguages {
+export interface Langpack$GetLanguages {
   method: "langpack.getLanguages";
   params: {
     lang_pack: string;
@@ -10226,7 +10737,7 @@ export interface $Langpack$GetLanguages {
   response: LangPackLanguage[]
 }
 
-export interface $Channels$EditBanned {
+export interface Channels$EditBanned {
   method: "channels.editBanned";
   params: {
     channel: InputChannel;
@@ -10236,7 +10747,7 @@ export interface $Channels$EditBanned {
   response: Updates
 }
 
-export interface $Channels$GetAdminLog {
+export interface Channels$GetAdminLog {
   method: "channels.getAdminLog";
   params: {
     flags?: Number;
@@ -10251,7 +10762,7 @@ export interface $Channels$GetAdminLog {
   response: Channels$AdminLogResults
 }
 
-export interface $Upload$GetCdnFileHashes {
+export interface Upload$GetCdnFileHashes {
   method: "upload.getCdnFileHashes";
   params: {
     file_token: Uint8Array;
@@ -10260,7 +10771,7 @@ export interface $Upload$GetCdnFileHashes {
   response: FileHash[]
 }
 
-export interface $Messages$SendScreenshotNotification {
+export interface Messages$SendScreenshotNotification {
   method: "messages.sendScreenshotNotification";
   params: {
     peer: InputPeer;
@@ -10270,7 +10781,7 @@ export interface $Messages$SendScreenshotNotification {
   response: Updates
 }
 
-export interface $Channels$SetStickers {
+export interface Channels$SetStickers {
   method: "channels.setStickers";
   params: {
     channel: InputChannel;
@@ -10279,7 +10790,7 @@ export interface $Channels$SetStickers {
   response: Bool
 }
 
-export interface $Messages$GetFavedStickers {
+export interface Messages$GetFavedStickers {
   method: "messages.getFavedStickers";
   params: {
     hash: number;
@@ -10287,7 +10798,7 @@ export interface $Messages$GetFavedStickers {
   response: Messages$FavedStickers
 }
 
-export interface $Messages$FaveSticker {
+export interface Messages$FaveSticker {
   method: "messages.faveSticker";
   params: {
     id: InputDocument;
@@ -10296,7 +10807,7 @@ export interface $Messages$FaveSticker {
   response: Bool
 }
 
-export interface $Channels$ReadMessageContents {
+export interface Channels$ReadMessageContents {
   method: "channels.readMessageContents";
   params: {
     channel: InputChannel;
@@ -10305,14 +10816,14 @@ export interface $Channels$ReadMessageContents {
   response: Bool
 }
 
-export interface $Contacts$ResetSaved {
+export interface Contacts$ResetSaved {
   method: "contacts.resetSaved";
   params: {
   }
   response: Bool
 }
 
-export interface $Messages$GetUnreadMentions {
+export interface Messages$GetUnreadMentions {
   method: "messages.getUnreadMentions";
   params: {
     flags?: Number;
@@ -10327,7 +10838,7 @@ export interface $Messages$GetUnreadMentions {
   response: Messages$Messages
 }
 
-export interface $Channels$DeleteHistory {
+export interface Channels$DeleteHistory {
   method: "channels.deleteHistory";
   params: {
     flags?: Number;
@@ -10338,7 +10849,7 @@ export interface $Channels$DeleteHistory {
   response: Updates
 }
 
-export interface $Help$GetRecentMeUrls {
+export interface Help$GetRecentMeUrls {
   method: "help.getRecentMeUrls";
   params: {
     referer: string;
@@ -10346,7 +10857,7 @@ export interface $Help$GetRecentMeUrls {
   response: Help$RecentMeUrls
 }
 
-export interface $Channels$TogglePreHistoryHidden {
+export interface Channels$TogglePreHistoryHidden {
   method: "channels.togglePreHistoryHidden";
   params: {
     channel: InputChannel;
@@ -10355,7 +10866,7 @@ export interface $Channels$TogglePreHistoryHidden {
   response: Updates
 }
 
-export interface $Messages$ReadMentions {
+export interface Messages$ReadMentions {
   method: "messages.readMentions";
   params: {
     flags?: Number;
@@ -10365,7 +10876,7 @@ export interface $Messages$ReadMentions {
   response: Messages$AffectedHistory
 }
 
-export interface $Messages$GetRecentLocations {
+export interface Messages$GetRecentLocations {
   method: "messages.getRecentLocations";
   params: {
     peer: InputPeer;
@@ -10375,7 +10886,7 @@ export interface $Messages$GetRecentLocations {
   response: Messages$Messages
 }
 
-export interface $Messages$SendMultiMedia {
+export interface Messages$SendMultiMedia {
   method: "messages.sendMultiMedia";
   params: {
     flags?: Number;
@@ -10394,7 +10905,7 @@ export interface $Messages$SendMultiMedia {
   response: Updates
 }
 
-export interface $Messages$UploadEncryptedFile {
+export interface Messages$UploadEncryptedFile {
   method: "messages.uploadEncryptedFile";
   params: {
     peer: InputEncryptedChat;
@@ -10403,14 +10914,14 @@ export interface $Messages$UploadEncryptedFile {
   response: EncryptedFile
 }
 
-export interface $Account$GetWebAuthorizations {
+export interface Account$GetWebAuthorizations {
   method: "account.getWebAuthorizations";
   params: {
   }
   response: Account$WebAuthorizations
 }
 
-export interface $Account$ResetWebAuthorization {
+export interface Account$ResetWebAuthorization {
   method: "account.resetWebAuthorization";
   params: {
     hash: number;
@@ -10418,14 +10929,14 @@ export interface $Account$ResetWebAuthorization {
   response: Bool
 }
 
-export interface $Account$ResetWebAuthorizations {
+export interface Account$ResetWebAuthorizations {
   method: "account.resetWebAuthorizations";
   params: {
   }
   response: Bool
 }
 
-export interface $Messages$SearchStickerSets {
+export interface Messages$SearchStickerSets {
   method: "messages.searchStickerSets";
   params: {
     flags?: Number;
@@ -10436,7 +10947,7 @@ export interface $Messages$SearchStickerSets {
   response: Messages$FoundStickerSets
 }
 
-export interface $Upload$GetFileHashes {
+export interface Upload$GetFileHashes {
   method: "upload.getFileHashes";
   params: {
     location: InputFileLocation;
@@ -10445,14 +10956,14 @@ export interface $Upload$GetFileHashes {
   response: FileHash[]
 }
 
-export interface $Help$GetTermsOfServiceUpdate {
+export interface Help$GetTermsOfServiceUpdate {
   method: "help.getTermsOfServiceUpdate";
   params: {
   }
   response: Help$TermsOfServiceUpdate
 }
 
-export interface $Help$AcceptTermsOfService {
+export interface Help$AcceptTermsOfService {
   method: "help.acceptTermsOfService";
   params: {
     id: DataJSON;
@@ -10460,14 +10971,14 @@ export interface $Help$AcceptTermsOfService {
   response: Bool
 }
 
-export interface $Account$GetAllSecureValues {
+export interface Account$GetAllSecureValues {
   method: "account.getAllSecureValues";
   params: {
   }
   response: SecureValue[]
 }
 
-export interface $Account$GetSecureValue {
+export interface Account$GetSecureValue {
   method: "account.getSecureValue";
   params: {
     types: SecureValueType;
@@ -10475,7 +10986,7 @@ export interface $Account$GetSecureValue {
   response: SecureValue[]
 }
 
-export interface $Account$SaveSecureValue {
+export interface Account$SaveSecureValue {
   method: "account.saveSecureValue";
   params: {
     value: InputSecureValue;
@@ -10484,7 +10995,7 @@ export interface $Account$SaveSecureValue {
   response: SecureValue
 }
 
-export interface $Account$DeleteSecureValue {
+export interface Account$DeleteSecureValue {
   method: "account.deleteSecureValue";
   params: {
     types: SecureValueType;
@@ -10492,7 +11003,7 @@ export interface $Account$DeleteSecureValue {
   response: Bool
 }
 
-export interface $Users$SetSecureValueErrors {
+export interface Users$SetSecureValueErrors {
   method: "users.setSecureValueErrors";
   params: {
     id: InputUser;
@@ -10501,7 +11012,7 @@ export interface $Users$SetSecureValueErrors {
   response: Bool
 }
 
-export interface $Account$GetAuthorizationForm {
+export interface Account$GetAuthorizationForm {
   method: "account.getAuthorizationForm";
   params: {
     bot_id: number;
@@ -10511,7 +11022,7 @@ export interface $Account$GetAuthorizationForm {
   response: Account$AuthorizationForm
 }
 
-export interface $Account$AcceptAuthorization {
+export interface Account$AcceptAuthorization {
   method: "account.acceptAuthorization";
   params: {
     bot_id: number;
@@ -10523,7 +11034,7 @@ export interface $Account$AcceptAuthorization {
   response: Bool
 }
 
-export interface $Account$SendVerifyPhoneCode {
+export interface Account$SendVerifyPhoneCode {
   method: "account.sendVerifyPhoneCode";
   params: {
     phone_number: string;
@@ -10532,7 +11043,7 @@ export interface $Account$SendVerifyPhoneCode {
   response: Auth$SentCode
 }
 
-export interface $Account$VerifyPhone {
+export interface Account$VerifyPhone {
   method: "account.verifyPhone";
   params: {
     phone_number: string;
@@ -10542,7 +11053,7 @@ export interface $Account$VerifyPhone {
   response: Bool
 }
 
-export interface $Account$SendVerifyEmailCode {
+export interface Account$SendVerifyEmailCode {
   method: "account.sendVerifyEmailCode";
   params: {
     purpose: EmailVerifyPurpose;
@@ -10551,7 +11062,7 @@ export interface $Account$SendVerifyEmailCode {
   response: Account$SentEmailCode
 }
 
-export interface $Account$VerifyEmail {
+export interface Account$VerifyEmail {
   method: "account.verifyEmail";
   params: {
     purpose: EmailVerifyPurpose;
@@ -10560,7 +11071,7 @@ export interface $Account$VerifyEmail {
   response: Account$EmailVerified
 }
 
-export interface $Help$GetDeepLinkInfo {
+export interface Help$GetDeepLinkInfo {
   method: "help.getDeepLinkInfo";
   params: {
     path: string;
@@ -10568,14 +11079,14 @@ export interface $Help$GetDeepLinkInfo {
   response: Help$DeepLinkInfo
 }
 
-export interface $Contacts$GetSaved {
+export interface Contacts$GetSaved {
   method: "contacts.getSaved";
   params: {
   }
   response: SavedContact[]
 }
 
-export interface $Channels$GetLeftChannels {
+export interface Channels$GetLeftChannels {
   method: "channels.getLeftChannels";
   params: {
     offset: number;
@@ -10583,7 +11094,7 @@ export interface $Channels$GetLeftChannels {
   response: Messages$Chats
 }
 
-export interface $Account$InitTakeoutSession {
+export interface Account$InitTakeoutSession {
   method: "account.initTakeoutSession";
   params: {
     flags?: Number;
@@ -10598,7 +11109,7 @@ export interface $Account$InitTakeoutSession {
   response: Account$Takeout
 }
 
-export interface $Account$FinishTakeoutSession {
+export interface Account$FinishTakeoutSession {
   method: "account.finishTakeoutSession";
   params: {
     flags?: Number;
@@ -10607,32 +11118,32 @@ export interface $Account$FinishTakeoutSession {
   response: Bool
 }
 
-export interface $Messages$GetSplitRanges {
+export interface Messages$GetSplitRanges {
   method: "messages.getSplitRanges";
   params: {
   }
   response: MessageRange[]
 }
 
-export interface $InvokeWithMessagesRange<X> {
+export interface InvokeWithMessagesRange {
   method: "invokeWithMessagesRange";
   params: {
     range: MessageRange;
     query: unknown;
   }
-  response: X
+  response: unknown
 }
 
-export interface $InvokeWithTakeout<X> {
+export interface InvokeWithTakeout {
   method: "invokeWithTakeout";
   params: {
     takeout_id: number;
     query: unknown;
   }
-  response: X
+  response: unknown
 }
 
-export interface $Messages$MarkDialogUnread {
+export interface Messages$MarkDialogUnread {
   method: "messages.markDialogUnread";
   params: {
     flags?: Number;
@@ -10642,14 +11153,14 @@ export interface $Messages$MarkDialogUnread {
   response: Bool
 }
 
-export interface $Messages$GetDialogUnreadMarks {
+export interface Messages$GetDialogUnreadMarks {
   method: "messages.getDialogUnreadMarks";
   params: {
   }
   response: DialogPeer[]
 }
 
-export interface $Contacts$ToggleTopPeers {
+export interface Contacts$ToggleTopPeers {
   method: "contacts.toggleTopPeers";
   params: {
     enabled: Bool;
@@ -10657,14 +11168,14 @@ export interface $Contacts$ToggleTopPeers {
   response: Bool
 }
 
-export interface $Messages$ClearAllDrafts {
+export interface Messages$ClearAllDrafts {
   method: "messages.clearAllDrafts";
   params: {
   }
   response: Bool
 }
 
-export interface $Help$GetAppConfig {
+export interface Help$GetAppConfig {
   method: "help.getAppConfig";
   params: {
     hash: number;
@@ -10672,7 +11183,7 @@ export interface $Help$GetAppConfig {
   response: Help$AppConfig
 }
 
-export interface $Help$SaveAppLog {
+export interface Help$SaveAppLog {
   method: "help.saveAppLog";
   params: {
     events: InputAppEvent;
@@ -10680,7 +11191,7 @@ export interface $Help$SaveAppLog {
   response: Bool
 }
 
-export interface $Help$GetPassportConfig {
+export interface Help$GetPassportConfig {
   method: "help.getPassportConfig";
   params: {
     hash: number;
@@ -10688,7 +11199,7 @@ export interface $Help$GetPassportConfig {
   response: Help$PassportConfig
 }
 
-export interface $Langpack$GetLanguage {
+export interface Langpack$GetLanguage {
   method: "langpack.getLanguage";
   params: {
     lang_pack: string;
@@ -10697,7 +11208,7 @@ export interface $Langpack$GetLanguage {
   response: LangPackLanguage
 }
 
-export interface $Messages$UpdatePinnedMessage {
+export interface Messages$UpdatePinnedMessage {
   method: "messages.updatePinnedMessage";
   params: {
     flags?: Number;
@@ -10710,7 +11221,7 @@ export interface $Messages$UpdatePinnedMessage {
   response: Updates
 }
 
-export interface $Account$ConfirmPasswordEmail {
+export interface Account$ConfirmPasswordEmail {
   method: "account.confirmPasswordEmail";
   params: {
     code: string;
@@ -10718,28 +11229,28 @@ export interface $Account$ConfirmPasswordEmail {
   response: Bool
 }
 
-export interface $Account$ResendPasswordEmail {
+export interface Account$ResendPasswordEmail {
   method: "account.resendPasswordEmail";
   params: {
   }
   response: Bool
 }
 
-export interface $Account$CancelPasswordEmail {
+export interface Account$CancelPasswordEmail {
   method: "account.cancelPasswordEmail";
   params: {
   }
   response: Bool
 }
 
-export interface $Help$GetSupportName {
+export interface Help$GetSupportName {
   method: "help.getSupportName";
   params: {
   }
   response: Help$SupportName
 }
 
-export interface $Help$GetUserInfo {
+export interface Help$GetUserInfo {
   method: "help.getUserInfo";
   params: {
     user_id: InputUser;
@@ -10747,7 +11258,7 @@ export interface $Help$GetUserInfo {
   response: Help$UserInfo
 }
 
-export interface $Help$EditUserInfo {
+export interface Help$EditUserInfo {
   method: "help.editUserInfo";
   params: {
     user_id: InputUser;
@@ -10757,14 +11268,14 @@ export interface $Help$EditUserInfo {
   response: Help$UserInfo
 }
 
-export interface $Account$GetContactSignUpNotification {
+export interface Account$GetContactSignUpNotification {
   method: "account.getContactSignUpNotification";
   params: {
   }
   response: Bool
 }
 
-export interface $Account$SetContactSignUpNotification {
+export interface Account$SetContactSignUpNotification {
   method: "account.setContactSignUpNotification";
   params: {
     silent: Bool;
@@ -10772,7 +11283,7 @@ export interface $Account$SetContactSignUpNotification {
   response: Bool
 }
 
-export interface $Account$GetNotifyExceptions {
+export interface Account$GetNotifyExceptions {
   method: "account.getNotifyExceptions";
   params: {
     flags?: Number;
@@ -10782,7 +11293,7 @@ export interface $Account$GetNotifyExceptions {
   response: Updates
 }
 
-export interface $Messages$SendVote {
+export interface Messages$SendVote {
   method: "messages.sendVote";
   params: {
     peer: InputPeer;
@@ -10792,7 +11303,7 @@ export interface $Messages$SendVote {
   response: Updates
 }
 
-export interface $Messages$GetPollResults {
+export interface Messages$GetPollResults {
   method: "messages.getPollResults";
   params: {
     peer: InputPeer;
@@ -10801,7 +11312,7 @@ export interface $Messages$GetPollResults {
   response: Updates
 }
 
-export interface $Messages$GetOnlines {
+export interface Messages$GetOnlines {
   method: "messages.getOnlines";
   params: {
     peer: InputPeer;
@@ -10809,7 +11320,7 @@ export interface $Messages$GetOnlines {
   response: ChatOnlines
 }
 
-export interface $Messages$EditChatAbout {
+export interface Messages$EditChatAbout {
   method: "messages.editChatAbout";
   params: {
     peer: InputPeer;
@@ -10818,7 +11329,7 @@ export interface $Messages$EditChatAbout {
   response: Bool
 }
 
-export interface $Messages$EditChatDefaultBannedRights {
+export interface Messages$EditChatDefaultBannedRights {
   method: "messages.editChatDefaultBannedRights";
   params: {
     peer: InputPeer;
@@ -10827,7 +11338,7 @@ export interface $Messages$EditChatDefaultBannedRights {
   response: Updates
 }
 
-export interface $Account$GetWallPaper {
+export interface Account$GetWallPaper {
   method: "account.getWallPaper";
   params: {
     wallpaper: InputWallPaper;
@@ -10835,7 +11346,7 @@ export interface $Account$GetWallPaper {
   response: WallPaper
 }
 
-export interface $Account$UploadWallPaper {
+export interface Account$UploadWallPaper {
   method: "account.uploadWallPaper";
   params: {
     flags?: Number;
@@ -10847,7 +11358,7 @@ export interface $Account$UploadWallPaper {
   response: WallPaper
 }
 
-export interface $Account$SaveWallPaper {
+export interface Account$SaveWallPaper {
   method: "account.saveWallPaper";
   params: {
     wallpaper: InputWallPaper;
@@ -10857,7 +11368,7 @@ export interface $Account$SaveWallPaper {
   response: Bool
 }
 
-export interface $Account$InstallWallPaper {
+export interface Account$InstallWallPaper {
   method: "account.installWallPaper";
   params: {
     wallpaper: InputWallPaper;
@@ -10866,21 +11377,21 @@ export interface $Account$InstallWallPaper {
   response: Bool
 }
 
-export interface $Account$ResetWallPapers {
+export interface Account$ResetWallPapers {
   method: "account.resetWallPapers";
   params: {
   }
   response: Bool
 }
 
-export interface $Account$GetAutoDownloadSettings {
+export interface Account$GetAutoDownloadSettings {
   method: "account.getAutoDownloadSettings";
   params: {
   }
   response: Account$AutoDownloadSettings
 }
 
-export interface $Account$SaveAutoDownloadSettings {
+export interface Account$SaveAutoDownloadSettings {
   method: "account.saveAutoDownloadSettings";
   params: {
     flags?: Number;
@@ -10891,7 +11402,7 @@ export interface $Account$SaveAutoDownloadSettings {
   response: Bool
 }
 
-export interface $Messages$GetEmojiKeywords {
+export interface Messages$GetEmojiKeywords {
   method: "messages.getEmojiKeywords";
   params: {
     lang_code: string;
@@ -10899,7 +11410,7 @@ export interface $Messages$GetEmojiKeywords {
   response: EmojiKeywordsDifference
 }
 
-export interface $Messages$GetEmojiKeywordsDifference {
+export interface Messages$GetEmojiKeywordsDifference {
   method: "messages.getEmojiKeywordsDifference";
   params: {
     lang_code: string;
@@ -10908,7 +11419,7 @@ export interface $Messages$GetEmojiKeywordsDifference {
   response: EmojiKeywordsDifference
 }
 
-export interface $Messages$GetEmojiKeywordsLanguages {
+export interface Messages$GetEmojiKeywordsLanguages {
   method: "messages.getEmojiKeywordsLanguages";
   params: {
     lang_codes: string[];
@@ -10916,7 +11427,7 @@ export interface $Messages$GetEmojiKeywordsLanguages {
   response: EmojiLanguage[]
 }
 
-export interface $Messages$GetEmojiURL {
+export interface Messages$GetEmojiURL {
   method: "messages.getEmojiURL";
   params: {
     lang_code: string;
@@ -10924,7 +11435,7 @@ export interface $Messages$GetEmojiURL {
   response: EmojiURL
 }
 
-export interface $Folders$EditPeerFolders {
+export interface Folders$EditPeerFolders {
   method: "folders.editPeerFolders";
   params: {
     folder_peers: InputFolderPeer;
@@ -10932,7 +11443,7 @@ export interface $Folders$EditPeerFolders {
   response: Updates
 }
 
-export interface $Messages$GetSearchCounters {
+export interface Messages$GetSearchCounters {
   method: "messages.getSearchCounters";
   params: {
     flags?: Number;
@@ -10943,14 +11454,14 @@ export interface $Messages$GetSearchCounters {
   response: Messages$SearchCounter[]
 }
 
-export interface $Channels$GetGroupsForDiscussion {
+export interface Channels$GetGroupsForDiscussion {
   method: "channels.getGroupsForDiscussion";
   params: {
   }
   response: Messages$Chats
 }
 
-export interface $Channels$SetDiscussionGroup {
+export interface Channels$SetDiscussionGroup {
   method: "channels.setDiscussionGroup";
   params: {
     broadcast: InputChannel;
@@ -10959,7 +11470,7 @@ export interface $Channels$SetDiscussionGroup {
   response: Bool
 }
 
-export interface $Messages$RequestUrlAuth {
+export interface Messages$RequestUrlAuth {
   method: "messages.requestUrlAuth";
   params: {
     flags?: Number;
@@ -10971,7 +11482,7 @@ export interface $Messages$RequestUrlAuth {
   response: UrlAuthResult
 }
 
-export interface $Messages$AcceptUrlAuth {
+export interface Messages$AcceptUrlAuth {
   method: "messages.acceptUrlAuth";
   params: {
     flags?: Number;
@@ -10984,7 +11495,7 @@ export interface $Messages$AcceptUrlAuth {
   response: UrlAuthResult
 }
 
-export interface $Messages$HidePeerSettingsBar {
+export interface Messages$HidePeerSettingsBar {
   method: "messages.hidePeerSettingsBar";
   params: {
     peer: InputPeer;
@@ -10992,7 +11503,7 @@ export interface $Messages$HidePeerSettingsBar {
   response: Bool
 }
 
-export interface $Contacts$AddContact {
+export interface Contacts$AddContact {
   method: "contacts.addContact";
   params: {
     flags?: Number;
@@ -11005,7 +11516,7 @@ export interface $Contacts$AddContact {
   response: Updates
 }
 
-export interface $Contacts$AcceptContact {
+export interface Contacts$AcceptContact {
   method: "contacts.acceptContact";
   params: {
     id: InputUser;
@@ -11013,7 +11524,7 @@ export interface $Contacts$AcceptContact {
   response: Updates
 }
 
-export interface $Channels$EditCreator {
+export interface Channels$EditCreator {
   method: "channels.editCreator";
   params: {
     channel: InputChannel;
@@ -11023,7 +11534,7 @@ export interface $Channels$EditCreator {
   response: Updates
 }
 
-export interface $Contacts$GetLocated {
+export interface Contacts$GetLocated {
   method: "contacts.getLocated";
   params: {
     flags?: Number;
@@ -11034,7 +11545,7 @@ export interface $Contacts$GetLocated {
   response: Updates
 }
 
-export interface $Channels$EditLocation {
+export interface Channels$EditLocation {
   method: "channels.editLocation";
   params: {
     channel: InputChannel;
@@ -11044,7 +11555,7 @@ export interface $Channels$EditLocation {
   response: Bool
 }
 
-export interface $Channels$ToggleSlowMode {
+export interface Channels$ToggleSlowMode {
   method: "channels.toggleSlowMode";
   params: {
     channel: InputChannel;
@@ -11053,7 +11564,7 @@ export interface $Channels$ToggleSlowMode {
   response: Updates
 }
 
-export interface $Messages$GetScheduledHistory {
+export interface Messages$GetScheduledHistory {
   method: "messages.getScheduledHistory";
   params: {
     peer: InputPeer;
@@ -11062,7 +11573,7 @@ export interface $Messages$GetScheduledHistory {
   response: Messages$Messages
 }
 
-export interface $Messages$GetScheduledMessages {
+export interface Messages$GetScheduledMessages {
   method: "messages.getScheduledMessages";
   params: {
     peer: InputPeer;
@@ -11071,7 +11582,7 @@ export interface $Messages$GetScheduledMessages {
   response: Messages$Messages
 }
 
-export interface $Messages$SendScheduledMessages {
+export interface Messages$SendScheduledMessages {
   method: "messages.sendScheduledMessages";
   params: {
     peer: InputPeer;
@@ -11080,7 +11591,7 @@ export interface $Messages$SendScheduledMessages {
   response: Updates
 }
 
-export interface $Messages$DeleteScheduledMessages {
+export interface Messages$DeleteScheduledMessages {
   method: "messages.deleteScheduledMessages";
   params: {
     peer: InputPeer;
@@ -11089,7 +11600,7 @@ export interface $Messages$DeleteScheduledMessages {
   response: Updates
 }
 
-export interface $Account$UploadTheme {
+export interface Account$UploadTheme {
   method: "account.uploadTheme";
   params: {
     flags?: Number;
@@ -11101,7 +11612,7 @@ export interface $Account$UploadTheme {
   response: Document
 }
 
-export interface $Account$CreateTheme {
+export interface Account$CreateTheme {
   method: "account.createTheme";
   params: {
     flags?: Number;
@@ -11113,7 +11624,7 @@ export interface $Account$CreateTheme {
   response: Theme
 }
 
-export interface $Account$UpdateTheme {
+export interface Account$UpdateTheme {
   method: "account.updateTheme";
   params: {
     flags?: Number;
@@ -11127,7 +11638,7 @@ export interface $Account$UpdateTheme {
   response: Theme
 }
 
-export interface $Account$SaveTheme {
+export interface Account$SaveTheme {
   method: "account.saveTheme";
   params: {
     theme: InputTheme;
@@ -11136,7 +11647,7 @@ export interface $Account$SaveTheme {
   response: Bool
 }
 
-export interface $Account$InstallTheme {
+export interface Account$InstallTheme {
   method: "account.installTheme";
   params: {
     flags?: Number;
@@ -11148,7 +11659,7 @@ export interface $Account$InstallTheme {
   response: Bool
 }
 
-export interface $Account$GetTheme {
+export interface Account$GetTheme {
   method: "account.getTheme";
   params: {
     format: string;
@@ -11157,7 +11668,7 @@ export interface $Account$GetTheme {
   response: Theme
 }
 
-export interface $Account$GetThemes {
+export interface Account$GetThemes {
   method: "account.getThemes";
   params: {
     format: string;
@@ -11166,7 +11677,7 @@ export interface $Account$GetThemes {
   response: Account$Themes
 }
 
-export interface $Auth$ExportLoginToken {
+export interface Auth$ExportLoginToken {
   method: "auth.exportLoginToken";
   params: {
     api_id: number;
@@ -11176,7 +11687,7 @@ export interface $Auth$ExportLoginToken {
   response: Auth$LoginToken
 }
 
-export interface $Auth$ImportLoginToken {
+export interface Auth$ImportLoginToken {
   method: "auth.importLoginToken";
   params: {
     token: Uint8Array;
@@ -11184,7 +11695,7 @@ export interface $Auth$ImportLoginToken {
   response: Auth$LoginToken
 }
 
-export interface $Auth$AcceptLoginToken {
+export interface Auth$AcceptLoginToken {
   method: "auth.acceptLoginToken";
   params: {
     token: Uint8Array;
@@ -11192,7 +11703,7 @@ export interface $Auth$AcceptLoginToken {
   response: Authorization
 }
 
-export interface $Account$SetContentSettings {
+export interface Account$SetContentSettings {
   method: "account.setContentSettings";
   params: {
     flags?: Number;
@@ -11201,21 +11712,21 @@ export interface $Account$SetContentSettings {
   response: Bool
 }
 
-export interface $Account$GetContentSettings {
+export interface Account$GetContentSettings {
   method: "account.getContentSettings";
   params: {
   }
   response: Account$ContentSettings
 }
 
-export interface $Channels$GetInactiveChannels {
+export interface Channels$GetInactiveChannels {
   method: "channels.getInactiveChannels";
   params: {
   }
   response: Messages$InactiveChats
 }
 
-export interface $Account$GetMultiWallPapers {
+export interface Account$GetMultiWallPapers {
   method: "account.getMultiWallPapers";
   params: {
     wallpapers: InputWallPaper;
@@ -11223,7 +11734,7 @@ export interface $Account$GetMultiWallPapers {
   response: WallPaper[]
 }
 
-export interface $Messages$GetPollVotes {
+export interface Messages$GetPollVotes {
   method: "messages.getPollVotes";
   params: {
     flags?: Number;
@@ -11236,7 +11747,7 @@ export interface $Messages$GetPollVotes {
   response: Messages$VotesList
 }
 
-export interface $Messages$ToggleStickerSets {
+export interface Messages$ToggleStickerSets {
   method: "messages.toggleStickerSets";
   params: {
     flags?: Number;
@@ -11248,7 +11759,7 @@ export interface $Messages$ToggleStickerSets {
   response: Bool
 }
 
-export interface $Payments$GetBankCardData {
+export interface Payments$GetBankCardData {
   method: "payments.getBankCardData";
   params: {
     number: string;
@@ -11256,21 +11767,21 @@ export interface $Payments$GetBankCardData {
   response: Payments$BankCardData
 }
 
-export interface $Messages$GetDialogFilters {
+export interface Messages$GetDialogFilters {
   method: "messages.getDialogFilters";
   params: {
   }
   response: DialogFilter[]
 }
 
-export interface $Messages$GetSuggestedDialogFilters {
+export interface Messages$GetSuggestedDialogFilters {
   method: "messages.getSuggestedDialogFilters";
   params: {
   }
   response: DialogFilterSuggested[]
 }
 
-export interface $Messages$UpdateDialogFilter {
+export interface Messages$UpdateDialogFilter {
   method: "messages.updateDialogFilter";
   params: {
     flags?: Number;
@@ -11280,7 +11791,7 @@ export interface $Messages$UpdateDialogFilter {
   response: Bool
 }
 
-export interface $Messages$UpdateDialogFiltersOrder {
+export interface Messages$UpdateDialogFiltersOrder {
   method: "messages.updateDialogFiltersOrder";
   params: {
     order: number[];
@@ -11288,7 +11799,7 @@ export interface $Messages$UpdateDialogFiltersOrder {
   response: Bool
 }
 
-export interface $Stats$GetBroadcastStats {
+export interface Stats$GetBroadcastStats {
   method: "stats.getBroadcastStats";
   params: {
     flags?: Number;
@@ -11298,7 +11809,7 @@ export interface $Stats$GetBroadcastStats {
   response: Stats$BroadcastStats
 }
 
-export interface $Stats$LoadAsyncGraph {
+export interface Stats$LoadAsyncGraph {
   method: "stats.loadAsyncGraph";
   params: {
     flags?: Number;
@@ -11308,7 +11819,7 @@ export interface $Stats$LoadAsyncGraph {
   response: StatsGraph
 }
 
-export interface $Stickers$SetStickerSetThumb {
+export interface Stickers$SetStickerSetThumb {
   method: "stickers.setStickerSetThumb";
   params: {
     flags?: Number;
@@ -11319,7 +11830,7 @@ export interface $Stickers$SetStickerSetThumb {
   response: Messages$StickerSet
 }
 
-export interface $Bots$SetBotCommands {
+export interface Bots$SetBotCommands {
   method: "bots.setBotCommands";
   params: {
     scope: BotCommandScope;
@@ -11329,7 +11840,7 @@ export interface $Bots$SetBotCommands {
   response: Bool
 }
 
-export interface $Messages$GetOldFeaturedStickers {
+export interface Messages$GetOldFeaturedStickers {
   method: "messages.getOldFeaturedStickers";
   params: {
     offset: number;
@@ -11339,14 +11850,14 @@ export interface $Messages$GetOldFeaturedStickers {
   response: Messages$FeaturedStickers
 }
 
-export interface $Help$GetPromoData {
+export interface Help$GetPromoData {
   method: "help.getPromoData";
   params: {
   }
   response: Help$PromoData
 }
 
-export interface $Help$HidePromoData {
+export interface Help$HidePromoData {
   method: "help.hidePromoData";
   params: {
     peer: InputPeer;
@@ -11354,7 +11865,7 @@ export interface $Help$HidePromoData {
   response: Bool
 }
 
-export interface $Phone$SendSignalingData {
+export interface Phone$SendSignalingData {
   method: "phone.sendSignalingData";
   params: {
     peer: InputPhoneCall;
@@ -11363,7 +11874,7 @@ export interface $Phone$SendSignalingData {
   response: Bool
 }
 
-export interface $Stats$GetMegagroupStats {
+export interface Stats$GetMegagroupStats {
   method: "stats.getMegagroupStats";
   params: {
     flags?: Number;
@@ -11373,14 +11884,14 @@ export interface $Stats$GetMegagroupStats {
   response: Stats$MegagroupStats
 }
 
-export interface $Account$GetGlobalPrivacySettings {
+export interface Account$GetGlobalPrivacySettings {
   method: "account.getGlobalPrivacySettings";
   params: {
   }
   response: GlobalPrivacySettings
 }
 
-export interface $Account$SetGlobalPrivacySettings {
+export interface Account$SetGlobalPrivacySettings {
   method: "account.setGlobalPrivacySettings";
   params: {
     settings: GlobalPrivacySettings;
@@ -11388,7 +11899,7 @@ export interface $Account$SetGlobalPrivacySettings {
   response: GlobalPrivacySettings
 }
 
-export interface $Help$DismissSuggestion {
+export interface Help$DismissSuggestion {
   method: "help.dismissSuggestion";
   params: {
     peer: InputPeer;
@@ -11397,7 +11908,7 @@ export interface $Help$DismissSuggestion {
   response: Bool
 }
 
-export interface $Help$GetCountriesList {
+export interface Help$GetCountriesList {
   method: "help.getCountriesList";
   params: {
     lang_code: string;
@@ -11406,7 +11917,7 @@ export interface $Help$GetCountriesList {
   response: Help$CountriesList
 }
 
-export interface $Messages$GetReplies {
+export interface Messages$GetReplies {
   method: "messages.getReplies";
   params: {
     peer: InputPeer;
@@ -11422,7 +11933,7 @@ export interface $Messages$GetReplies {
   response: Messages$Messages
 }
 
-export interface $Messages$GetDiscussionMessage {
+export interface Messages$GetDiscussionMessage {
   method: "messages.getDiscussionMessage";
   params: {
     peer: InputPeer;
@@ -11431,7 +11942,7 @@ export interface $Messages$GetDiscussionMessage {
   response: Messages$DiscussionMessage
 }
 
-export interface $Messages$ReadDiscussion {
+export interface Messages$ReadDiscussion {
   method: "messages.readDiscussion";
   params: {
     peer: InputPeer;
@@ -11441,7 +11952,7 @@ export interface $Messages$ReadDiscussion {
   response: Bool
 }
 
-export interface $Contacts$BlockFromReplies {
+export interface Contacts$BlockFromReplies {
   method: "contacts.blockFromReplies";
   params: {
     flags?: Number;
@@ -11453,7 +11964,7 @@ export interface $Contacts$BlockFromReplies {
   response: Updates
 }
 
-export interface $Stats$GetMessagePublicForwards {
+export interface Stats$GetMessagePublicForwards {
   method: "stats.getMessagePublicForwards";
   params: {
     channel: InputChannel;
@@ -11466,7 +11977,7 @@ export interface $Stats$GetMessagePublicForwards {
   response: Messages$Messages
 }
 
-export interface $Stats$GetMessageStats {
+export interface Stats$GetMessageStats {
   method: "stats.getMessageStats";
   params: {
     flags?: Number;
@@ -11477,7 +11988,7 @@ export interface $Stats$GetMessageStats {
   response: Stats$MessageStats
 }
 
-export interface $Messages$UnpinAllMessages {
+export interface Messages$UnpinAllMessages {
   method: "messages.unpinAllMessages";
   params: {
     flags?: Number;
@@ -11487,7 +11998,7 @@ export interface $Messages$UnpinAllMessages {
   response: Messages$AffectedHistory
 }
 
-export interface $Phone$CreateGroupCall {
+export interface Phone$CreateGroupCall {
   method: "phone.createGroupCall";
   params: {
     flags?: Number;
@@ -11500,7 +12011,7 @@ export interface $Phone$CreateGroupCall {
   response: Updates
 }
 
-export interface $Phone$JoinGroupCall {
+export interface Phone$JoinGroupCall {
   method: "phone.joinGroupCall";
   params: {
     flags?: Number;
@@ -11514,7 +12025,7 @@ export interface $Phone$JoinGroupCall {
   response: Updates
 }
 
-export interface $Phone$LeaveGroupCall {
+export interface Phone$LeaveGroupCall {
   method: "phone.leaveGroupCall";
   params: {
     call: InputGroupCall;
@@ -11523,7 +12034,7 @@ export interface $Phone$LeaveGroupCall {
   response: Updates
 }
 
-export interface $Phone$InviteToGroupCall {
+export interface Phone$InviteToGroupCall {
   method: "phone.inviteToGroupCall";
   params: {
     call: InputGroupCall;
@@ -11532,7 +12043,7 @@ export interface $Phone$InviteToGroupCall {
   response: Updates
 }
 
-export interface $Phone$DiscardGroupCall {
+export interface Phone$DiscardGroupCall {
   method: "phone.discardGroupCall";
   params: {
     call: InputGroupCall;
@@ -11540,7 +12051,7 @@ export interface $Phone$DiscardGroupCall {
   response: Updates
 }
 
-export interface $Phone$ToggleGroupCallSettings {
+export interface Phone$ToggleGroupCallSettings {
   method: "phone.toggleGroupCallSettings";
   params: {
     flags?: Number;
@@ -11551,7 +12062,7 @@ export interface $Phone$ToggleGroupCallSettings {
   response: Updates
 }
 
-export interface $Phone$GetGroupCall {
+export interface Phone$GetGroupCall {
   method: "phone.getGroupCall";
   params: {
     call: InputGroupCall;
@@ -11560,7 +12071,7 @@ export interface $Phone$GetGroupCall {
   response: Phone$GroupCall
 }
 
-export interface $Phone$GetGroupParticipants {
+export interface Phone$GetGroupParticipants {
   method: "phone.getGroupParticipants";
   params: {
     call: InputGroupCall;
@@ -11572,7 +12083,7 @@ export interface $Phone$GetGroupParticipants {
   response: Phone$GroupParticipants
 }
 
-export interface $Phone$CheckGroupCall {
+export interface Phone$CheckGroupCall {
   method: "phone.checkGroupCall";
   params: {
     call: InputGroupCall;
@@ -11581,7 +12092,7 @@ export interface $Phone$CheckGroupCall {
   response: Number[]
 }
 
-export interface $Messages$DeleteChat {
+export interface Messages$DeleteChat {
   method: "messages.deleteChat";
   params: {
     chat_id: number;
@@ -11589,7 +12100,7 @@ export interface $Messages$DeleteChat {
   response: Bool
 }
 
-export interface $Messages$DeletePhoneCallHistory {
+export interface Messages$DeletePhoneCallHistory {
   method: "messages.deletePhoneCallHistory";
   params: {
     flags?: Number;
@@ -11598,7 +12109,7 @@ export interface $Messages$DeletePhoneCallHistory {
   response: Messages$AffectedFoundMessages
 }
 
-export interface $Messages$CheckHistoryImport {
+export interface Messages$CheckHistoryImport {
   method: "messages.checkHistoryImport";
   params: {
     import_head: string;
@@ -11606,7 +12117,7 @@ export interface $Messages$CheckHistoryImport {
   response: Messages$HistoryImportParsed
 }
 
-export interface $Messages$InitHistoryImport {
+export interface Messages$InitHistoryImport {
   method: "messages.initHistoryImport";
   params: {
     peer: InputPeer;
@@ -11616,7 +12127,7 @@ export interface $Messages$InitHistoryImport {
   response: Messages$HistoryImport
 }
 
-export interface $Messages$UploadImportedMedia {
+export interface Messages$UploadImportedMedia {
   method: "messages.uploadImportedMedia";
   params: {
     peer: InputPeer;
@@ -11627,7 +12138,7 @@ export interface $Messages$UploadImportedMedia {
   response: MessageMedia
 }
 
-export interface $Messages$StartHistoryImport {
+export interface Messages$StartHistoryImport {
   method: "messages.startHistoryImport";
   params: {
     peer: InputPeer;
@@ -11636,7 +12147,7 @@ export interface $Messages$StartHistoryImport {
   response: Bool
 }
 
-export interface $Messages$GetExportedChatInvites {
+export interface Messages$GetExportedChatInvites {
   method: "messages.getExportedChatInvites";
   params: {
     flags?: Number;
@@ -11650,7 +12161,7 @@ export interface $Messages$GetExportedChatInvites {
   response: Messages$ExportedChatInvites
 }
 
-export interface $Messages$GetExportedChatInvite {
+export interface Messages$GetExportedChatInvite {
   method: "messages.getExportedChatInvite";
   params: {
     peer: InputPeer;
@@ -11659,7 +12170,7 @@ export interface $Messages$GetExportedChatInvite {
   response: Messages$ExportedChatInvite
 }
 
-export interface $Messages$EditExportedChatInvite {
+export interface Messages$EditExportedChatInvite {
   method: "messages.editExportedChatInvite";
   params: {
     flags?: Number;
@@ -11674,7 +12185,7 @@ export interface $Messages$EditExportedChatInvite {
   response: Messages$ExportedChatInvite
 }
 
-export interface $Messages$DeleteRevokedExportedChatInvites {
+export interface Messages$DeleteRevokedExportedChatInvites {
   method: "messages.deleteRevokedExportedChatInvites";
   params: {
     peer: InputPeer;
@@ -11683,7 +12194,7 @@ export interface $Messages$DeleteRevokedExportedChatInvites {
   response: Bool
 }
 
-export interface $Messages$DeleteExportedChatInvite {
+export interface Messages$DeleteExportedChatInvite {
   method: "messages.deleteExportedChatInvite";
   params: {
     peer: InputPeer;
@@ -11692,7 +12203,7 @@ export interface $Messages$DeleteExportedChatInvite {
   response: Bool
 }
 
-export interface $Messages$GetAdminsWithInvites {
+export interface Messages$GetAdminsWithInvites {
   method: "messages.getAdminsWithInvites";
   params: {
     peer: InputPeer;
@@ -11700,7 +12211,7 @@ export interface $Messages$GetAdminsWithInvites {
   response: Messages$ChatAdminsWithInvites
 }
 
-export interface $Messages$GetChatInviteImporters {
+export interface Messages$GetChatInviteImporters {
   method: "messages.getChatInviteImporters";
   params: {
     flags?: Number;
@@ -11715,7 +12226,7 @@ export interface $Messages$GetChatInviteImporters {
   response: Messages$ChatInviteImporters
 }
 
-export interface $Messages$SetHistoryTTL {
+export interface Messages$SetHistoryTTL {
   method: "messages.setHistoryTTL";
   params: {
     peer: InputPeer;
@@ -11724,7 +12235,7 @@ export interface $Messages$SetHistoryTTL {
   response: Updates
 }
 
-export interface $Account$ReportProfilePhoto {
+export interface Account$ReportProfilePhoto {
   method: "account.reportProfilePhoto";
   params: {
     peer: InputPeer;
@@ -11735,7 +12246,7 @@ export interface $Account$ReportProfilePhoto {
   response: Bool
 }
 
-export interface $Channels$ConvertToGigagroup {
+export interface Channels$ConvertToGigagroup {
   method: "channels.convertToGigagroup";
   params: {
     channel: InputChannel;
@@ -11743,7 +12254,7 @@ export interface $Channels$ConvertToGigagroup {
   response: Updates
 }
 
-export interface $Messages$CheckHistoryImportPeer {
+export interface Messages$CheckHistoryImportPeer {
   method: "messages.checkHistoryImportPeer";
   params: {
     peer: InputPeer;
@@ -11751,7 +12262,7 @@ export interface $Messages$CheckHistoryImportPeer {
   response: Messages$CheckedHistoryImportPeer
 }
 
-export interface $Phone$ToggleGroupCallRecord {
+export interface Phone$ToggleGroupCallRecord {
   method: "phone.toggleGroupCallRecord";
   params: {
     flags?: Number;
@@ -11764,7 +12275,7 @@ export interface $Phone$ToggleGroupCallRecord {
   response: Updates
 }
 
-export interface $Phone$EditGroupCallParticipant {
+export interface Phone$EditGroupCallParticipant {
   method: "phone.editGroupCallParticipant";
   params: {
     flags?: Number;
@@ -11780,7 +12291,7 @@ export interface $Phone$EditGroupCallParticipant {
   response: Updates
 }
 
-export interface $Phone$EditGroupCallTitle {
+export interface Phone$EditGroupCallTitle {
   method: "phone.editGroupCallTitle";
   params: {
     call: InputGroupCall;
@@ -11789,7 +12300,7 @@ export interface $Phone$EditGroupCallTitle {
   response: Updates
 }
 
-export interface $Phone$GetGroupCallJoinAs {
+export interface Phone$GetGroupCallJoinAs {
   method: "phone.getGroupCallJoinAs";
   params: {
     peer: InputPeer;
@@ -11797,7 +12308,7 @@ export interface $Phone$GetGroupCallJoinAs {
   response: Phone$JoinAsPeers
 }
 
-export interface $Phone$ExportGroupCallInvite {
+export interface Phone$ExportGroupCallInvite {
   method: "phone.exportGroupCallInvite";
   params: {
     flags?: Number;
@@ -11807,7 +12318,7 @@ export interface $Phone$ExportGroupCallInvite {
   response: Phone$ExportedGroupCallInvite
 }
 
-export interface $Phone$ToggleGroupCallStartSubscription {
+export interface Phone$ToggleGroupCallStartSubscription {
   method: "phone.toggleGroupCallStartSubscription";
   params: {
     call: InputGroupCall;
@@ -11816,7 +12327,7 @@ export interface $Phone$ToggleGroupCallStartSubscription {
   response: Updates
 }
 
-export interface $Phone$StartScheduledGroupCall {
+export interface Phone$StartScheduledGroupCall {
   method: "phone.startScheduledGroupCall";
   params: {
     call: InputGroupCall;
@@ -11824,7 +12335,7 @@ export interface $Phone$StartScheduledGroupCall {
   response: Updates
 }
 
-export interface $Phone$SaveDefaultGroupCallJoinAs {
+export interface Phone$SaveDefaultGroupCallJoinAs {
   method: "phone.saveDefaultGroupCallJoinAs";
   params: {
     peer: InputPeer;
@@ -11833,7 +12344,7 @@ export interface $Phone$SaveDefaultGroupCallJoinAs {
   response: Bool
 }
 
-export interface $Phone$JoinGroupCallPresentation {
+export interface Phone$JoinGroupCallPresentation {
   method: "phone.joinGroupCallPresentation";
   params: {
     call: InputGroupCall;
@@ -11842,7 +12353,7 @@ export interface $Phone$JoinGroupCallPresentation {
   response: Updates
 }
 
-export interface $Phone$LeaveGroupCallPresentation {
+export interface Phone$LeaveGroupCallPresentation {
   method: "phone.leaveGroupCallPresentation";
   params: {
     call: InputGroupCall;
@@ -11850,7 +12361,7 @@ export interface $Phone$LeaveGroupCallPresentation {
   response: Updates
 }
 
-export interface $Stickers$CheckShortName {
+export interface Stickers$CheckShortName {
   method: "stickers.checkShortName";
   params: {
     short_name: string;
@@ -11858,7 +12369,7 @@ export interface $Stickers$CheckShortName {
   response: Bool
 }
 
-export interface $Stickers$SuggestShortName {
+export interface Stickers$SuggestShortName {
   method: "stickers.suggestShortName";
   params: {
     title: string;
@@ -11866,7 +12377,7 @@ export interface $Stickers$SuggestShortName {
   response: Stickers$SuggestedShortName
 }
 
-export interface $Bots$ResetBotCommands {
+export interface Bots$ResetBotCommands {
   method: "bots.resetBotCommands";
   params: {
     scope: BotCommandScope;
@@ -11875,7 +12386,7 @@ export interface $Bots$ResetBotCommands {
   response: Bool
 }
 
-export interface $Bots$GetBotCommands {
+export interface Bots$GetBotCommands {
   method: "bots.getBotCommands";
   params: {
     scope: BotCommandScope;
@@ -11884,21 +12395,21 @@ export interface $Bots$GetBotCommands {
   response: BotCommand[]
 }
 
-export interface $Account$ResetPassword {
+export interface Account$ResetPassword {
   method: "account.resetPassword";
   params: {
   }
   response: Account$ResetPasswordResult
 }
 
-export interface $Account$DeclinePasswordReset {
+export interface Account$DeclinePasswordReset {
   method: "account.declinePasswordReset";
   params: {
   }
   response: Bool
 }
 
-export interface $Auth$CheckRecoveryPassword {
+export interface Auth$CheckRecoveryPassword {
   method: "auth.checkRecoveryPassword";
   params: {
     code: string;
@@ -11906,7 +12417,7 @@ export interface $Auth$CheckRecoveryPassword {
   response: Bool
 }
 
-export interface $Account$GetChatThemes {
+export interface Account$GetChatThemes {
   method: "account.getChatThemes";
   params: {
     hash: number;
@@ -11914,7 +12425,7 @@ export interface $Account$GetChatThemes {
   response: Account$Themes
 }
 
-export interface $Messages$SetChatTheme {
+export interface Messages$SetChatTheme {
   method: "messages.setChatTheme";
   params: {
     peer: InputPeer;
@@ -11923,7 +12434,7 @@ export interface $Messages$SetChatTheme {
   response: Updates
 }
 
-export interface $Channels$ViewSponsoredMessage {
+export interface Channels$ViewSponsoredMessage {
   method: "channels.viewSponsoredMessage";
   params: {
     channel: InputChannel;
@@ -11932,7 +12443,7 @@ export interface $Channels$ViewSponsoredMessage {
   response: Bool
 }
 
-export interface $Channels$GetSponsoredMessages {
+export interface Channels$GetSponsoredMessages {
   method: "channels.getSponsoredMessages";
   params: {
     channel: InputChannel;
@@ -11940,7 +12451,7 @@ export interface $Channels$GetSponsoredMessages {
   response: Messages$SponsoredMessages
 }
 
-export interface $Messages$GetMessageReadParticipants {
+export interface Messages$GetMessageReadParticipants {
   method: "messages.getMessageReadParticipants";
   params: {
     peer: InputPeer;
@@ -11949,7 +12460,7 @@ export interface $Messages$GetMessageReadParticipants {
   response: ReadParticipantDate[]
 }
 
-export interface $Messages$GetSearchResultsCalendar {
+export interface Messages$GetSearchResultsCalendar {
   method: "messages.getSearchResultsCalendar";
   params: {
     peer: InputPeer;
@@ -11960,7 +12471,7 @@ export interface $Messages$GetSearchResultsCalendar {
   response: Messages$SearchResultsCalendar
 }
 
-export interface $Messages$GetSearchResultsPositions {
+export interface Messages$GetSearchResultsPositions {
   method: "messages.getSearchResultsPositions";
   params: {
     peer: InputPeer;
@@ -11971,7 +12482,7 @@ export interface $Messages$GetSearchResultsPositions {
   response: Messages$SearchResultsPositions
 }
 
-export interface $Messages$HideChatJoinRequest {
+export interface Messages$HideChatJoinRequest {
   method: "messages.hideChatJoinRequest";
   params: {
     flags?: Number;
@@ -11982,7 +12493,7 @@ export interface $Messages$HideChatJoinRequest {
   response: Updates
 }
 
-export interface $Messages$HideAllChatJoinRequests {
+export interface Messages$HideAllChatJoinRequests {
   method: "messages.hideAllChatJoinRequests";
   params: {
     flags?: Number;
@@ -11993,7 +12504,7 @@ export interface $Messages$HideAllChatJoinRequests {
   response: Updates
 }
 
-export interface $Messages$ToggleNoForwards {
+export interface Messages$ToggleNoForwards {
   method: "messages.toggleNoForwards";
   params: {
     peer: InputPeer;
@@ -12002,7 +12513,7 @@ export interface $Messages$ToggleNoForwards {
   response: Updates
 }
 
-export interface $Messages$SaveDefaultSendAs {
+export interface Messages$SaveDefaultSendAs {
   method: "messages.saveDefaultSendAs";
   params: {
     peer: InputPeer;
@@ -12011,7 +12522,7 @@ export interface $Messages$SaveDefaultSendAs {
   response: Bool
 }
 
-export interface $Channels$GetSendAs {
+export interface Channels$GetSendAs {
   method: "channels.getSendAs";
   params: {
     peer: InputPeer;
@@ -12019,7 +12530,7 @@ export interface $Channels$GetSendAs {
   response: Channels$SendAsPeers
 }
 
-export interface $Account$SetAuthorizationTTL {
+export interface Account$SetAuthorizationTTL {
   method: "account.setAuthorizationTTL";
   params: {
     authorization_ttl_days: number;
@@ -12027,7 +12538,7 @@ export interface $Account$SetAuthorizationTTL {
   response: Bool
 }
 
-export interface $Account$ChangeAuthorizationSettings {
+export interface Account$ChangeAuthorizationSettings {
   method: "account.changeAuthorizationSettings";
   params: {
     flags?: Number;
@@ -12038,7 +12549,7 @@ export interface $Account$ChangeAuthorizationSettings {
   response: Bool
 }
 
-export interface $Channels$DeleteParticipantHistory {
+export interface Channels$DeleteParticipantHistory {
   method: "channels.deleteParticipantHistory";
   params: {
     channel: InputChannel;
@@ -12047,7 +12558,7 @@ export interface $Channels$DeleteParticipantHistory {
   response: Messages$AffectedHistory
 }
 
-export interface $Messages$SendReaction {
+export interface Messages$SendReaction {
   method: "messages.sendReaction";
   params: {
     flags?: Number;
@@ -12060,7 +12571,7 @@ export interface $Messages$SendReaction {
   response: Updates
 }
 
-export interface $Messages$GetMessagesReactions {
+export interface Messages$GetMessagesReactions {
   method: "messages.getMessagesReactions";
   params: {
     peer: InputPeer;
@@ -12069,7 +12580,7 @@ export interface $Messages$GetMessagesReactions {
   response: Updates
 }
 
-export interface $Messages$GetMessageReactionsList {
+export interface Messages$GetMessageReactionsList {
   method: "messages.getMessageReactionsList";
   params: {
     flags?: Number;
@@ -12082,7 +12593,7 @@ export interface $Messages$GetMessageReactionsList {
   response: Messages$MessageReactionsList
 }
 
-export interface $Messages$SetChatAvailableReactions {
+export interface Messages$SetChatAvailableReactions {
   method: "messages.setChatAvailableReactions";
   params: {
     peer: InputPeer;
@@ -12091,7 +12602,7 @@ export interface $Messages$SetChatAvailableReactions {
   response: Updates
 }
 
-export interface $Messages$GetAvailableReactions {
+export interface Messages$GetAvailableReactions {
   method: "messages.getAvailableReactions";
   params: {
     hash: number;
@@ -12099,7 +12610,7 @@ export interface $Messages$GetAvailableReactions {
   response: Messages$AvailableReactions
 }
 
-export interface $Messages$SetDefaultReaction {
+export interface Messages$SetDefaultReaction {
   method: "messages.setDefaultReaction";
   params: {
     reaction: Reaction;
@@ -12107,7 +12618,7 @@ export interface $Messages$SetDefaultReaction {
   response: Bool
 }
 
-export interface $Messages$TranslateText {
+export interface Messages$TranslateText {
   method: "messages.translateText";
   params: {
     flags?: Number;
@@ -12119,7 +12630,7 @@ export interface $Messages$TranslateText {
   response: Messages$TranslatedText
 }
 
-export interface $Messages$GetUnreadReactions {
+export interface Messages$GetUnreadReactions {
   method: "messages.getUnreadReactions";
   params: {
     flags?: Number;
@@ -12134,7 +12645,7 @@ export interface $Messages$GetUnreadReactions {
   response: Messages$Messages
 }
 
-export interface $Messages$ReadReactions {
+export interface Messages$ReadReactions {
   method: "messages.readReactions";
   params: {
     flags?: Number;
@@ -12144,7 +12655,7 @@ export interface $Messages$ReadReactions {
   response: Messages$AffectedHistory
 }
 
-export interface $Contacts$ResolvePhone {
+export interface Contacts$ResolvePhone {
   method: "contacts.resolvePhone";
   params: {
     phone: string;
@@ -12152,7 +12663,7 @@ export interface $Contacts$ResolvePhone {
   response: Contacts$ResolvedPeer
 }
 
-export interface $Phone$GetGroupCallStreamChannels {
+export interface Phone$GetGroupCallStreamChannels {
   method: "phone.getGroupCallStreamChannels";
   params: {
     call: InputGroupCall;
@@ -12160,7 +12671,7 @@ export interface $Phone$GetGroupCallStreamChannels {
   response: Phone$GroupCallStreamChannels
 }
 
-export interface $Phone$GetGroupCallStreamRtmpUrl {
+export interface Phone$GetGroupCallStreamRtmpUrl {
   method: "phone.getGroupCallStreamRtmpUrl";
   params: {
     peer: InputPeer;
@@ -12169,7 +12680,7 @@ export interface $Phone$GetGroupCallStreamRtmpUrl {
   response: Phone$GroupCallStreamRtmpUrl
 }
 
-export interface $Messages$SearchSentMedia {
+export interface Messages$SearchSentMedia {
   method: "messages.searchSentMedia";
   params: {
     q: string;
@@ -12179,7 +12690,7 @@ export interface $Messages$SearchSentMedia {
   response: Messages$Messages
 }
 
-export interface $Messages$GetAttachMenuBots {
+export interface Messages$GetAttachMenuBots {
   method: "messages.getAttachMenuBots";
   params: {
     hash: number;
@@ -12187,7 +12698,7 @@ export interface $Messages$GetAttachMenuBots {
   response: AttachMenuBots
 }
 
-export interface $Messages$GetAttachMenuBot {
+export interface Messages$GetAttachMenuBot {
   method: "messages.getAttachMenuBot";
   params: {
     bot: InputUser;
@@ -12195,7 +12706,7 @@ export interface $Messages$GetAttachMenuBot {
   response: AttachMenuBotsBot
 }
 
-export interface $Messages$ToggleBotInAttachMenu {
+export interface Messages$ToggleBotInAttachMenu {
   method: "messages.toggleBotInAttachMenu";
   params: {
     flags?: Number;
@@ -12206,7 +12717,7 @@ export interface $Messages$ToggleBotInAttachMenu {
   response: Bool
 }
 
-export interface $Messages$RequestWebView {
+export interface Messages$RequestWebView {
   method: "messages.requestWebView";
   params: {
     flags?: Number;
@@ -12225,7 +12736,7 @@ export interface $Messages$RequestWebView {
   response: WebViewResult
 }
 
-export interface $Messages$ProlongWebView {
+export interface Messages$ProlongWebView {
   method: "messages.prolongWebView";
   params: {
     flags?: Number;
@@ -12240,7 +12751,7 @@ export interface $Messages$ProlongWebView {
   response: Bool
 }
 
-export interface $Messages$RequestSimpleWebView {
+export interface Messages$RequestSimpleWebView {
   method: "messages.requestSimpleWebView";
   params: {
     flags?: Number;
@@ -12253,7 +12764,7 @@ export interface $Messages$RequestSimpleWebView {
   response: SimpleWebViewResult
 }
 
-export interface $Messages$SendWebViewResultMessage {
+export interface Messages$SendWebViewResultMessage {
   method: "messages.sendWebViewResultMessage";
   params: {
     bot_query_id: string;
@@ -12262,7 +12773,7 @@ export interface $Messages$SendWebViewResultMessage {
   response: WebViewMessageSent
 }
 
-export interface $Messages$SendWebViewData {
+export interface Messages$SendWebViewData {
   method: "messages.sendWebViewData";
   params: {
     bot: InputUser;
@@ -12273,7 +12784,7 @@ export interface $Messages$SendWebViewData {
   response: Updates
 }
 
-export interface $Bots$SetBotMenuButton {
+export interface Bots$SetBotMenuButton {
   method: "bots.setBotMenuButton";
   params: {
     user_id: InputUser;
@@ -12282,7 +12793,7 @@ export interface $Bots$SetBotMenuButton {
   response: Bool
 }
 
-export interface $Bots$GetBotMenuButton {
+export interface Bots$GetBotMenuButton {
   method: "bots.getBotMenuButton";
   params: {
     user_id: InputUser;
@@ -12290,7 +12801,7 @@ export interface $Bots$GetBotMenuButton {
   response: BotMenuButton
 }
 
-export interface $Account$GetSavedRingtones {
+export interface Account$GetSavedRingtones {
   method: "account.getSavedRingtones";
   params: {
     hash: number;
@@ -12298,7 +12809,7 @@ export interface $Account$GetSavedRingtones {
   response: Account$SavedRingtones
 }
 
-export interface $Account$SaveRingtone {
+export interface Account$SaveRingtone {
   method: "account.saveRingtone";
   params: {
     id: InputDocument;
@@ -12307,7 +12818,7 @@ export interface $Account$SaveRingtone {
   response: Account$SavedRingtone
 }
 
-export interface $Account$UploadRingtone {
+export interface Account$UploadRingtone {
   method: "account.uploadRingtone";
   params: {
     file: InputFile;
@@ -12317,7 +12828,7 @@ export interface $Account$UploadRingtone {
   response: Document
 }
 
-export interface $Bots$SetBotBroadcastDefaultAdminRights {
+export interface Bots$SetBotBroadcastDefaultAdminRights {
   method: "bots.setBotBroadcastDefaultAdminRights";
   params: {
     admin_rights: ChatAdminRights;
@@ -12325,7 +12836,7 @@ export interface $Bots$SetBotBroadcastDefaultAdminRights {
   response: Bool
 }
 
-export interface $Bots$SetBotGroupDefaultAdminRights {
+export interface Bots$SetBotGroupDefaultAdminRights {
   method: "bots.setBotGroupDefaultAdminRights";
   params: {
     admin_rights: ChatAdminRights;
@@ -12333,7 +12844,7 @@ export interface $Bots$SetBotGroupDefaultAdminRights {
   response: Bool
 }
 
-export interface $Phone$SaveCallLog {
+export interface Phone$SaveCallLog {
   method: "phone.saveCallLog";
   params: {
     peer: InputPhoneCall;
@@ -12342,7 +12853,7 @@ export interface $Phone$SaveCallLog {
   response: Bool
 }
 
-export interface $Channels$ToggleJoinToSend {
+export interface Channels$ToggleJoinToSend {
   method: "channels.toggleJoinToSend";
   params: {
     channel: InputChannel;
@@ -12351,7 +12862,7 @@ export interface $Channels$ToggleJoinToSend {
   response: Updates
 }
 
-export interface $Channels$ToggleJoinRequest {
+export interface Channels$ToggleJoinRequest {
   method: "channels.toggleJoinRequest";
   params: {
     channel: InputChannel;
@@ -12360,7 +12871,7 @@ export interface $Channels$ToggleJoinRequest {
   response: Updates
 }
 
-export interface $Payments$ExportInvoice {
+export interface Payments$ExportInvoice {
   method: "payments.exportInvoice";
   params: {
     invoice_media: InputMedia;
@@ -12368,7 +12879,7 @@ export interface $Payments$ExportInvoice {
   response: Payments$ExportedInvoice
 }
 
-export interface $Messages$TranscribeAudio {
+export interface Messages$TranscribeAudio {
   method: "messages.transcribeAudio";
   params: {
     peer: InputPeer;
@@ -12377,7 +12888,7 @@ export interface $Messages$TranscribeAudio {
   response: Messages$TranscribedAudio
 }
 
-export interface $Messages$RateTranscribedAudio {
+export interface Messages$RateTranscribedAudio {
   method: "messages.rateTranscribedAudio";
   params: {
     peer: InputPeer;
@@ -12388,7 +12899,7 @@ export interface $Messages$RateTranscribedAudio {
   response: Bool
 }
 
-export interface $Payments$AssignAppStoreTransaction {
+export interface Payments$AssignAppStoreTransaction {
   method: "payments.assignAppStoreTransaction";
   params: {
     receipt: Uint8Array;
@@ -12397,7 +12908,7 @@ export interface $Payments$AssignAppStoreTransaction {
   response: Updates
 }
 
-export interface $Payments$AssignPlayMarketTransaction {
+export interface Payments$AssignPlayMarketTransaction {
   method: "payments.assignPlayMarketTransaction";
   params: {
     receipt: DataJSON;
@@ -12406,7 +12917,7 @@ export interface $Payments$AssignPlayMarketTransaction {
   response: Updates
 }
 
-export interface $Payments$CanPurchasePremium {
+export interface Payments$CanPurchasePremium {
   method: "payments.canPurchasePremium";
   params: {
     purpose: InputStorePaymentPurpose;
@@ -12414,14 +12925,14 @@ export interface $Payments$CanPurchasePremium {
   response: Bool
 }
 
-export interface $Help$GetPremiumPromo {
+export interface Help$GetPremiumPromo {
   method: "help.getPremiumPromo";
   params: {
   }
   response: Help$PremiumPromo
 }
 
-export interface $Messages$GetCustomEmojiDocuments {
+export interface Messages$GetCustomEmojiDocuments {
   method: "messages.getCustomEmojiDocuments";
   params: {
     document_id: number[];
@@ -12429,7 +12940,7 @@ export interface $Messages$GetCustomEmojiDocuments {
   response: Document[]
 }
 
-export interface $Messages$GetEmojiStickers {
+export interface Messages$GetEmojiStickers {
   method: "messages.getEmojiStickers";
   params: {
     hash: number;
@@ -12437,7 +12948,7 @@ export interface $Messages$GetEmojiStickers {
   response: Messages$AllStickers
 }
 
-export interface $Messages$GetFeaturedEmojiStickers {
+export interface Messages$GetFeaturedEmojiStickers {
   method: "messages.getFeaturedEmojiStickers";
   params: {
     hash: number;
@@ -12445,7 +12956,7 @@ export interface $Messages$GetFeaturedEmojiStickers {
   response: Messages$FeaturedStickers
 }
 
-export interface $Account$UpdateEmojiStatus {
+export interface Account$UpdateEmojiStatus {
   method: "account.updateEmojiStatus";
   params: {
     emoji_status: EmojiStatus;
@@ -12453,7 +12964,7 @@ export interface $Account$UpdateEmojiStatus {
   response: Bool
 }
 
-export interface $Account$GetDefaultEmojiStatuses {
+export interface Account$GetDefaultEmojiStatuses {
   method: "account.getDefaultEmojiStatuses";
   params: {
     hash: number;
@@ -12461,7 +12972,7 @@ export interface $Account$GetDefaultEmojiStatuses {
   response: Account$EmojiStatuses
 }
 
-export interface $Account$GetRecentEmojiStatuses {
+export interface Account$GetRecentEmojiStatuses {
   method: "account.getRecentEmojiStatuses";
   params: {
     hash: number;
@@ -12469,14 +12980,14 @@ export interface $Account$GetRecentEmojiStatuses {
   response: Account$EmojiStatuses
 }
 
-export interface $Account$ClearRecentEmojiStatuses {
+export interface Account$ClearRecentEmojiStatuses {
   method: "account.clearRecentEmojiStatuses";
   params: {
   }
   response: Bool
 }
 
-export interface $Messages$ReportReaction {
+export interface Messages$ReportReaction {
   method: "messages.reportReaction";
   params: {
     peer: InputPeer;
@@ -12486,7 +12997,7 @@ export interface $Messages$ReportReaction {
   response: Bool
 }
 
-export interface $Messages$GetTopReactions {
+export interface Messages$GetTopReactions {
   method: "messages.getTopReactions";
   params: {
     limit: number;
@@ -12495,7 +13006,7 @@ export interface $Messages$GetTopReactions {
   response: Messages$Reactions
 }
 
-export interface $Messages$GetRecentReactions {
+export interface Messages$GetRecentReactions {
   method: "messages.getRecentReactions";
   params: {
     limit: number;
@@ -12504,14 +13015,14 @@ export interface $Messages$GetRecentReactions {
   response: Messages$Reactions
 }
 
-export interface $Messages$ClearRecentReactions {
+export interface Messages$ClearRecentReactions {
   method: "messages.clearRecentReactions";
   params: {
   }
   response: Bool
 }
 
-export interface $Messages$GetExtendedMedia {
+export interface Messages$GetExtendedMedia {
   method: "messages.getExtendedMedia";
   params: {
     peer: InputPeer;
@@ -12520,7 +13031,7 @@ export interface $Messages$GetExtendedMedia {
   response: Updates
 }
 
-export interface $Auth$ImportWebTokenAuthorization {
+export interface Auth$ImportWebTokenAuthorization {
   method: "auth.importWebTokenAuthorization";
   params: {
     api_id: number;
@@ -12530,7 +13041,7 @@ export interface $Auth$ImportWebTokenAuthorization {
   response: Auth$Authorization
 }
 
-export interface $Account$ReorderUsernames {
+export interface Account$ReorderUsernames {
   method: "account.reorderUsernames";
   params: {
     order: string[];
@@ -12538,7 +13049,7 @@ export interface $Account$ReorderUsernames {
   response: Bool
 }
 
-export interface $Account$ToggleUsername {
+export interface Account$ToggleUsername {
   method: "account.toggleUsername";
   params: {
     username: string;
@@ -12547,7 +13058,7 @@ export interface $Account$ToggleUsername {
   response: Bool
 }
 
-export interface $Channels$ReorderUsernames {
+export interface Channels$ReorderUsernames {
   method: "channels.reorderUsernames";
   params: {
     channel: InputChannel;
@@ -12556,7 +13067,7 @@ export interface $Channels$ReorderUsernames {
   response: Bool
 }
 
-export interface $Channels$ToggleUsername {
+export interface Channels$ToggleUsername {
   method: "channels.toggleUsername";
   params: {
     channel: InputChannel;
@@ -12566,7 +13077,7 @@ export interface $Channels$ToggleUsername {
   response: Bool
 }
 
-export interface $Channels$DeactivateAllUsernames {
+export interface Channels$DeactivateAllUsernames {
   method: "channels.deactivateAllUsernames";
   params: {
     channel: InputChannel;
@@ -12574,7 +13085,7 @@ export interface $Channels$DeactivateAllUsernames {
   response: Bool
 }
 
-export interface $Channels$ToggleForum {
+export interface Channels$ToggleForum {
   method: "channels.toggleForum";
   params: {
     channel: InputChannel;
@@ -12583,7 +13094,7 @@ export interface $Channels$ToggleForum {
   response: Updates
 }
 
-export interface $Channels$CreateForumTopic {
+export interface Channels$CreateForumTopic {
   method: "channels.createForumTopic";
   params: {
     flags?: Number;
@@ -12597,7 +13108,7 @@ export interface $Channels$CreateForumTopic {
   response: Updates
 }
 
-export interface $Channels$GetForumTopics {
+export interface Channels$GetForumTopics {
   method: "channels.getForumTopics";
   params: {
     flags?: Number;
@@ -12611,7 +13122,7 @@ export interface $Channels$GetForumTopics {
   response: Messages$ForumTopics
 }
 
-export interface $Channels$GetForumTopicsByID {
+export interface Channels$GetForumTopicsByID {
   method: "channels.getForumTopicsByID";
   params: {
     channel: InputChannel;
@@ -12620,7 +13131,7 @@ export interface $Channels$GetForumTopicsByID {
   response: Messages$ForumTopics
 }
 
-export interface $Channels$EditForumTopic {
+export interface Channels$EditForumTopic {
   method: "channels.editForumTopic";
   params: {
     flags?: Number;
@@ -12634,7 +13145,7 @@ export interface $Channels$EditForumTopic {
   response: Updates
 }
 
-export interface $Channels$UpdatePinnedForumTopic {
+export interface Channels$UpdatePinnedForumTopic {
   method: "channels.updatePinnedForumTopic";
   params: {
     channel: InputChannel;
@@ -12644,7 +13155,7 @@ export interface $Channels$UpdatePinnedForumTopic {
   response: Updates
 }
 
-export interface $Channels$DeleteTopicHistory {
+export interface Channels$DeleteTopicHistory {
   method: "channels.deleteTopicHistory";
   params: {
     channel: InputChannel;
@@ -12653,7 +13164,7 @@ export interface $Channels$DeleteTopicHistory {
   response: Messages$AffectedHistory
 }
 
-export interface $Channels$ReorderPinnedForumTopics {
+export interface Channels$ReorderPinnedForumTopics {
   method: "channels.reorderPinnedForumTopics";
   params: {
     flags?: Number;
@@ -12664,7 +13175,7 @@ export interface $Channels$ReorderPinnedForumTopics {
   response: Updates
 }
 
-export interface $Channels$ToggleAntiSpam {
+export interface Channels$ToggleAntiSpam {
   method: "channels.toggleAntiSpam";
   params: {
     channel: InputChannel;
@@ -12673,7 +13184,7 @@ export interface $Channels$ToggleAntiSpam {
   response: Updates
 }
 
-export interface $Channels$ReportAntiSpamFalsePositive {
+export interface Channels$ReportAntiSpamFalsePositive {
   method: "channels.reportAntiSpamFalsePositive";
   params: {
     channel: InputChannel;
@@ -12682,7 +13193,7 @@ export interface $Channels$ReportAntiSpamFalsePositive {
   response: Bool
 }
 
-export interface $Messages$SetDefaultHistoryTTL {
+export interface Messages$SetDefaultHistoryTTL {
   method: "messages.setDefaultHistoryTTL";
   params: {
     period: number;
@@ -12690,21 +13201,21 @@ export interface $Messages$SetDefaultHistoryTTL {
   response: Bool
 }
 
-export interface $Messages$GetDefaultHistoryTTL {
+export interface Messages$GetDefaultHistoryTTL {
   method: "messages.getDefaultHistoryTTL";
   params: {
   }
   response: DefaultHistoryTTL
 }
 
-export interface $Contacts$ExportContactToken {
+export interface Contacts$ExportContactToken {
   method: "contacts.exportContactToken";
   params: {
   }
   response: ExportedContactToken
 }
 
-export interface $Contacts$ImportContactToken {
+export interface Contacts$ImportContactToken {
   method: "contacts.importContactToken";
   params: {
     token: string;
@@ -12712,7 +13223,7 @@ export interface $Contacts$ImportContactToken {
   response: User
 }
 
-export interface $Photos$UploadContactProfilePhoto {
+export interface Photos$UploadContactProfilePhoto {
   method: "photos.uploadContactProfilePhoto";
   params: {
     flags?: Number;
@@ -12727,7 +13238,7 @@ export interface $Photos$UploadContactProfilePhoto {
   response: Photos$Photo
 }
 
-export interface $Channels$ToggleParticipantsHidden {
+export interface Channels$ToggleParticipantsHidden {
   method: "channels.toggleParticipantsHidden";
   params: {
     channel: InputChannel;
@@ -12736,7 +13247,7 @@ export interface $Channels$ToggleParticipantsHidden {
   response: Updates
 }
 
-export interface $Messages$SendBotRequestedPeer {
+export interface Messages$SendBotRequestedPeer {
   method: "messages.sendBotRequestedPeer";
   params: {
     peer: InputPeer;
@@ -12747,7 +13258,7 @@ export interface $Messages$SendBotRequestedPeer {
   response: Updates
 }
 
-export interface $Account$GetDefaultProfilePhotoEmojis {
+export interface Account$GetDefaultProfilePhotoEmojis {
   method: "account.getDefaultProfilePhotoEmojis";
   params: {
     hash: number;
@@ -12755,7 +13266,7 @@ export interface $Account$GetDefaultProfilePhotoEmojis {
   response: EmojiList
 }
 
-export interface $Account$GetDefaultGroupPhotoEmojis {
+export interface Account$GetDefaultGroupPhotoEmojis {
   method: "account.getDefaultGroupPhotoEmojis";
   params: {
     hash: number;
@@ -12763,7 +13274,7 @@ export interface $Account$GetDefaultGroupPhotoEmojis {
   response: EmojiList
 }
 
-export interface $Auth$RequestFirebaseSms {
+export interface Auth$RequestFirebaseSms {
   method: "auth.requestFirebaseSms";
   params: {
     flags?: Number;
@@ -12775,7 +13286,7 @@ export interface $Auth$RequestFirebaseSms {
   response: Bool
 }
 
-export interface $Messages$GetEmojiGroups {
+export interface Messages$GetEmojiGroups {
   method: "messages.getEmojiGroups";
   params: {
     hash: number;
@@ -12783,7 +13294,7 @@ export interface $Messages$GetEmojiGroups {
   response: Messages$EmojiGroups
 }
 
-export interface $Messages$GetEmojiStatusGroups {
+export interface Messages$GetEmojiStatusGroups {
   method: "messages.getEmojiStatusGroups";
   params: {
     hash: number;
@@ -12791,7 +13302,7 @@ export interface $Messages$GetEmojiStatusGroups {
   response: Messages$EmojiGroups
 }
 
-export interface $Messages$GetEmojiProfilePhotoGroups {
+export interface Messages$GetEmojiProfilePhotoGroups {
   method: "messages.getEmojiProfilePhotoGroups";
   params: {
     hash: number;
@@ -12799,7 +13310,7 @@ export interface $Messages$GetEmojiProfilePhotoGroups {
   response: Messages$EmojiGroups
 }
 
-export interface $Messages$SearchCustomEmoji {
+export interface Messages$SearchCustomEmoji {
   method: "messages.searchCustomEmoji";
   params: {
     emoticon: string;
@@ -12808,7 +13319,7 @@ export interface $Messages$SearchCustomEmoji {
   response: EmojiList
 }
 
-export interface $Messages$TogglePeerTranslations {
+export interface Messages$TogglePeerTranslations {
   method: "messages.togglePeerTranslations";
   params: {
     flags?: Number;
@@ -12818,14 +13329,14 @@ export interface $Messages$TogglePeerTranslations {
   response: Bool
 }
 
-export interface $Account$GetAutoSaveSettings {
+export interface Account$GetAutoSaveSettings {
   method: "account.getAutoSaveSettings";
   params: {
   }
   response: Account$AutoSaveSettings
 }
 
-export interface $Account$SaveAutoSaveSettings {
+export interface Account$SaveAutoSaveSettings {
   method: "account.saveAutoSaveSettings";
   params: {
     flags?: Number;
@@ -12838,14 +13349,14 @@ export interface $Account$SaveAutoSaveSettings {
   response: Bool
 }
 
-export interface $Account$DeleteAutoSaveExceptions {
+export interface Account$DeleteAutoSaveExceptions {
   method: "account.deleteAutoSaveExceptions";
   params: {
   }
   response: Bool
 }
 
-export interface $Stickers$ChangeSticker {
+export interface Stickers$ChangeSticker {
   method: "stickers.changeSticker";
   params: {
     flags?: Number;
@@ -12857,7 +13368,7 @@ export interface $Stickers$ChangeSticker {
   response: Messages$StickerSet
 }
 
-export interface $Stickers$RenameStickerSet {
+export interface Stickers$RenameStickerSet {
   method: "stickers.renameStickerSet";
   params: {
     stickerset: InputStickerSet;
@@ -12866,7 +13377,7 @@ export interface $Stickers$RenameStickerSet {
   response: Messages$StickerSet
 }
 
-export interface $Stickers$DeleteStickerSet {
+export interface Stickers$DeleteStickerSet {
   method: "stickers.deleteStickerSet";
   params: {
     stickerset: InputStickerSet;
@@ -12874,7 +13385,7 @@ export interface $Stickers$DeleteStickerSet {
   response: Bool
 }
 
-export interface $Messages$GetBotApp {
+export interface Messages$GetBotApp {
   method: "messages.getBotApp";
   params: {
     app: InputBotApp;
@@ -12883,7 +13394,7 @@ export interface $Messages$GetBotApp {
   response: Messages$BotApp
 }
 
-export interface $Messages$RequestAppWebView {
+export interface Messages$RequestAppWebView {
   method: "messages.requestAppWebView";
   params: {
     flags?: Number;
@@ -12897,7 +13408,7 @@ export interface $Messages$RequestAppWebView {
   response: AppWebViewResult
 }
 
-export interface $Bots$SetBotInfo {
+export interface Bots$SetBotInfo {
   method: "bots.setBotInfo";
   params: {
     flags?: Number;
@@ -12910,7 +13421,7 @@ export interface $Bots$SetBotInfo {
   response: Bool
 }
 
-export interface $Bots$GetBotInfo {
+export interface Bots$GetBotInfo {
   method: "bots.getBotInfo";
   params: {
     flags?: Number;
@@ -12920,7 +13431,7 @@ export interface $Bots$GetBotInfo {
   response: Bots$BotInfo
 }
 
-export interface $Auth$ResetLoginEmail {
+export interface Auth$ResetLoginEmail {
   method: "auth.resetLoginEmail";
   params: {
     phone_number: string;
@@ -12929,7 +13440,7 @@ export interface $Auth$ResetLoginEmail {
   response: Auth$SentCode
 }
 
-export interface $Chatlists$ExportChatlistInvite {
+export interface Chatlists$ExportChatlistInvite {
   method: "chatlists.exportChatlistInvite";
   params: {
     chatlist: InputChatlist;
@@ -12939,7 +13450,7 @@ export interface $Chatlists$ExportChatlistInvite {
   response: Chatlists$ExportedChatlistInvite
 }
 
-export interface $Chatlists$DeleteExportedInvite {
+export interface Chatlists$DeleteExportedInvite {
   method: "chatlists.deleteExportedInvite";
   params: {
     chatlist: InputChatlist;
@@ -12948,7 +13459,7 @@ export interface $Chatlists$DeleteExportedInvite {
   response: Bool
 }
 
-export interface $Chatlists$EditExportedInvite {
+export interface Chatlists$EditExportedInvite {
   method: "chatlists.editExportedInvite";
   params: {
     flags?: Number;
@@ -12960,7 +13471,7 @@ export interface $Chatlists$EditExportedInvite {
   response: ExportedChatlistInvite
 }
 
-export interface $Chatlists$GetExportedInvites {
+export interface Chatlists$GetExportedInvites {
   method: "chatlists.getExportedInvites";
   params: {
     chatlist: InputChatlist;
@@ -12968,7 +13479,7 @@ export interface $Chatlists$GetExportedInvites {
   response: Chatlists$ExportedInvites
 }
 
-export interface $Chatlists$CheckChatlistInvite {
+export interface Chatlists$CheckChatlistInvite {
   method: "chatlists.checkChatlistInvite";
   params: {
     slug: string;
@@ -12976,7 +13487,7 @@ export interface $Chatlists$CheckChatlistInvite {
   response: Chatlists$ChatlistInvite
 }
 
-export interface $Chatlists$JoinChatlistInvite {
+export interface Chatlists$JoinChatlistInvite {
   method: "chatlists.joinChatlistInvite";
   params: {
     slug: string;
@@ -12985,7 +13496,7 @@ export interface $Chatlists$JoinChatlistInvite {
   response: Updates
 }
 
-export interface $Chatlists$GetChatlistUpdates {
+export interface Chatlists$GetChatlistUpdates {
   method: "chatlists.getChatlistUpdates";
   params: {
     chatlist: InputChatlist;
@@ -12993,7 +13504,7 @@ export interface $Chatlists$GetChatlistUpdates {
   response: Chatlists$ChatlistUpdates
 }
 
-export interface $Chatlists$JoinChatlistUpdates {
+export interface Chatlists$JoinChatlistUpdates {
   method: "chatlists.joinChatlistUpdates";
   params: {
     chatlist: InputChatlist;
@@ -13002,7 +13513,7 @@ export interface $Chatlists$JoinChatlistUpdates {
   response: Updates
 }
 
-export interface $Chatlists$HideChatlistUpdates {
+export interface Chatlists$HideChatlistUpdates {
   method: "chatlists.hideChatlistUpdates";
   params: {
     chatlist: InputChatlist;
@@ -13010,7 +13521,7 @@ export interface $Chatlists$HideChatlistUpdates {
   response: Bool
 }
 
-export interface $Chatlists$GetLeaveChatlistSuggestions {
+export interface Chatlists$GetLeaveChatlistSuggestions {
   method: "chatlists.getLeaveChatlistSuggestions";
   params: {
     chatlist: InputChatlist;
@@ -13018,7 +13529,7 @@ export interface $Chatlists$GetLeaveChatlistSuggestions {
   response: Peer[]
 }
 
-export interface $Chatlists$LeaveChatlist {
+export interface Chatlists$LeaveChatlist {
   method: "chatlists.leaveChatlist";
   params: {
     chatlist: InputChatlist;
@@ -13027,7 +13538,7 @@ export interface $Chatlists$LeaveChatlist {
   response: Updates
 }
 
-export interface $Bots$ReorderUsernames {
+export interface Bots$ReorderUsernames {
   method: "bots.reorderUsernames";
   params: {
     bot: InputUser;
@@ -13036,7 +13547,7 @@ export interface $Bots$ReorderUsernames {
   response: Bool
 }
 
-export interface $Bots$ToggleUsername {
+export interface Bots$ToggleUsername {
   method: "bots.toggleUsername";
   params: {
     bot: InputUser;
@@ -13046,7 +13557,7 @@ export interface $Bots$ToggleUsername {
   response: Bool
 }
 
-export interface $Messages$SetChatWallPaper {
+export interface Messages$SetChatWallPaper {
   method: "messages.setChatWallPaper";
   params: {
     flags?: Number;

@@ -6,6 +6,7 @@ const mtprotoSchema = JSON.parse(fs.readFileSync("./scheme/mtproto.json", "utf8"
 const lines: string[] = [];
 const typingTypes = new Map<string, string[]>
 const typingInterfacesLines: string[] = []
+const methodsInterfaceNames: string[] = []
 const methodInterfacesLines: string[] = []
 
 const aviableTypes = [
@@ -162,6 +163,10 @@ function paramsToInterfaceLines(params: any[]) {
       type = "unknown"
       // fnName = 'predicate';
     }
+    else if ('X' === type) {
+      type = "unknown"
+      // fnName = 'predicate';
+    }
     else {
       const primitiveType = primitiveTypes.get(type)
 
@@ -246,7 +251,7 @@ apiSchema.methods.forEach(function (method: any) {
   builderMapLines.push(`  '${name}': function(params) {\n${body}\n  },`);
 
   // v1
-  let interfaceName = getInterfaceName(name)
+  let interfaceName = getMethodInterfaceName(name)
 
   if (type.startsWith("Vector")) {
     type = type.substring(7, type.length - 1)
@@ -262,14 +267,14 @@ apiSchema.methods.forEach(function (method: any) {
 
     type += "[]"
   }
-  else if (type === "X") {
-    interfaceName += "<X>"
-  }
 
   const primitiveType = primitiveTypes.get(type)
 
   if (primitiveType) {
     type = primitiveType
+  }
+  else if (type === "X") {
+    type = "unknown"
   }
   else {
     type = getTypeName(type)
@@ -284,6 +289,8 @@ apiSchema.methods.forEach(function (method: any) {
     `  response: ${type}`,
     `}\n`
   ].join("\n"))
+
+  methodsInterfaceNames.push(interfaceName)
 });
 
 lines.push(`export interface Builder {
@@ -304,9 +311,17 @@ const mtprotoTypesContent = Array.from(typingTypes.entries())
 
   typingInterfacesLines.join("\n") +
 
+  `export type Methods = ${methodsInterfaceNames.join(" |\n  ")}\n\n` +
+
   methodInterfacesLines.join("\n");
 
 fs.writeFileSync("mtptoto-types.ts", mtprotoTypesContent);
+
+function getMethodInterfaceName(key: string) {
+  return key.split(".")
+    .map(capitalizeFirstLetter)
+    .join("$")
+}
 
 function getInterfaceName(key: string) {
   return "$" + key.split(".")

@@ -11,12 +11,14 @@ import { ModeOfOperationIGE } from "./aes.js";
 import { pqPrimeFactorization } from "./pg.js";
 import { SHA1, SHA256, bigIntToBytes, bytesIsEqual, bytesToBigInt, bytesToBytesRaw, concatBytes, getRandomBytes, getRandomInt, intsToLong, longToBytesRaw, xorBytes } from "./common.js"
 import EventEmitter from "events";
+import { Methods } from "./mtptoto-types.js";
+import { RPCError } from "./errors.js";
 
 export interface MessageWaitResponse {
   method: string
-  params: object
+  params: any
   resolve: (value: unknown) => unknown
-  reject: (err: Error) => void
+  reject: (err: RPCError) => void
   isAck?: boolean
 }
 
@@ -489,11 +491,11 @@ export class RPC {
         continue;
       }
 
-      message.reject(new Error("RPC was destroyed"));
+      message.reject(new RPCError("RPC_DESTROYED", 500));
     }
 
     this.messagesWaitAuth.forEach(function (message) {
-      message.reject(new Error("RPC was destroyed"));
+      message.reject(new RPCError("RPC_DESTROYED", 500));
     });
 
     this.messagesWaitAuth = [];
@@ -501,19 +503,20 @@ export class RPC {
   }
 
   async sendWaitMessages() {
-    // Resend unacknowledged messages
     for (let message of this.messagesWaitResponse.values()) {
       if (message.isAck) {
         continue;
       }
+
       const { method, params, resolve, reject } = message;
+
       this.call(method, params).then(resolve).catch(reject);
     }
 
-    this.messagesWaitAuth.forEach((message: MessageWaitResponse) => {
+    for (let message of this.messagesWaitAuth) {
       const { method, params, resolve, reject } = message;
       this.call(method, params).then(resolve).catch(reject);
-    });
+    }
 
     this.messagesWaitAuth = [];
   }
@@ -577,7 +580,7 @@ export class RPC {
   }
 
   // @ts-ignore
-  async handleDecryptedMessage(message, params = {}) {
+  async handleDecryptedMessage(message: any, params = {}) {
     // @ts-ignore
     const { messageId } = params;
 
@@ -672,18 +675,24 @@ export class RPC {
       return;
     }
 
-    if (message._ === 'mt_rpc_result') {
+    if (message._ === "mt_rpc_result") {
       this.ackMessage(messageId);
 
-      this.debug('handling RPC result for message', message.req_msg_id);
+      this.debug("handling RPC result for message", message.req_msg_id);
 
       const waitMessage = this.messagesWaitResponse.get(message.req_msg_id);
 
+      if (!waitMessage) {
+        return
+      }
+
       if (message.result._ === 'mt_rpc_error') {
-        // @ts-ignore
-        waitMessage.reject(message.result);
-      } else {
-        // @ts-ignore
+        const errorCode = Number(message.result.error_code)
+        const errorMessage = String(message.result.error_message || JSON.stringify(message.result))
+
+        waitMessage.reject(new RPCError(errorMessage, errorCode));
+      }
+      else {
         waitMessage.resolve(message.result);
       }
 
@@ -693,7 +702,6 @@ export class RPC {
     }
 
     this.debug('handling update', message._);
-
     this.ackMessage(messageId);
     this.updates.emit(message._, message);
   }
@@ -704,7 +712,7 @@ export class RPC {
     this.sendAcks();
   }
 
-  async call(method: string, params = {}) {
+  async call<T extends Methods>(method: T["method"] | string, params?: T["params"]): Promise<T["response"]> {
     if (!this.isReady) {
       return new Promise((resolve, reject) => {
         this.messagesWaitAuth.push({ method, params, resolve, reject });
@@ -741,7 +749,7 @@ export class RPC {
     const bytes = serializer.getBytes();
 
     return new Promise(async (resolve, reject) => {
-      
+
       const messageId = await this.sendEncryptedMessage(bytes);
       // @ts-ignore
       const messageIdAsKey = intsToLong(messageId[0], messageId[1]);
@@ -775,10 +783,10 @@ export class RPC {
 
     // @ts-ignore
     const authKey = new Uint8Array(await this.getStorageItem('authKey'));
-    
+
     // @ts-ignore
     const serverSalt = new Uint8Array(await this.getStorageItem('serverSalt'));
-    
+
     const messageId = await this.getMessageId();
     const seqNo = this.getSeqNo(isContentRelated);
     const minPadding = 12;
@@ -807,7 +815,7 @@ export class RPC {
 
 
     const encryptedData = (
-     // @ts-ignore
+      // @ts-ignore
       await this.getAESInstance(authKey, messageKey, false)
     ).encrypt(plainData);
 
