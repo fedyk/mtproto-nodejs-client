@@ -1,22 +1,21 @@
-# @mtproto/core
+# mtproto-nodejs-client
 
-[![NPM](https://img.shields.io/npm/v/@mtproto/core.svg?style=flat-square)](https://www.npmjs.com/package/@mtproto/core)
-[![GitHub Actions](https://img.shields.io/github/workflow/status/alik0211/mtproto-core/Unit%20tests/master?style=flat-square)](https://github.com/alik0211/mtproto-core/actions?query=branch%3Amaster)
-[![Downloads](https://img.shields.io/npm/dm/@mtproto/core?style=flat-square)](https://www.npmjs.com/package/@mtproto/core)
-[![Telegram channel](https://img.shields.io/badge/Telegram-channel-blue?style=flat-square&logo=telegram)](https://t.me/mtproto_core)
-
-Telegram API JS (MTProto) client library for Node.js and browser
+Telegram (MTProto) NodeJS client library for Node.js. Based on [alik0211/mtproto-core](https://github.com/alik0211/mtproto-core), is rewritten in Typescript. To make code simpler, browser support was removed.
 
 * **Actual.** 133 layer in the API scheme
-* **Fast.** For the Node.js, it uses the TCP and crypto module. For the browser, it uses WebSocket and window.crypto
+* **Fast.** For the Node.js, it uses the TCP and crypto module.
 * **Easy.** Cryptography is hidden. Work with the API at a high level
 * **Smart.** Automatically sync authorization on all DCs
 * **2FA.** Use the library's built-in function to calculate 2FA parameters
 * **Secure.** Complies with Telegram security guidelines
+* **Typescript.** Written in Typescript. Has typing for updates and API methods
+* **ECMAScript modules.**  ECMAScript modules are the official standard format to package JavaScript code for reuse
 
-## Documentation
+## Installation
 
-You can find the documentation on [mtproto-core.js.org/docs](https://mtproto-core.js.org/docs) website
+```
+npm install fedyk/mtproto-nodejs-client
+```
 
 ## License
 
