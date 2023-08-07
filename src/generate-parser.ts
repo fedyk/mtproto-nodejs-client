@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 
-const apiSchema = JSON.parse(fs.readFileSync("./scheme/api.json", "utf8"))
-const mtprotoSchema = JSON.parse(fs.readFileSync("./scheme/mtproto.json", "utf8"))
+const apiSchema = JSON.parse(fs.readFileSync("scheme/api.json", "utf8"))
+const mtprotoSchema = JSON.parse(fs.readFileSync("scheme/mtproto.json", "utf8"))
 
 const lines: string[] = [];
 
@@ -147,4 +147,4 @@ export const parserMap = new Map<number, Parser>([\n${parserMapLines.join('\n')}
 
 const fileContent = lines.join('\n');
 
-fs.writeFileSync('parser.ts', fileContent);
+fs.writeFileSync('src/parser.ts', fileContent);

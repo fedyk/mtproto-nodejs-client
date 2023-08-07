@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 
-const apiSchema = JSON.parse(fs.readFileSync("./scheme/api.json", "utf8"))
-const mtprotoSchema = JSON.parse(fs.readFileSync("./scheme/mtproto.json", "utf8"))
+const apiSchema = JSON.parse(fs.readFileSync("scheme/api.json", "utf8"))
+const mtprotoSchema = JSON.parse(fs.readFileSync("scheme/mtproto.json", "utf8"))
 
 const lines: string[] = [];
 const typingTypes = new Map<string, string[]>
@@ -301,7 +301,7 @@ lines.push(`export const builderMap: Record<string, Builder> = {\n${builderMapLi
 
 const builderFileContent = lines.join('\n');
 
-fs.writeFileSync('builder.ts', builderFileContent);
+fs.writeFileSync('src/builder.ts', builderFileContent);
 
 const mtprotoTypesContent = Array.from(typingTypes.entries())
   .map(function ([typeName, interfaces]) {
@@ -315,7 +315,7 @@ const mtprotoTypesContent = Array.from(typingTypes.entries())
 
   methodInterfacesLines.join("\n");
 
-fs.writeFileSync("mtptoto-types.ts", mtprotoTypesContent);
+fs.writeFileSync("src/mtptoto-types.ts", mtprotoTypesContent);
 
 function getMethodInterfaceName(key: string) {
   return key.split(".")

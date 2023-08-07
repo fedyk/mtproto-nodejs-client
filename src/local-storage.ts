@@ -14,7 +14,7 @@ export function createLocalStorage(options: {
     cache = JSON.parse(readFileSync(options.path, "utf8"))
   }
 
-  return { get, set }
+  return { get, set, toJSON }
 
   function get(key: string) {
     return cache[key]
@@ -25,4 +25,7 @@ export function createLocalStorage(options: {
     writeFileSync(options.path, JSON.stringify(cache, null, 2), "utf8")
   }
 
+  function toJSON() {
+    return cache
+  }
 }

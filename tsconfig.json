@@ -2,9 +2,11 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "NodeNext",
-    "strict": true
+    "strict": true,
+    "outDir": "lib",
+    "declaration": true
   },
   "include": [
-    "*.ts"
+    "src/*.ts"
   ]
 }

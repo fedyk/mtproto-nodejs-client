@@ -75,7 +75,7 @@ export function concatBytes(...arrays: ArrayLike<number>[]) {
   return result;
 }
 
-export function bytesToHex(bytes: Uint8Array): string {
+export function bytesToHex(bytes: Uint8Array | number[]): string {
   const result: string[] = [];
 
   for (let i = 0; i < bytes.length; i++) {
