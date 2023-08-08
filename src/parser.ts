@@ -3,557 +3,247 @@ interface Parser {
 }
 
 export const parserMap = new Map<number, Parser>([
-  [528568095, function() {
-const result: any = { _: 'mt_decryptedMessage' };
-result.random_id = this.long();
-result.random_bytes = this.bytes();
-result.message = this.string();
-result.media = this.predicate();
+  [481674261, function() {
+return this.vector(this.predicate, true);
+  }],
+  [85337187, function() {
+const result: any = { _: 'mt_resPQ' };
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.pq = this.bytes();
+result.server_public_key_fingerprints = this.vector(this.long, false);
 return result;
   }],
-  [541931640, function() {
-const result: any = { _: 'mt_decryptedMessage' };
-result.random_id = this.long();
-result.ttl = this.int();
-result.message = this.string();
-result.media = this.predicate();
+  [2851430293, function() {
+const result: any = { _: 'mt_p_q_inner_data_dc' };
+result.pq = this.bytes();
+result.p = this.bytes();
+result.q = this.bytes();
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.new_nonce = this.int256();
+result.dc = this.int();
 return result;
   }],
-  [917541342, function() {
-const result: any = { _: 'mt_decryptedMessage' };
-result.flags = this.int();
-result.random_id = this.long();
-result.ttl = this.int();
-result.message = this.string();
-if (result.flags & 512) result.media = this.predicate();
-if (result.flags & 128) result.entities = this.vector(this.predicate);
-if (result.flags & 2048) result.via_bot_name = this.string();
-if (result.flags & 8) result.reply_to_random_id = this.long();
+  [1459478408, function() {
+const result: any = { _: 'mt_p_q_inner_data_temp_dc' };
+result.pq = this.bytes();
+result.p = this.bytes();
+result.q = this.bytes();
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.new_nonce = this.int256();
+result.dc = this.int();
+result.expires_in = this.int();
 return result;
   }],
-  [2446083700, function() {
-const result: any = { _: 'mt_decryptedMessage' };
-result.flags = this.int();
-result.random_id = this.long();
-result.ttl = this.int();
-result.message = this.string();
-if (result.flags & 512) result.media = this.predicate();
-if (result.flags & 128) result.entities = this.vector(this.predicate);
-if (result.flags & 2048) result.via_bot_name = this.string();
-if (result.flags & 8) result.reply_to_random_id = this.long();
-if (result.flags & 131072) result.grouped_id = this.long();
+  [3504867164, function() {
+const result: any = { _: 'mt_server_DH_params_ok' };
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.encrypted_answer = this.bytes();
 return result;
   }],
-  [2856858237, function() {
-const result: any = { _: 'mt_decryptedMessageService' };
-result.random_id = this.long();
-result.random_bytes = this.bytes();
-result.action = this.predicate();
-return result;
-  }],
-  [1930838368, function() {
-const result: any = { _: 'mt_decryptedMessageService' };
-result.random_id = this.long();
-result.action = this.predicate();
-return result;
-  }],
-  [144661578, function() {
-const result: any = { _: 'mt_decryptedMessageMediaEmpty' };
-return result;
-  }],
-  [846826124, function() {
-const result: any = { _: 'mt_decryptedMessageMediaPhoto' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.w = this.int();
-result.h = this.int();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-return result;
-  }],
-  [4059729272, function() {
-const result: any = { _: 'mt_decryptedMessageMediaPhoto' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.w = this.int();
-result.h = this.int();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-result.caption = this.string();
-return result;
-  }],
-  [1290694387, function() {
-const result: any = { _: 'mt_decryptedMessageMediaVideo' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.duration = this.int();
-result.w = this.int();
-result.h = this.int();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-return result;
-  }],
-  [1380598109, function() {
-const result: any = { _: 'mt_decryptedMessageMediaVideo' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.duration = this.int();
-result.mime_type = this.string();
-result.w = this.int();
-result.h = this.int();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-return result;
-  }],
-  [2534181902, function() {
-const result: any = { _: 'mt_decryptedMessageMediaVideo' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.duration = this.int();
-result.mime_type = this.string();
-result.w = this.int();
-result.h = this.int();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-result.caption = this.string();
-return result;
-  }],
-  [893913689, function() {
-const result: any = { _: 'mt_decryptedMessageMediaGeoPoint' };
-result.lat = this.double();
-result.long = this.double();
-return result;
-  }],
-  [1485441687, function() {
-const result: any = { _: 'mt_decryptedMessageMediaContact' };
-result.phone_number = this.string();
-result.first_name = this.string();
-result.last_name = this.string();
-result.user_id = this.int();
-return result;
-  }],
-  [2708683500, function() {
-const result: any = { _: 'mt_decryptedMessageActionSetMessageTTL' };
-result.ttl_seconds = this.int();
-return result;
-  }],
-  [2962572107, function() {
-const result: any = { _: 'mt_decryptedMessageMediaDocument' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.file_name = this.string();
-result.mime_type = this.string();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-return result;
-  }],
-  [2063502050, function() {
-const result: any = { _: 'mt_decryptedMessageMediaDocument' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.mime_type = this.string();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-result.attributes = this.vector(this.predicate, false);
-result.caption = this.string();
-return result;
-  }],
-  [1790809986, function() {
-const result: any = { _: 'mt_decryptedMessageMediaDocument' };
-result.thumb = this.bytes();
-result.thumb_w = this.int();
-result.thumb_h = this.int();
-result.mime_type = this.string();
-result.size = this.long();
-result.key = this.bytes();
-result.iv = this.bytes();
-result.attributes = this.vector(this.predicate, false);
-result.caption = this.string();
-return result;
-  }],
-  [1619031439, function() {
-const result: any = { _: 'mt_decryptedMessageMediaAudio' };
-result.duration = this.int();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-return result;
-  }],
-  [1474341323, function() {
-const result: any = { _: 'mt_decryptedMessageMediaAudio' };
-result.duration = this.int();
-result.mime_type = this.string();
-result.size = this.int();
-result.key = this.bytes();
-result.iv = this.bytes();
-return result;
-  }],
-  [206520510, function() {
-const result: any = { _: 'mt_decryptedMessageActionReadMessages' };
-result.random_ids = this.vector(this.long, false);
-return result;
-  }],
-  [1700872964, function() {
-const result: any = { _: 'mt_decryptedMessageActionDeleteMessages' };
-result.random_ids = this.vector(this.long, false);
-return result;
-  }],
-  [2327966837, function() {
-const result: any = { _: 'mt_decryptedMessageActionScreenshotMessages' };
-result.random_ids = this.vector(this.long, false);
-return result;
-  }],
-  [1729750108, function() {
-const result: any = { _: 'mt_decryptedMessageActionFlushHistory' };
-return result;
-  }],
-  [467867529, function() {
-const result: any = { _: 'mt_decryptedMessageLayer' };
-result.random_bytes = this.bytes();
-result.layer = this.int();
-result.in_seq_no = this.int();
-result.out_seq_no = this.int();
-result.message = this.predicate();
-return result;
-  }],
-  [381645902, function() {
-const result: any = { _: 'mt_sendMessageTypingAction' };
-return result;
-  }],
-  [4250847477, function() {
-const result: any = { _: 'mt_sendMessageCancelAction' };
-return result;
-  }],
-  [2710034031, function() {
-const result: any = { _: 'mt_sendMessageRecordVideoAction' };
-return result;
-  }],
-  [2449747959, function() {
-const result: any = { _: 'mt_sendMessageUploadVideoAction' };
-return result;
-  }],
-  [3576656887, function() {
-const result: any = { _: 'mt_sendMessageRecordAudioAction' };
-return result;
-  }],
-  [3870067311, function() {
-const result: any = { _: 'mt_sendMessageUploadAudioAction' };
-return result;
-  }],
-  [2567584794, function() {
-const result: any = { _: 'mt_sendMessageUploadPhotoAction' };
-return result;
-  }],
-  [2410604942, function() {
-const result: any = { _: 'mt_sendMessageUploadDocumentAction' };
-return result;
-  }],
-  [393186209, function() {
-const result: any = { _: 'mt_sendMessageGeoLocationAction' };
-return result;
-  }],
-  [1653390447, function() {
-const result: any = { _: 'mt_sendMessageChooseContactAction' };
-return result;
-  }],
-  [1360072880, function() {
-const result: any = { _: 'mt_decryptedMessageActionResend' };
-result.start_seq_no = this.int();
-result.end_seq_no = this.int();
-return result;
-  }],
-  [4077160579, function() {
-const result: any = { _: 'mt_decryptedMessageActionNotifyLayer' };
-result.layer = this.int();
-return result;
-  }],
-  [3434247745, function() {
-const result: any = { _: 'mt_decryptedMessageActionTyping' };
-result.action = this.predicate();
-return result;
-  }],
-  [4090061083, function() {
-const result: any = { _: 'mt_decryptedMessageActionRequestKey' };
-result.exchange_id = this.long();
+  [3045658042, function() {
+const result: any = { _: 'mt_server_DH_inner_data' };
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.g = this.int();
+result.dh_prime = this.bytes();
 result.g_a = this.bytes();
+result.server_time = this.int();
 return result;
   }],
-  [1877046107, function() {
-const result: any = { _: 'mt_decryptedMessageActionAcceptKey' };
-result.exchange_id = this.long();
+  [1715713620, function() {
+const result: any = { _: 'mt_client_DH_inner_data' };
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.retry_id = this.long();
 result.g_b = this.bytes();
-result.key_fingerprint = this.long();
 return result;
   }],
-  [3708152939, function() {
-const result: any = { _: 'mt_decryptedMessageActionAbortKey' };
-result.exchange_id = this.long();
+  [1003222836, function() {
+const result: any = { _: 'mt_dh_gen_ok' };
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.new_nonce_hash1 = this.int128();
 return result;
   }],
-  [3962440603, function() {
-const result: any = { _: 'mt_decryptedMessageActionCommitKey' };
-result.exchange_id = this.long();
-result.key_fingerprint = this.long();
+  [1188831161, function() {
+const result: any = { _: 'mt_dh_gen_retry' };
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.new_nonce_hash2 = this.int128();
 return result;
   }],
-  [2821709155, function() {
-const result: any = { _: 'mt_decryptedMessageActionNoop' };
+  [2795351554, function() {
+const result: any = { _: 'mt_dh_gen_fail' };
+result.nonce = this.int128();
+result.server_nonce = this.int128();
+result.new_nonce_hash3 = this.int128();
 return result;
   }],
-  [1815593308, function() {
-const result: any = { _: 'mt_documentAttributeImageSize' };
-result.w = this.int();
-result.h = this.int();
+  [1973679973, function() {
+const result: any = { _: 'mt_bind_auth_key_inner' };
+result.nonce = this.long();
+result.temp_auth_key_id = this.long();
+result.perm_auth_key_id = this.long();
+result.temp_session_id = this.long();
+result.expires_at = this.int();
 return result;
   }],
-  [297109817, function() {
-const result: any = { _: 'mt_documentAttributeAnimated' };
+  [4082920705, function() {
+const result: any = { _: 'mt_rpc_result' };
+result.req_msg_id = this.long();
+result.result = this.predicate();
 return result;
   }],
-  [4211758887, function() {
-const result: any = { _: 'mt_documentAttributeSticker' };
+  [558156313, function() {
+const result: any = { _: 'mt_rpc_error' };
+result.error_code = this.int();
+result.error_message = this.string();
 return result;
   }],
-  [978674434, function() {
-const result: any = { _: 'mt_documentAttributeSticker' };
-result.alt = this.string();
-result.stickerset = this.predicate();
+  [1579864942, function() {
+const result: any = { _: 'mt_rpc_answer_unknown' };
 return result;
   }],
-  [1494273227, function() {
-const result: any = { _: 'mt_documentAttributeVideo' };
-result.duration = this.int();
-result.w = this.int();
-result.h = this.int();
+  [3447252358, function() {
+const result: any = { _: 'mt_rpc_answer_dropped_running' };
 return result;
   }],
-  [250621158, function() {
-const result: any = { _: 'mt_documentAttributeVideo' };
-result.flags = this.int();
-result.duration = this.int();
-result.w = this.int();
-result.h = this.int();
+  [2755319991, function() {
+const result: any = { _: 'mt_rpc_answer_dropped' };
+result.msg_id = this.long();
+result.seq_no = this.int();
+result.bytes = this.int();
 return result;
   }],
-  [85215461, function() {
-const result: any = { _: 'mt_documentAttributeAudio' };
-result.duration = this.int();
+  [155834844, function() {
+const result: any = { _: 'mt_future_salt' };
+result.valid_since = this.int();
+result.valid_until = this.int();
+result.salt = this.long();
 return result;
   }],
-  [3738310880, function() {
-const result: any = { _: 'mt_documentAttributeAudio' };
-result.duration = this.int();
-result.title = this.string();
-result.performer = this.string();
+  [2924480661, function() {
+const result: any = { _: 'mt_future_salts' };
+result.req_msg_id = this.long();
+result.now = this.int();
+result.salts = this.vector(this.predicate, false);
 return result;
   }],
-  [2555574726, function() {
-const result: any = { _: 'mt_documentAttributeAudio' };
-result.flags = this.int();
-result.duration = this.int();
-if (result.flags & 1) result.title = this.string();
-if (result.flags & 2) result.performer = this.string();
-if (result.flags & 4) result.waveform = this.bytes();
+  [880243653, function() {
+const result: any = { _: 'mt_pong' };
+result.msg_id = this.long();
+result.ping_id = this.long();
 return result;
   }],
-  [358154344, function() {
-const result: any = { _: 'mt_documentAttributeFilename' };
-result.file_name = this.string();
+  [3793765884, function() {
+const result: any = { _: 'mt_destroy_session_ok' };
+result.session_id = this.long();
 return result;
   }],
-  [236446268, function() {
-const result: any = { _: 'mt_photoSizeEmpty' };
-result.type = this.string();
+  [1658015945, function() {
+const result: any = { _: 'mt_destroy_session_none' };
+result.session_id = this.long();
 return result;
   }],
-  [2009052699, function() {
-const result: any = { _: 'mt_photoSize' };
-result.type = this.string();
-result.location = this.predicate();
-result.w = this.int();
-result.h = this.int();
-result.size = this.int();
+  [2663516424, function() {
+const result: any = { _: 'mt_new_session_created' };
+result.first_msg_id = this.long();
+result.unique_id = this.long();
+result.server_salt = this.long();
 return result;
   }],
-  [3920049402, function() {
-const result: any = { _: 'mt_photoCachedSize' };
-result.type = this.string();
-result.location = this.predicate();
-result.w = this.int();
-result.h = this.int();
-result.bytes = this.bytes();
+  [1945237724, function() {
+const result: any = { _: 'mt_msg_container' };
+result.messages = this.vector(this.mt_message, true);
 return result;
   }],
-  [2086234950, function() {
-const result: any = { _: 'mt_fileLocationUnavailable' };
-result.volume_id = this.long();
-result.local_id = this.int();
-result.secret = this.long();
+  [1538843921, function() {
+const result: any = { _: 'mt_message' };
+result.msg_id = this.long();
+result.seqno = this.int();
+result.bytes = this.int();
+result.body = this.predicate();
 return result;
   }],
-  [1406570614, function() {
-const result: any = { _: 'mt_fileLocation' };
-result.dc_id = this.int();
-result.volume_id = this.long();
-result.local_id = this.int();
-result.secret = this.long();
+  [3764405938, function() {
+const result: any = { _: 'mt_msg_copy' };
+result.orig_message = this.predicate();
 return result;
   }],
-  [4204114141, function() {
-const result: any = { _: 'mt_decryptedMessageMediaExternalDocument' };
-result.id = this.long();
-result.access_hash = this.long();
-result.date = this.int();
-result.mime_type = this.string();
-result.size = this.int();
-result.thumb = this.predicate();
-result.dc_id = this.int();
-result.attributes = this.vector(this.predicate, false);
+  [812830625, function() {
+return this.gzip();
+  }],
+  [1658238041, function() {
+const result: any = { _: 'mt_msgs_ack' };
+result.msg_ids = this.vector(this.long, false);
 return result;
   }],
-  [3146955413, function() {
-const result: any = { _: 'mt_messageEntityUnknown' };
-result.offset = this.int();
-result.length = this.int();
+  [2817521681, function() {
+const result: any = { _: 'mt_bad_msg_notification' };
+result.bad_msg_id = this.long();
+result.bad_msg_seqno = this.int();
+result.error_code = this.int();
 return result;
   }],
-  [4194588573, function() {
-const result: any = { _: 'mt_messageEntityMention' };
-result.offset = this.int();
-result.length = this.int();
+  [3987424379, function() {
+const result: any = { _: 'mt_bad_server_salt' };
+result.bad_msg_id = this.long();
+result.bad_msg_seqno = this.int();
+result.error_code = this.int();
+result.new_server_salt = this.long();
 return result;
   }],
-  [1868782349, function() {
-const result: any = { _: 'mt_messageEntityHashtag' };
-result.offset = this.int();
-result.length = this.int();
+  [2105940488, function() {
+const result: any = { _: 'mt_msg_resend_req' };
+result.msg_ids = this.vector(this.long, false);
 return result;
   }],
-  [1827637959, function() {
-const result: any = { _: 'mt_messageEntityBotCommand' };
-result.offset = this.int();
-result.length = this.int();
+  [3664378706, function() {
+const result: any = { _: 'mt_msgs_state_req' };
+result.msg_ids = this.vector(this.long, false);
 return result;
   }],
-  [1859134776, function() {
-const result: any = { _: 'mt_messageEntityUrl' };
-result.offset = this.int();
-result.length = this.int();
+  [81704317, function() {
+const result: any = { _: 'mt_msgs_state_info' };
+result.req_msg_id = this.long();
+result.info = this.bytes();
 return result;
   }],
-  [1692693954, function() {
-const result: any = { _: 'mt_messageEntityEmail' };
-result.offset = this.int();
-result.length = this.int();
+  [2361446705, function() {
+const result: any = { _: 'mt_msgs_all_info' };
+result.msg_ids = this.vector(this.long, false);
+result.info = this.bytes();
 return result;
   }],
-  [3177253833, function() {
-const result: any = { _: 'mt_messageEntityBold' };
-result.offset = this.int();
-result.length = this.int();
+  [661470918, function() {
+const result: any = { _: 'mt_msg_detailed_info' };
+result.msg_id = this.long();
+result.answer_msg_id = this.long();
+result.bytes = this.int();
+result.status = this.int();
 return result;
   }],
-  [2188348256, function() {
-const result: any = { _: 'mt_messageEntityItalic' };
-result.offset = this.int();
-result.length = this.int();
+  [2157819615, function() {
+const result: any = { _: 'mt_msg_new_detailed_info' };
+result.answer_msg_id = this.long();
+result.bytes = this.int();
+result.status = this.int();
 return result;
   }],
-  [681706865, function() {
-const result: any = { _: 'mt_messageEntityCode' };
-result.offset = this.int();
-result.length = this.int();
+  [4133544404, function() {
+const result: any = { _: 'mt_destroy_auth_key_ok' };
 return result;
   }],
-  [1938967520, function() {
-const result: any = { _: 'mt_messageEntityPre' };
-result.offset = this.int();
-result.length = this.int();
-result.language = this.string();
+  [178201177, function() {
+const result: any = { _: 'mt_destroy_auth_key_none' };
 return result;
   }],
-  [1990644519, function() {
-const result: any = { _: 'mt_messageEntityTextUrl' };
-result.offset = this.int();
-result.length = this.int();
-result.url = this.string();
-return result;
-  }],
-  [2250033312, function() {
-const result: any = { _: 'mt_inputStickerSetShortName' };
-result.short_name = this.string();
-return result;
-  }],
-  [4290128789, function() {
-const result: any = { _: 'mt_inputStickerSetEmpty' };
-return result;
-  }],
-  [2316170607, function() {
-const result: any = { _: 'mt_decryptedMessageMediaVenue' };
-result.lat = this.double();
-result.long = this.double();
-result.title = this.string();
-result.address = this.string();
-result.provider = this.string();
-result.venue_id = this.string();
-return result;
-  }],
-  [3842314712, function() {
-const result: any = { _: 'mt_decryptedMessageMediaWebPage' };
-result.url = this.string();
-return result;
-  }],
-  [2297593788, function() {
-const result: any = { _: 'mt_sendMessageRecordRoundAction' };
-return result;
-  }],
-  [3144779300, function() {
-const result: any = { _: 'mt_sendMessageUploadRoundAction' };
-return result;
-  }],
-  [2622389899, function() {
-const result: any = { _: 'mt_messageEntityUnderline' };
-result.offset = this.int();
-result.length = this.int();
-return result;
-  }],
-  [3204879316, function() {
-const result: any = { _: 'mt_messageEntityStrike' };
-result.offset = this.int();
-result.length = this.int();
-return result;
-  }],
-  [34469328, function() {
-const result: any = { _: 'mt_messageEntityBlockquote' };
-result.offset = this.int();
-result.length = this.int();
-return result;
-  }],
-  [852137487, function() {
-const result: any = { _: 'mt_messageEntitySpoiler' };
-result.offset = this.int();
-result.length = this.int();
-return result;
-  }],
-  [3369010680, function() {
-const result: any = { _: 'mt_messageEntityCustomEmoji' };
-result.offset = this.int();
-result.length = this.int();
-result.document_id = this.long();
+  [3926956819, function() {
+const result: any = { _: 'mt_destroy_auth_key_fail' };
 return result;
   }],
   [3162085175, function() {
