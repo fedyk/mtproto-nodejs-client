@@ -4,12 +4,12 @@ const apiSchema = JSON.parse(fs.readFileSync("scheme/api.json", "utf8"))
 const mtprotoSchema = JSON.parse(fs.readFileSync("scheme/mtproto.json", "utf8"))
 
 const lines: string[] = [];
+const builderInterfaceLines: string[] = [];
 const typingTypes = new Map<string, string[]>
 const typingInterfacesLines: string[] = []
-const methodsInterfaceNames: string[] = []
 const methodInterfacesLines: string[] = []
 
-const aviableTypes = [
+const aviableTypes = new Set([
   'int',
   'long',
   'int128',
@@ -20,7 +20,7 @@ const aviableTypes = [
   'vector',
   'predicate',
   'Bool',
-];
+])
 
 const primitiveTypes = new Map([
   ["int", "number"],
@@ -95,7 +95,7 @@ function paramsToLines(params: any) {
         flagType = 'Bool';
       }
 
-      if (!aviableTypes.includes(flagType)) {
+      if (!aviableTypes.has(flagType)) {
         flagType = 'predicate';
       }
 
@@ -107,7 +107,7 @@ function paramsToLines(params: any) {
         vectorType = vectorType.substr(1);
       }
 
-      if (!aviableTypes.includes(vectorType)) {
+      if (!aviableTypes.has(vectorType)) {
         vectorType = 'predicate';
       }
 
@@ -115,7 +115,7 @@ function paramsToLines(params: any) {
       args = [`this.${vectorType}`, `params.${param.name}`];
     } else if (['!X'].includes(param.type)) {
       fnName = 'predicate';
-    } else if (!aviableTypes.includes(param.type)) {
+    } else if (!aviableTypes.has(param.type)) {
       fnName = 'predicate';
     }
 
@@ -178,10 +178,6 @@ function paramsToInterfaceLines(params: any[]) {
       }
     }
 
-    // else if (!aviableTypes.includes(type)) {
-    // type = getTypeName(param.type)
-    // }
-
     interfaceLines.push(`  ${name}: ${type};`);
   });
 
@@ -198,6 +194,10 @@ mtprotoSchema.constructors.forEach(function (constructor: any) {
   builderMapLines.push(
     `  'mt_${predicate}': function(params) {\n${body}\n  },`
   );
+
+  builderInterfaceLines.push(
+    `  'mt_${predicate}': (this: any, params: any) => void`
+  )
 });
 
 mtprotoSchema.methods.forEach(function (method: any) {
@@ -206,6 +206,10 @@ mtprotoSchema.methods.forEach(function (method: any) {
   const body = [`    this.int32(${id});`, ...paramsToLines(params)].join('\n');
 
   builderMapLines.push(`  'mt_${name}': function(params) {\n${body}\n  },`);
+
+  builderInterfaceLines.push(
+    `  'mt_${name}': (this: any, params: any) => void`
+  )
 });
 
 apiSchema.constructors.forEach(function (constructor: any) {
@@ -215,19 +219,24 @@ apiSchema.constructors.forEach(function (constructor: any) {
 
   builderMapLines.push(`  '${predicate}': function(params) {\n${body}\n  },`);
 
-  // v1
+  builderInterfaceLines.push(
+    `  '${predicate}': (this: any, params: any) => void`
+  )
+
+  // interfaces
   if (predicate === "vector") {
     return
   }
 
   const interfaceName = getInterfaceName(predicate)
-
-  typingInterfacesLines.push([
+  const interfaceBody = [
     `export interface ${interfaceName} {`,
     `  _: "${predicate}";`,
     ...paramsToInterfaceLines(params),
     `}\n`
-  ].join("\n"))
+  ]
+
+  typingInterfacesLines.push(interfaceBody.join("\n"))
 
   if (type) {
     const typeName = getTypeName(type)
@@ -250,8 +259,9 @@ apiSchema.methods.forEach(function (method: any) {
 
   builderMapLines.push(`  '${name}': function(params) {\n${body}\n  },`);
 
-  // v1
-  let interfaceName = getMethodInterfaceName(name)
+  builderInterfaceLines.push(
+    `  '${name}': (this: any, params: any) => void`
+  )
 
   if (type.startsWith("Vector")) {
     type = type.substring(7, type.length - 1)
@@ -281,27 +291,35 @@ apiSchema.methods.forEach(function (method: any) {
   }
 
   methodInterfacesLines.push([
-    `export interface ${interfaceName} {`,
-    `  method: "${name}";`,
-    `  params: {`,
-    ...paramsToInterfaceLines(params).map(line => `  ${line}`),
-    `  }`,
-    `  response: ${type}`,
-    `}\n`
+    `  '${name}': {`,
+    `    params: {`,
+    ...paramsToInterfaceLines(params).map(line => `    ${line}`),
+    `    }`,
+    `    response: ${type}`,
+    `  }`
   ].join("\n"))
-
-  methodsInterfaceNames.push(interfaceName)
 });
 
-lines.push(`export interface Builder {
-  (this: any, params: any): void
-}`);
+lines.push(`export interface BuilderMap {`, builderInterfaceLines.join("\n"), "}")
 
-lines.push(`export const builderMap: Record<string, Builder> = {\n${builderMapLines.join('\n')}\n};`);
+lines.push(`export const builderMap: BuilderMap = {\n${builderMapLines.join('\n')}\n};`);
 
-const builderFileContent = lines.join('\n');
+fs.writeFileSync('src/builder.ts', lines.join('\n'));
 
-fs.writeFileSync('src/builder.ts', builderFileContent);
+const mtprotoTypesLines = new Array<string>()
+
+
+mtprotoTypesLines.push(
+  ...Array.from(typingTypes.entries())
+    .map(function ([typeName, interfaces]) {
+      return `export type ${typeName} = ${interfaces.join(" | ")};`
+    })
+)
+
+mtprotoTypesLines.push(...typingInterfacesLines)
+mtprotoTypesLines.push(`export interface Methods {`)
+mtprotoTypesLines.push(...methodInterfacesLines)
+mtprotoTypesLines.push(`}`)
 
 const mtprotoTypesContent = Array.from(typingTypes.entries())
   .map(function ([typeName, interfaces]) {
@@ -309,26 +327,28 @@ const mtprotoTypesContent = Array.from(typingTypes.entries())
   })
   .join("\n") +
 
-  typingInterfacesLines.join("\n") +
+  typingInterfacesLines.join("\n") + "\n" +
 
-  `export type Methods = ${methodsInterfaceNames.join(" |\n  ")}\n\n` +
+  `export interface Methods {\n` +
 
-  methodInterfacesLines.join("\n");
+  methodInterfacesLines.join("\n") + "\n" +
 
-fs.writeFileSync("src/mtptoto-types.ts", mtprotoTypesContent);
+  `}\n`;
 
-function getMethodInterfaceName(key: string) {
-  return key.split(".")
-    .map(capitalizeFirstLetter)
-    .join("$")
-}
+fs.writeFileSync("src/mtptoto-types.ts", mtprotoTypesLines.join("\n"));
 
+/**
+ * @example getInterfaceName("auth.SentCode") -> "$Auth$SendCode"
+ */
 function getInterfaceName(key: string) {
   return "$" + key.split(".")
     .map(capitalizeFirstLetter)
     .join("$")
 }
 
+/**
+ * @example getTypeName("auth.SendCode") -> "Auth$SendCode"
+ */
 function getTypeName(key: string) {
   return key.split(".")
     .map(capitalizeFirstLetter)

@@ -1,4 +1,4 @@
-import { builderMap } from './builder.js'
+import { BuilderMap, builderMap } from './builder.js'
 
 export class Counter {
   count: number
@@ -97,7 +97,9 @@ export class Counter {
     }
   }
 
-  predicate(params: any, bare = false) {
+  predicate(params: {
+    _: keyof BuilderMap
+  }, bare = false) {
     const fn = builderMap[params._];
 
     fn.call(this, params);

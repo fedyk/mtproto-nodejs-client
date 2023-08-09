@@ -1,3 +1,4 @@
+import { BuilderMap } from './builder.js';
 export declare class Counter {
     count: number;
     constructor(fn: Function, params: unknown);
@@ -16,5 +17,7 @@ export declare class Counter {
     flag(fn: any, value: any): void;
     flagVector(fn: any, value: any): void;
     vector(fn: any, value: any): void;
-    predicate(params: any, bare?: boolean): void;
+    predicate(params: {
+        _: keyof BuilderMap;
+    }, bare?: boolean): void;
 }

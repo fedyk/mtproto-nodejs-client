@@ -397,7 +397,8 @@ export type Chatlists$ExportedChatlistInvite = $Chatlists$ExportedChatlistInvite
 export type Chatlists$ExportedInvites = $Chatlists$ExportedInvites;
 export type Chatlists$ChatlistInvite = $Chatlists$ChatlistInviteAlready | $Chatlists$ChatlistInvite;
 export type Chatlists$ChatlistUpdates = $Chatlists$ChatlistUpdates;
-export type Bots$BotInfo = $Bots$BotInfo;export interface $BoolFalse {
+export type Bots$BotInfo = $Bots$BotInfo;
+export interface $BoolFalse {
   _: "boolFalse";
 }
 
@@ -8115,5456 +8116,3929 @@ export interface $Bots$BotInfo {
 export interface $InlineQueryPeerTypeBotPM {
   _: "inlineQueryPeerTypeBotPM";
 }
-export type Methods = InvokeAfterMsg |
-  InvokeAfterMsgs |
-  Auth$SendCode |
-  Auth$SignUp |
-  Auth$SignIn |
-  Auth$LogOut |
-  Auth$ResetAuthorizations |
-  Auth$ExportAuthorization |
-  Auth$ImportAuthorization |
-  Auth$BindTempAuthKey |
-  Account$RegisterDevice |
-  Account$UnregisterDevice |
-  Account$UpdateNotifySettings |
-  Account$GetNotifySettings |
-  Account$ResetNotifySettings |
-  Account$UpdateProfile |
-  Account$UpdateStatus |
-  Account$GetWallPapers |
-  Account$ReportPeer |
-  Users$GetUsers |
-  Users$GetFullUser |
-  Contacts$GetContactIDs |
-  Contacts$GetStatuses |
-  Contacts$GetContacts |
-  Contacts$ImportContacts |
-  Contacts$DeleteContacts |
-  Contacts$DeleteByPhones |
-  Contacts$Block |
-  Contacts$Unblock |
-  Contacts$GetBlocked |
-  Messages$GetMessages |
-  Messages$GetDialogs |
-  Messages$GetHistory |
-  Messages$Search |
-  Messages$ReadHistory |
-  Messages$DeleteHistory |
-  Messages$DeleteMessages |
-  Messages$ReceivedMessages |
-  Messages$SetTyping |
-  Messages$SendMessage |
-  Messages$SendMedia |
-  Messages$ForwardMessages |
-  Messages$ReportSpam |
-  Messages$GetPeerSettings |
-  Messages$Report |
-  Messages$GetChats |
-  Messages$GetFullChat |
-  Messages$EditChatTitle |
-  Messages$EditChatPhoto |
-  Messages$AddChatUser |
-  Messages$DeleteChatUser |
-  Messages$CreateChat |
-  Updates$GetState |
-  Updates$GetDifference |
-  Photos$UpdateProfilePhoto |
-  Photos$UploadProfilePhoto |
-  Photos$DeletePhotos |
-  Upload$SaveFilePart |
-  Upload$GetFile |
-  Help$GetConfig |
-  Help$GetNearestDc |
-  Help$GetAppUpdate |
-  Help$GetInviteText |
-  Photos$GetUserPhotos |
-  Messages$GetDhConfig |
-  Messages$RequestEncryption |
-  Messages$AcceptEncryption |
-  Messages$DiscardEncryption |
-  Messages$SetEncryptedTyping |
-  Messages$ReadEncryptedHistory |
-  Messages$SendEncrypted |
-  Messages$SendEncryptedFile |
-  Messages$SendEncryptedService |
-  Messages$ReceivedQueue |
-  Messages$ReportEncryptedSpam |
-  Upload$SaveBigFilePart |
-  InitConnection |
-  Help$GetSupport |
-  Messages$ReadMessageContents |
-  Account$CheckUsername |
-  Account$UpdateUsername |
-  Contacts$Search |
-  Account$GetPrivacy |
-  Account$SetPrivacy |
-  Account$DeleteAccount |
-  Account$GetAccountTTL |
-  Account$SetAccountTTL |
-  InvokeWithLayer |
-  Contacts$ResolveUsername |
-  Account$SendChangePhoneCode |
-  Account$ChangePhone |
-  Messages$GetStickers |
-  Messages$GetAllStickers |
-  Account$UpdateDeviceLocked |
-  Auth$ImportBotAuthorization |
-  Messages$GetWebPagePreview |
-  Account$GetAuthorizations |
-  Account$ResetAuthorization |
-  Account$GetPassword |
-  Account$GetPasswordSettings |
-  Account$UpdatePasswordSettings |
-  Auth$CheckPassword |
-  Auth$RequestPasswordRecovery |
-  Auth$RecoverPassword |
-  InvokeWithoutUpdates |
-  Messages$ExportChatInvite |
-  Messages$CheckChatInvite |
-  Messages$ImportChatInvite |
-  Messages$GetStickerSet |
-  Messages$InstallStickerSet |
-  Messages$UninstallStickerSet |
-  Messages$StartBot |
-  Help$GetAppChangelog |
-  Messages$GetMessagesViews |
-  Channels$ReadHistory |
-  Channels$DeleteMessages |
-  Channels$ReportSpam |
-  Channels$GetMessages |
-  Channels$GetParticipants |
-  Channels$GetParticipant |
-  Channels$GetChannels |
-  Channels$GetFullChannel |
-  Channels$CreateChannel |
-  Channels$EditAdmin |
-  Channels$EditTitle |
-  Channels$EditPhoto |
-  Channels$CheckUsername |
-  Channels$UpdateUsername |
-  Channels$JoinChannel |
-  Channels$LeaveChannel |
-  Channels$InviteToChannel |
-  Channels$DeleteChannel |
-  Updates$GetChannelDifference |
-  Messages$EditChatAdmin |
-  Messages$MigrateChat |
-  Messages$SearchGlobal |
-  Messages$ReorderStickerSets |
-  Messages$GetDocumentByHash |
-  Messages$GetSavedGifs |
-  Messages$SaveGif |
-  Messages$GetInlineBotResults |
-  Messages$SetInlineBotResults |
-  Messages$SendInlineBotResult |
-  Channels$ExportMessageLink |
-  Channels$ToggleSignatures |
-  Auth$ResendCode |
-  Auth$CancelCode |
-  Messages$GetMessageEditData |
-  Messages$EditMessage |
-  Messages$EditInlineBotMessage |
-  Messages$GetBotCallbackAnswer |
-  Messages$SetBotCallbackAnswer |
-  Contacts$GetTopPeers |
-  Contacts$ResetTopPeerRating |
-  Messages$GetPeerDialogs |
-  Messages$SaveDraft |
-  Messages$GetAllDrafts |
-  Messages$GetFeaturedStickers |
-  Messages$ReadFeaturedStickers |
-  Messages$GetRecentStickers |
-  Messages$SaveRecentSticker |
-  Messages$ClearRecentStickers |
-  Messages$GetArchivedStickers |
-  Account$SendConfirmPhoneCode |
-  Account$ConfirmPhone |
-  Channels$GetAdminedPublicChannels |
-  Messages$GetMaskStickers |
-  Messages$GetAttachedStickers |
-  Auth$DropTempAuthKeys |
-  Messages$SetGameScore |
-  Messages$SetInlineGameScore |
-  Messages$GetGameHighScores |
-  Messages$GetInlineGameHighScores |
-  Messages$GetCommonChats |
-  Help$SetBotUpdatesStatus |
-  Messages$GetWebPage |
-  Messages$ToggleDialogPin |
-  Messages$ReorderPinnedDialogs |
-  Messages$GetPinnedDialogs |
-  Bots$SendCustomRequest |
-  Bots$AnswerWebhookJSONQuery |
-  Upload$GetWebFile |
-  Payments$GetPaymentForm |
-  Payments$GetPaymentReceipt |
-  Payments$ValidateRequestedInfo |
-  Payments$SendPaymentForm |
-  Account$GetTmpPassword |
-  Payments$GetSavedInfo |
-  Payments$ClearSavedInfo |
-  Messages$SetBotShippingResults |
-  Messages$SetBotPrecheckoutResults |
-  Stickers$CreateStickerSet |
-  Stickers$RemoveStickerFromSet |
-  Stickers$ChangeStickerPosition |
-  Stickers$AddStickerToSet |
-  Messages$UploadMedia |
-  Phone$GetCallConfig |
-  Phone$RequestCall |
-  Phone$AcceptCall |
-  Phone$ConfirmCall |
-  Phone$ReceivedCall |
-  Phone$DiscardCall |
-  Phone$SetCallRating |
-  Phone$SaveCallDebug |
-  Upload$GetCdnFile |
-  Upload$ReuploadCdnFile |
-  Help$GetCdnConfig |
-  Langpack$GetLangPack |
-  Langpack$GetStrings |
-  Langpack$GetDifference |
-  Langpack$GetLanguages |
-  Channels$EditBanned |
-  Channels$GetAdminLog |
-  Upload$GetCdnFileHashes |
-  Messages$SendScreenshotNotification |
-  Channels$SetStickers |
-  Messages$GetFavedStickers |
-  Messages$FaveSticker |
-  Channels$ReadMessageContents |
-  Contacts$ResetSaved |
-  Messages$GetUnreadMentions |
-  Channels$DeleteHistory |
-  Help$GetRecentMeUrls |
-  Channels$TogglePreHistoryHidden |
-  Messages$ReadMentions |
-  Messages$GetRecentLocations |
-  Messages$SendMultiMedia |
-  Messages$UploadEncryptedFile |
-  Account$GetWebAuthorizations |
-  Account$ResetWebAuthorization |
-  Account$ResetWebAuthorizations |
-  Messages$SearchStickerSets |
-  Upload$GetFileHashes |
-  Help$GetTermsOfServiceUpdate |
-  Help$AcceptTermsOfService |
-  Account$GetAllSecureValues |
-  Account$GetSecureValue |
-  Account$SaveSecureValue |
-  Account$DeleteSecureValue |
-  Users$SetSecureValueErrors |
-  Account$GetAuthorizationForm |
-  Account$AcceptAuthorization |
-  Account$SendVerifyPhoneCode |
-  Account$VerifyPhone |
-  Account$SendVerifyEmailCode |
-  Account$VerifyEmail |
-  Help$GetDeepLinkInfo |
-  Contacts$GetSaved |
-  Channels$GetLeftChannels |
-  Account$InitTakeoutSession |
-  Account$FinishTakeoutSession |
-  Messages$GetSplitRanges |
-  InvokeWithMessagesRange |
-  InvokeWithTakeout |
-  Messages$MarkDialogUnread |
-  Messages$GetDialogUnreadMarks |
-  Contacts$ToggleTopPeers |
-  Messages$ClearAllDrafts |
-  Help$GetAppConfig |
-  Help$SaveAppLog |
-  Help$GetPassportConfig |
-  Langpack$GetLanguage |
-  Messages$UpdatePinnedMessage |
-  Account$ConfirmPasswordEmail |
-  Account$ResendPasswordEmail |
-  Account$CancelPasswordEmail |
-  Help$GetSupportName |
-  Help$GetUserInfo |
-  Help$EditUserInfo |
-  Account$GetContactSignUpNotification |
-  Account$SetContactSignUpNotification |
-  Account$GetNotifyExceptions |
-  Messages$SendVote |
-  Messages$GetPollResults |
-  Messages$GetOnlines |
-  Messages$EditChatAbout |
-  Messages$EditChatDefaultBannedRights |
-  Account$GetWallPaper |
-  Account$UploadWallPaper |
-  Account$SaveWallPaper |
-  Account$InstallWallPaper |
-  Account$ResetWallPapers |
-  Account$GetAutoDownloadSettings |
-  Account$SaveAutoDownloadSettings |
-  Messages$GetEmojiKeywords |
-  Messages$GetEmojiKeywordsDifference |
-  Messages$GetEmojiKeywordsLanguages |
-  Messages$GetEmojiURL |
-  Folders$EditPeerFolders |
-  Messages$GetSearchCounters |
-  Channels$GetGroupsForDiscussion |
-  Channels$SetDiscussionGroup |
-  Messages$RequestUrlAuth |
-  Messages$AcceptUrlAuth |
-  Messages$HidePeerSettingsBar |
-  Contacts$AddContact |
-  Contacts$AcceptContact |
-  Channels$EditCreator |
-  Contacts$GetLocated |
-  Channels$EditLocation |
-  Channels$ToggleSlowMode |
-  Messages$GetScheduledHistory |
-  Messages$GetScheduledMessages |
-  Messages$SendScheduledMessages |
-  Messages$DeleteScheduledMessages |
-  Account$UploadTheme |
-  Account$CreateTheme |
-  Account$UpdateTheme |
-  Account$SaveTheme |
-  Account$InstallTheme |
-  Account$GetTheme |
-  Account$GetThemes |
-  Auth$ExportLoginToken |
-  Auth$ImportLoginToken |
-  Auth$AcceptLoginToken |
-  Account$SetContentSettings |
-  Account$GetContentSettings |
-  Channels$GetInactiveChannels |
-  Account$GetMultiWallPapers |
-  Messages$GetPollVotes |
-  Messages$ToggleStickerSets |
-  Payments$GetBankCardData |
-  Messages$GetDialogFilters |
-  Messages$GetSuggestedDialogFilters |
-  Messages$UpdateDialogFilter |
-  Messages$UpdateDialogFiltersOrder |
-  Stats$GetBroadcastStats |
-  Stats$LoadAsyncGraph |
-  Stickers$SetStickerSetThumb |
-  Bots$SetBotCommands |
-  Messages$GetOldFeaturedStickers |
-  Help$GetPromoData |
-  Help$HidePromoData |
-  Phone$SendSignalingData |
-  Stats$GetMegagroupStats |
-  Account$GetGlobalPrivacySettings |
-  Account$SetGlobalPrivacySettings |
-  Help$DismissSuggestion |
-  Help$GetCountriesList |
-  Messages$GetReplies |
-  Messages$GetDiscussionMessage |
-  Messages$ReadDiscussion |
-  Contacts$BlockFromReplies |
-  Stats$GetMessagePublicForwards |
-  Stats$GetMessageStats |
-  Messages$UnpinAllMessages |
-  Phone$CreateGroupCall |
-  Phone$JoinGroupCall |
-  Phone$LeaveGroupCall |
-  Phone$InviteToGroupCall |
-  Phone$DiscardGroupCall |
-  Phone$ToggleGroupCallSettings |
-  Phone$GetGroupCall |
-  Phone$GetGroupParticipants |
-  Phone$CheckGroupCall |
-  Messages$DeleteChat |
-  Messages$DeletePhoneCallHistory |
-  Messages$CheckHistoryImport |
-  Messages$InitHistoryImport |
-  Messages$UploadImportedMedia |
-  Messages$StartHistoryImport |
-  Messages$GetExportedChatInvites |
-  Messages$GetExportedChatInvite |
-  Messages$EditExportedChatInvite |
-  Messages$DeleteRevokedExportedChatInvites |
-  Messages$DeleteExportedChatInvite |
-  Messages$GetAdminsWithInvites |
-  Messages$GetChatInviteImporters |
-  Messages$SetHistoryTTL |
-  Account$ReportProfilePhoto |
-  Channels$ConvertToGigagroup |
-  Messages$CheckHistoryImportPeer |
-  Phone$ToggleGroupCallRecord |
-  Phone$EditGroupCallParticipant |
-  Phone$EditGroupCallTitle |
-  Phone$GetGroupCallJoinAs |
-  Phone$ExportGroupCallInvite |
-  Phone$ToggleGroupCallStartSubscription |
-  Phone$StartScheduledGroupCall |
-  Phone$SaveDefaultGroupCallJoinAs |
-  Phone$JoinGroupCallPresentation |
-  Phone$LeaveGroupCallPresentation |
-  Stickers$CheckShortName |
-  Stickers$SuggestShortName |
-  Bots$ResetBotCommands |
-  Bots$GetBotCommands |
-  Account$ResetPassword |
-  Account$DeclinePasswordReset |
-  Auth$CheckRecoveryPassword |
-  Account$GetChatThemes |
-  Messages$SetChatTheme |
-  Channels$ViewSponsoredMessage |
-  Channels$GetSponsoredMessages |
-  Messages$GetMessageReadParticipants |
-  Messages$GetSearchResultsCalendar |
-  Messages$GetSearchResultsPositions |
-  Messages$HideChatJoinRequest |
-  Messages$HideAllChatJoinRequests |
-  Messages$ToggleNoForwards |
-  Messages$SaveDefaultSendAs |
-  Channels$GetSendAs |
-  Account$SetAuthorizationTTL |
-  Account$ChangeAuthorizationSettings |
-  Channels$DeleteParticipantHistory |
-  Messages$SendReaction |
-  Messages$GetMessagesReactions |
-  Messages$GetMessageReactionsList |
-  Messages$SetChatAvailableReactions |
-  Messages$GetAvailableReactions |
-  Messages$SetDefaultReaction |
-  Messages$TranslateText |
-  Messages$GetUnreadReactions |
-  Messages$ReadReactions |
-  Contacts$ResolvePhone |
-  Phone$GetGroupCallStreamChannels |
-  Phone$GetGroupCallStreamRtmpUrl |
-  Messages$SearchSentMedia |
-  Messages$GetAttachMenuBots |
-  Messages$GetAttachMenuBot |
-  Messages$ToggleBotInAttachMenu |
-  Messages$RequestWebView |
-  Messages$ProlongWebView |
-  Messages$RequestSimpleWebView |
-  Messages$SendWebViewResultMessage |
-  Messages$SendWebViewData |
-  Bots$SetBotMenuButton |
-  Bots$GetBotMenuButton |
-  Account$GetSavedRingtones |
-  Account$SaveRingtone |
-  Account$UploadRingtone |
-  Bots$SetBotBroadcastDefaultAdminRights |
-  Bots$SetBotGroupDefaultAdminRights |
-  Phone$SaveCallLog |
-  Channels$ToggleJoinToSend |
-  Channels$ToggleJoinRequest |
-  Payments$ExportInvoice |
-  Messages$TranscribeAudio |
-  Messages$RateTranscribedAudio |
-  Payments$AssignAppStoreTransaction |
-  Payments$AssignPlayMarketTransaction |
-  Payments$CanPurchasePremium |
-  Help$GetPremiumPromo |
-  Messages$GetCustomEmojiDocuments |
-  Messages$GetEmojiStickers |
-  Messages$GetFeaturedEmojiStickers |
-  Account$UpdateEmojiStatus |
-  Account$GetDefaultEmojiStatuses |
-  Account$GetRecentEmojiStatuses |
-  Account$ClearRecentEmojiStatuses |
-  Messages$ReportReaction |
-  Messages$GetTopReactions |
-  Messages$GetRecentReactions |
-  Messages$ClearRecentReactions |
-  Messages$GetExtendedMedia |
-  Auth$ImportWebTokenAuthorization |
-  Account$ReorderUsernames |
-  Account$ToggleUsername |
-  Channels$ReorderUsernames |
-  Channels$ToggleUsername |
-  Channels$DeactivateAllUsernames |
-  Channels$ToggleForum |
-  Channels$CreateForumTopic |
-  Channels$GetForumTopics |
-  Channels$GetForumTopicsByID |
-  Channels$EditForumTopic |
-  Channels$UpdatePinnedForumTopic |
-  Channels$DeleteTopicHistory |
-  Channels$ReorderPinnedForumTopics |
-  Channels$ToggleAntiSpam |
-  Channels$ReportAntiSpamFalsePositive |
-  Messages$SetDefaultHistoryTTL |
-  Messages$GetDefaultHistoryTTL |
-  Contacts$ExportContactToken |
-  Contacts$ImportContactToken |
-  Photos$UploadContactProfilePhoto |
-  Channels$ToggleParticipantsHidden |
-  Messages$SendBotRequestedPeer |
-  Account$GetDefaultProfilePhotoEmojis |
-  Account$GetDefaultGroupPhotoEmojis |
-  Auth$RequestFirebaseSms |
-  Messages$GetEmojiGroups |
-  Messages$GetEmojiStatusGroups |
-  Messages$GetEmojiProfilePhotoGroups |
-  Messages$SearchCustomEmoji |
-  Messages$TogglePeerTranslations |
-  Account$GetAutoSaveSettings |
-  Account$SaveAutoSaveSettings |
-  Account$DeleteAutoSaveExceptions |
-  Stickers$ChangeSticker |
-  Stickers$RenameStickerSet |
-  Stickers$DeleteStickerSet |
-  Messages$GetBotApp |
-  Messages$RequestAppWebView |
-  Bots$SetBotInfo |
-  Bots$GetBotInfo |
-  Auth$ResetLoginEmail |
-  Chatlists$ExportChatlistInvite |
-  Chatlists$DeleteExportedInvite |
-  Chatlists$EditExportedInvite |
-  Chatlists$GetExportedInvites |
-  Chatlists$CheckChatlistInvite |
-  Chatlists$JoinChatlistInvite |
-  Chatlists$GetChatlistUpdates |
-  Chatlists$JoinChatlistUpdates |
-  Chatlists$HideChatlistUpdates |
-  Chatlists$GetLeaveChatlistSuggestions |
-  Chatlists$LeaveChatlist |
-  Bots$ReorderUsernames |
-  Bots$ToggleUsername |
-  Messages$SetChatWallPaper
 
-export interface InvokeAfterMsg {
-  method: "invokeAfterMsg";
-  params: {
-    msg_id: number;
-    query: unknown;
-  }
-  response: unknown
-}
-
-export interface InvokeAfterMsgs {
-  method: "invokeAfterMsgs";
-  params: {
-    msg_ids: number[];
-    query: unknown;
-  }
-  response: unknown
-}
-
-export interface Auth$SendCode {
-  method: "auth.sendCode";
-  params: {
-    phone_number: string;
-    api_id: number;
-    api_hash: string;
-    settings: CodeSettings;
-  }
-  response: Auth$SentCode
-}
-
-export interface Auth$SignUp {
-  method: "auth.signUp";
-  params: {
-    phone_number: string;
-    phone_code_hash: string;
-    first_name: string;
-    last_name: string;
-  }
-  response: Auth$Authorization
-}
-
-export interface Auth$SignIn {
-  method: "auth.signIn";
-  params: {
-    flags?: Number;
-    phone_number: string;
-    phone_code_hash: string;
-    phone_code?: string;
-    email_verification?: EmailVerification;
-  }
-  response: Auth$Authorization
-}
-
-export interface Auth$LogOut {
-  method: "auth.logOut";
-  params: {
-  }
-  response: Auth$LoggedOut
-}
-
-export interface Auth$ResetAuthorizations {
-  method: "auth.resetAuthorizations";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Auth$ExportAuthorization {
-  method: "auth.exportAuthorization";
-  params: {
-    dc_id: number;
-  }
-  response: Auth$ExportedAuthorization
-}
-
-export interface Auth$ImportAuthorization {
-  method: "auth.importAuthorization";
-  params: {
-    id: number;
-    bytes: Uint8Array;
-  }
-  response: Auth$Authorization
-}
-
-export interface Auth$BindTempAuthKey {
-  method: "auth.bindTempAuthKey";
-  params: {
-    perm_auth_key_id: number;
-    nonce: number;
-    expires_at: number;
-    encrypted_message: Uint8Array;
-  }
-  response: Bool
-}
-
-export interface Account$RegisterDevice {
-  method: "account.registerDevice";
-  params: {
-    flags?: Number;
-    no_muted?: True;
-    token_type: number;
-    token: string;
-    app_sandbox: Bool;
-    secret: Uint8Array;
-    other_uids: number[];
-  }
-  response: Bool
-}
-
-export interface Account$UnregisterDevice {
-  method: "account.unregisterDevice";
-  params: {
-    token_type: number;
-    token: string;
-    other_uids: number[];
-  }
-  response: Bool
-}
-
-export interface Account$UpdateNotifySettings {
-  method: "account.updateNotifySettings";
-  params: {
-    peer: InputNotifyPeer;
-    settings: InputPeerNotifySettings;
-  }
-  response: Bool
-}
-
-export interface Account$GetNotifySettings {
-  method: "account.getNotifySettings";
-  params: {
-    peer: InputNotifyPeer;
-  }
-  response: PeerNotifySettings
-}
-
-export interface Account$ResetNotifySettings {
-  method: "account.resetNotifySettings";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Account$UpdateProfile {
-  method: "account.updateProfile";
-  params: {
-    flags?: Number;
-    first_name?: string;
-    last_name?: string;
-    about?: string;
-  }
-  response: User
-}
-
-export interface Account$UpdateStatus {
-  method: "account.updateStatus";
-  params: {
-    offline: Bool;
-  }
-  response: Bool
-}
-
-export interface Account$GetWallPapers {
-  method: "account.getWallPapers";
-  params: {
-    hash: number;
-  }
-  response: Account$WallPapers
-}
-
-export interface Account$ReportPeer {
-  method: "account.reportPeer";
-  params: {
-    peer: InputPeer;
-    reason: ReportReason;
-    message: string;
-  }
-  response: Bool
-}
-
-export interface Users$GetUsers {
-  method: "users.getUsers";
-  params: {
-    id: InputUser;
-  }
-  response: User[]
-}
-
-export interface Users$GetFullUser {
-  method: "users.getFullUser";
-  params: {
-    id: InputUser;
-  }
-  response: Users$UserFull
-}
-
-export interface Contacts$GetContactIDs {
-  method: "contacts.getContactIDs";
-  params: {
-    hash: number;
-  }
-  response: Number[]
-}
-
-export interface Contacts$GetStatuses {
-  method: "contacts.getStatuses";
-  params: {
-  }
-  response: ContactStatus[]
-}
-
-export interface Contacts$GetContacts {
-  method: "contacts.getContacts";
-  params: {
-    hash: number;
-  }
-  response: Contacts$Contacts
-}
-
-export interface Contacts$ImportContacts {
-  method: "contacts.importContacts";
-  params: {
-    contacts: InputContact;
-  }
-  response: Contacts$ImportedContacts
-}
-
-export interface Contacts$DeleteContacts {
-  method: "contacts.deleteContacts";
-  params: {
-    id: InputUser;
-  }
-  response: Updates
-}
-
-export interface Contacts$DeleteByPhones {
-  method: "contacts.deleteByPhones";
-  params: {
-    phones: string[];
-  }
-  response: Bool
-}
-
-export interface Contacts$Block {
-  method: "contacts.block";
-  params: {
-    id: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Contacts$Unblock {
-  method: "contacts.unblock";
-  params: {
-    id: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Contacts$GetBlocked {
-  method: "contacts.getBlocked";
-  params: {
-    offset: number;
-    limit: number;
-  }
-  response: Contacts$Blocked
-}
-
-export interface Messages$GetMessages {
-  method: "messages.getMessages";
-  params: {
-    id: InputMessage;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$GetDialogs {
-  method: "messages.getDialogs";
-  params: {
-    flags?: Number;
-    exclude_pinned?: True;
-    folder_id?: number;
-    offset_date: number;
-    offset_id: number;
-    offset_peer: InputPeer;
-    limit: number;
-    hash: number;
-  }
-  response: Messages$Dialogs
-}
-
-export interface Messages$GetHistory {
-  method: "messages.getHistory";
-  params: {
-    peer: InputPeer;
-    offset_id: number;
-    offset_date: number;
-    add_offset: number;
-    limit: number;
-    max_id: number;
-    min_id: number;
-    hash: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$Search {
-  method: "messages.search";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    q: string;
-    from_id?: InputPeer;
-    top_msg_id?: number;
-    filter: MessagesFilter;
-    min_date: number;
-    max_date: number;
-    offset_id: number;
-    add_offset: number;
-    limit: number;
-    max_id: number;
-    min_id: number;
-    hash: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$ReadHistory {
-  method: "messages.readHistory";
-  params: {
-    peer: InputPeer;
-    max_id: number;
-  }
-  response: Messages$AffectedMessages
-}
-
-export interface Messages$DeleteHistory {
-  method: "messages.deleteHistory";
-  params: {
-    flags?: Number;
-    just_clear?: True;
-    revoke?: True;
-    peer: InputPeer;
-    max_id: number;
-    min_date?: number;
-    max_date?: number;
-  }
-  response: Messages$AffectedHistory
-}
-
-export interface Messages$DeleteMessages {
-  method: "messages.deleteMessages";
-  params: {
-    flags?: Number;
-    revoke?: True;
-    id: number[];
-  }
-  response: Messages$AffectedMessages
-}
-
-export interface Messages$ReceivedMessages {
-  method: "messages.receivedMessages";
-  params: {
-    max_id: number;
-  }
-  response: ReceivedNotifyMessage[]
-}
-
-export interface Messages$SetTyping {
-  method: "messages.setTyping";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    top_msg_id?: number;
-    action: SendMessageAction;
-  }
-  response: Bool
-}
-
-export interface Messages$SendMessage {
-  method: "messages.sendMessage";
-  params: {
-    flags?: Number;
-    no_webpage?: True;
-    silent?: True;
-    background?: True;
-    clear_draft?: True;
-    noforwards?: True;
-    update_stickersets_order?: True;
-    peer: InputPeer;
-    reply_to_msg_id?: number;
-    top_msg_id?: number;
-    message: string;
-    random_id: number;
-    reply_markup?: ReplyMarkup;
-    entities?: MessageEntity;
-    schedule_date?: number;
-    send_as?: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Messages$SendMedia {
-  method: "messages.sendMedia";
-  params: {
-    flags?: Number;
-    silent?: True;
-    background?: True;
-    clear_draft?: True;
-    noforwards?: True;
-    update_stickersets_order?: True;
-    peer: InputPeer;
-    reply_to_msg_id?: number;
-    top_msg_id?: number;
-    media: InputMedia;
-    message: string;
-    random_id: number;
-    reply_markup?: ReplyMarkup;
-    entities?: MessageEntity;
-    schedule_date?: number;
-    send_as?: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Messages$ForwardMessages {
-  method: "messages.forwardMessages";
-  params: {
-    flags?: Number;
-    silent?: True;
-    background?: True;
-    with_my_score?: True;
-    drop_author?: True;
-    drop_media_captions?: True;
-    noforwards?: True;
-    from_peer: InputPeer;
-    id: number[];
-    random_id: number[];
-    to_peer: InputPeer;
-    top_msg_id?: number;
-    schedule_date?: number;
-    send_as?: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Messages$ReportSpam {
-  method: "messages.reportSpam";
-  params: {
-    peer: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Messages$GetPeerSettings {
-  method: "messages.getPeerSettings";
-  params: {
-    peer: InputPeer;
-  }
-  response: Messages$PeerSettings
-}
-
-export interface Messages$Report {
-  method: "messages.report";
-  params: {
-    peer: InputPeer;
-    id: number[];
-    reason: ReportReason;
-    message: string;
-  }
-  response: Bool
-}
-
-export interface Messages$GetChats {
-  method: "messages.getChats";
-  params: {
-    id: number[];
-  }
-  response: Messages$Chats
-}
-
-export interface Messages$GetFullChat {
-  method: "messages.getFullChat";
-  params: {
-    chat_id: number;
-  }
-  response: Messages$ChatFull
-}
-
-export interface Messages$EditChatTitle {
-  method: "messages.editChatTitle";
-  params: {
-    chat_id: number;
-    title: string;
-  }
-  response: Updates
-}
-
-export interface Messages$EditChatPhoto {
-  method: "messages.editChatPhoto";
-  params: {
-    chat_id: number;
-    photo: InputChatPhoto;
-  }
-  response: Updates
-}
-
-export interface Messages$AddChatUser {
-  method: "messages.addChatUser";
-  params: {
-    chat_id: number;
-    user_id: InputUser;
-    fwd_limit: number;
-  }
-  response: Updates
-}
-
-export interface Messages$DeleteChatUser {
-  method: "messages.deleteChatUser";
-  params: {
-    flags?: Number;
-    revoke_history?: True;
-    chat_id: number;
-    user_id: InputUser;
-  }
-  response: Updates
-}
-
-export interface Messages$CreateChat {
-  method: "messages.createChat";
-  params: {
-    flags?: Number;
-    users: InputUser;
-    title: string;
-    ttl_period?: number;
-  }
-  response: Updates
-}
-
-export interface Updates$GetState {
-  method: "updates.getState";
-  params: {
-  }
-  response: Updates$State
-}
-
-export interface Updates$GetDifference {
-  method: "updates.getDifference";
-  params: {
-    flags?: Number;
-    pts: number;
-    pts_total_limit?: number;
-    date: number;
-    qts: number;
-  }
-  response: Updates$Difference
-}
-
-export interface Photos$UpdateProfilePhoto {
-  method: "photos.updateProfilePhoto";
-  params: {
-    flags?: Number;
-    fallback?: True;
-    bot?: InputUser;
-    id: InputPhoto;
-  }
-  response: Photos$Photo
-}
-
-export interface Photos$UploadProfilePhoto {
-  method: "photos.uploadProfilePhoto";
-  params: {
-    flags?: Number;
-    fallback?: True;
-    bot?: InputUser;
-    file?: InputFile;
-    video?: InputFile;
-    video_start_ts?: number;
-    video_emoji_markup?: VideoSize;
-  }
-  response: Photos$Photo
-}
-
-export interface Photos$DeletePhotos {
-  method: "photos.deletePhotos";
-  params: {
-    id: InputPhoto;
-  }
-  response: Number[]
-}
-
-export interface Upload$SaveFilePart {
-  method: "upload.saveFilePart";
-  params: {
-    file_id: number;
-    file_part: number;
-    bytes: Uint8Array;
-  }
-  response: Bool
-}
-
-export interface Upload$GetFile {
-  method: "upload.getFile";
-  params: {
-    flags?: Number;
-    precise?: True;
-    cdn_supported?: True;
-    location: InputFileLocation;
-    offset: number;
-    limit: number;
-  }
-  response: Upload$File
-}
-
-export interface Help$GetConfig {
-  method: "help.getConfig";
-  params: {
-  }
-  response: Config
-}
-
-export interface Help$GetNearestDc {
-  method: "help.getNearestDc";
-  params: {
-  }
-  response: NearestDc
-}
-
-export interface Help$GetAppUpdate {
-  method: "help.getAppUpdate";
-  params: {
-    source: string;
-  }
-  response: Help$AppUpdate
-}
-
-export interface Help$GetInviteText {
-  method: "help.getInviteText";
-  params: {
-  }
-  response: Help$InviteText
-}
-
-export interface Photos$GetUserPhotos {
-  method: "photos.getUserPhotos";
-  params: {
-    user_id: InputUser;
-    offset: number;
-    max_id: number;
-    limit: number;
-  }
-  response: Photos$Photos
-}
-
-export interface Messages$GetDhConfig {
-  method: "messages.getDhConfig";
-  params: {
-    version: number;
-    random_length: number;
-  }
-  response: Messages$DhConfig
-}
-
-export interface Messages$RequestEncryption {
-  method: "messages.requestEncryption";
-  params: {
-    user_id: InputUser;
-    random_id: number;
-    g_a: Uint8Array;
-  }
-  response: EncryptedChat
-}
-
-export interface Messages$AcceptEncryption {
-  method: "messages.acceptEncryption";
-  params: {
-    peer: InputEncryptedChat;
-    g_b: Uint8Array;
-    key_fingerprint: number;
-  }
-  response: EncryptedChat
-}
-
-export interface Messages$DiscardEncryption {
-  method: "messages.discardEncryption";
-  params: {
-    flags?: Number;
-    delete_history?: True;
-    chat_id: number;
-  }
-  response: Bool
-}
-
-export interface Messages$SetEncryptedTyping {
-  method: "messages.setEncryptedTyping";
-  params: {
-    peer: InputEncryptedChat;
-    typing: Bool;
-  }
-  response: Bool
-}
-
-export interface Messages$ReadEncryptedHistory {
-  method: "messages.readEncryptedHistory";
-  params: {
-    peer: InputEncryptedChat;
-    max_date: number;
-  }
-  response: Bool
-}
-
-export interface Messages$SendEncrypted {
-  method: "messages.sendEncrypted";
-  params: {
-    flags?: Number;
-    silent?: True;
-    peer: InputEncryptedChat;
-    random_id: number;
-    data: Uint8Array;
-  }
-  response: Messages$SentEncryptedMessage
-}
-
-export interface Messages$SendEncryptedFile {
-  method: "messages.sendEncryptedFile";
-  params: {
-    flags?: Number;
-    silent?: True;
-    peer: InputEncryptedChat;
-    random_id: number;
-    data: Uint8Array;
-    file: InputEncryptedFile;
-  }
-  response: Messages$SentEncryptedMessage
-}
-
-export interface Messages$SendEncryptedService {
-  method: "messages.sendEncryptedService";
-  params: {
-    peer: InputEncryptedChat;
-    random_id: number;
-    data: Uint8Array;
-  }
-  response: Messages$SentEncryptedMessage
-}
-
-export interface Messages$ReceivedQueue {
-  method: "messages.receivedQueue";
-  params: {
-    max_qts: number;
-  }
-  response: Number[]
-}
-
-export interface Messages$ReportEncryptedSpam {
-  method: "messages.reportEncryptedSpam";
-  params: {
-    peer: InputEncryptedChat;
-  }
-  response: Bool
-}
-
-export interface Upload$SaveBigFilePart {
-  method: "upload.saveBigFilePart";
-  params: {
-    file_id: number;
-    file_part: number;
-    file_total_parts: number;
-    bytes: Uint8Array;
-  }
-  response: Bool
-}
-
-export interface InitConnection {
-  method: "initConnection";
-  params: {
-    flags?: Number;
-    api_id: number;
-    device_model: string;
-    system_version: string;
-    app_version: string;
-    system_lang_code: string;
-    lang_pack: string;
-    lang_code: string;
-    proxy?: InputClientProxy;
-    params?: JSONValue;
-    query: unknown;
-  }
-  response: unknown
-}
-
-export interface Help$GetSupport {
-  method: "help.getSupport";
-  params: {
-  }
-  response: Help$Support
-}
-
-export interface Messages$ReadMessageContents {
-  method: "messages.readMessageContents";
-  params: {
-    id: number[];
-  }
-  response: Messages$AffectedMessages
-}
-
-export interface Account$CheckUsername {
-  method: "account.checkUsername";
-  params: {
-    username: string;
-  }
-  response: Bool
-}
-
-export interface Account$UpdateUsername {
-  method: "account.updateUsername";
-  params: {
-    username: string;
-  }
-  response: User
-}
-
-export interface Contacts$Search {
-  method: "contacts.search";
-  params: {
-    q: string;
-    limit: number;
-  }
-  response: Contacts$Found
-}
-
-export interface Account$GetPrivacy {
-  method: "account.getPrivacy";
-  params: {
-    key: InputPrivacyKey;
-  }
-  response: Account$PrivacyRules
-}
-
-export interface Account$SetPrivacy {
-  method: "account.setPrivacy";
-  params: {
-    key: InputPrivacyKey;
-    rules: InputPrivacyRule;
-  }
-  response: Account$PrivacyRules
-}
-
-export interface Account$DeleteAccount {
-  method: "account.deleteAccount";
-  params: {
-    flags?: Number;
-    reason: string;
-    password?: InputCheckPasswordSRP;
-  }
-  response: Bool
-}
-
-export interface Account$GetAccountTTL {
-  method: "account.getAccountTTL";
-  params: {
-  }
-  response: AccountDaysTTL
-}
-
-export interface Account$SetAccountTTL {
-  method: "account.setAccountTTL";
-  params: {
-    ttl: AccountDaysTTL;
-  }
-  response: Bool
-}
-
-export interface InvokeWithLayer {
-  method: "invokeWithLayer";
-  params: {
-    layer: number;
-    query: unknown;
-  }
-  response: unknown
-}
-
-export interface Contacts$ResolveUsername {
-  method: "contacts.resolveUsername";
-  params: {
-    username: string;
-  }
-  response: Contacts$ResolvedPeer
-}
-
-export interface Account$SendChangePhoneCode {
-  method: "account.sendChangePhoneCode";
-  params: {
-    phone_number: string;
-    settings: CodeSettings;
-  }
-  response: Auth$SentCode
-}
-
-export interface Account$ChangePhone {
-  method: "account.changePhone";
-  params: {
-    phone_number: string;
-    phone_code_hash: string;
-    phone_code: string;
-  }
-  response: User
-}
-
-export interface Messages$GetStickers {
-  method: "messages.getStickers";
-  params: {
-    emoticon: string;
-    hash: number;
-  }
-  response: Messages$Stickers
-}
-
-export interface Messages$GetAllStickers {
-  method: "messages.getAllStickers";
-  params: {
-    hash: number;
-  }
-  response: Messages$AllStickers
-}
-
-export interface Account$UpdateDeviceLocked {
-  method: "account.updateDeviceLocked";
-  params: {
-    period: number;
-  }
-  response: Bool
-}
-
-export interface Auth$ImportBotAuthorization {
-  method: "auth.importBotAuthorization";
-  params: {
-    flags: number;
-    api_id: number;
-    api_hash: string;
-    bot_auth_token: string;
-  }
-  response: Auth$Authorization
-}
-
-export interface Messages$GetWebPagePreview {
-  method: "messages.getWebPagePreview";
-  params: {
-    flags?: Number;
-    message: string;
-    entities?: MessageEntity;
-  }
-  response: MessageMedia
-}
-
-export interface Account$GetAuthorizations {
-  method: "account.getAuthorizations";
-  params: {
-  }
-  response: Account$Authorizations
-}
-
-export interface Account$ResetAuthorization {
-  method: "account.resetAuthorization";
-  params: {
-    hash: number;
-  }
-  response: Bool
-}
-
-export interface Account$GetPassword {
-  method: "account.getPassword";
-  params: {
-  }
-  response: Account$Password
-}
-
-export interface Account$GetPasswordSettings {
-  method: "account.getPasswordSettings";
-  params: {
-    password: InputCheckPasswordSRP;
-  }
-  response: Account$PasswordSettings
-}
-
-export interface Account$UpdatePasswordSettings {
-  method: "account.updatePasswordSettings";
-  params: {
-    password: InputCheckPasswordSRP;
-    new_settings: Account$PasswordInputSettings;
-  }
-  response: Bool
-}
-
-export interface Auth$CheckPassword {
-  method: "auth.checkPassword";
-  params: {
-    password: InputCheckPasswordSRP;
-  }
-  response: Auth$Authorization
-}
-
-export interface Auth$RequestPasswordRecovery {
-  method: "auth.requestPasswordRecovery";
-  params: {
-  }
-  response: Auth$PasswordRecovery
-}
-
-export interface Auth$RecoverPassword {
-  method: "auth.recoverPassword";
-  params: {
-    flags?: Number;
-    code: string;
-    new_settings?: Account$PasswordInputSettings;
-  }
-  response: Auth$Authorization
-}
-
-export interface InvokeWithoutUpdates {
-  method: "invokeWithoutUpdates";
-  params: {
-    query: unknown;
-  }
-  response: unknown
-}
-
-export interface Messages$ExportChatInvite {
-  method: "messages.exportChatInvite";
-  params: {
-    flags?: Number;
-    legacy_revoke_permanent?: True;
-    request_needed?: True;
-    peer: InputPeer;
-    expire_date?: number;
-    usage_limit?: number;
-    title?: string;
-  }
-  response: ExportedChatInvite
-}
-
-export interface Messages$CheckChatInvite {
-  method: "messages.checkChatInvite";
-  params: {
-    hash: string;
-  }
-  response: ChatInvite
-}
-
-export interface Messages$ImportChatInvite {
-  method: "messages.importChatInvite";
-  params: {
-    hash: string;
-  }
-  response: Updates
-}
-
-export interface Messages$GetStickerSet {
-  method: "messages.getStickerSet";
-  params: {
-    stickerset: InputStickerSet;
-    hash: number;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Messages$InstallStickerSet {
-  method: "messages.installStickerSet";
-  params: {
-    stickerset: InputStickerSet;
-    archived: Bool;
-  }
-  response: Messages$StickerSetInstallResult
-}
-
-export interface Messages$UninstallStickerSet {
-  method: "messages.uninstallStickerSet";
-  params: {
-    stickerset: InputStickerSet;
-  }
-  response: Bool
-}
-
-export interface Messages$StartBot {
-  method: "messages.startBot";
-  params: {
-    bot: InputUser;
-    peer: InputPeer;
-    random_id: number;
-    start_param: string;
-  }
-  response: Updates
-}
-
-export interface Help$GetAppChangelog {
-  method: "help.getAppChangelog";
-  params: {
-    prev_app_version: string;
-  }
-  response: Updates
-}
-
-export interface Messages$GetMessagesViews {
-  method: "messages.getMessagesViews";
-  params: {
-    peer: InputPeer;
-    id: number[];
-    increment: Bool;
-  }
-  response: Messages$MessageViews
-}
-
-export interface Channels$ReadHistory {
-  method: "channels.readHistory";
-  params: {
-    channel: InputChannel;
-    max_id: number;
-  }
-  response: Bool
-}
-
-export interface Channels$DeleteMessages {
-  method: "channels.deleteMessages";
-  params: {
-    channel: InputChannel;
-    id: number[];
-  }
-  response: Messages$AffectedMessages
-}
-
-export interface Channels$ReportSpam {
-  method: "channels.reportSpam";
-  params: {
-    channel: InputChannel;
-    participant: InputPeer;
-    id: number[];
-  }
-  response: Bool
-}
-
-export interface Channels$GetMessages {
-  method: "channels.getMessages";
-  params: {
-    channel: InputChannel;
-    id: InputMessage;
-  }
-  response: Messages$Messages
-}
-
-export interface Channels$GetParticipants {
-  method: "channels.getParticipants";
-  params: {
-    channel: InputChannel;
-    filter: ChannelParticipantsFilter;
-    offset: number;
-    limit: number;
-    hash: number;
-  }
-  response: Channels$ChannelParticipants
-}
-
-export interface Channels$GetParticipant {
-  method: "channels.getParticipant";
-  params: {
-    channel: InputChannel;
-    participant: InputPeer;
-  }
-  response: Channels$ChannelParticipant
-}
-
-export interface Channels$GetChannels {
-  method: "channels.getChannels";
-  params: {
-    id: InputChannel;
-  }
-  response: Messages$Chats
-}
-
-export interface Channels$GetFullChannel {
-  method: "channels.getFullChannel";
-  params: {
-    channel: InputChannel;
-  }
-  response: Messages$ChatFull
-}
-
-export interface Channels$CreateChannel {
-  method: "channels.createChannel";
-  params: {
-    flags?: Number;
-    broadcast?: True;
-    megagroup?: True;
-    for_import?: True;
-    forum?: True;
-    title: string;
-    about: string;
-    geo_point?: InputGeoPoint;
-    address?: string;
-    ttl_period?: number;
-  }
-  response: Updates
-}
-
-export interface Channels$EditAdmin {
-  method: "channels.editAdmin";
-  params: {
-    channel: InputChannel;
-    user_id: InputUser;
-    admin_rights: ChatAdminRights;
-    rank: string;
-  }
-  response: Updates
-}
-
-export interface Channels$EditTitle {
-  method: "channels.editTitle";
-  params: {
-    channel: InputChannel;
-    title: string;
-  }
-  response: Updates
-}
-
-export interface Channels$EditPhoto {
-  method: "channels.editPhoto";
-  params: {
-    channel: InputChannel;
-    photo: InputChatPhoto;
-  }
-  response: Updates
-}
-
-export interface Channels$CheckUsername {
-  method: "channels.checkUsername";
-  params: {
-    channel: InputChannel;
-    username: string;
-  }
-  response: Bool
-}
-
-export interface Channels$UpdateUsername {
-  method: "channels.updateUsername";
-  params: {
-    channel: InputChannel;
-    username: string;
-  }
-  response: Bool
-}
-
-export interface Channels$JoinChannel {
-  method: "channels.joinChannel";
-  params: {
-    channel: InputChannel;
-  }
-  response: Updates
-}
-
-export interface Channels$LeaveChannel {
-  method: "channels.leaveChannel";
-  params: {
-    channel: InputChannel;
-  }
-  response: Updates
-}
-
-export interface Channels$InviteToChannel {
-  method: "channels.inviteToChannel";
-  params: {
-    channel: InputChannel;
-    users: InputUser;
-  }
-  response: Updates
-}
-
-export interface Channels$DeleteChannel {
-  method: "channels.deleteChannel";
-  params: {
-    channel: InputChannel;
-  }
-  response: Updates
-}
-
-export interface Updates$GetChannelDifference {
-  method: "updates.getChannelDifference";
-  params: {
-    flags?: Number;
-    force?: True;
-    channel: InputChannel;
-    filter: ChannelMessagesFilter;
-    pts: number;
-    limit: number;
-  }
-  response: Updates$ChannelDifference
-}
-
-export interface Messages$EditChatAdmin {
-  method: "messages.editChatAdmin";
-  params: {
-    chat_id: number;
-    user_id: InputUser;
-    is_admin: Bool;
-  }
-  response: Bool
-}
-
-export interface Messages$MigrateChat {
-  method: "messages.migrateChat";
-  params: {
-    chat_id: number;
-  }
-  response: Updates
-}
-
-export interface Messages$SearchGlobal {
-  method: "messages.searchGlobal";
-  params: {
-    flags?: Number;
-    folder_id?: number;
-    q: string;
-    filter: MessagesFilter;
-    min_date: number;
-    max_date: number;
-    offset_rate: number;
-    offset_peer: InputPeer;
-    offset_id: number;
-    limit: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$ReorderStickerSets {
-  method: "messages.reorderStickerSets";
-  params: {
-    flags?: Number;
-    masks?: True;
-    emojis?: True;
-    order: number[];
-  }
-  response: Bool
-}
-
-export interface Messages$GetDocumentByHash {
-  method: "messages.getDocumentByHash";
-  params: {
-    sha256: Uint8Array;
-    size: number;
-    mime_type: string;
-  }
-  response: Document
-}
-
-export interface Messages$GetSavedGifs {
-  method: "messages.getSavedGifs";
-  params: {
-    hash: number;
-  }
-  response: Messages$SavedGifs
-}
-
-export interface Messages$SaveGif {
-  method: "messages.saveGif";
-  params: {
-    id: InputDocument;
-    unsave: Bool;
-  }
-  response: Bool
-}
-
-export interface Messages$GetInlineBotResults {
-  method: "messages.getInlineBotResults";
-  params: {
-    flags?: Number;
-    bot: InputUser;
-    peer: InputPeer;
-    geo_point?: InputGeoPoint;
-    query: string;
-    offset: string;
-  }
-  response: Messages$BotResults
-}
-
-export interface Messages$SetInlineBotResults {
-  method: "messages.setInlineBotResults";
-  params: {
-    flags?: Number;
-    gallery?: True;
-    private?: True;
-    query_id: number;
-    results: InputBotInlineResult;
-    cache_time: number;
-    next_offset?: string;
-    switch_pm?: InlineBotSwitchPM;
-    switch_webview?: InlineBotWebView;
-  }
-  response: Bool
-}
-
-export interface Messages$SendInlineBotResult {
-  method: "messages.sendInlineBotResult";
-  params: {
-    flags?: Number;
-    silent?: True;
-    background?: True;
-    clear_draft?: True;
-    hide_via?: True;
-    peer: InputPeer;
-    reply_to_msg_id?: number;
-    top_msg_id?: number;
-    random_id: number;
-    query_id: number;
-    id: string;
-    schedule_date?: number;
-    send_as?: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Channels$ExportMessageLink {
-  method: "channels.exportMessageLink";
-  params: {
-    flags?: Number;
-    grouped?: True;
-    thread?: True;
-    channel: InputChannel;
-    id: number;
-  }
-  response: ExportedMessageLink
-}
-
-export interface Channels$ToggleSignatures {
-  method: "channels.toggleSignatures";
-  params: {
-    channel: InputChannel;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Auth$ResendCode {
-  method: "auth.resendCode";
-  params: {
-    phone_number: string;
-    phone_code_hash: string;
-  }
-  response: Auth$SentCode
-}
-
-export interface Auth$CancelCode {
-  method: "auth.cancelCode";
-  params: {
-    phone_number: string;
-    phone_code_hash: string;
-  }
-  response: Bool
-}
-
-export interface Messages$GetMessageEditData {
-  method: "messages.getMessageEditData";
-  params: {
-    peer: InputPeer;
-    id: number;
-  }
-  response: Messages$MessageEditData
-}
-
-export interface Messages$EditMessage {
-  method: "messages.editMessage";
-  params: {
-    flags?: Number;
-    no_webpage?: True;
-    peer: InputPeer;
-    id: number;
-    message?: string;
-    media?: InputMedia;
-    reply_markup?: ReplyMarkup;
-    entities?: MessageEntity;
-    schedule_date?: number;
-  }
-  response: Updates
-}
-
-export interface Messages$EditInlineBotMessage {
-  method: "messages.editInlineBotMessage";
-  params: {
-    flags?: Number;
-    no_webpage?: True;
-    id: InputBotInlineMessageID;
-    message?: string;
-    media?: InputMedia;
-    reply_markup?: ReplyMarkup;
-    entities?: MessageEntity;
-  }
-  response: Bool
-}
-
-export interface Messages$GetBotCallbackAnswer {
-  method: "messages.getBotCallbackAnswer";
-  params: {
-    flags?: Number;
-    game?: True;
-    peer: InputPeer;
-    msg_id: number;
-    data?: Uint8Array;
-    password?: InputCheckPasswordSRP;
-  }
-  response: Messages$BotCallbackAnswer
-}
-
-export interface Messages$SetBotCallbackAnswer {
-  method: "messages.setBotCallbackAnswer";
-  params: {
-    flags?: Number;
-    alert?: True;
-    query_id: number;
-    message?: string;
-    url?: string;
-    cache_time: number;
-  }
-  response: Bool
-}
-
-export interface Contacts$GetTopPeers {
-  method: "contacts.getTopPeers";
-  params: {
-    flags?: Number;
-    correspondents?: True;
-    bots_pm?: True;
-    bots_inline?: True;
-    phone_calls?: True;
-    forward_users?: True;
-    forward_chats?: True;
-    groups?: True;
-    channels?: True;
-    offset: number;
-    limit: number;
-    hash: number;
-  }
-  response: Contacts$TopPeers
-}
-
-export interface Contacts$ResetTopPeerRating {
-  method: "contacts.resetTopPeerRating";
-  params: {
-    category: TopPeerCategory;
-    peer: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Messages$GetPeerDialogs {
-  method: "messages.getPeerDialogs";
-  params: {
-    peers: InputDialogPeer;
-  }
-  response: Messages$PeerDialogs
-}
-
-export interface Messages$SaveDraft {
-  method: "messages.saveDraft";
-  params: {
-    flags?: Number;
-    no_webpage?: True;
-    reply_to_msg_id?: number;
-    top_msg_id?: number;
-    peer: InputPeer;
-    message: string;
-    entities?: MessageEntity;
-  }
-  response: Bool
-}
-
-export interface Messages$GetAllDrafts {
-  method: "messages.getAllDrafts";
-  params: {
-  }
-  response: Updates
-}
-
-export interface Messages$GetFeaturedStickers {
-  method: "messages.getFeaturedStickers";
-  params: {
-    hash: number;
-  }
-  response: Messages$FeaturedStickers
-}
-
-export interface Messages$ReadFeaturedStickers {
-  method: "messages.readFeaturedStickers";
-  params: {
-    id: number[];
-  }
-  response: Bool
-}
-
-export interface Messages$GetRecentStickers {
-  method: "messages.getRecentStickers";
-  params: {
-    flags?: Number;
-    attached?: True;
-    hash: number;
-  }
-  response: Messages$RecentStickers
-}
-
-export interface Messages$SaveRecentSticker {
-  method: "messages.saveRecentSticker";
-  params: {
-    flags?: Number;
-    attached?: True;
-    id: InputDocument;
-    unsave: Bool;
-  }
-  response: Bool
-}
-
-export interface Messages$ClearRecentStickers {
-  method: "messages.clearRecentStickers";
-  params: {
-    flags?: Number;
-    attached?: True;
-  }
-  response: Bool
-}
-
-export interface Messages$GetArchivedStickers {
-  method: "messages.getArchivedStickers";
-  params: {
-    flags?: Number;
-    masks?: True;
-    emojis?: True;
-    offset_id: number;
-    limit: number;
-  }
-  response: Messages$ArchivedStickers
-}
-
-export interface Account$SendConfirmPhoneCode {
-  method: "account.sendConfirmPhoneCode";
-  params: {
-    hash: string;
-    settings: CodeSettings;
-  }
-  response: Auth$SentCode
-}
-
-export interface Account$ConfirmPhone {
-  method: "account.confirmPhone";
-  params: {
-    phone_code_hash: string;
-    phone_code: string;
-  }
-  response: Bool
-}
-
-export interface Channels$GetAdminedPublicChannels {
-  method: "channels.getAdminedPublicChannels";
-  params: {
-    flags?: Number;
-    by_location?: True;
-    check_limit?: True;
-  }
-  response: Messages$Chats
-}
-
-export interface Messages$GetMaskStickers {
-  method: "messages.getMaskStickers";
-  params: {
-    hash: number;
-  }
-  response: Messages$AllStickers
-}
-
-export interface Messages$GetAttachedStickers {
-  method: "messages.getAttachedStickers";
-  params: {
-    media: InputStickeredMedia;
-  }
-  response: StickerSetCovered[]
-}
-
-export interface Auth$DropTempAuthKeys {
-  method: "auth.dropTempAuthKeys";
-  params: {
-    except_auth_keys: number[];
-  }
-  response: Bool
-}
-
-export interface Messages$SetGameScore {
-  method: "messages.setGameScore";
-  params: {
-    flags?: Number;
-    edit_message?: True;
-    force?: True;
-    peer: InputPeer;
-    id: number;
-    user_id: InputUser;
-    score: number;
-  }
-  response: Updates
-}
-
-export interface Messages$SetInlineGameScore {
-  method: "messages.setInlineGameScore";
-  params: {
-    flags?: Number;
-    edit_message?: True;
-    force?: True;
-    id: InputBotInlineMessageID;
-    user_id: InputUser;
-    score: number;
-  }
-  response: Bool
-}
-
-export interface Messages$GetGameHighScores {
-  method: "messages.getGameHighScores";
-  params: {
-    peer: InputPeer;
-    id: number;
-    user_id: InputUser;
-  }
-  response: Messages$HighScores
-}
-
-export interface Messages$GetInlineGameHighScores {
-  method: "messages.getInlineGameHighScores";
-  params: {
-    id: InputBotInlineMessageID;
-    user_id: InputUser;
-  }
-  response: Messages$HighScores
-}
-
-export interface Messages$GetCommonChats {
-  method: "messages.getCommonChats";
-  params: {
-    user_id: InputUser;
-    max_id: number;
-    limit: number;
-  }
-  response: Messages$Chats
-}
-
-export interface Help$SetBotUpdatesStatus {
-  method: "help.setBotUpdatesStatus";
-  params: {
-    pending_updates_count: number;
-    message: string;
-  }
-  response: Bool
-}
-
-export interface Messages$GetWebPage {
-  method: "messages.getWebPage";
-  params: {
-    url: string;
-    hash: number;
-  }
-  response: WebPage
-}
-
-export interface Messages$ToggleDialogPin {
-  method: "messages.toggleDialogPin";
-  params: {
-    flags?: Number;
-    pinned?: True;
-    peer: InputDialogPeer;
-  }
-  response: Bool
-}
-
-export interface Messages$ReorderPinnedDialogs {
-  method: "messages.reorderPinnedDialogs";
-  params: {
-    flags?: Number;
-    force?: True;
-    folder_id: number;
-    order: InputDialogPeer;
-  }
-  response: Bool
-}
-
-export interface Messages$GetPinnedDialogs {
-  method: "messages.getPinnedDialogs";
-  params: {
-    folder_id: number;
-  }
-  response: Messages$PeerDialogs
-}
-
-export interface Bots$SendCustomRequest {
-  method: "bots.sendCustomRequest";
-  params: {
-    custom_method: string;
-    params: DataJSON;
-  }
-  response: DataJSON
-}
-
-export interface Bots$AnswerWebhookJSONQuery {
-  method: "bots.answerWebhookJSONQuery";
-  params: {
-    query_id: number;
-    data: DataJSON;
-  }
-  response: Bool
-}
-
-export interface Upload$GetWebFile {
-  method: "upload.getWebFile";
-  params: {
-    location: InputWebFileLocation;
-    offset: number;
-    limit: number;
-  }
-  response: Upload$WebFile
-}
-
-export interface Payments$GetPaymentForm {
-  method: "payments.getPaymentForm";
-  params: {
-    flags?: Number;
-    invoice: InputInvoice;
-    theme_params?: DataJSON;
-  }
-  response: Payments$PaymentForm
-}
-
-export interface Payments$GetPaymentReceipt {
-  method: "payments.getPaymentReceipt";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-  }
-  response: Payments$PaymentReceipt
-}
-
-export interface Payments$ValidateRequestedInfo {
-  method: "payments.validateRequestedInfo";
-  params: {
-    flags?: Number;
-    save?: True;
-    invoice: InputInvoice;
-    info: PaymentRequestedInfo;
-  }
-  response: Payments$ValidatedRequestedInfo
-}
-
-export interface Payments$SendPaymentForm {
-  method: "payments.sendPaymentForm";
-  params: {
-    flags?: Number;
-    form_id: number;
-    invoice: InputInvoice;
-    requested_info_id?: string;
-    shipping_option_id?: string;
-    credentials: InputPaymentCredentials;
-    tip_amount?: number;
-  }
-  response: Payments$PaymentResult
-}
-
-export interface Account$GetTmpPassword {
-  method: "account.getTmpPassword";
-  params: {
-    password: InputCheckPasswordSRP;
-    period: number;
-  }
-  response: Account$TmpPassword
-}
-
-export interface Payments$GetSavedInfo {
-  method: "payments.getSavedInfo";
-  params: {
-  }
-  response: Payments$SavedInfo
-}
-
-export interface Payments$ClearSavedInfo {
-  method: "payments.clearSavedInfo";
-  params: {
-    flags?: Number;
-    credentials?: True;
-    info?: True;
-  }
-  response: Bool
-}
-
-export interface Messages$SetBotShippingResults {
-  method: "messages.setBotShippingResults";
-  params: {
-    flags?: Number;
-    query_id: number;
-    error?: string;
-    shipping_options?: ShippingOption;
-  }
-  response: Bool
-}
-
-export interface Messages$SetBotPrecheckoutResults {
-  method: "messages.setBotPrecheckoutResults";
-  params: {
-    flags?: Number;
-    success?: True;
-    query_id: number;
-    error?: string;
-  }
-  response: Bool
-}
-
-export interface Stickers$CreateStickerSet {
-  method: "stickers.createStickerSet";
-  params: {
-    flags?: Number;
-    masks?: True;
-    animated?: True;
-    videos?: True;
-    emojis?: True;
-    text_color?: True;
-    user_id: InputUser;
-    title: string;
-    short_name: string;
-    thumb?: InputDocument;
-    stickers: InputStickerSetItem;
-    software?: string;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Stickers$RemoveStickerFromSet {
-  method: "stickers.removeStickerFromSet";
-  params: {
-    sticker: InputDocument;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Stickers$ChangeStickerPosition {
-  method: "stickers.changeStickerPosition";
-  params: {
-    sticker: InputDocument;
-    position: number;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Stickers$AddStickerToSet {
-  method: "stickers.addStickerToSet";
-  params: {
-    stickerset: InputStickerSet;
-    sticker: InputStickerSetItem;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Messages$UploadMedia {
-  method: "messages.uploadMedia";
-  params: {
-    peer: InputPeer;
-    media: InputMedia;
-  }
-  response: MessageMedia
-}
-
-export interface Phone$GetCallConfig {
-  method: "phone.getCallConfig";
-  params: {
-  }
-  response: DataJSON
-}
-
-export interface Phone$RequestCall {
-  method: "phone.requestCall";
-  params: {
-    flags?: Number;
-    video?: True;
-    user_id: InputUser;
-    random_id: number;
-    g_a_hash: Uint8Array;
-    protocol: PhoneCallProtocol;
-  }
-  response: Phone$PhoneCall
-}
-
-export interface Phone$AcceptCall {
-  method: "phone.acceptCall";
-  params: {
-    peer: InputPhoneCall;
-    g_b: Uint8Array;
-    protocol: PhoneCallProtocol;
-  }
-  response: Phone$PhoneCall
-}
-
-export interface Phone$ConfirmCall {
-  method: "phone.confirmCall";
-  params: {
-    peer: InputPhoneCall;
-    g_a: Uint8Array;
-    key_fingerprint: number;
-    protocol: PhoneCallProtocol;
-  }
-  response: Phone$PhoneCall
-}
-
-export interface Phone$ReceivedCall {
-  method: "phone.receivedCall";
-  params: {
-    peer: InputPhoneCall;
-  }
-  response: Bool
-}
-
-export interface Phone$DiscardCall {
-  method: "phone.discardCall";
-  params: {
-    flags?: Number;
-    video?: True;
-    peer: InputPhoneCall;
-    duration: number;
-    reason: PhoneCallDiscardReason;
-    connection_id: number;
-  }
-  response: Updates
-}
-
-export interface Phone$SetCallRating {
-  method: "phone.setCallRating";
-  params: {
-    flags?: Number;
-    user_initiative?: True;
-    peer: InputPhoneCall;
-    rating: number;
-    comment: string;
-  }
-  response: Updates
-}
-
-export interface Phone$SaveCallDebug {
-  method: "phone.saveCallDebug";
-  params: {
-    peer: InputPhoneCall;
-    debug: DataJSON;
-  }
-  response: Bool
-}
-
-export interface Upload$GetCdnFile {
-  method: "upload.getCdnFile";
-  params: {
-    file_token: Uint8Array;
-    offset: number;
-    limit: number;
-  }
-  response: Upload$CdnFile
-}
-
-export interface Upload$ReuploadCdnFile {
-  method: "upload.reuploadCdnFile";
-  params: {
-    file_token: Uint8Array;
-    request_token: Uint8Array;
-  }
-  response: FileHash[]
-}
-
-export interface Help$GetCdnConfig {
-  method: "help.getCdnConfig";
-  params: {
-  }
-  response: CdnConfig
-}
-
-export interface Langpack$GetLangPack {
-  method: "langpack.getLangPack";
-  params: {
-    lang_pack: string;
-    lang_code: string;
-  }
-  response: LangPackDifference
-}
-
-export interface Langpack$GetStrings {
-  method: "langpack.getStrings";
-  params: {
-    lang_pack: string;
-    lang_code: string;
-    keys: string[];
-  }
-  response: LangPackString[]
-}
-
-export interface Langpack$GetDifference {
-  method: "langpack.getDifference";
-  params: {
-    lang_pack: string;
-    lang_code: string;
-    from_version: number;
-  }
-  response: LangPackDifference
-}
-
-export interface Langpack$GetLanguages {
-  method: "langpack.getLanguages";
-  params: {
-    lang_pack: string;
-  }
-  response: LangPackLanguage[]
-}
-
-export interface Channels$EditBanned {
-  method: "channels.editBanned";
-  params: {
-    channel: InputChannel;
-    participant: InputPeer;
-    banned_rights: ChatBannedRights;
-  }
-  response: Updates
-}
-
-export interface Channels$GetAdminLog {
-  method: "channels.getAdminLog";
-  params: {
-    flags?: Number;
-    channel: InputChannel;
-    q: string;
-    events_filter?: ChannelAdminLogEventsFilter;
-    admins?: InputUser;
-    max_id: number;
-    min_id: number;
-    limit: number;
-  }
-  response: Channels$AdminLogResults
-}
-
-export interface Upload$GetCdnFileHashes {
-  method: "upload.getCdnFileHashes";
-  params: {
-    file_token: Uint8Array;
-    offset: number;
-  }
-  response: FileHash[]
-}
-
-export interface Messages$SendScreenshotNotification {
-  method: "messages.sendScreenshotNotification";
-  params: {
-    peer: InputPeer;
-    reply_to_msg_id: number;
-    random_id: number;
-  }
-  response: Updates
-}
-
-export interface Channels$SetStickers {
-  method: "channels.setStickers";
-  params: {
-    channel: InputChannel;
-    stickerset: InputStickerSet;
-  }
-  response: Bool
-}
-
-export interface Messages$GetFavedStickers {
-  method: "messages.getFavedStickers";
-  params: {
-    hash: number;
-  }
-  response: Messages$FavedStickers
-}
-
-export interface Messages$FaveSticker {
-  method: "messages.faveSticker";
-  params: {
-    id: InputDocument;
-    unfave: Bool;
-  }
-  response: Bool
-}
-
-export interface Channels$ReadMessageContents {
-  method: "channels.readMessageContents";
-  params: {
-    channel: InputChannel;
-    id: number[];
-  }
-  response: Bool
-}
-
-export interface Contacts$ResetSaved {
-  method: "contacts.resetSaved";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Messages$GetUnreadMentions {
-  method: "messages.getUnreadMentions";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    top_msg_id?: number;
-    offset_id: number;
-    add_offset: number;
-    limit: number;
-    max_id: number;
-    min_id: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Channels$DeleteHistory {
-  method: "channels.deleteHistory";
-  params: {
-    flags?: Number;
-    for_everyone?: True;
-    channel: InputChannel;
-    max_id: number;
-  }
-  response: Updates
-}
-
-export interface Help$GetRecentMeUrls {
-  method: "help.getRecentMeUrls";
-  params: {
-    referer: string;
-  }
-  response: Help$RecentMeUrls
-}
-
-export interface Channels$TogglePreHistoryHidden {
-  method: "channels.togglePreHistoryHidden";
-  params: {
-    channel: InputChannel;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Messages$ReadMentions {
-  method: "messages.readMentions";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    top_msg_id?: number;
-  }
-  response: Messages$AffectedHistory
-}
-
-export interface Messages$GetRecentLocations {
-  method: "messages.getRecentLocations";
-  params: {
-    peer: InputPeer;
-    limit: number;
-    hash: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$SendMultiMedia {
-  method: "messages.sendMultiMedia";
-  params: {
-    flags?: Number;
-    silent?: True;
-    background?: True;
-    clear_draft?: True;
-    noforwards?: True;
-    update_stickersets_order?: True;
-    peer: InputPeer;
-    reply_to_msg_id?: number;
-    top_msg_id?: number;
-    multi_media: InputSingleMedia;
-    schedule_date?: number;
-    send_as?: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Messages$UploadEncryptedFile {
-  method: "messages.uploadEncryptedFile";
-  params: {
-    peer: InputEncryptedChat;
-    file: InputEncryptedFile;
-  }
-  response: EncryptedFile
-}
-
-export interface Account$GetWebAuthorizations {
-  method: "account.getWebAuthorizations";
-  params: {
-  }
-  response: Account$WebAuthorizations
-}
-
-export interface Account$ResetWebAuthorization {
-  method: "account.resetWebAuthorization";
-  params: {
-    hash: number;
-  }
-  response: Bool
-}
-
-export interface Account$ResetWebAuthorizations {
-  method: "account.resetWebAuthorizations";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Messages$SearchStickerSets {
-  method: "messages.searchStickerSets";
-  params: {
-    flags?: Number;
-    exclude_featured?: True;
-    q: string;
-    hash: number;
-  }
-  response: Messages$FoundStickerSets
-}
-
-export interface Upload$GetFileHashes {
-  method: "upload.getFileHashes";
-  params: {
-    location: InputFileLocation;
-    offset: number;
-  }
-  response: FileHash[]
-}
-
-export interface Help$GetTermsOfServiceUpdate {
-  method: "help.getTermsOfServiceUpdate";
-  params: {
-  }
-  response: Help$TermsOfServiceUpdate
-}
-
-export interface Help$AcceptTermsOfService {
-  method: "help.acceptTermsOfService";
-  params: {
-    id: DataJSON;
-  }
-  response: Bool
-}
-
-export interface Account$GetAllSecureValues {
-  method: "account.getAllSecureValues";
-  params: {
-  }
-  response: SecureValue[]
-}
-
-export interface Account$GetSecureValue {
-  method: "account.getSecureValue";
-  params: {
-    types: SecureValueType;
-  }
-  response: SecureValue[]
-}
-
-export interface Account$SaveSecureValue {
-  method: "account.saveSecureValue";
-  params: {
-    value: InputSecureValue;
-    secure_secret_id: number;
-  }
-  response: SecureValue
-}
-
-export interface Account$DeleteSecureValue {
-  method: "account.deleteSecureValue";
-  params: {
-    types: SecureValueType;
-  }
-  response: Bool
-}
-
-export interface Users$SetSecureValueErrors {
-  method: "users.setSecureValueErrors";
-  params: {
-    id: InputUser;
-    errors: SecureValueError;
-  }
-  response: Bool
-}
-
-export interface Account$GetAuthorizationForm {
-  method: "account.getAuthorizationForm";
-  params: {
-    bot_id: number;
-    scope: string;
-    public_key: string;
-  }
-  response: Account$AuthorizationForm
-}
-
-export interface Account$AcceptAuthorization {
-  method: "account.acceptAuthorization";
-  params: {
-    bot_id: number;
-    scope: string;
-    public_key: string;
-    value_hashes: SecureValueHash;
-    credentials: SecureCredentialsEncrypted;
-  }
-  response: Bool
-}
-
-export interface Account$SendVerifyPhoneCode {
-  method: "account.sendVerifyPhoneCode";
-  params: {
-    phone_number: string;
-    settings: CodeSettings;
-  }
-  response: Auth$SentCode
-}
-
-export interface Account$VerifyPhone {
-  method: "account.verifyPhone";
-  params: {
-    phone_number: string;
-    phone_code_hash: string;
-    phone_code: string;
-  }
-  response: Bool
-}
-
-export interface Account$SendVerifyEmailCode {
-  method: "account.sendVerifyEmailCode";
-  params: {
-    purpose: EmailVerifyPurpose;
-    email: string;
-  }
-  response: Account$SentEmailCode
-}
-
-export interface Account$VerifyEmail {
-  method: "account.verifyEmail";
-  params: {
-    purpose: EmailVerifyPurpose;
-    verification: EmailVerification;
-  }
-  response: Account$EmailVerified
-}
-
-export interface Help$GetDeepLinkInfo {
-  method: "help.getDeepLinkInfo";
-  params: {
-    path: string;
-  }
-  response: Help$DeepLinkInfo
-}
-
-export interface Contacts$GetSaved {
-  method: "contacts.getSaved";
-  params: {
-  }
-  response: SavedContact[]
-}
-
-export interface Channels$GetLeftChannels {
-  method: "channels.getLeftChannels";
-  params: {
-    offset: number;
-  }
-  response: Messages$Chats
-}
-
-export interface Account$InitTakeoutSession {
-  method: "account.initTakeoutSession";
-  params: {
-    flags?: Number;
-    contacts?: True;
-    message_users?: True;
-    message_chats?: True;
-    message_megagroups?: True;
-    message_channels?: True;
-    files?: True;
-    file_max_size?: number;
-  }
-  response: Account$Takeout
-}
-
-export interface Account$FinishTakeoutSession {
-  method: "account.finishTakeoutSession";
-  params: {
-    flags?: Number;
-    success?: True;
-  }
-  response: Bool
-}
-
-export interface Messages$GetSplitRanges {
-  method: "messages.getSplitRanges";
-  params: {
-  }
-  response: MessageRange[]
-}
-
-export interface InvokeWithMessagesRange {
-  method: "invokeWithMessagesRange";
-  params: {
-    range: MessageRange;
-    query: unknown;
-  }
-  response: unknown
-}
-
-export interface InvokeWithTakeout {
-  method: "invokeWithTakeout";
-  params: {
-    takeout_id: number;
-    query: unknown;
-  }
-  response: unknown
-}
-
-export interface Messages$MarkDialogUnread {
-  method: "messages.markDialogUnread";
-  params: {
-    flags?: Number;
-    unread?: True;
-    peer: InputDialogPeer;
-  }
-  response: Bool
-}
-
-export interface Messages$GetDialogUnreadMarks {
-  method: "messages.getDialogUnreadMarks";
-  params: {
-  }
-  response: DialogPeer[]
-}
-
-export interface Contacts$ToggleTopPeers {
-  method: "contacts.toggleTopPeers";
-  params: {
-    enabled: Bool;
-  }
-  response: Bool
-}
-
-export interface Messages$ClearAllDrafts {
-  method: "messages.clearAllDrafts";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Help$GetAppConfig {
-  method: "help.getAppConfig";
-  params: {
-    hash: number;
-  }
-  response: Help$AppConfig
-}
-
-export interface Help$SaveAppLog {
-  method: "help.saveAppLog";
-  params: {
-    events: InputAppEvent;
-  }
-  response: Bool
-}
-
-export interface Help$GetPassportConfig {
-  method: "help.getPassportConfig";
-  params: {
-    hash: number;
-  }
-  response: Help$PassportConfig
-}
-
-export interface Langpack$GetLanguage {
-  method: "langpack.getLanguage";
-  params: {
-    lang_pack: string;
-    lang_code: string;
-  }
-  response: LangPackLanguage
-}
-
-export interface Messages$UpdatePinnedMessage {
-  method: "messages.updatePinnedMessage";
-  params: {
-    flags?: Number;
-    silent?: True;
-    unpin?: True;
-    pm_oneside?: True;
-    peer: InputPeer;
-    id: number;
-  }
-  response: Updates
-}
-
-export interface Account$ConfirmPasswordEmail {
-  method: "account.confirmPasswordEmail";
-  params: {
-    code: string;
-  }
-  response: Bool
-}
-
-export interface Account$ResendPasswordEmail {
-  method: "account.resendPasswordEmail";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Account$CancelPasswordEmail {
-  method: "account.cancelPasswordEmail";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Help$GetSupportName {
-  method: "help.getSupportName";
-  params: {
-  }
-  response: Help$SupportName
-}
-
-export interface Help$GetUserInfo {
-  method: "help.getUserInfo";
-  params: {
-    user_id: InputUser;
-  }
-  response: Help$UserInfo
-}
-
-export interface Help$EditUserInfo {
-  method: "help.editUserInfo";
-  params: {
-    user_id: InputUser;
-    message: string;
-    entities: MessageEntity;
-  }
-  response: Help$UserInfo
-}
-
-export interface Account$GetContactSignUpNotification {
-  method: "account.getContactSignUpNotification";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Account$SetContactSignUpNotification {
-  method: "account.setContactSignUpNotification";
-  params: {
-    silent: Bool;
-  }
-  response: Bool
-}
-
-export interface Account$GetNotifyExceptions {
-  method: "account.getNotifyExceptions";
-  params: {
-    flags?: Number;
-    compare_sound?: True;
-    peer?: InputNotifyPeer;
-  }
-  response: Updates
-}
-
-export interface Messages$SendVote {
-  method: "messages.sendVote";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-    options: Uint8Array[];
-  }
-  response: Updates
-}
-
-export interface Messages$GetPollResults {
-  method: "messages.getPollResults";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-  }
-  response: Updates
-}
-
-export interface Messages$GetOnlines {
-  method: "messages.getOnlines";
-  params: {
-    peer: InputPeer;
-  }
-  response: ChatOnlines
-}
-
-export interface Messages$EditChatAbout {
-  method: "messages.editChatAbout";
-  params: {
-    peer: InputPeer;
-    about: string;
-  }
-  response: Bool
-}
-
-export interface Messages$EditChatDefaultBannedRights {
-  method: "messages.editChatDefaultBannedRights";
-  params: {
-    peer: InputPeer;
-    banned_rights: ChatBannedRights;
-  }
-  response: Updates
-}
-
-export interface Account$GetWallPaper {
-  method: "account.getWallPaper";
-  params: {
-    wallpaper: InputWallPaper;
-  }
-  response: WallPaper
-}
-
-export interface Account$UploadWallPaper {
-  method: "account.uploadWallPaper";
-  params: {
-    flags?: Number;
-    for_chat?: True;
-    file: InputFile;
-    mime_type: string;
-    settings: WallPaperSettings;
-  }
-  response: WallPaper
-}
-
-export interface Account$SaveWallPaper {
-  method: "account.saveWallPaper";
-  params: {
-    wallpaper: InputWallPaper;
-    unsave: Bool;
-    settings: WallPaperSettings;
-  }
-  response: Bool
-}
-
-export interface Account$InstallWallPaper {
-  method: "account.installWallPaper";
-  params: {
-    wallpaper: InputWallPaper;
-    settings: WallPaperSettings;
-  }
-  response: Bool
-}
-
-export interface Account$ResetWallPapers {
-  method: "account.resetWallPapers";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Account$GetAutoDownloadSettings {
-  method: "account.getAutoDownloadSettings";
-  params: {
-  }
-  response: Account$AutoDownloadSettings
-}
-
-export interface Account$SaveAutoDownloadSettings {
-  method: "account.saveAutoDownloadSettings";
-  params: {
-    flags?: Number;
-    low?: True;
-    high?: True;
-    settings: AutoDownloadSettings;
-  }
-  response: Bool
-}
-
-export interface Messages$GetEmojiKeywords {
-  method: "messages.getEmojiKeywords";
-  params: {
-    lang_code: string;
-  }
-  response: EmojiKeywordsDifference
-}
-
-export interface Messages$GetEmojiKeywordsDifference {
-  method: "messages.getEmojiKeywordsDifference";
-  params: {
-    lang_code: string;
-    from_version: number;
-  }
-  response: EmojiKeywordsDifference
-}
-
-export interface Messages$GetEmojiKeywordsLanguages {
-  method: "messages.getEmojiKeywordsLanguages";
-  params: {
-    lang_codes: string[];
-  }
-  response: EmojiLanguage[]
-}
-
-export interface Messages$GetEmojiURL {
-  method: "messages.getEmojiURL";
-  params: {
-    lang_code: string;
-  }
-  response: EmojiURL
-}
-
-export interface Folders$EditPeerFolders {
-  method: "folders.editPeerFolders";
-  params: {
-    folder_peers: InputFolderPeer;
-  }
-  response: Updates
-}
-
-export interface Messages$GetSearchCounters {
-  method: "messages.getSearchCounters";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    top_msg_id?: number;
-    filters: MessagesFilter;
-  }
-  response: Messages$SearchCounter[]
-}
-
-export interface Channels$GetGroupsForDiscussion {
-  method: "channels.getGroupsForDiscussion";
-  params: {
-  }
-  response: Messages$Chats
-}
-
-export interface Channels$SetDiscussionGroup {
-  method: "channels.setDiscussionGroup";
-  params: {
-    broadcast: InputChannel;
-    group: InputChannel;
-  }
-  response: Bool
-}
-
-export interface Messages$RequestUrlAuth {
-  method: "messages.requestUrlAuth";
-  params: {
-    flags?: Number;
-    peer?: InputPeer;
-    msg_id?: number;
-    button_id?: number;
-    url?: string;
-  }
-  response: UrlAuthResult
-}
-
-export interface Messages$AcceptUrlAuth {
-  method: "messages.acceptUrlAuth";
-  params: {
-    flags?: Number;
-    write_allowed?: True;
-    peer?: InputPeer;
-    msg_id?: number;
-    button_id?: number;
-    url?: string;
-  }
-  response: UrlAuthResult
-}
-
-export interface Messages$HidePeerSettingsBar {
-  method: "messages.hidePeerSettingsBar";
-  params: {
-    peer: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Contacts$AddContact {
-  method: "contacts.addContact";
-  params: {
-    flags?: Number;
-    add_phone_privacy_exception?: True;
-    id: InputUser;
-    first_name: string;
-    last_name: string;
-    phone: string;
-  }
-  response: Updates
-}
-
-export interface Contacts$AcceptContact {
-  method: "contacts.acceptContact";
-  params: {
-    id: InputUser;
-  }
-  response: Updates
-}
-
-export interface Channels$EditCreator {
-  method: "channels.editCreator";
-  params: {
-    channel: InputChannel;
-    user_id: InputUser;
-    password: InputCheckPasswordSRP;
-  }
-  response: Updates
-}
-
-export interface Contacts$GetLocated {
-  method: "contacts.getLocated";
-  params: {
-    flags?: Number;
-    background?: True;
-    geo_point: InputGeoPoint;
-    self_expires?: number;
-  }
-  response: Updates
-}
-
-export interface Channels$EditLocation {
-  method: "channels.editLocation";
-  params: {
-    channel: InputChannel;
-    geo_point: InputGeoPoint;
-    address: string;
-  }
-  response: Bool
-}
-
-export interface Channels$ToggleSlowMode {
-  method: "channels.toggleSlowMode";
-  params: {
-    channel: InputChannel;
-    seconds: number;
-  }
-  response: Updates
-}
-
-export interface Messages$GetScheduledHistory {
-  method: "messages.getScheduledHistory";
-  params: {
-    peer: InputPeer;
-    hash: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$GetScheduledMessages {
-  method: "messages.getScheduledMessages";
-  params: {
-    peer: InputPeer;
-    id: number[];
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$SendScheduledMessages {
-  method: "messages.sendScheduledMessages";
-  params: {
-    peer: InputPeer;
-    id: number[];
-  }
-  response: Updates
-}
-
-export interface Messages$DeleteScheduledMessages {
-  method: "messages.deleteScheduledMessages";
-  params: {
-    peer: InputPeer;
-    id: number[];
-  }
-  response: Updates
-}
-
-export interface Account$UploadTheme {
-  method: "account.uploadTheme";
-  params: {
-    flags?: Number;
-    file: InputFile;
-    thumb?: InputFile;
-    file_name: string;
-    mime_type: string;
-  }
-  response: Document
-}
-
-export interface Account$CreateTheme {
-  method: "account.createTheme";
-  params: {
-    flags?: Number;
-    slug: string;
-    title: string;
-    document?: InputDocument;
-    settings?: InputThemeSettings;
-  }
-  response: Theme
-}
-
-export interface Account$UpdateTheme {
-  method: "account.updateTheme";
-  params: {
-    flags?: Number;
-    format: string;
-    theme: InputTheme;
-    slug?: string;
-    title?: string;
-    document?: InputDocument;
-    settings?: InputThemeSettings;
-  }
-  response: Theme
-}
-
-export interface Account$SaveTheme {
-  method: "account.saveTheme";
-  params: {
-    theme: InputTheme;
-    unsave: Bool;
-  }
-  response: Bool
-}
-
-export interface Account$InstallTheme {
-  method: "account.installTheme";
-  params: {
-    flags?: Number;
-    dark?: True;
-    theme?: InputTheme;
-    format?: string;
-    base_theme?: BaseTheme;
-  }
-  response: Bool
-}
-
-export interface Account$GetTheme {
-  method: "account.getTheme";
-  params: {
-    format: string;
-    theme: InputTheme;
-  }
-  response: Theme
-}
-
-export interface Account$GetThemes {
-  method: "account.getThemes";
-  params: {
-    format: string;
-    hash: number;
-  }
-  response: Account$Themes
-}
-
-export interface Auth$ExportLoginToken {
-  method: "auth.exportLoginToken";
-  params: {
-    api_id: number;
-    api_hash: string;
-    except_ids: number[];
-  }
-  response: Auth$LoginToken
-}
-
-export interface Auth$ImportLoginToken {
-  method: "auth.importLoginToken";
-  params: {
-    token: Uint8Array;
-  }
-  response: Auth$LoginToken
-}
-
-export interface Auth$AcceptLoginToken {
-  method: "auth.acceptLoginToken";
-  params: {
-    token: Uint8Array;
-  }
-  response: Authorization
-}
-
-export interface Account$SetContentSettings {
-  method: "account.setContentSettings";
-  params: {
-    flags?: Number;
-    sensitive_enabled?: True;
-  }
-  response: Bool
-}
-
-export interface Account$GetContentSettings {
-  method: "account.getContentSettings";
-  params: {
-  }
-  response: Account$ContentSettings
-}
-
-export interface Channels$GetInactiveChannels {
-  method: "channels.getInactiveChannels";
-  params: {
-  }
-  response: Messages$InactiveChats
-}
-
-export interface Account$GetMultiWallPapers {
-  method: "account.getMultiWallPapers";
-  params: {
-    wallpapers: InputWallPaper;
-  }
-  response: WallPaper[]
-}
-
-export interface Messages$GetPollVotes {
-  method: "messages.getPollVotes";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    id: number;
-    option?: Uint8Array;
-    offset?: string;
-    limit: number;
-  }
-  response: Messages$VotesList
-}
-
-export interface Messages$ToggleStickerSets {
-  method: "messages.toggleStickerSets";
-  params: {
-    flags?: Number;
-    uninstall?: True;
-    archive?: True;
-    unarchive?: True;
-    stickersets: InputStickerSet;
-  }
-  response: Bool
-}
-
-export interface Payments$GetBankCardData {
-  method: "payments.getBankCardData";
-  params: {
-    number: string;
-  }
-  response: Payments$BankCardData
-}
-
-export interface Messages$GetDialogFilters {
-  method: "messages.getDialogFilters";
-  params: {
-  }
-  response: DialogFilter[]
-}
-
-export interface Messages$GetSuggestedDialogFilters {
-  method: "messages.getSuggestedDialogFilters";
-  params: {
-  }
-  response: DialogFilterSuggested[]
-}
-
-export interface Messages$UpdateDialogFilter {
-  method: "messages.updateDialogFilter";
-  params: {
-    flags?: Number;
-    id: number;
-    filter?: DialogFilter;
-  }
-  response: Bool
-}
-
-export interface Messages$UpdateDialogFiltersOrder {
-  method: "messages.updateDialogFiltersOrder";
-  params: {
-    order: number[];
-  }
-  response: Bool
-}
-
-export interface Stats$GetBroadcastStats {
-  method: "stats.getBroadcastStats";
-  params: {
-    flags?: Number;
-    dark?: True;
-    channel: InputChannel;
-  }
-  response: Stats$BroadcastStats
-}
-
-export interface Stats$LoadAsyncGraph {
-  method: "stats.loadAsyncGraph";
-  params: {
-    flags?: Number;
-    token: string;
-    x?: number;
-  }
-  response: StatsGraph
-}
-
-export interface Stickers$SetStickerSetThumb {
-  method: "stickers.setStickerSetThumb";
-  params: {
-    flags?: Number;
-    stickerset: InputStickerSet;
-    thumb?: InputDocument;
-    thumb_document_id?: number;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Bots$SetBotCommands {
-  method: "bots.setBotCommands";
-  params: {
-    scope: BotCommandScope;
-    lang_code: string;
-    commands: BotCommand;
-  }
-  response: Bool
-}
-
-export interface Messages$GetOldFeaturedStickers {
-  method: "messages.getOldFeaturedStickers";
-  params: {
-    offset: number;
-    limit: number;
-    hash: number;
-  }
-  response: Messages$FeaturedStickers
-}
-
-export interface Help$GetPromoData {
-  method: "help.getPromoData";
-  params: {
-  }
-  response: Help$PromoData
-}
-
-export interface Help$HidePromoData {
-  method: "help.hidePromoData";
-  params: {
-    peer: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Phone$SendSignalingData {
-  method: "phone.sendSignalingData";
-  params: {
-    peer: InputPhoneCall;
-    data: Uint8Array;
-  }
-  response: Bool
-}
-
-export interface Stats$GetMegagroupStats {
-  method: "stats.getMegagroupStats";
-  params: {
-    flags?: Number;
-    dark?: True;
-    channel: InputChannel;
-  }
-  response: Stats$MegagroupStats
-}
-
-export interface Account$GetGlobalPrivacySettings {
-  method: "account.getGlobalPrivacySettings";
-  params: {
-  }
-  response: GlobalPrivacySettings
-}
-
-export interface Account$SetGlobalPrivacySettings {
-  method: "account.setGlobalPrivacySettings";
-  params: {
-    settings: GlobalPrivacySettings;
-  }
-  response: GlobalPrivacySettings
-}
-
-export interface Help$DismissSuggestion {
-  method: "help.dismissSuggestion";
-  params: {
-    peer: InputPeer;
-    suggestion: string;
-  }
-  response: Bool
-}
-
-export interface Help$GetCountriesList {
-  method: "help.getCountriesList";
-  params: {
-    lang_code: string;
-    hash: number;
-  }
-  response: Help$CountriesList
-}
-
-export interface Messages$GetReplies {
-  method: "messages.getReplies";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-    offset_id: number;
-    offset_date: number;
-    add_offset: number;
-    limit: number;
-    max_id: number;
-    min_id: number;
-    hash: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$GetDiscussionMessage {
-  method: "messages.getDiscussionMessage";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-  }
-  response: Messages$DiscussionMessage
-}
-
-export interface Messages$ReadDiscussion {
-  method: "messages.readDiscussion";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-    read_max_id: number;
-  }
-  response: Bool
-}
-
-export interface Contacts$BlockFromReplies {
-  method: "contacts.blockFromReplies";
-  params: {
-    flags?: Number;
-    delete_message?: True;
-    delete_history?: True;
-    report_spam?: True;
-    msg_id: number;
-  }
-  response: Updates
-}
-
-export interface Stats$GetMessagePublicForwards {
-  method: "stats.getMessagePublicForwards";
-  params: {
-    channel: InputChannel;
-    msg_id: number;
-    offset_rate: number;
-    offset_peer: InputPeer;
-    offset_id: number;
-    limit: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Stats$GetMessageStats {
-  method: "stats.getMessageStats";
-  params: {
-    flags?: Number;
-    dark?: True;
-    channel: InputChannel;
-    msg_id: number;
-  }
-  response: Stats$MessageStats
-}
-
-export interface Messages$UnpinAllMessages {
-  method: "messages.unpinAllMessages";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    top_msg_id?: number;
-  }
-  response: Messages$AffectedHistory
-}
-
-export interface Phone$CreateGroupCall {
-  method: "phone.createGroupCall";
-  params: {
-    flags?: Number;
-    rtmp_stream?: True;
-    peer: InputPeer;
-    random_id: number;
-    title?: string;
-    schedule_date?: number;
-  }
-  response: Updates
-}
-
-export interface Phone$JoinGroupCall {
-  method: "phone.joinGroupCall";
-  params: {
-    flags?: Number;
-    muted?: True;
-    video_stopped?: True;
-    call: InputGroupCall;
-    join_as: InputPeer;
-    invite_hash?: string;
-    params: DataJSON;
-  }
-  response: Updates
-}
-
-export interface Phone$LeaveGroupCall {
-  method: "phone.leaveGroupCall";
-  params: {
-    call: InputGroupCall;
-    source: number;
-  }
-  response: Updates
-}
-
-export interface Phone$InviteToGroupCall {
-  method: "phone.inviteToGroupCall";
-  params: {
-    call: InputGroupCall;
-    users: InputUser;
-  }
-  response: Updates
-}
-
-export interface Phone$DiscardGroupCall {
-  method: "phone.discardGroupCall";
-  params: {
-    call: InputGroupCall;
-  }
-  response: Updates
-}
-
-export interface Phone$ToggleGroupCallSettings {
-  method: "phone.toggleGroupCallSettings";
-  params: {
-    flags?: Number;
-    reset_invite_hash?: True;
-    call: InputGroupCall;
-    join_muted?: Bool;
-  }
-  response: Updates
-}
-
-export interface Phone$GetGroupCall {
-  method: "phone.getGroupCall";
-  params: {
-    call: InputGroupCall;
-    limit: number;
-  }
-  response: Phone$GroupCall
-}
-
-export interface Phone$GetGroupParticipants {
-  method: "phone.getGroupParticipants";
-  params: {
-    call: InputGroupCall;
-    ids: InputPeer;
-    sources: number[];
-    offset: string;
-    limit: number;
-  }
-  response: Phone$GroupParticipants
-}
-
-export interface Phone$CheckGroupCall {
-  method: "phone.checkGroupCall";
-  params: {
-    call: InputGroupCall;
-    sources: number[];
-  }
-  response: Number[]
-}
-
-export interface Messages$DeleteChat {
-  method: "messages.deleteChat";
-  params: {
-    chat_id: number;
-  }
-  response: Bool
-}
-
-export interface Messages$DeletePhoneCallHistory {
-  method: "messages.deletePhoneCallHistory";
-  params: {
-    flags?: Number;
-    revoke?: True;
-  }
-  response: Messages$AffectedFoundMessages
-}
-
-export interface Messages$CheckHistoryImport {
-  method: "messages.checkHistoryImport";
-  params: {
-    import_head: string;
-  }
-  response: Messages$HistoryImportParsed
-}
-
-export interface Messages$InitHistoryImport {
-  method: "messages.initHistoryImport";
-  params: {
-    peer: InputPeer;
-    file: InputFile;
-    media_count: number;
-  }
-  response: Messages$HistoryImport
-}
-
-export interface Messages$UploadImportedMedia {
-  method: "messages.uploadImportedMedia";
-  params: {
-    peer: InputPeer;
-    import_id: number;
-    file_name: string;
-    media: InputMedia;
-  }
-  response: MessageMedia
-}
-
-export interface Messages$StartHistoryImport {
-  method: "messages.startHistoryImport";
-  params: {
-    peer: InputPeer;
-    import_id: number;
-  }
-  response: Bool
-}
-
-export interface Messages$GetExportedChatInvites {
-  method: "messages.getExportedChatInvites";
-  params: {
-    flags?: Number;
-    revoked?: True;
-    peer: InputPeer;
-    admin_id: InputUser;
-    offset_date?: number;
-    offset_link?: string;
-    limit: number;
-  }
-  response: Messages$ExportedChatInvites
-}
-
-export interface Messages$GetExportedChatInvite {
-  method: "messages.getExportedChatInvite";
-  params: {
-    peer: InputPeer;
-    link: string;
-  }
-  response: Messages$ExportedChatInvite
-}
-
-export interface Messages$EditExportedChatInvite {
-  method: "messages.editExportedChatInvite";
-  params: {
-    flags?: Number;
-    revoked?: True;
-    peer: InputPeer;
-    link: string;
-    expire_date?: number;
-    usage_limit?: number;
-    request_needed?: Bool;
-    title?: string;
-  }
-  response: Messages$ExportedChatInvite
-}
-
-export interface Messages$DeleteRevokedExportedChatInvites {
-  method: "messages.deleteRevokedExportedChatInvites";
-  params: {
-    peer: InputPeer;
-    admin_id: InputUser;
-  }
-  response: Bool
-}
-
-export interface Messages$DeleteExportedChatInvite {
-  method: "messages.deleteExportedChatInvite";
-  params: {
-    peer: InputPeer;
-    link: string;
-  }
-  response: Bool
-}
-
-export interface Messages$GetAdminsWithInvites {
-  method: "messages.getAdminsWithInvites";
-  params: {
-    peer: InputPeer;
-  }
-  response: Messages$ChatAdminsWithInvites
-}
-
-export interface Messages$GetChatInviteImporters {
-  method: "messages.getChatInviteImporters";
-  params: {
-    flags?: Number;
-    requested?: True;
-    peer: InputPeer;
-    link?: string;
-    q?: string;
-    offset_date: number;
-    offset_user: InputUser;
-    limit: number;
-  }
-  response: Messages$ChatInviteImporters
-}
-
-export interface Messages$SetHistoryTTL {
-  method: "messages.setHistoryTTL";
-  params: {
-    peer: InputPeer;
-    period: number;
-  }
-  response: Updates
-}
-
-export interface Account$ReportProfilePhoto {
-  method: "account.reportProfilePhoto";
-  params: {
-    peer: InputPeer;
-    photo_id: InputPhoto;
-    reason: ReportReason;
-    message: string;
-  }
-  response: Bool
-}
-
-export interface Channels$ConvertToGigagroup {
-  method: "channels.convertToGigagroup";
-  params: {
-    channel: InputChannel;
-  }
-  response: Updates
-}
-
-export interface Messages$CheckHistoryImportPeer {
-  method: "messages.checkHistoryImportPeer";
-  params: {
-    peer: InputPeer;
-  }
-  response: Messages$CheckedHistoryImportPeer
-}
-
-export interface Phone$ToggleGroupCallRecord {
-  method: "phone.toggleGroupCallRecord";
-  params: {
-    flags?: Number;
-    start?: True;
-    video?: True;
-    call: InputGroupCall;
-    title?: string;
-    video_portrait?: Bool;
-  }
-  response: Updates
-}
-
-export interface Phone$EditGroupCallParticipant {
-  method: "phone.editGroupCallParticipant";
-  params: {
-    flags?: Number;
-    call: InputGroupCall;
-    participant: InputPeer;
-    muted?: Bool;
-    volume?: number;
-    raise_hand?: Bool;
-    video_stopped?: Bool;
-    video_paused?: Bool;
-    presentation_paused?: Bool;
-  }
-  response: Updates
-}
-
-export interface Phone$EditGroupCallTitle {
-  method: "phone.editGroupCallTitle";
-  params: {
-    call: InputGroupCall;
-    title: string;
-  }
-  response: Updates
-}
-
-export interface Phone$GetGroupCallJoinAs {
-  method: "phone.getGroupCallJoinAs";
-  params: {
-    peer: InputPeer;
-  }
-  response: Phone$JoinAsPeers
-}
-
-export interface Phone$ExportGroupCallInvite {
-  method: "phone.exportGroupCallInvite";
-  params: {
-    flags?: Number;
-    can_self_unmute?: True;
-    call: InputGroupCall;
-  }
-  response: Phone$ExportedGroupCallInvite
-}
-
-export interface Phone$ToggleGroupCallStartSubscription {
-  method: "phone.toggleGroupCallStartSubscription";
-  params: {
-    call: InputGroupCall;
-    subscribed: Bool;
-  }
-  response: Updates
-}
-
-export interface Phone$StartScheduledGroupCall {
-  method: "phone.startScheduledGroupCall";
-  params: {
-    call: InputGroupCall;
-  }
-  response: Updates
-}
-
-export interface Phone$SaveDefaultGroupCallJoinAs {
-  method: "phone.saveDefaultGroupCallJoinAs";
-  params: {
-    peer: InputPeer;
-    join_as: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Phone$JoinGroupCallPresentation {
-  method: "phone.joinGroupCallPresentation";
-  params: {
-    call: InputGroupCall;
-    params: DataJSON;
-  }
-  response: Updates
-}
-
-export interface Phone$LeaveGroupCallPresentation {
-  method: "phone.leaveGroupCallPresentation";
-  params: {
-    call: InputGroupCall;
-  }
-  response: Updates
-}
-
-export interface Stickers$CheckShortName {
-  method: "stickers.checkShortName";
-  params: {
-    short_name: string;
-  }
-  response: Bool
-}
-
-export interface Stickers$SuggestShortName {
-  method: "stickers.suggestShortName";
-  params: {
-    title: string;
-  }
-  response: Stickers$SuggestedShortName
-}
-
-export interface Bots$ResetBotCommands {
-  method: "bots.resetBotCommands";
-  params: {
-    scope: BotCommandScope;
-    lang_code: string;
-  }
-  response: Bool
-}
-
-export interface Bots$GetBotCommands {
-  method: "bots.getBotCommands";
-  params: {
-    scope: BotCommandScope;
-    lang_code: string;
-  }
-  response: BotCommand[]
-}
-
-export interface Account$ResetPassword {
-  method: "account.resetPassword";
-  params: {
-  }
-  response: Account$ResetPasswordResult
-}
-
-export interface Account$DeclinePasswordReset {
-  method: "account.declinePasswordReset";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Auth$CheckRecoveryPassword {
-  method: "auth.checkRecoveryPassword";
-  params: {
-    code: string;
-  }
-  response: Bool
-}
-
-export interface Account$GetChatThemes {
-  method: "account.getChatThemes";
-  params: {
-    hash: number;
-  }
-  response: Account$Themes
-}
-
-export interface Messages$SetChatTheme {
-  method: "messages.setChatTheme";
-  params: {
-    peer: InputPeer;
-    emoticon: string;
-  }
-  response: Updates
-}
-
-export interface Channels$ViewSponsoredMessage {
-  method: "channels.viewSponsoredMessage";
-  params: {
-    channel: InputChannel;
-    random_id: Uint8Array;
-  }
-  response: Bool
-}
-
-export interface Channels$GetSponsoredMessages {
-  method: "channels.getSponsoredMessages";
-  params: {
-    channel: InputChannel;
-  }
-  response: Messages$SponsoredMessages
-}
-
-export interface Messages$GetMessageReadParticipants {
-  method: "messages.getMessageReadParticipants";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-  }
-  response: ReadParticipantDate[]
-}
-
-export interface Messages$GetSearchResultsCalendar {
-  method: "messages.getSearchResultsCalendar";
-  params: {
-    peer: InputPeer;
-    filter: MessagesFilter;
-    offset_id: number;
-    offset_date: number;
-  }
-  response: Messages$SearchResultsCalendar
-}
-
-export interface Messages$GetSearchResultsPositions {
-  method: "messages.getSearchResultsPositions";
-  params: {
-    peer: InputPeer;
-    filter: MessagesFilter;
-    offset_id: number;
-    limit: number;
-  }
-  response: Messages$SearchResultsPositions
-}
-
-export interface Messages$HideChatJoinRequest {
-  method: "messages.hideChatJoinRequest";
-  params: {
-    flags?: Number;
-    approved?: True;
-    peer: InputPeer;
-    user_id: InputUser;
-  }
-  response: Updates
-}
-
-export interface Messages$HideAllChatJoinRequests {
-  method: "messages.hideAllChatJoinRequests";
-  params: {
-    flags?: Number;
-    approved?: True;
-    peer: InputPeer;
-    link?: string;
-  }
-  response: Updates
-}
-
-export interface Messages$ToggleNoForwards {
-  method: "messages.toggleNoForwards";
-  params: {
-    peer: InputPeer;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Messages$SaveDefaultSendAs {
-  method: "messages.saveDefaultSendAs";
-  params: {
-    peer: InputPeer;
-    send_as: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Channels$GetSendAs {
-  method: "channels.getSendAs";
-  params: {
-    peer: InputPeer;
-  }
-  response: Channels$SendAsPeers
-}
-
-export interface Account$SetAuthorizationTTL {
-  method: "account.setAuthorizationTTL";
-  params: {
-    authorization_ttl_days: number;
-  }
-  response: Bool
-}
-
-export interface Account$ChangeAuthorizationSettings {
-  method: "account.changeAuthorizationSettings";
-  params: {
-    flags?: Number;
-    hash: number;
-    encrypted_requests_disabled?: Bool;
-    call_requests_disabled?: Bool;
-  }
-  response: Bool
-}
-
-export interface Channels$DeleteParticipantHistory {
-  method: "channels.deleteParticipantHistory";
-  params: {
-    channel: InputChannel;
-    participant: InputPeer;
-  }
-  response: Messages$AffectedHistory
-}
-
-export interface Messages$SendReaction {
-  method: "messages.sendReaction";
-  params: {
-    flags?: Number;
-    big?: True;
-    add_to_recent?: True;
-    peer: InputPeer;
-    msg_id: number;
-    reaction?: Reaction;
-  }
-  response: Updates
-}
-
-export interface Messages$GetMessagesReactions {
-  method: "messages.getMessagesReactions";
-  params: {
-    peer: InputPeer;
-    id: number[];
-  }
-  response: Updates
-}
-
-export interface Messages$GetMessageReactionsList {
-  method: "messages.getMessageReactionsList";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    id: number;
-    reaction?: Reaction;
-    offset?: string;
-    limit: number;
-  }
-  response: Messages$MessageReactionsList
-}
-
-export interface Messages$SetChatAvailableReactions {
-  method: "messages.setChatAvailableReactions";
-  params: {
-    peer: InputPeer;
-    available_reactions: ChatReactions;
-  }
-  response: Updates
-}
-
-export interface Messages$GetAvailableReactions {
-  method: "messages.getAvailableReactions";
-  params: {
-    hash: number;
-  }
-  response: Messages$AvailableReactions
-}
-
-export interface Messages$SetDefaultReaction {
-  method: "messages.setDefaultReaction";
-  params: {
-    reaction: Reaction;
-  }
-  response: Bool
-}
-
-export interface Messages$TranslateText {
-  method: "messages.translateText";
-  params: {
-    flags?: Number;
-    peer?: InputPeer;
-    id?: number[];
-    text?: TextWithEntities;
-    to_lang: string;
-  }
-  response: Messages$TranslatedText
-}
-
-export interface Messages$GetUnreadReactions {
-  method: "messages.getUnreadReactions";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    top_msg_id?: number;
-    offset_id: number;
-    add_offset: number;
-    limit: number;
-    max_id: number;
-    min_id: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$ReadReactions {
-  method: "messages.readReactions";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    top_msg_id?: number;
-  }
-  response: Messages$AffectedHistory
-}
-
-export interface Contacts$ResolvePhone {
-  method: "contacts.resolvePhone";
-  params: {
-    phone: string;
-  }
-  response: Contacts$ResolvedPeer
-}
-
-export interface Phone$GetGroupCallStreamChannels {
-  method: "phone.getGroupCallStreamChannels";
-  params: {
-    call: InputGroupCall;
-  }
-  response: Phone$GroupCallStreamChannels
-}
-
-export interface Phone$GetGroupCallStreamRtmpUrl {
-  method: "phone.getGroupCallStreamRtmpUrl";
-  params: {
-    peer: InputPeer;
-    revoke: Bool;
-  }
-  response: Phone$GroupCallStreamRtmpUrl
-}
-
-export interface Messages$SearchSentMedia {
-  method: "messages.searchSentMedia";
-  params: {
-    q: string;
-    filter: MessagesFilter;
-    limit: number;
-  }
-  response: Messages$Messages
-}
-
-export interface Messages$GetAttachMenuBots {
-  method: "messages.getAttachMenuBots";
-  params: {
-    hash: number;
-  }
-  response: AttachMenuBots
-}
-
-export interface Messages$GetAttachMenuBot {
-  method: "messages.getAttachMenuBot";
-  params: {
-    bot: InputUser;
-  }
-  response: AttachMenuBotsBot
-}
-
-export interface Messages$ToggleBotInAttachMenu {
-  method: "messages.toggleBotInAttachMenu";
-  params: {
-    flags?: Number;
-    write_allowed?: True;
-    bot: InputUser;
-    enabled: Bool;
-  }
-  response: Bool
-}
-
-export interface Messages$RequestWebView {
-  method: "messages.requestWebView";
-  params: {
-    flags?: Number;
-    from_bot_menu?: True;
-    silent?: True;
-    peer: InputPeer;
-    bot: InputUser;
-    url?: string;
-    start_param?: string;
-    theme_params?: DataJSON;
-    platform: string;
-    reply_to_msg_id?: number;
-    top_msg_id?: number;
-    send_as?: InputPeer;
-  }
-  response: WebViewResult
-}
-
-export interface Messages$ProlongWebView {
-  method: "messages.prolongWebView";
-  params: {
-    flags?: Number;
-    silent?: True;
-    peer: InputPeer;
-    bot: InputUser;
-    query_id: number;
-    reply_to_msg_id?: number;
-    top_msg_id?: number;
-    send_as?: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Messages$RequestSimpleWebView {
-  method: "messages.requestSimpleWebView";
-  params: {
-    flags?: Number;
-    from_switch_webview?: True;
-    bot: InputUser;
-    url: string;
-    theme_params?: DataJSON;
-    platform: string;
-  }
-  response: SimpleWebViewResult
-}
-
-export interface Messages$SendWebViewResultMessage {
-  method: "messages.sendWebViewResultMessage";
-  params: {
-    bot_query_id: string;
-    result: InputBotInlineResult;
-  }
-  response: WebViewMessageSent
-}
-
-export interface Messages$SendWebViewData {
-  method: "messages.sendWebViewData";
-  params: {
-    bot: InputUser;
-    random_id: number;
-    button_text: string;
-    data: string;
-  }
-  response: Updates
-}
-
-export interface Bots$SetBotMenuButton {
-  method: "bots.setBotMenuButton";
-  params: {
-    user_id: InputUser;
-    button: BotMenuButton;
-  }
-  response: Bool
-}
-
-export interface Bots$GetBotMenuButton {
-  method: "bots.getBotMenuButton";
-  params: {
-    user_id: InputUser;
-  }
-  response: BotMenuButton
-}
-
-export interface Account$GetSavedRingtones {
-  method: "account.getSavedRingtones";
-  params: {
-    hash: number;
-  }
-  response: Account$SavedRingtones
-}
-
-export interface Account$SaveRingtone {
-  method: "account.saveRingtone";
-  params: {
-    id: InputDocument;
-    unsave: Bool;
-  }
-  response: Account$SavedRingtone
-}
-
-export interface Account$UploadRingtone {
-  method: "account.uploadRingtone";
-  params: {
-    file: InputFile;
-    file_name: string;
-    mime_type: string;
-  }
-  response: Document
-}
-
-export interface Bots$SetBotBroadcastDefaultAdminRights {
-  method: "bots.setBotBroadcastDefaultAdminRights";
-  params: {
-    admin_rights: ChatAdminRights;
-  }
-  response: Bool
-}
-
-export interface Bots$SetBotGroupDefaultAdminRights {
-  method: "bots.setBotGroupDefaultAdminRights";
-  params: {
-    admin_rights: ChatAdminRights;
-  }
-  response: Bool
-}
-
-export interface Phone$SaveCallLog {
-  method: "phone.saveCallLog";
-  params: {
-    peer: InputPhoneCall;
-    file: InputFile;
-  }
-  response: Bool
-}
-
-export interface Channels$ToggleJoinToSend {
-  method: "channels.toggleJoinToSend";
-  params: {
-    channel: InputChannel;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Channels$ToggleJoinRequest {
-  method: "channels.toggleJoinRequest";
-  params: {
-    channel: InputChannel;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Payments$ExportInvoice {
-  method: "payments.exportInvoice";
-  params: {
-    invoice_media: InputMedia;
-  }
-  response: Payments$ExportedInvoice
-}
-
-export interface Messages$TranscribeAudio {
-  method: "messages.transcribeAudio";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-  }
-  response: Messages$TranscribedAudio
-}
-
-export interface Messages$RateTranscribedAudio {
-  method: "messages.rateTranscribedAudio";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-    transcription_id: number;
-    good: Bool;
-  }
-  response: Bool
-}
-
-export interface Payments$AssignAppStoreTransaction {
-  method: "payments.assignAppStoreTransaction";
-  params: {
-    receipt: Uint8Array;
-    purpose: InputStorePaymentPurpose;
-  }
-  response: Updates
-}
-
-export interface Payments$AssignPlayMarketTransaction {
-  method: "payments.assignPlayMarketTransaction";
-  params: {
-    receipt: DataJSON;
-    purpose: InputStorePaymentPurpose;
-  }
-  response: Updates
-}
-
-export interface Payments$CanPurchasePremium {
-  method: "payments.canPurchasePremium";
-  params: {
-    purpose: InputStorePaymentPurpose;
-  }
-  response: Bool
-}
-
-export interface Help$GetPremiumPromo {
-  method: "help.getPremiumPromo";
-  params: {
-  }
-  response: Help$PremiumPromo
-}
-
-export interface Messages$GetCustomEmojiDocuments {
-  method: "messages.getCustomEmojiDocuments";
-  params: {
-    document_id: number[];
-  }
-  response: Document[]
-}
-
-export interface Messages$GetEmojiStickers {
-  method: "messages.getEmojiStickers";
-  params: {
-    hash: number;
-  }
-  response: Messages$AllStickers
-}
-
-export interface Messages$GetFeaturedEmojiStickers {
-  method: "messages.getFeaturedEmojiStickers";
-  params: {
-    hash: number;
-  }
-  response: Messages$FeaturedStickers
-}
-
-export interface Account$UpdateEmojiStatus {
-  method: "account.updateEmojiStatus";
-  params: {
-    emoji_status: EmojiStatus;
-  }
-  response: Bool
-}
-
-export interface Account$GetDefaultEmojiStatuses {
-  method: "account.getDefaultEmojiStatuses";
-  params: {
-    hash: number;
-  }
-  response: Account$EmojiStatuses
-}
-
-export interface Account$GetRecentEmojiStatuses {
-  method: "account.getRecentEmojiStatuses";
-  params: {
-    hash: number;
-  }
-  response: Account$EmojiStatuses
-}
-
-export interface Account$ClearRecentEmojiStatuses {
-  method: "account.clearRecentEmojiStatuses";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Messages$ReportReaction {
-  method: "messages.reportReaction";
-  params: {
-    peer: InputPeer;
-    id: number;
-    reaction_peer: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Messages$GetTopReactions {
-  method: "messages.getTopReactions";
-  params: {
-    limit: number;
-    hash: number;
-  }
-  response: Messages$Reactions
-}
-
-export interface Messages$GetRecentReactions {
-  method: "messages.getRecentReactions";
-  params: {
-    limit: number;
-    hash: number;
-  }
-  response: Messages$Reactions
-}
-
-export interface Messages$ClearRecentReactions {
-  method: "messages.clearRecentReactions";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Messages$GetExtendedMedia {
-  method: "messages.getExtendedMedia";
-  params: {
-    peer: InputPeer;
-    id: number[];
-  }
-  response: Updates
-}
-
-export interface Auth$ImportWebTokenAuthorization {
-  method: "auth.importWebTokenAuthorization";
-  params: {
-    api_id: number;
-    api_hash: string;
-    web_auth_token: string;
-  }
-  response: Auth$Authorization
-}
-
-export interface Account$ReorderUsernames {
-  method: "account.reorderUsernames";
-  params: {
-    order: string[];
-  }
-  response: Bool
-}
-
-export interface Account$ToggleUsername {
-  method: "account.toggleUsername";
-  params: {
-    username: string;
-    active: Bool;
-  }
-  response: Bool
-}
-
-export interface Channels$ReorderUsernames {
-  method: "channels.reorderUsernames";
-  params: {
-    channel: InputChannel;
-    order: string[];
-  }
-  response: Bool
-}
-
-export interface Channels$ToggleUsername {
-  method: "channels.toggleUsername";
-  params: {
-    channel: InputChannel;
-    username: string;
-    active: Bool;
-  }
-  response: Bool
-}
-
-export interface Channels$DeactivateAllUsernames {
-  method: "channels.deactivateAllUsernames";
-  params: {
-    channel: InputChannel;
-  }
-  response: Bool
-}
-
-export interface Channels$ToggleForum {
-  method: "channels.toggleForum";
-  params: {
-    channel: InputChannel;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Channels$CreateForumTopic {
-  method: "channels.createForumTopic";
-  params: {
-    flags?: Number;
-    channel: InputChannel;
-    title: string;
-    icon_color?: number;
-    icon_emoji_id?: number;
-    random_id: number;
-    send_as?: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Channels$GetForumTopics {
-  method: "channels.getForumTopics";
-  params: {
-    flags?: Number;
-    channel: InputChannel;
-    q?: string;
-    offset_date: number;
-    offset_id: number;
-    offset_topic: number;
-    limit: number;
-  }
-  response: Messages$ForumTopics
-}
-
-export interface Channels$GetForumTopicsByID {
-  method: "channels.getForumTopicsByID";
-  params: {
-    channel: InputChannel;
-    topics: number[];
-  }
-  response: Messages$ForumTopics
-}
-
-export interface Channels$EditForumTopic {
-  method: "channels.editForumTopic";
-  params: {
-    flags?: Number;
-    channel: InputChannel;
-    topic_id: number;
-    title?: string;
-    icon_emoji_id?: number;
-    closed?: Bool;
-    hidden?: Bool;
-  }
-  response: Updates
-}
-
-export interface Channels$UpdatePinnedForumTopic {
-  method: "channels.updatePinnedForumTopic";
-  params: {
-    channel: InputChannel;
-    topic_id: number;
-    pinned: Bool;
-  }
-  response: Updates
-}
-
-export interface Channels$DeleteTopicHistory {
-  method: "channels.deleteTopicHistory";
-  params: {
-    channel: InputChannel;
-    top_msg_id: number;
-  }
-  response: Messages$AffectedHistory
-}
-
-export interface Channels$ReorderPinnedForumTopics {
-  method: "channels.reorderPinnedForumTopics";
-  params: {
-    flags?: Number;
-    force?: True;
-    channel: InputChannel;
-    order: number[];
-  }
-  response: Updates
-}
-
-export interface Channels$ToggleAntiSpam {
-  method: "channels.toggleAntiSpam";
-  params: {
-    channel: InputChannel;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Channels$ReportAntiSpamFalsePositive {
-  method: "channels.reportAntiSpamFalsePositive";
-  params: {
-    channel: InputChannel;
-    msg_id: number;
-  }
-  response: Bool
-}
-
-export interface Messages$SetDefaultHistoryTTL {
-  method: "messages.setDefaultHistoryTTL";
-  params: {
-    period: number;
-  }
-  response: Bool
-}
-
-export interface Messages$GetDefaultHistoryTTL {
-  method: "messages.getDefaultHistoryTTL";
-  params: {
-  }
-  response: DefaultHistoryTTL
-}
-
-export interface Contacts$ExportContactToken {
-  method: "contacts.exportContactToken";
-  params: {
-  }
-  response: ExportedContactToken
-}
-
-export interface Contacts$ImportContactToken {
-  method: "contacts.importContactToken";
-  params: {
-    token: string;
-  }
-  response: User
-}
-
-export interface Photos$UploadContactProfilePhoto {
-  method: "photos.uploadContactProfilePhoto";
-  params: {
-    flags?: Number;
-    suggest?: True;
-    save?: True;
-    user_id: InputUser;
-    file?: InputFile;
-    video?: InputFile;
-    video_start_ts?: number;
-    video_emoji_markup?: VideoSize;
-  }
-  response: Photos$Photo
-}
-
-export interface Channels$ToggleParticipantsHidden {
-  method: "channels.toggleParticipantsHidden";
-  params: {
-    channel: InputChannel;
-    enabled: Bool;
-  }
-  response: Updates
-}
-
-export interface Messages$SendBotRequestedPeer {
-  method: "messages.sendBotRequestedPeer";
-  params: {
-    peer: InputPeer;
-    msg_id: number;
-    button_id: number;
-    requested_peer: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Account$GetDefaultProfilePhotoEmojis {
-  method: "account.getDefaultProfilePhotoEmojis";
-  params: {
-    hash: number;
-  }
-  response: EmojiList
-}
-
-export interface Account$GetDefaultGroupPhotoEmojis {
-  method: "account.getDefaultGroupPhotoEmojis";
-  params: {
-    hash: number;
-  }
-  response: EmojiList
-}
-
-export interface Auth$RequestFirebaseSms {
-  method: "auth.requestFirebaseSms";
-  params: {
-    flags?: Number;
-    phone_number: string;
-    phone_code_hash: string;
-    safety_net_token?: string;
-    ios_push_secret?: string;
-  }
-  response: Bool
-}
-
-export interface Messages$GetEmojiGroups {
-  method: "messages.getEmojiGroups";
-  params: {
-    hash: number;
-  }
-  response: Messages$EmojiGroups
-}
-
-export interface Messages$GetEmojiStatusGroups {
-  method: "messages.getEmojiStatusGroups";
-  params: {
-    hash: number;
-  }
-  response: Messages$EmojiGroups
-}
-
-export interface Messages$GetEmojiProfilePhotoGroups {
-  method: "messages.getEmojiProfilePhotoGroups";
-  params: {
-    hash: number;
-  }
-  response: Messages$EmojiGroups
-}
-
-export interface Messages$SearchCustomEmoji {
-  method: "messages.searchCustomEmoji";
-  params: {
-    emoticon: string;
-    hash: number;
-  }
-  response: EmojiList
-}
-
-export interface Messages$TogglePeerTranslations {
-  method: "messages.togglePeerTranslations";
-  params: {
-    flags?: Number;
-    disabled?: True;
-    peer: InputPeer;
-  }
-  response: Bool
-}
-
-export interface Account$GetAutoSaveSettings {
-  method: "account.getAutoSaveSettings";
-  params: {
-  }
-  response: Account$AutoSaveSettings
-}
-
-export interface Account$SaveAutoSaveSettings {
-  method: "account.saveAutoSaveSettings";
-  params: {
-    flags?: Number;
-    users?: True;
-    chats?: True;
-    broadcasts?: True;
-    peer?: InputPeer;
-    settings: AutoSaveSettings;
-  }
-  response: Bool
-}
-
-export interface Account$DeleteAutoSaveExceptions {
-  method: "account.deleteAutoSaveExceptions";
-  params: {
-  }
-  response: Bool
-}
-
-export interface Stickers$ChangeSticker {
-  method: "stickers.changeSticker";
-  params: {
-    flags?: Number;
-    sticker: InputDocument;
-    emoji?: string;
-    mask_coords?: MaskCoords;
-    keywords?: string;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Stickers$RenameStickerSet {
-  method: "stickers.renameStickerSet";
-  params: {
-    stickerset: InputStickerSet;
-    title: string;
-  }
-  response: Messages$StickerSet
-}
-
-export interface Stickers$DeleteStickerSet {
-  method: "stickers.deleteStickerSet";
-  params: {
-    stickerset: InputStickerSet;
-  }
-  response: Bool
-}
-
-export interface Messages$GetBotApp {
-  method: "messages.getBotApp";
-  params: {
-    app: InputBotApp;
-    hash: number;
-  }
-  response: Messages$BotApp
-}
-
-export interface Messages$RequestAppWebView {
-  method: "messages.requestAppWebView";
-  params: {
-    flags?: Number;
-    write_allowed?: True;
-    peer: InputPeer;
-    app: InputBotApp;
-    start_param?: string;
-    theme_params?: DataJSON;
-    platform: string;
-  }
-  response: AppWebViewResult
-}
-
-export interface Bots$SetBotInfo {
-  method: "bots.setBotInfo";
-  params: {
-    flags?: Number;
-    bot?: InputUser;
-    lang_code: string;
-    name?: string;
-    about?: string;
-    description?: string;
-  }
-  response: Bool
-}
-
-export interface Bots$GetBotInfo {
-  method: "bots.getBotInfo";
-  params: {
-    flags?: Number;
-    bot?: InputUser;
-    lang_code: string;
-  }
-  response: Bots$BotInfo
-}
-
-export interface Auth$ResetLoginEmail {
-  method: "auth.resetLoginEmail";
-  params: {
-    phone_number: string;
-    phone_code_hash: string;
-  }
-  response: Auth$SentCode
-}
-
-export interface Chatlists$ExportChatlistInvite {
-  method: "chatlists.exportChatlistInvite";
-  params: {
-    chatlist: InputChatlist;
-    title: string;
-    peers: InputPeer;
-  }
-  response: Chatlists$ExportedChatlistInvite
-}
-
-export interface Chatlists$DeleteExportedInvite {
-  method: "chatlists.deleteExportedInvite";
-  params: {
-    chatlist: InputChatlist;
-    slug: string;
-  }
-  response: Bool
-}
-
-export interface Chatlists$EditExportedInvite {
-  method: "chatlists.editExportedInvite";
-  params: {
-    flags?: Number;
-    chatlist: InputChatlist;
-    slug: string;
-    title?: string;
-    peers?: InputPeer;
-  }
-  response: ExportedChatlistInvite
-}
-
-export interface Chatlists$GetExportedInvites {
-  method: "chatlists.getExportedInvites";
-  params: {
-    chatlist: InputChatlist;
-  }
-  response: Chatlists$ExportedInvites
-}
-
-export interface Chatlists$CheckChatlistInvite {
-  method: "chatlists.checkChatlistInvite";
-  params: {
-    slug: string;
-  }
-  response: Chatlists$ChatlistInvite
-}
-
-export interface Chatlists$JoinChatlistInvite {
-  method: "chatlists.joinChatlistInvite";
-  params: {
-    slug: string;
-    peers: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Chatlists$GetChatlistUpdates {
-  method: "chatlists.getChatlistUpdates";
-  params: {
-    chatlist: InputChatlist;
-  }
-  response: Chatlists$ChatlistUpdates
-}
-
-export interface Chatlists$JoinChatlistUpdates {
-  method: "chatlists.joinChatlistUpdates";
-  params: {
-    chatlist: InputChatlist;
-    peers: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Chatlists$HideChatlistUpdates {
-  method: "chatlists.hideChatlistUpdates";
-  params: {
-    chatlist: InputChatlist;
-  }
-  response: Bool
-}
-
-export interface Chatlists$GetLeaveChatlistSuggestions {
-  method: "chatlists.getLeaveChatlistSuggestions";
-  params: {
-    chatlist: InputChatlist;
-  }
-  response: Peer[]
-}
-
-export interface Chatlists$LeaveChatlist {
-  method: "chatlists.leaveChatlist";
-  params: {
-    chatlist: InputChatlist;
-    peers: InputPeer;
-  }
-  response: Updates
-}
-
-export interface Bots$ReorderUsernames {
-  method: "bots.reorderUsernames";
-  params: {
-    bot: InputUser;
-    order: string[];
-  }
-  response: Bool
-}
-
-export interface Bots$ToggleUsername {
-  method: "bots.toggleUsername";
-  params: {
-    bot: InputUser;
-    username: string;
-    active: Bool;
-  }
-  response: Bool
-}
-
-export interface Messages$SetChatWallPaper {
-  method: "messages.setChatWallPaper";
-  params: {
-    flags?: Number;
-    peer: InputPeer;
-    wallpaper?: InputWallPaper;
-    settings?: WallPaperSettings;
-    id?: number;
-  }
-  response: Updates
+export interface Methods {
+  'invokeAfterMsg': {
+    params: {
+      msg_id: number;
+      query: unknown;
+    }
+    response: unknown
+  }
+  'invokeAfterMsgs': {
+    params: {
+      msg_ids: number[];
+      query: unknown;
+    }
+    response: unknown
+  }
+  'auth.sendCode': {
+    params: {
+      phone_number: string;
+      api_id: number;
+      api_hash: string;
+      settings: CodeSettings;
+    }
+    response: Auth$SentCode
+  }
+  'auth.signUp': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+      first_name: string;
+      last_name: string;
+    }
+    response: Auth$Authorization
+  }
+  'auth.signIn': {
+    params: {
+      flags?: Number;
+      phone_number: string;
+      phone_code_hash: string;
+      phone_code?: string;
+      email_verification?: EmailVerification;
+    }
+    response: Auth$Authorization
+  }
+  'auth.logOut': {
+    params: {
+    }
+    response: Auth$LoggedOut
+  }
+  'auth.resetAuthorizations': {
+    params: {
+    }
+    response: Bool
+  }
+  'auth.exportAuthorization': {
+    params: {
+      dc_id: number;
+    }
+    response: Auth$ExportedAuthorization
+  }
+  'auth.importAuthorization': {
+    params: {
+      id: number;
+      bytes: Uint8Array;
+    }
+    response: Auth$Authorization
+  }
+  'auth.bindTempAuthKey': {
+    params: {
+      perm_auth_key_id: number;
+      nonce: number;
+      expires_at: number;
+      encrypted_message: Uint8Array;
+    }
+    response: Bool
+  }
+  'account.registerDevice': {
+    params: {
+      flags?: Number;
+      no_muted?: True;
+      token_type: number;
+      token: string;
+      app_sandbox: Bool;
+      secret: Uint8Array;
+      other_uids: number[];
+    }
+    response: Bool
+  }
+  'account.unregisterDevice': {
+    params: {
+      token_type: number;
+      token: string;
+      other_uids: number[];
+    }
+    response: Bool
+  }
+  'account.updateNotifySettings': {
+    params: {
+      peer: InputNotifyPeer;
+      settings: InputPeerNotifySettings;
+    }
+    response: Bool
+  }
+  'account.getNotifySettings': {
+    params: {
+      peer: InputNotifyPeer;
+    }
+    response: PeerNotifySettings
+  }
+  'account.resetNotifySettings': {
+    params: {
+    }
+    response: Bool
+  }
+  'account.updateProfile': {
+    params: {
+      flags?: Number;
+      first_name?: string;
+      last_name?: string;
+      about?: string;
+    }
+    response: User
+  }
+  'account.updateStatus': {
+    params: {
+      offline: Bool;
+    }
+    response: Bool
+  }
+  'account.getWallPapers': {
+    params: {
+      hash: number;
+    }
+    response: Account$WallPapers
+  }
+  'account.reportPeer': {
+    params: {
+      peer: InputPeer;
+      reason: ReportReason;
+      message: string;
+    }
+    response: Bool
+  }
+  'users.getUsers': {
+    params: {
+      id: InputUser;
+    }
+    response: User[]
+  }
+  'users.getFullUser': {
+    params: {
+      id: InputUser;
+    }
+    response: Users$UserFull
+  }
+  'contacts.getContactIDs': {
+    params: {
+      hash: number;
+    }
+    response: Number[]
+  }
+  'contacts.getStatuses': {
+    params: {
+    }
+    response: ContactStatus[]
+  }
+  'contacts.getContacts': {
+    params: {
+      hash: number;
+    }
+    response: Contacts$Contacts
+  }
+  'contacts.importContacts': {
+    params: {
+      contacts: InputContact;
+    }
+    response: Contacts$ImportedContacts
+  }
+  'contacts.deleteContacts': {
+    params: {
+      id: InputUser;
+    }
+    response: Updates
+  }
+  'contacts.deleteByPhones': {
+    params: {
+      phones: string[];
+    }
+    response: Bool
+  }
+  'contacts.block': {
+    params: {
+      id: InputPeer;
+    }
+    response: Bool
+  }
+  'contacts.unblock': {
+    params: {
+      id: InputPeer;
+    }
+    response: Bool
+  }
+  'contacts.getBlocked': {
+    params: {
+      offset: number;
+      limit: number;
+    }
+    response: Contacts$Blocked
+  }
+  'messages.getMessages': {
+    params: {
+      id: InputMessage;
+    }
+    response: Messages$Messages
+  }
+  'messages.getDialogs': {
+    params: {
+      flags?: Number;
+      exclude_pinned?: True;
+      folder_id?: number;
+      offset_date: number;
+      offset_id: number;
+      offset_peer: InputPeer;
+      limit: number;
+      hash: number;
+    }
+    response: Messages$Dialogs
+  }
+  'messages.getHistory': {
+    params: {
+      peer: InputPeer;
+      offset_id: number;
+      offset_date: number;
+      add_offset: number;
+      limit: number;
+      max_id: number;
+      min_id: number;
+      hash: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.search': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      q: string;
+      from_id?: InputPeer;
+      top_msg_id?: number;
+      filter: MessagesFilter;
+      min_date: number;
+      max_date: number;
+      offset_id: number;
+      add_offset: number;
+      limit: number;
+      max_id: number;
+      min_id: number;
+      hash: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.readHistory': {
+    params: {
+      peer: InputPeer;
+      max_id: number;
+    }
+    response: Messages$AffectedMessages
+  }
+  'messages.deleteHistory': {
+    params: {
+      flags?: Number;
+      just_clear?: True;
+      revoke?: True;
+      peer: InputPeer;
+      max_id: number;
+      min_date?: number;
+      max_date?: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'messages.deleteMessages': {
+    params: {
+      flags?: Number;
+      revoke?: True;
+      id: number[];
+    }
+    response: Messages$AffectedMessages
+  }
+  'messages.receivedMessages': {
+    params: {
+      max_id: number;
+    }
+    response: ReceivedNotifyMessage[]
+  }
+  'messages.setTyping': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+      action: SendMessageAction;
+    }
+    response: Bool
+  }
+  'messages.sendMessage': {
+    params: {
+      flags?: Number;
+      no_webpage?: True;
+      silent?: True;
+      background?: True;
+      clear_draft?: True;
+      noforwards?: True;
+      update_stickersets_order?: True;
+      peer: InputPeer;
+      reply_to_msg_id?: number;
+      top_msg_id?: number;
+      message: string;
+      random_id: number;
+      reply_markup?: ReplyMarkup;
+      entities?: MessageEntity;
+      schedule_date?: number;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'messages.sendMedia': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      background?: True;
+      clear_draft?: True;
+      noforwards?: True;
+      update_stickersets_order?: True;
+      peer: InputPeer;
+      reply_to_msg_id?: number;
+      top_msg_id?: number;
+      media: InputMedia;
+      message: string;
+      random_id: number;
+      reply_markup?: ReplyMarkup;
+      entities?: MessageEntity;
+      schedule_date?: number;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'messages.forwardMessages': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      background?: True;
+      with_my_score?: True;
+      drop_author?: True;
+      drop_media_captions?: True;
+      noforwards?: True;
+      from_peer: InputPeer;
+      id: number[];
+      random_id: number[];
+      to_peer: InputPeer;
+      top_msg_id?: number;
+      schedule_date?: number;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'messages.reportSpam': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Bool
+  }
+  'messages.getPeerSettings': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Messages$PeerSettings
+  }
+  'messages.report': {
+    params: {
+      peer: InputPeer;
+      id: number[];
+      reason: ReportReason;
+      message: string;
+    }
+    response: Bool
+  }
+  'messages.getChats': {
+    params: {
+      id: number[];
+    }
+    response: Messages$Chats
+  }
+  'messages.getFullChat': {
+    params: {
+      chat_id: number;
+    }
+    response: Messages$ChatFull
+  }
+  'messages.editChatTitle': {
+    params: {
+      chat_id: number;
+      title: string;
+    }
+    response: Updates
+  }
+  'messages.editChatPhoto': {
+    params: {
+      chat_id: number;
+      photo: InputChatPhoto;
+    }
+    response: Updates
+  }
+  'messages.addChatUser': {
+    params: {
+      chat_id: number;
+      user_id: InputUser;
+      fwd_limit: number;
+    }
+    response: Updates
+  }
+  'messages.deleteChatUser': {
+    params: {
+      flags?: Number;
+      revoke_history?: True;
+      chat_id: number;
+      user_id: InputUser;
+    }
+    response: Updates
+  }
+  'messages.createChat': {
+    params: {
+      flags?: Number;
+      users: InputUser;
+      title: string;
+      ttl_period?: number;
+    }
+    response: Updates
+  }
+  'updates.getState': {
+    params: {
+    }
+    response: Updates$State
+  }
+  'updates.getDifference': {
+    params: {
+      flags?: Number;
+      pts: number;
+      pts_total_limit?: number;
+      date: number;
+      qts: number;
+    }
+    response: Updates$Difference
+  }
+  'photos.updateProfilePhoto': {
+    params: {
+      flags?: Number;
+      fallback?: True;
+      bot?: InputUser;
+      id: InputPhoto;
+    }
+    response: Photos$Photo
+  }
+  'photos.uploadProfilePhoto': {
+    params: {
+      flags?: Number;
+      fallback?: True;
+      bot?: InputUser;
+      file?: InputFile;
+      video?: InputFile;
+      video_start_ts?: number;
+      video_emoji_markup?: VideoSize;
+    }
+    response: Photos$Photo
+  }
+  'photos.deletePhotos': {
+    params: {
+      id: InputPhoto;
+    }
+    response: Number[]
+  }
+  'upload.saveFilePart': {
+    params: {
+      file_id: number;
+      file_part: number;
+      bytes: Uint8Array;
+    }
+    response: Bool
+  }
+  'upload.getFile': {
+    params: {
+      flags?: Number;
+      precise?: True;
+      cdn_supported?: True;
+      location: InputFileLocation;
+      offset: number;
+      limit: number;
+    }
+    response: Upload$File
+  }
+  'help.getConfig': {
+    params: {
+    }
+    response: Config
+  }
+  'help.getNearestDc': {
+    params: {
+    }
+    response: NearestDc
+  }
+  'help.getAppUpdate': {
+    params: {
+      source: string;
+    }
+    response: Help$AppUpdate
+  }
+  'help.getInviteText': {
+    params: {
+    }
+    response: Help$InviteText
+  }
+  'photos.getUserPhotos': {
+    params: {
+      user_id: InputUser;
+      offset: number;
+      max_id: number;
+      limit: number;
+    }
+    response: Photos$Photos
+  }
+  'messages.getDhConfig': {
+    params: {
+      version: number;
+      random_length: number;
+    }
+    response: Messages$DhConfig
+  }
+  'messages.requestEncryption': {
+    params: {
+      user_id: InputUser;
+      random_id: number;
+      g_a: Uint8Array;
+    }
+    response: EncryptedChat
+  }
+  'messages.acceptEncryption': {
+    params: {
+      peer: InputEncryptedChat;
+      g_b: Uint8Array;
+      key_fingerprint: number;
+    }
+    response: EncryptedChat
+  }
+  'messages.discardEncryption': {
+    params: {
+      flags?: Number;
+      delete_history?: True;
+      chat_id: number;
+    }
+    response: Bool
+  }
+  'messages.setEncryptedTyping': {
+    params: {
+      peer: InputEncryptedChat;
+      typing: Bool;
+    }
+    response: Bool
+  }
+  'messages.readEncryptedHistory': {
+    params: {
+      peer: InputEncryptedChat;
+      max_date: number;
+    }
+    response: Bool
+  }
+  'messages.sendEncrypted': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      peer: InputEncryptedChat;
+      random_id: number;
+      data: Uint8Array;
+    }
+    response: Messages$SentEncryptedMessage
+  }
+  'messages.sendEncryptedFile': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      peer: InputEncryptedChat;
+      random_id: number;
+      data: Uint8Array;
+      file: InputEncryptedFile;
+    }
+    response: Messages$SentEncryptedMessage
+  }
+  'messages.sendEncryptedService': {
+    params: {
+      peer: InputEncryptedChat;
+      random_id: number;
+      data: Uint8Array;
+    }
+    response: Messages$SentEncryptedMessage
+  }
+  'messages.receivedQueue': {
+    params: {
+      max_qts: number;
+    }
+    response: Number[]
+  }
+  'messages.reportEncryptedSpam': {
+    params: {
+      peer: InputEncryptedChat;
+    }
+    response: Bool
+  }
+  'upload.saveBigFilePart': {
+    params: {
+      file_id: number;
+      file_part: number;
+      file_total_parts: number;
+      bytes: Uint8Array;
+    }
+    response: Bool
+  }
+  'initConnection': {
+    params: {
+      flags?: Number;
+      api_id: number;
+      device_model: string;
+      system_version: string;
+      app_version: string;
+      system_lang_code: string;
+      lang_pack: string;
+      lang_code: string;
+      proxy?: InputClientProxy;
+      params?: JSONValue;
+      query: unknown;
+    }
+    response: unknown
+  }
+  'help.getSupport': {
+    params: {
+    }
+    response: Help$Support
+  }
+  'messages.readMessageContents': {
+    params: {
+      id: number[];
+    }
+    response: Messages$AffectedMessages
+  }
+  'account.checkUsername': {
+    params: {
+      username: string;
+    }
+    response: Bool
+  }
+  'account.updateUsername': {
+    params: {
+      username: string;
+    }
+    response: User
+  }
+  'contacts.search': {
+    params: {
+      q: string;
+      limit: number;
+    }
+    response: Contacts$Found
+  }
+  'account.getPrivacy': {
+    params: {
+      key: InputPrivacyKey;
+    }
+    response: Account$PrivacyRules
+  }
+  'account.setPrivacy': {
+    params: {
+      key: InputPrivacyKey;
+      rules: InputPrivacyRule;
+    }
+    response: Account$PrivacyRules
+  }
+  'account.deleteAccount': {
+    params: {
+      flags?: Number;
+      reason: string;
+      password?: InputCheckPasswordSRP;
+    }
+    response: Bool
+  }
+  'account.getAccountTTL': {
+    params: {
+    }
+    response: AccountDaysTTL
+  }
+  'account.setAccountTTL': {
+    params: {
+      ttl: AccountDaysTTL;
+    }
+    response: Bool
+  }
+  'invokeWithLayer': {
+    params: {
+      layer: number;
+      query: unknown;
+    }
+    response: unknown
+  }
+  'contacts.resolveUsername': {
+    params: {
+      username: string;
+    }
+    response: Contacts$ResolvedPeer
+  }
+  'account.sendChangePhoneCode': {
+    params: {
+      phone_number: string;
+      settings: CodeSettings;
+    }
+    response: Auth$SentCode
+  }
+  'account.changePhone': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+      phone_code: string;
+    }
+    response: User
+  }
+  'messages.getStickers': {
+    params: {
+      emoticon: string;
+      hash: number;
+    }
+    response: Messages$Stickers
+  }
+  'messages.getAllStickers': {
+    params: {
+      hash: number;
+    }
+    response: Messages$AllStickers
+  }
+  'account.updateDeviceLocked': {
+    params: {
+      period: number;
+    }
+    response: Bool
+  }
+  'auth.importBotAuthorization': {
+    params: {
+      flags: number;
+      api_id: number;
+      api_hash: string;
+      bot_auth_token: string;
+    }
+    response: Auth$Authorization
+  }
+  'messages.getWebPagePreview': {
+    params: {
+      flags?: Number;
+      message: string;
+      entities?: MessageEntity;
+    }
+    response: MessageMedia
+  }
+  'account.getAuthorizations': {
+    params: {
+    }
+    response: Account$Authorizations
+  }
+  'account.resetAuthorization': {
+    params: {
+      hash: number;
+    }
+    response: Bool
+  }
+  'account.getPassword': {
+    params: {
+    }
+    response: Account$Password
+  }
+  'account.getPasswordSettings': {
+    params: {
+      password: InputCheckPasswordSRP;
+    }
+    response: Account$PasswordSettings
+  }
+  'account.updatePasswordSettings': {
+    params: {
+      password: InputCheckPasswordSRP;
+      new_settings: Account$PasswordInputSettings;
+    }
+    response: Bool
+  }
+  'auth.checkPassword': {
+    params: {
+      password: InputCheckPasswordSRP;
+    }
+    response: Auth$Authorization
+  }
+  'auth.requestPasswordRecovery': {
+    params: {
+    }
+    response: Auth$PasswordRecovery
+  }
+  'auth.recoverPassword': {
+    params: {
+      flags?: Number;
+      code: string;
+      new_settings?: Account$PasswordInputSettings;
+    }
+    response: Auth$Authorization
+  }
+  'invokeWithoutUpdates': {
+    params: {
+      query: unknown;
+    }
+    response: unknown
+  }
+  'messages.exportChatInvite': {
+    params: {
+      flags?: Number;
+      legacy_revoke_permanent?: True;
+      request_needed?: True;
+      peer: InputPeer;
+      expire_date?: number;
+      usage_limit?: number;
+      title?: string;
+    }
+    response: ExportedChatInvite
+  }
+  'messages.checkChatInvite': {
+    params: {
+      hash: string;
+    }
+    response: ChatInvite
+  }
+  'messages.importChatInvite': {
+    params: {
+      hash: string;
+    }
+    response: Updates
+  }
+  'messages.getStickerSet': {
+    params: {
+      stickerset: InputStickerSet;
+      hash: number;
+    }
+    response: Messages$StickerSet
+  }
+  'messages.installStickerSet': {
+    params: {
+      stickerset: InputStickerSet;
+      archived: Bool;
+    }
+    response: Messages$StickerSetInstallResult
+  }
+  'messages.uninstallStickerSet': {
+    params: {
+      stickerset: InputStickerSet;
+    }
+    response: Bool
+  }
+  'messages.startBot': {
+    params: {
+      bot: InputUser;
+      peer: InputPeer;
+      random_id: number;
+      start_param: string;
+    }
+    response: Updates
+  }
+  'help.getAppChangelog': {
+    params: {
+      prev_app_version: string;
+    }
+    response: Updates
+  }
+  'messages.getMessagesViews': {
+    params: {
+      peer: InputPeer;
+      id: number[];
+      increment: Bool;
+    }
+    response: Messages$MessageViews
+  }
+  'channels.readHistory': {
+    params: {
+      channel: InputChannel;
+      max_id: number;
+    }
+    response: Bool
+  }
+  'channels.deleteMessages': {
+    params: {
+      channel: InputChannel;
+      id: number[];
+    }
+    response: Messages$AffectedMessages
+  }
+  'channels.reportSpam': {
+    params: {
+      channel: InputChannel;
+      participant: InputPeer;
+      id: number[];
+    }
+    response: Bool
+  }
+  'channels.getMessages': {
+    params: {
+      channel: InputChannel;
+      id: InputMessage;
+    }
+    response: Messages$Messages
+  }
+  'channels.getParticipants': {
+    params: {
+      channel: InputChannel;
+      filter: ChannelParticipantsFilter;
+      offset: number;
+      limit: number;
+      hash: number;
+    }
+    response: Channels$ChannelParticipants
+  }
+  'channels.getParticipant': {
+    params: {
+      channel: InputChannel;
+      participant: InputPeer;
+    }
+    response: Channels$ChannelParticipant
+  }
+  'channels.getChannels': {
+    params: {
+      id: InputChannel;
+    }
+    response: Messages$Chats
+  }
+  'channels.getFullChannel': {
+    params: {
+      channel: InputChannel;
+    }
+    response: Messages$ChatFull
+  }
+  'channels.createChannel': {
+    params: {
+      flags?: Number;
+      broadcast?: True;
+      megagroup?: True;
+      for_import?: True;
+      forum?: True;
+      title: string;
+      about: string;
+      geo_point?: InputGeoPoint;
+      address?: string;
+      ttl_period?: number;
+    }
+    response: Updates
+  }
+  'channels.editAdmin': {
+    params: {
+      channel: InputChannel;
+      user_id: InputUser;
+      admin_rights: ChatAdminRights;
+      rank: string;
+    }
+    response: Updates
+  }
+  'channels.editTitle': {
+    params: {
+      channel: InputChannel;
+      title: string;
+    }
+    response: Updates
+  }
+  'channels.editPhoto': {
+    params: {
+      channel: InputChannel;
+      photo: InputChatPhoto;
+    }
+    response: Updates
+  }
+  'channels.checkUsername': {
+    params: {
+      channel: InputChannel;
+      username: string;
+    }
+    response: Bool
+  }
+  'channels.updateUsername': {
+    params: {
+      channel: InputChannel;
+      username: string;
+    }
+    response: Bool
+  }
+  'channels.joinChannel': {
+    params: {
+      channel: InputChannel;
+    }
+    response: Updates
+  }
+  'channels.leaveChannel': {
+    params: {
+      channel: InputChannel;
+    }
+    response: Updates
+  }
+  'channels.inviteToChannel': {
+    params: {
+      channel: InputChannel;
+      users: InputUser;
+    }
+    response: Updates
+  }
+  'channels.deleteChannel': {
+    params: {
+      channel: InputChannel;
+    }
+    response: Updates
+  }
+  'updates.getChannelDifference': {
+    params: {
+      flags?: Number;
+      force?: True;
+      channel: InputChannel;
+      filter: ChannelMessagesFilter;
+      pts: number;
+      limit: number;
+    }
+    response: Updates$ChannelDifference
+  }
+  'messages.editChatAdmin': {
+    params: {
+      chat_id: number;
+      user_id: InputUser;
+      is_admin: Bool;
+    }
+    response: Bool
+  }
+  'messages.migrateChat': {
+    params: {
+      chat_id: number;
+    }
+    response: Updates
+  }
+  'messages.searchGlobal': {
+    params: {
+      flags?: Number;
+      folder_id?: number;
+      q: string;
+      filter: MessagesFilter;
+      min_date: number;
+      max_date: number;
+      offset_rate: number;
+      offset_peer: InputPeer;
+      offset_id: number;
+      limit: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.reorderStickerSets': {
+    params: {
+      flags?: Number;
+      masks?: True;
+      emojis?: True;
+      order: number[];
+    }
+    response: Bool
+  }
+  'messages.getDocumentByHash': {
+    params: {
+      sha256: Uint8Array;
+      size: number;
+      mime_type: string;
+    }
+    response: Document
+  }
+  'messages.getSavedGifs': {
+    params: {
+      hash: number;
+    }
+    response: Messages$SavedGifs
+  }
+  'messages.saveGif': {
+    params: {
+      id: InputDocument;
+      unsave: Bool;
+    }
+    response: Bool
+  }
+  'messages.getInlineBotResults': {
+    params: {
+      flags?: Number;
+      bot: InputUser;
+      peer: InputPeer;
+      geo_point?: InputGeoPoint;
+      query: string;
+      offset: string;
+    }
+    response: Messages$BotResults
+  }
+  'messages.setInlineBotResults': {
+    params: {
+      flags?: Number;
+      gallery?: True;
+      private?: True;
+      query_id: number;
+      results: InputBotInlineResult;
+      cache_time: number;
+      next_offset?: string;
+      switch_pm?: InlineBotSwitchPM;
+      switch_webview?: InlineBotWebView;
+    }
+    response: Bool
+  }
+  'messages.sendInlineBotResult': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      background?: True;
+      clear_draft?: True;
+      hide_via?: True;
+      peer: InputPeer;
+      reply_to_msg_id?: number;
+      top_msg_id?: number;
+      random_id: number;
+      query_id: number;
+      id: string;
+      schedule_date?: number;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'channels.exportMessageLink': {
+    params: {
+      flags?: Number;
+      grouped?: True;
+      thread?: True;
+      channel: InputChannel;
+      id: number;
+    }
+    response: ExportedMessageLink
+  }
+  'channels.toggleSignatures': {
+    params: {
+      channel: InputChannel;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'auth.resendCode': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+    }
+    response: Auth$SentCode
+  }
+  'auth.cancelCode': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+    }
+    response: Bool
+  }
+  'messages.getMessageEditData': {
+    params: {
+      peer: InputPeer;
+      id: number;
+    }
+    response: Messages$MessageEditData
+  }
+  'messages.editMessage': {
+    params: {
+      flags?: Number;
+      no_webpage?: True;
+      peer: InputPeer;
+      id: number;
+      message?: string;
+      media?: InputMedia;
+      reply_markup?: ReplyMarkup;
+      entities?: MessageEntity;
+      schedule_date?: number;
+    }
+    response: Updates
+  }
+  'messages.editInlineBotMessage': {
+    params: {
+      flags?: Number;
+      no_webpage?: True;
+      id: InputBotInlineMessageID;
+      message?: string;
+      media?: InputMedia;
+      reply_markup?: ReplyMarkup;
+      entities?: MessageEntity;
+    }
+    response: Bool
+  }
+  'messages.getBotCallbackAnswer': {
+    params: {
+      flags?: Number;
+      game?: True;
+      peer: InputPeer;
+      msg_id: number;
+      data?: Uint8Array;
+      password?: InputCheckPasswordSRP;
+    }
+    response: Messages$BotCallbackAnswer
+  }
+  'messages.setBotCallbackAnswer': {
+    params: {
+      flags?: Number;
+      alert?: True;
+      query_id: number;
+      message?: string;
+      url?: string;
+      cache_time: number;
+    }
+    response: Bool
+  }
+  'contacts.getTopPeers': {
+    params: {
+      flags?: Number;
+      correspondents?: True;
+      bots_pm?: True;
+      bots_inline?: True;
+      phone_calls?: True;
+      forward_users?: True;
+      forward_chats?: True;
+      groups?: True;
+      channels?: True;
+      offset: number;
+      limit: number;
+      hash: number;
+    }
+    response: Contacts$TopPeers
+  }
+  'contacts.resetTopPeerRating': {
+    params: {
+      category: TopPeerCategory;
+      peer: InputPeer;
+    }
+    response: Bool
+  }
+  'messages.getPeerDialogs': {
+    params: {
+      peers: InputDialogPeer;
+    }
+    response: Messages$PeerDialogs
+  }
+  'messages.saveDraft': {
+    params: {
+      flags?: Number;
+      no_webpage?: True;
+      reply_to_msg_id?: number;
+      top_msg_id?: number;
+      peer: InputPeer;
+      message: string;
+      entities?: MessageEntity;
+    }
+    response: Bool
+  }
+  'messages.getAllDrafts': {
+    params: {
+    }
+    response: Updates
+  }
+  'messages.getFeaturedStickers': {
+    params: {
+      hash: number;
+    }
+    response: Messages$FeaturedStickers
+  }
+  'messages.readFeaturedStickers': {
+    params: {
+      id: number[];
+    }
+    response: Bool
+  }
+  'messages.getRecentStickers': {
+    params: {
+      flags?: Number;
+      attached?: True;
+      hash: number;
+    }
+    response: Messages$RecentStickers
+  }
+  'messages.saveRecentSticker': {
+    params: {
+      flags?: Number;
+      attached?: True;
+      id: InputDocument;
+      unsave: Bool;
+    }
+    response: Bool
+  }
+  'messages.clearRecentStickers': {
+    params: {
+      flags?: Number;
+      attached?: True;
+    }
+    response: Bool
+  }
+  'messages.getArchivedStickers': {
+    params: {
+      flags?: Number;
+      masks?: True;
+      emojis?: True;
+      offset_id: number;
+      limit: number;
+    }
+    response: Messages$ArchivedStickers
+  }
+  'account.sendConfirmPhoneCode': {
+    params: {
+      hash: string;
+      settings: CodeSettings;
+    }
+    response: Auth$SentCode
+  }
+  'account.confirmPhone': {
+    params: {
+      phone_code_hash: string;
+      phone_code: string;
+    }
+    response: Bool
+  }
+  'channels.getAdminedPublicChannels': {
+    params: {
+      flags?: Number;
+      by_location?: True;
+      check_limit?: True;
+    }
+    response: Messages$Chats
+  }
+  'messages.getMaskStickers': {
+    params: {
+      hash: number;
+    }
+    response: Messages$AllStickers
+  }
+  'messages.getAttachedStickers': {
+    params: {
+      media: InputStickeredMedia;
+    }
+    response: StickerSetCovered[]
+  }
+  'auth.dropTempAuthKeys': {
+    params: {
+      except_auth_keys: number[];
+    }
+    response: Bool
+  }
+  'messages.setGameScore': {
+    params: {
+      flags?: Number;
+      edit_message?: True;
+      force?: True;
+      peer: InputPeer;
+      id: number;
+      user_id: InputUser;
+      score: number;
+    }
+    response: Updates
+  }
+  'messages.setInlineGameScore': {
+    params: {
+      flags?: Number;
+      edit_message?: True;
+      force?: True;
+      id: InputBotInlineMessageID;
+      user_id: InputUser;
+      score: number;
+    }
+    response: Bool
+  }
+  'messages.getGameHighScores': {
+    params: {
+      peer: InputPeer;
+      id: number;
+      user_id: InputUser;
+    }
+    response: Messages$HighScores
+  }
+  'messages.getInlineGameHighScores': {
+    params: {
+      id: InputBotInlineMessageID;
+      user_id: InputUser;
+    }
+    response: Messages$HighScores
+  }
+  'messages.getCommonChats': {
+    params: {
+      user_id: InputUser;
+      max_id: number;
+      limit: number;
+    }
+    response: Messages$Chats
+  }
+  'help.setBotUpdatesStatus': {
+    params: {
+      pending_updates_count: number;
+      message: string;
+    }
+    response: Bool
+  }
+  'messages.getWebPage': {
+    params: {
+      url: string;
+      hash: number;
+    }
+    response: WebPage
+  }
+  'messages.toggleDialogPin': {
+    params: {
+      flags?: Number;
+      pinned?: True;
+      peer: InputDialogPeer;
+    }
+    response: Bool
+  }
+  'messages.reorderPinnedDialogs': {
+    params: {
+      flags?: Number;
+      force?: True;
+      folder_id: number;
+      order: InputDialogPeer;
+    }
+    response: Bool
+  }
+  'messages.getPinnedDialogs': {
+    params: {
+      folder_id: number;
+    }
+    response: Messages$PeerDialogs
+  }
+  'bots.sendCustomRequest': {
+    params: {
+      custom_method: string;
+      params: DataJSON;
+    }
+    response: DataJSON
+  }
+  'bots.answerWebhookJSONQuery': {
+    params: {
+      query_id: number;
+      data: DataJSON;
+    }
+    response: Bool
+  }
+  'upload.getWebFile': {
+    params: {
+      location: InputWebFileLocation;
+      offset: number;
+      limit: number;
+    }
+    response: Upload$WebFile
+  }
+  'payments.getPaymentForm': {
+    params: {
+      flags?: Number;
+      invoice: InputInvoice;
+      theme_params?: DataJSON;
+    }
+    response: Payments$PaymentForm
+  }
+  'payments.getPaymentReceipt': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+    }
+    response: Payments$PaymentReceipt
+  }
+  'payments.validateRequestedInfo': {
+    params: {
+      flags?: Number;
+      save?: True;
+      invoice: InputInvoice;
+      info: PaymentRequestedInfo;
+    }
+    response: Payments$ValidatedRequestedInfo
+  }
+  'payments.sendPaymentForm': {
+    params: {
+      flags?: Number;
+      form_id: number;
+      invoice: InputInvoice;
+      requested_info_id?: string;
+      shipping_option_id?: string;
+      credentials: InputPaymentCredentials;
+      tip_amount?: number;
+    }
+    response: Payments$PaymentResult
+  }
+  'account.getTmpPassword': {
+    params: {
+      password: InputCheckPasswordSRP;
+      period: number;
+    }
+    response: Account$TmpPassword
+  }
+  'payments.getSavedInfo': {
+    params: {
+    }
+    response: Payments$SavedInfo
+  }
+  'payments.clearSavedInfo': {
+    params: {
+      flags?: Number;
+      credentials?: True;
+      info?: True;
+    }
+    response: Bool
+  }
+  'messages.setBotShippingResults': {
+    params: {
+      flags?: Number;
+      query_id: number;
+      error?: string;
+      shipping_options?: ShippingOption;
+    }
+    response: Bool
+  }
+  'messages.setBotPrecheckoutResults': {
+    params: {
+      flags?: Number;
+      success?: True;
+      query_id: number;
+      error?: string;
+    }
+    response: Bool
+  }
+  'stickers.createStickerSet': {
+    params: {
+      flags?: Number;
+      masks?: True;
+      animated?: True;
+      videos?: True;
+      emojis?: True;
+      text_color?: True;
+      user_id: InputUser;
+      title: string;
+      short_name: string;
+      thumb?: InputDocument;
+      stickers: InputStickerSetItem;
+      software?: string;
+    }
+    response: Messages$StickerSet
+  }
+  'stickers.removeStickerFromSet': {
+    params: {
+      sticker: InputDocument;
+    }
+    response: Messages$StickerSet
+  }
+  'stickers.changeStickerPosition': {
+    params: {
+      sticker: InputDocument;
+      position: number;
+    }
+    response: Messages$StickerSet
+  }
+  'stickers.addStickerToSet': {
+    params: {
+      stickerset: InputStickerSet;
+      sticker: InputStickerSetItem;
+    }
+    response: Messages$StickerSet
+  }
+  'messages.uploadMedia': {
+    params: {
+      peer: InputPeer;
+      media: InputMedia;
+    }
+    response: MessageMedia
+  }
+  'phone.getCallConfig': {
+    params: {
+    }
+    response: DataJSON
+  }
+  'phone.requestCall': {
+    params: {
+      flags?: Number;
+      video?: True;
+      user_id: InputUser;
+      random_id: number;
+      g_a_hash: Uint8Array;
+      protocol: PhoneCallProtocol;
+    }
+    response: Phone$PhoneCall
+  }
+  'phone.acceptCall': {
+    params: {
+      peer: InputPhoneCall;
+      g_b: Uint8Array;
+      protocol: PhoneCallProtocol;
+    }
+    response: Phone$PhoneCall
+  }
+  'phone.confirmCall': {
+    params: {
+      peer: InputPhoneCall;
+      g_a: Uint8Array;
+      key_fingerprint: number;
+      protocol: PhoneCallProtocol;
+    }
+    response: Phone$PhoneCall
+  }
+  'phone.receivedCall': {
+    params: {
+      peer: InputPhoneCall;
+    }
+    response: Bool
+  }
+  'phone.discardCall': {
+    params: {
+      flags?: Number;
+      video?: True;
+      peer: InputPhoneCall;
+      duration: number;
+      reason: PhoneCallDiscardReason;
+      connection_id: number;
+    }
+    response: Updates
+  }
+  'phone.setCallRating': {
+    params: {
+      flags?: Number;
+      user_initiative?: True;
+      peer: InputPhoneCall;
+      rating: number;
+      comment: string;
+    }
+    response: Updates
+  }
+  'phone.saveCallDebug': {
+    params: {
+      peer: InputPhoneCall;
+      debug: DataJSON;
+    }
+    response: Bool
+  }
+  'upload.getCdnFile': {
+    params: {
+      file_token: Uint8Array;
+      offset: number;
+      limit: number;
+    }
+    response: Upload$CdnFile
+  }
+  'upload.reuploadCdnFile': {
+    params: {
+      file_token: Uint8Array;
+      request_token: Uint8Array;
+    }
+    response: FileHash[]
+  }
+  'help.getCdnConfig': {
+    params: {
+    }
+    response: CdnConfig
+  }
+  'langpack.getLangPack': {
+    params: {
+      lang_pack: string;
+      lang_code: string;
+    }
+    response: LangPackDifference
+  }
+  'langpack.getStrings': {
+    params: {
+      lang_pack: string;
+      lang_code: string;
+      keys: string[];
+    }
+    response: LangPackString[]
+  }
+  'langpack.getDifference': {
+    params: {
+      lang_pack: string;
+      lang_code: string;
+      from_version: number;
+    }
+    response: LangPackDifference
+  }
+  'langpack.getLanguages': {
+    params: {
+      lang_pack: string;
+    }
+    response: LangPackLanguage[]
+  }
+  'channels.editBanned': {
+    params: {
+      channel: InputChannel;
+      participant: InputPeer;
+      banned_rights: ChatBannedRights;
+    }
+    response: Updates
+  }
+  'channels.getAdminLog': {
+    params: {
+      flags?: Number;
+      channel: InputChannel;
+      q: string;
+      events_filter?: ChannelAdminLogEventsFilter;
+      admins?: InputUser;
+      max_id: number;
+      min_id: number;
+      limit: number;
+    }
+    response: Channels$AdminLogResults
+  }
+  'upload.getCdnFileHashes': {
+    params: {
+      file_token: Uint8Array;
+      offset: number;
+    }
+    response: FileHash[]
+  }
+  'messages.sendScreenshotNotification': {
+    params: {
+      peer: InputPeer;
+      reply_to_msg_id: number;
+      random_id: number;
+    }
+    response: Updates
+  }
+  'channels.setStickers': {
+    params: {
+      channel: InputChannel;
+      stickerset: InputStickerSet;
+    }
+    response: Bool
+  }
+  'messages.getFavedStickers': {
+    params: {
+      hash: number;
+    }
+    response: Messages$FavedStickers
+  }
+  'messages.faveSticker': {
+    params: {
+      id: InputDocument;
+      unfave: Bool;
+    }
+    response: Bool
+  }
+  'channels.readMessageContents': {
+    params: {
+      channel: InputChannel;
+      id: number[];
+    }
+    response: Bool
+  }
+  'contacts.resetSaved': {
+    params: {
+    }
+    response: Bool
+  }
+  'messages.getUnreadMentions': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+      offset_id: number;
+      add_offset: number;
+      limit: number;
+      max_id: number;
+      min_id: number;
+    }
+    response: Messages$Messages
+  }
+  'channels.deleteHistory': {
+    params: {
+      flags?: Number;
+      for_everyone?: True;
+      channel: InputChannel;
+      max_id: number;
+    }
+    response: Updates
+  }
+  'help.getRecentMeUrls': {
+    params: {
+      referer: string;
+    }
+    response: Help$RecentMeUrls
+  }
+  'channels.togglePreHistoryHidden': {
+    params: {
+      channel: InputChannel;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'messages.readMentions': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'messages.getRecentLocations': {
+    params: {
+      peer: InputPeer;
+      limit: number;
+      hash: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.sendMultiMedia': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      background?: True;
+      clear_draft?: True;
+      noforwards?: True;
+      update_stickersets_order?: True;
+      peer: InputPeer;
+      reply_to_msg_id?: number;
+      top_msg_id?: number;
+      multi_media: InputSingleMedia;
+      schedule_date?: number;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'messages.uploadEncryptedFile': {
+    params: {
+      peer: InputEncryptedChat;
+      file: InputEncryptedFile;
+    }
+    response: EncryptedFile
+  }
+  'account.getWebAuthorizations': {
+    params: {
+    }
+    response: Account$WebAuthorizations
+  }
+  'account.resetWebAuthorization': {
+    params: {
+      hash: number;
+    }
+    response: Bool
+  }
+  'account.resetWebAuthorizations': {
+    params: {
+    }
+    response: Bool
+  }
+  'messages.searchStickerSets': {
+    params: {
+      flags?: Number;
+      exclude_featured?: True;
+      q: string;
+      hash: number;
+    }
+    response: Messages$FoundStickerSets
+  }
+  'upload.getFileHashes': {
+    params: {
+      location: InputFileLocation;
+      offset: number;
+    }
+    response: FileHash[]
+  }
+  'help.getTermsOfServiceUpdate': {
+    params: {
+    }
+    response: Help$TermsOfServiceUpdate
+  }
+  'help.acceptTermsOfService': {
+    params: {
+      id: DataJSON;
+    }
+    response: Bool
+  }
+  'account.getAllSecureValues': {
+    params: {
+    }
+    response: SecureValue[]
+  }
+  'account.getSecureValue': {
+    params: {
+      types: SecureValueType;
+    }
+    response: SecureValue[]
+  }
+  'account.saveSecureValue': {
+    params: {
+      value: InputSecureValue;
+      secure_secret_id: number;
+    }
+    response: SecureValue
+  }
+  'account.deleteSecureValue': {
+    params: {
+      types: SecureValueType;
+    }
+    response: Bool
+  }
+  'users.setSecureValueErrors': {
+    params: {
+      id: InputUser;
+      errors: SecureValueError;
+    }
+    response: Bool
+  }
+  'account.getAuthorizationForm': {
+    params: {
+      bot_id: number;
+      scope: string;
+      public_key: string;
+    }
+    response: Account$AuthorizationForm
+  }
+  'account.acceptAuthorization': {
+    params: {
+      bot_id: number;
+      scope: string;
+      public_key: string;
+      value_hashes: SecureValueHash;
+      credentials: SecureCredentialsEncrypted;
+    }
+    response: Bool
+  }
+  'account.sendVerifyPhoneCode': {
+    params: {
+      phone_number: string;
+      settings: CodeSettings;
+    }
+    response: Auth$SentCode
+  }
+  'account.verifyPhone': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+      phone_code: string;
+    }
+    response: Bool
+  }
+  'account.sendVerifyEmailCode': {
+    params: {
+      purpose: EmailVerifyPurpose;
+      email: string;
+    }
+    response: Account$SentEmailCode
+  }
+  'account.verifyEmail': {
+    params: {
+      purpose: EmailVerifyPurpose;
+      verification: EmailVerification;
+    }
+    response: Account$EmailVerified
+  }
+  'help.getDeepLinkInfo': {
+    params: {
+      path: string;
+    }
+    response: Help$DeepLinkInfo
+  }
+  'contacts.getSaved': {
+    params: {
+    }
+    response: SavedContact[]
+  }
+  'channels.getLeftChannels': {
+    params: {
+      offset: number;
+    }
+    response: Messages$Chats
+  }
+  'account.initTakeoutSession': {
+    params: {
+      flags?: Number;
+      contacts?: True;
+      message_users?: True;
+      message_chats?: True;
+      message_megagroups?: True;
+      message_channels?: True;
+      files?: True;
+      file_max_size?: number;
+    }
+    response: Account$Takeout
+  }
+  'account.finishTakeoutSession': {
+    params: {
+      flags?: Number;
+      success?: True;
+    }
+    response: Bool
+  }
+  'messages.getSplitRanges': {
+    params: {
+    }
+    response: MessageRange[]
+  }
+  'invokeWithMessagesRange': {
+    params: {
+      range: MessageRange;
+      query: unknown;
+    }
+    response: unknown
+  }
+  'invokeWithTakeout': {
+    params: {
+      takeout_id: number;
+      query: unknown;
+    }
+    response: unknown
+  }
+  'messages.markDialogUnread': {
+    params: {
+      flags?: Number;
+      unread?: True;
+      peer: InputDialogPeer;
+    }
+    response: Bool
+  }
+  'messages.getDialogUnreadMarks': {
+    params: {
+    }
+    response: DialogPeer[]
+  }
+  'contacts.toggleTopPeers': {
+    params: {
+      enabled: Bool;
+    }
+    response: Bool
+  }
+  'messages.clearAllDrafts': {
+    params: {
+    }
+    response: Bool
+  }
+  'help.getAppConfig': {
+    params: {
+      hash: number;
+    }
+    response: Help$AppConfig
+  }
+  'help.saveAppLog': {
+    params: {
+      events: InputAppEvent;
+    }
+    response: Bool
+  }
+  'help.getPassportConfig': {
+    params: {
+      hash: number;
+    }
+    response: Help$PassportConfig
+  }
+  'langpack.getLanguage': {
+    params: {
+      lang_pack: string;
+      lang_code: string;
+    }
+    response: LangPackLanguage
+  }
+  'messages.updatePinnedMessage': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      unpin?: True;
+      pm_oneside?: True;
+      peer: InputPeer;
+      id: number;
+    }
+    response: Updates
+  }
+  'account.confirmPasswordEmail': {
+    params: {
+      code: string;
+    }
+    response: Bool
+  }
+  'account.resendPasswordEmail': {
+    params: {
+    }
+    response: Bool
+  }
+  'account.cancelPasswordEmail': {
+    params: {
+    }
+    response: Bool
+  }
+  'help.getSupportName': {
+    params: {
+    }
+    response: Help$SupportName
+  }
+  'help.getUserInfo': {
+    params: {
+      user_id: InputUser;
+    }
+    response: Help$UserInfo
+  }
+  'help.editUserInfo': {
+    params: {
+      user_id: InputUser;
+      message: string;
+      entities: MessageEntity;
+    }
+    response: Help$UserInfo
+  }
+  'account.getContactSignUpNotification': {
+    params: {
+    }
+    response: Bool
+  }
+  'account.setContactSignUpNotification': {
+    params: {
+      silent: Bool;
+    }
+    response: Bool
+  }
+  'account.getNotifyExceptions': {
+    params: {
+      flags?: Number;
+      compare_sound?: True;
+      peer?: InputNotifyPeer;
+    }
+    response: Updates
+  }
+  'messages.sendVote': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      options: Uint8Array[];
+    }
+    response: Updates
+  }
+  'messages.getPollResults': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+    }
+    response: Updates
+  }
+  'messages.getOnlines': {
+    params: {
+      peer: InputPeer;
+    }
+    response: ChatOnlines
+  }
+  'messages.editChatAbout': {
+    params: {
+      peer: InputPeer;
+      about: string;
+    }
+    response: Bool
+  }
+  'messages.editChatDefaultBannedRights': {
+    params: {
+      peer: InputPeer;
+      banned_rights: ChatBannedRights;
+    }
+    response: Updates
+  }
+  'account.getWallPaper': {
+    params: {
+      wallpaper: InputWallPaper;
+    }
+    response: WallPaper
+  }
+  'account.uploadWallPaper': {
+    params: {
+      flags?: Number;
+      for_chat?: True;
+      file: InputFile;
+      mime_type: string;
+      settings: WallPaperSettings;
+    }
+    response: WallPaper
+  }
+  'account.saveWallPaper': {
+    params: {
+      wallpaper: InputWallPaper;
+      unsave: Bool;
+      settings: WallPaperSettings;
+    }
+    response: Bool
+  }
+  'account.installWallPaper': {
+    params: {
+      wallpaper: InputWallPaper;
+      settings: WallPaperSettings;
+    }
+    response: Bool
+  }
+  'account.resetWallPapers': {
+    params: {
+    }
+    response: Bool
+  }
+  'account.getAutoDownloadSettings': {
+    params: {
+    }
+    response: Account$AutoDownloadSettings
+  }
+  'account.saveAutoDownloadSettings': {
+    params: {
+      flags?: Number;
+      low?: True;
+      high?: True;
+      settings: AutoDownloadSettings;
+    }
+    response: Bool
+  }
+  'messages.getEmojiKeywords': {
+    params: {
+      lang_code: string;
+    }
+    response: EmojiKeywordsDifference
+  }
+  'messages.getEmojiKeywordsDifference': {
+    params: {
+      lang_code: string;
+      from_version: number;
+    }
+    response: EmojiKeywordsDifference
+  }
+  'messages.getEmojiKeywordsLanguages': {
+    params: {
+      lang_codes: string[];
+    }
+    response: EmojiLanguage[]
+  }
+  'messages.getEmojiURL': {
+    params: {
+      lang_code: string;
+    }
+    response: EmojiURL
+  }
+  'folders.editPeerFolders': {
+    params: {
+      folder_peers: InputFolderPeer;
+    }
+    response: Updates
+  }
+  'messages.getSearchCounters': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+      filters: MessagesFilter;
+    }
+    response: Messages$SearchCounter[]
+  }
+  'channels.getGroupsForDiscussion': {
+    params: {
+    }
+    response: Messages$Chats
+  }
+  'channels.setDiscussionGroup': {
+    params: {
+      broadcast: InputChannel;
+      group: InputChannel;
+    }
+    response: Bool
+  }
+  'messages.requestUrlAuth': {
+    params: {
+      flags?: Number;
+      peer?: InputPeer;
+      msg_id?: number;
+      button_id?: number;
+      url?: string;
+    }
+    response: UrlAuthResult
+  }
+  'messages.acceptUrlAuth': {
+    params: {
+      flags?: Number;
+      write_allowed?: True;
+      peer?: InputPeer;
+      msg_id?: number;
+      button_id?: number;
+      url?: string;
+    }
+    response: UrlAuthResult
+  }
+  'messages.hidePeerSettingsBar': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Bool
+  }
+  'contacts.addContact': {
+    params: {
+      flags?: Number;
+      add_phone_privacy_exception?: True;
+      id: InputUser;
+      first_name: string;
+      last_name: string;
+      phone: string;
+    }
+    response: Updates
+  }
+  'contacts.acceptContact': {
+    params: {
+      id: InputUser;
+    }
+    response: Updates
+  }
+  'channels.editCreator': {
+    params: {
+      channel: InputChannel;
+      user_id: InputUser;
+      password: InputCheckPasswordSRP;
+    }
+    response: Updates
+  }
+  'contacts.getLocated': {
+    params: {
+      flags?: Number;
+      background?: True;
+      geo_point: InputGeoPoint;
+      self_expires?: number;
+    }
+    response: Updates
+  }
+  'channels.editLocation': {
+    params: {
+      channel: InputChannel;
+      geo_point: InputGeoPoint;
+      address: string;
+    }
+    response: Bool
+  }
+  'channels.toggleSlowMode': {
+    params: {
+      channel: InputChannel;
+      seconds: number;
+    }
+    response: Updates
+  }
+  'messages.getScheduledHistory': {
+    params: {
+      peer: InputPeer;
+      hash: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.getScheduledMessages': {
+    params: {
+      peer: InputPeer;
+      id: number[];
+    }
+    response: Messages$Messages
+  }
+  'messages.sendScheduledMessages': {
+    params: {
+      peer: InputPeer;
+      id: number[];
+    }
+    response: Updates
+  }
+  'messages.deleteScheduledMessages': {
+    params: {
+      peer: InputPeer;
+      id: number[];
+    }
+    response: Updates
+  }
+  'account.uploadTheme': {
+    params: {
+      flags?: Number;
+      file: InputFile;
+      thumb?: InputFile;
+      file_name: string;
+      mime_type: string;
+    }
+    response: Document
+  }
+  'account.createTheme': {
+    params: {
+      flags?: Number;
+      slug: string;
+      title: string;
+      document?: InputDocument;
+      settings?: InputThemeSettings;
+    }
+    response: Theme
+  }
+  'account.updateTheme': {
+    params: {
+      flags?: Number;
+      format: string;
+      theme: InputTheme;
+      slug?: string;
+      title?: string;
+      document?: InputDocument;
+      settings?: InputThemeSettings;
+    }
+    response: Theme
+  }
+  'account.saveTheme': {
+    params: {
+      theme: InputTheme;
+      unsave: Bool;
+    }
+    response: Bool
+  }
+  'account.installTheme': {
+    params: {
+      flags?: Number;
+      dark?: True;
+      theme?: InputTheme;
+      format?: string;
+      base_theme?: BaseTheme;
+    }
+    response: Bool
+  }
+  'account.getTheme': {
+    params: {
+      format: string;
+      theme: InputTheme;
+    }
+    response: Theme
+  }
+  'account.getThemes': {
+    params: {
+      format: string;
+      hash: number;
+    }
+    response: Account$Themes
+  }
+  'auth.exportLoginToken': {
+    params: {
+      api_id: number;
+      api_hash: string;
+      except_ids: number[];
+    }
+    response: Auth$LoginToken
+  }
+  'auth.importLoginToken': {
+    params: {
+      token: Uint8Array;
+    }
+    response: Auth$LoginToken
+  }
+  'auth.acceptLoginToken': {
+    params: {
+      token: Uint8Array;
+    }
+    response: Authorization
+  }
+  'account.setContentSettings': {
+    params: {
+      flags?: Number;
+      sensitive_enabled?: True;
+    }
+    response: Bool
+  }
+  'account.getContentSettings': {
+    params: {
+    }
+    response: Account$ContentSettings
+  }
+  'channels.getInactiveChannels': {
+    params: {
+    }
+    response: Messages$InactiveChats
+  }
+  'account.getMultiWallPapers': {
+    params: {
+      wallpapers: InputWallPaper;
+    }
+    response: WallPaper[]
+  }
+  'messages.getPollVotes': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      id: number;
+      option?: Uint8Array;
+      offset?: string;
+      limit: number;
+    }
+    response: Messages$VotesList
+  }
+  'messages.toggleStickerSets': {
+    params: {
+      flags?: Number;
+      uninstall?: True;
+      archive?: True;
+      unarchive?: True;
+      stickersets: InputStickerSet;
+    }
+    response: Bool
+  }
+  'payments.getBankCardData': {
+    params: {
+      number: string;
+    }
+    response: Payments$BankCardData
+  }
+  'messages.getDialogFilters': {
+    params: {
+    }
+    response: DialogFilter[]
+  }
+  'messages.getSuggestedDialogFilters': {
+    params: {
+    }
+    response: DialogFilterSuggested[]
+  }
+  'messages.updateDialogFilter': {
+    params: {
+      flags?: Number;
+      id: number;
+      filter?: DialogFilter;
+    }
+    response: Bool
+  }
+  'messages.updateDialogFiltersOrder': {
+    params: {
+      order: number[];
+    }
+    response: Bool
+  }
+  'stats.getBroadcastStats': {
+    params: {
+      flags?: Number;
+      dark?: True;
+      channel: InputChannel;
+    }
+    response: Stats$BroadcastStats
+  }
+  'stats.loadAsyncGraph': {
+    params: {
+      flags?: Number;
+      token: string;
+      x?: number;
+    }
+    response: StatsGraph
+  }
+  'stickers.setStickerSetThumb': {
+    params: {
+      flags?: Number;
+      stickerset: InputStickerSet;
+      thumb?: InputDocument;
+      thumb_document_id?: number;
+    }
+    response: Messages$StickerSet
+  }
+  'bots.setBotCommands': {
+    params: {
+      scope: BotCommandScope;
+      lang_code: string;
+      commands: BotCommand;
+    }
+    response: Bool
+  }
+  'messages.getOldFeaturedStickers': {
+    params: {
+      offset: number;
+      limit: number;
+      hash: number;
+    }
+    response: Messages$FeaturedStickers
+  }
+  'help.getPromoData': {
+    params: {
+    }
+    response: Help$PromoData
+  }
+  'help.hidePromoData': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Bool
+  }
+  'phone.sendSignalingData': {
+    params: {
+      peer: InputPhoneCall;
+      data: Uint8Array;
+    }
+    response: Bool
+  }
+  'stats.getMegagroupStats': {
+    params: {
+      flags?: Number;
+      dark?: True;
+      channel: InputChannel;
+    }
+    response: Stats$MegagroupStats
+  }
+  'account.getGlobalPrivacySettings': {
+    params: {
+    }
+    response: GlobalPrivacySettings
+  }
+  'account.setGlobalPrivacySettings': {
+    params: {
+      settings: GlobalPrivacySettings;
+    }
+    response: GlobalPrivacySettings
+  }
+  'help.dismissSuggestion': {
+    params: {
+      peer: InputPeer;
+      suggestion: string;
+    }
+    response: Bool
+  }
+  'help.getCountriesList': {
+    params: {
+      lang_code: string;
+      hash: number;
+    }
+    response: Help$CountriesList
+  }
+  'messages.getReplies': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      offset_id: number;
+      offset_date: number;
+      add_offset: number;
+      limit: number;
+      max_id: number;
+      min_id: number;
+      hash: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.getDiscussionMessage': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+    }
+    response: Messages$DiscussionMessage
+  }
+  'messages.readDiscussion': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      read_max_id: number;
+    }
+    response: Bool
+  }
+  'contacts.blockFromReplies': {
+    params: {
+      flags?: Number;
+      delete_message?: True;
+      delete_history?: True;
+      report_spam?: True;
+      msg_id: number;
+    }
+    response: Updates
+  }
+  'stats.getMessagePublicForwards': {
+    params: {
+      channel: InputChannel;
+      msg_id: number;
+      offset_rate: number;
+      offset_peer: InputPeer;
+      offset_id: number;
+      limit: number;
+    }
+    response: Messages$Messages
+  }
+  'stats.getMessageStats': {
+    params: {
+      flags?: Number;
+      dark?: True;
+      channel: InputChannel;
+      msg_id: number;
+    }
+    response: Stats$MessageStats
+  }
+  'messages.unpinAllMessages': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'phone.createGroupCall': {
+    params: {
+      flags?: Number;
+      rtmp_stream?: True;
+      peer: InputPeer;
+      random_id: number;
+      title?: string;
+      schedule_date?: number;
+    }
+    response: Updates
+  }
+  'phone.joinGroupCall': {
+    params: {
+      flags?: Number;
+      muted?: True;
+      video_stopped?: True;
+      call: InputGroupCall;
+      join_as: InputPeer;
+      invite_hash?: string;
+      params: DataJSON;
+    }
+    response: Updates
+  }
+  'phone.leaveGroupCall': {
+    params: {
+      call: InputGroupCall;
+      source: number;
+    }
+    response: Updates
+  }
+  'phone.inviteToGroupCall': {
+    params: {
+      call: InputGroupCall;
+      users: InputUser;
+    }
+    response: Updates
+  }
+  'phone.discardGroupCall': {
+    params: {
+      call: InputGroupCall;
+    }
+    response: Updates
+  }
+  'phone.toggleGroupCallSettings': {
+    params: {
+      flags?: Number;
+      reset_invite_hash?: True;
+      call: InputGroupCall;
+      join_muted?: Bool;
+    }
+    response: Updates
+  }
+  'phone.getGroupCall': {
+    params: {
+      call: InputGroupCall;
+      limit: number;
+    }
+    response: Phone$GroupCall
+  }
+  'phone.getGroupParticipants': {
+    params: {
+      call: InputGroupCall;
+      ids: InputPeer;
+      sources: number[];
+      offset: string;
+      limit: number;
+    }
+    response: Phone$GroupParticipants
+  }
+  'phone.checkGroupCall': {
+    params: {
+      call: InputGroupCall;
+      sources: number[];
+    }
+    response: Number[]
+  }
+  'messages.deleteChat': {
+    params: {
+      chat_id: number;
+    }
+    response: Bool
+  }
+  'messages.deletePhoneCallHistory': {
+    params: {
+      flags?: Number;
+      revoke?: True;
+    }
+    response: Messages$AffectedFoundMessages
+  }
+  'messages.checkHistoryImport': {
+    params: {
+      import_head: string;
+    }
+    response: Messages$HistoryImportParsed
+  }
+  'messages.initHistoryImport': {
+    params: {
+      peer: InputPeer;
+      file: InputFile;
+      media_count: number;
+    }
+    response: Messages$HistoryImport
+  }
+  'messages.uploadImportedMedia': {
+    params: {
+      peer: InputPeer;
+      import_id: number;
+      file_name: string;
+      media: InputMedia;
+    }
+    response: MessageMedia
+  }
+  'messages.startHistoryImport': {
+    params: {
+      peer: InputPeer;
+      import_id: number;
+    }
+    response: Bool
+  }
+  'messages.getExportedChatInvites': {
+    params: {
+      flags?: Number;
+      revoked?: True;
+      peer: InputPeer;
+      admin_id: InputUser;
+      offset_date?: number;
+      offset_link?: string;
+      limit: number;
+    }
+    response: Messages$ExportedChatInvites
+  }
+  'messages.getExportedChatInvite': {
+    params: {
+      peer: InputPeer;
+      link: string;
+    }
+    response: Messages$ExportedChatInvite
+  }
+  'messages.editExportedChatInvite': {
+    params: {
+      flags?: Number;
+      revoked?: True;
+      peer: InputPeer;
+      link: string;
+      expire_date?: number;
+      usage_limit?: number;
+      request_needed?: Bool;
+      title?: string;
+    }
+    response: Messages$ExportedChatInvite
+  }
+  'messages.deleteRevokedExportedChatInvites': {
+    params: {
+      peer: InputPeer;
+      admin_id: InputUser;
+    }
+    response: Bool
+  }
+  'messages.deleteExportedChatInvite': {
+    params: {
+      peer: InputPeer;
+      link: string;
+    }
+    response: Bool
+  }
+  'messages.getAdminsWithInvites': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Messages$ChatAdminsWithInvites
+  }
+  'messages.getChatInviteImporters': {
+    params: {
+      flags?: Number;
+      requested?: True;
+      peer: InputPeer;
+      link?: string;
+      q?: string;
+      offset_date: number;
+      offset_user: InputUser;
+      limit: number;
+    }
+    response: Messages$ChatInviteImporters
+  }
+  'messages.setHistoryTTL': {
+    params: {
+      peer: InputPeer;
+      period: number;
+    }
+    response: Updates
+  }
+  'account.reportProfilePhoto': {
+    params: {
+      peer: InputPeer;
+      photo_id: InputPhoto;
+      reason: ReportReason;
+      message: string;
+    }
+    response: Bool
+  }
+  'channels.convertToGigagroup': {
+    params: {
+      channel: InputChannel;
+    }
+    response: Updates
+  }
+  'messages.checkHistoryImportPeer': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Messages$CheckedHistoryImportPeer
+  }
+  'phone.toggleGroupCallRecord': {
+    params: {
+      flags?: Number;
+      start?: True;
+      video?: True;
+      call: InputGroupCall;
+      title?: string;
+      video_portrait?: Bool;
+    }
+    response: Updates
+  }
+  'phone.editGroupCallParticipant': {
+    params: {
+      flags?: Number;
+      call: InputGroupCall;
+      participant: InputPeer;
+      muted?: Bool;
+      volume?: number;
+      raise_hand?: Bool;
+      video_stopped?: Bool;
+      video_paused?: Bool;
+      presentation_paused?: Bool;
+    }
+    response: Updates
+  }
+  'phone.editGroupCallTitle': {
+    params: {
+      call: InputGroupCall;
+      title: string;
+    }
+    response: Updates
+  }
+  'phone.getGroupCallJoinAs': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Phone$JoinAsPeers
+  }
+  'phone.exportGroupCallInvite': {
+    params: {
+      flags?: Number;
+      can_self_unmute?: True;
+      call: InputGroupCall;
+    }
+    response: Phone$ExportedGroupCallInvite
+  }
+  'phone.toggleGroupCallStartSubscription': {
+    params: {
+      call: InputGroupCall;
+      subscribed: Bool;
+    }
+    response: Updates
+  }
+  'phone.startScheduledGroupCall': {
+    params: {
+      call: InputGroupCall;
+    }
+    response: Updates
+  }
+  'phone.saveDefaultGroupCallJoinAs': {
+    params: {
+      peer: InputPeer;
+      join_as: InputPeer;
+    }
+    response: Bool
+  }
+  'phone.joinGroupCallPresentation': {
+    params: {
+      call: InputGroupCall;
+      params: DataJSON;
+    }
+    response: Updates
+  }
+  'phone.leaveGroupCallPresentation': {
+    params: {
+      call: InputGroupCall;
+    }
+    response: Updates
+  }
+  'stickers.checkShortName': {
+    params: {
+      short_name: string;
+    }
+    response: Bool
+  }
+  'stickers.suggestShortName': {
+    params: {
+      title: string;
+    }
+    response: Stickers$SuggestedShortName
+  }
+  'bots.resetBotCommands': {
+    params: {
+      scope: BotCommandScope;
+      lang_code: string;
+    }
+    response: Bool
+  }
+  'bots.getBotCommands': {
+    params: {
+      scope: BotCommandScope;
+      lang_code: string;
+    }
+    response: BotCommand[]
+  }
+  'account.resetPassword': {
+    params: {
+    }
+    response: Account$ResetPasswordResult
+  }
+  'account.declinePasswordReset': {
+    params: {
+    }
+    response: Bool
+  }
+  'auth.checkRecoveryPassword': {
+    params: {
+      code: string;
+    }
+    response: Bool
+  }
+  'account.getChatThemes': {
+    params: {
+      hash: number;
+    }
+    response: Account$Themes
+  }
+  'messages.setChatTheme': {
+    params: {
+      peer: InputPeer;
+      emoticon: string;
+    }
+    response: Updates
+  }
+  'channels.viewSponsoredMessage': {
+    params: {
+      channel: InputChannel;
+      random_id: Uint8Array;
+    }
+    response: Bool
+  }
+  'channels.getSponsoredMessages': {
+    params: {
+      channel: InputChannel;
+    }
+    response: Messages$SponsoredMessages
+  }
+  'messages.getMessageReadParticipants': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+    }
+    response: ReadParticipantDate[]
+  }
+  'messages.getSearchResultsCalendar': {
+    params: {
+      peer: InputPeer;
+      filter: MessagesFilter;
+      offset_id: number;
+      offset_date: number;
+    }
+    response: Messages$SearchResultsCalendar
+  }
+  'messages.getSearchResultsPositions': {
+    params: {
+      peer: InputPeer;
+      filter: MessagesFilter;
+      offset_id: number;
+      limit: number;
+    }
+    response: Messages$SearchResultsPositions
+  }
+  'messages.hideChatJoinRequest': {
+    params: {
+      flags?: Number;
+      approved?: True;
+      peer: InputPeer;
+      user_id: InputUser;
+    }
+    response: Updates
+  }
+  'messages.hideAllChatJoinRequests': {
+    params: {
+      flags?: Number;
+      approved?: True;
+      peer: InputPeer;
+      link?: string;
+    }
+    response: Updates
+  }
+  'messages.toggleNoForwards': {
+    params: {
+      peer: InputPeer;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'messages.saveDefaultSendAs': {
+    params: {
+      peer: InputPeer;
+      send_as: InputPeer;
+    }
+    response: Bool
+  }
+  'channels.getSendAs': {
+    params: {
+      peer: InputPeer;
+    }
+    response: Channels$SendAsPeers
+  }
+  'account.setAuthorizationTTL': {
+    params: {
+      authorization_ttl_days: number;
+    }
+    response: Bool
+  }
+  'account.changeAuthorizationSettings': {
+    params: {
+      flags?: Number;
+      hash: number;
+      encrypted_requests_disabled?: Bool;
+      call_requests_disabled?: Bool;
+    }
+    response: Bool
+  }
+  'channels.deleteParticipantHistory': {
+    params: {
+      channel: InputChannel;
+      participant: InputPeer;
+    }
+    response: Messages$AffectedHistory
+  }
+  'messages.sendReaction': {
+    params: {
+      flags?: Number;
+      big?: True;
+      add_to_recent?: True;
+      peer: InputPeer;
+      msg_id: number;
+      reaction?: Reaction;
+    }
+    response: Updates
+  }
+  'messages.getMessagesReactions': {
+    params: {
+      peer: InputPeer;
+      id: number[];
+    }
+    response: Updates
+  }
+  'messages.getMessageReactionsList': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      id: number;
+      reaction?: Reaction;
+      offset?: string;
+      limit: number;
+    }
+    response: Messages$MessageReactionsList
+  }
+  'messages.setChatAvailableReactions': {
+    params: {
+      peer: InputPeer;
+      available_reactions: ChatReactions;
+    }
+    response: Updates
+  }
+  'messages.getAvailableReactions': {
+    params: {
+      hash: number;
+    }
+    response: Messages$AvailableReactions
+  }
+  'messages.setDefaultReaction': {
+    params: {
+      reaction: Reaction;
+    }
+    response: Bool
+  }
+  'messages.translateText': {
+    params: {
+      flags?: Number;
+      peer?: InputPeer;
+      id?: number[];
+      text?: TextWithEntities;
+      to_lang: string;
+    }
+    response: Messages$TranslatedText
+  }
+  'messages.getUnreadReactions': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+      offset_id: number;
+      add_offset: number;
+      limit: number;
+      max_id: number;
+      min_id: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.readReactions': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'contacts.resolvePhone': {
+    params: {
+      phone: string;
+    }
+    response: Contacts$ResolvedPeer
+  }
+  'phone.getGroupCallStreamChannels': {
+    params: {
+      call: InputGroupCall;
+    }
+    response: Phone$GroupCallStreamChannels
+  }
+  'phone.getGroupCallStreamRtmpUrl': {
+    params: {
+      peer: InputPeer;
+      revoke: Bool;
+    }
+    response: Phone$GroupCallStreamRtmpUrl
+  }
+  'messages.searchSentMedia': {
+    params: {
+      q: string;
+      filter: MessagesFilter;
+      limit: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.getAttachMenuBots': {
+    params: {
+      hash: number;
+    }
+    response: AttachMenuBots
+  }
+  'messages.getAttachMenuBot': {
+    params: {
+      bot: InputUser;
+    }
+    response: AttachMenuBotsBot
+  }
+  'messages.toggleBotInAttachMenu': {
+    params: {
+      flags?: Number;
+      write_allowed?: True;
+      bot: InputUser;
+      enabled: Bool;
+    }
+    response: Bool
+  }
+  'messages.requestWebView': {
+    params: {
+      flags?: Number;
+      from_bot_menu?: True;
+      silent?: True;
+      peer: InputPeer;
+      bot: InputUser;
+      url?: string;
+      start_param?: string;
+      theme_params?: DataJSON;
+      platform: string;
+      reply_to_msg_id?: number;
+      top_msg_id?: number;
+      send_as?: InputPeer;
+    }
+    response: WebViewResult
+  }
+  'messages.prolongWebView': {
+    params: {
+      flags?: Number;
+      silent?: True;
+      peer: InputPeer;
+      bot: InputUser;
+      query_id: number;
+      reply_to_msg_id?: number;
+      top_msg_id?: number;
+      send_as?: InputPeer;
+    }
+    response: Bool
+  }
+  'messages.requestSimpleWebView': {
+    params: {
+      flags?: Number;
+      from_switch_webview?: True;
+      bot: InputUser;
+      url: string;
+      theme_params?: DataJSON;
+      platform: string;
+    }
+    response: SimpleWebViewResult
+  }
+  'messages.sendWebViewResultMessage': {
+    params: {
+      bot_query_id: string;
+      result: InputBotInlineResult;
+    }
+    response: WebViewMessageSent
+  }
+  'messages.sendWebViewData': {
+    params: {
+      bot: InputUser;
+      random_id: number;
+      button_text: string;
+      data: string;
+    }
+    response: Updates
+  }
+  'bots.setBotMenuButton': {
+    params: {
+      user_id: InputUser;
+      button: BotMenuButton;
+    }
+    response: Bool
+  }
+  'bots.getBotMenuButton': {
+    params: {
+      user_id: InputUser;
+    }
+    response: BotMenuButton
+  }
+  'account.getSavedRingtones': {
+    params: {
+      hash: number;
+    }
+    response: Account$SavedRingtones
+  }
+  'account.saveRingtone': {
+    params: {
+      id: InputDocument;
+      unsave: Bool;
+    }
+    response: Account$SavedRingtone
+  }
+  'account.uploadRingtone': {
+    params: {
+      file: InputFile;
+      file_name: string;
+      mime_type: string;
+    }
+    response: Document
+  }
+  'bots.setBotBroadcastDefaultAdminRights': {
+    params: {
+      admin_rights: ChatAdminRights;
+    }
+    response: Bool
+  }
+  'bots.setBotGroupDefaultAdminRights': {
+    params: {
+      admin_rights: ChatAdminRights;
+    }
+    response: Bool
+  }
+  'phone.saveCallLog': {
+    params: {
+      peer: InputPhoneCall;
+      file: InputFile;
+    }
+    response: Bool
+  }
+  'channels.toggleJoinToSend': {
+    params: {
+      channel: InputChannel;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'channels.toggleJoinRequest': {
+    params: {
+      channel: InputChannel;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'payments.exportInvoice': {
+    params: {
+      invoice_media: InputMedia;
+    }
+    response: Payments$ExportedInvoice
+  }
+  'messages.transcribeAudio': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+    }
+    response: Messages$TranscribedAudio
+  }
+  'messages.rateTranscribedAudio': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      transcription_id: number;
+      good: Bool;
+    }
+    response: Bool
+  }
+  'payments.assignAppStoreTransaction': {
+    params: {
+      receipt: Uint8Array;
+      purpose: InputStorePaymentPurpose;
+    }
+    response: Updates
+  }
+  'payments.assignPlayMarketTransaction': {
+    params: {
+      receipt: DataJSON;
+      purpose: InputStorePaymentPurpose;
+    }
+    response: Updates
+  }
+  'payments.canPurchasePremium': {
+    params: {
+      purpose: InputStorePaymentPurpose;
+    }
+    response: Bool
+  }
+  'help.getPremiumPromo': {
+    params: {
+    }
+    response: Help$PremiumPromo
+  }
+  'messages.getCustomEmojiDocuments': {
+    params: {
+      document_id: number[];
+    }
+    response: Document[]
+  }
+  'messages.getEmojiStickers': {
+    params: {
+      hash: number;
+    }
+    response: Messages$AllStickers
+  }
+  'messages.getFeaturedEmojiStickers': {
+    params: {
+      hash: number;
+    }
+    response: Messages$FeaturedStickers
+  }
+  'account.updateEmojiStatus': {
+    params: {
+      emoji_status: EmojiStatus;
+    }
+    response: Bool
+  }
+  'account.getDefaultEmojiStatuses': {
+    params: {
+      hash: number;
+    }
+    response: Account$EmojiStatuses
+  }
+  'account.getRecentEmojiStatuses': {
+    params: {
+      hash: number;
+    }
+    response: Account$EmojiStatuses
+  }
+  'account.clearRecentEmojiStatuses': {
+    params: {
+    }
+    response: Bool
+  }
+  'messages.reportReaction': {
+    params: {
+      peer: InputPeer;
+      id: number;
+      reaction_peer: InputPeer;
+    }
+    response: Bool
+  }
+  'messages.getTopReactions': {
+    params: {
+      limit: number;
+      hash: number;
+    }
+    response: Messages$Reactions
+  }
+  'messages.getRecentReactions': {
+    params: {
+      limit: number;
+      hash: number;
+    }
+    response: Messages$Reactions
+  }
+  'messages.clearRecentReactions': {
+    params: {
+    }
+    response: Bool
+  }
+  'messages.getExtendedMedia': {
+    params: {
+      peer: InputPeer;
+      id: number[];
+    }
+    response: Updates
+  }
+  'auth.importWebTokenAuthorization': {
+    params: {
+      api_id: number;
+      api_hash: string;
+      web_auth_token: string;
+    }
+    response: Auth$Authorization
+  }
+  'account.reorderUsernames': {
+    params: {
+      order: string[];
+    }
+    response: Bool
+  }
+  'account.toggleUsername': {
+    params: {
+      username: string;
+      active: Bool;
+    }
+    response: Bool
+  }
+  'channels.reorderUsernames': {
+    params: {
+      channel: InputChannel;
+      order: string[];
+    }
+    response: Bool
+  }
+  'channels.toggleUsername': {
+    params: {
+      channel: InputChannel;
+      username: string;
+      active: Bool;
+    }
+    response: Bool
+  }
+  'channels.deactivateAllUsernames': {
+    params: {
+      channel: InputChannel;
+    }
+    response: Bool
+  }
+  'channels.toggleForum': {
+    params: {
+      channel: InputChannel;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'channels.createForumTopic': {
+    params: {
+      flags?: Number;
+      channel: InputChannel;
+      title: string;
+      icon_color?: number;
+      icon_emoji_id?: number;
+      random_id: number;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'channels.getForumTopics': {
+    params: {
+      flags?: Number;
+      channel: InputChannel;
+      q?: string;
+      offset_date: number;
+      offset_id: number;
+      offset_topic: number;
+      limit: number;
+    }
+    response: Messages$ForumTopics
+  }
+  'channels.getForumTopicsByID': {
+    params: {
+      channel: InputChannel;
+      topics: number[];
+    }
+    response: Messages$ForumTopics
+  }
+  'channels.editForumTopic': {
+    params: {
+      flags?: Number;
+      channel: InputChannel;
+      topic_id: number;
+      title?: string;
+      icon_emoji_id?: number;
+      closed?: Bool;
+      hidden?: Bool;
+    }
+    response: Updates
+  }
+  'channels.updatePinnedForumTopic': {
+    params: {
+      channel: InputChannel;
+      topic_id: number;
+      pinned: Bool;
+    }
+    response: Updates
+  }
+  'channels.deleteTopicHistory': {
+    params: {
+      channel: InputChannel;
+      top_msg_id: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'channels.reorderPinnedForumTopics': {
+    params: {
+      flags?: Number;
+      force?: True;
+      channel: InputChannel;
+      order: number[];
+    }
+    response: Updates
+  }
+  'channels.toggleAntiSpam': {
+    params: {
+      channel: InputChannel;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'channels.reportAntiSpamFalsePositive': {
+    params: {
+      channel: InputChannel;
+      msg_id: number;
+    }
+    response: Bool
+  }
+  'messages.setDefaultHistoryTTL': {
+    params: {
+      period: number;
+    }
+    response: Bool
+  }
+  'messages.getDefaultHistoryTTL': {
+    params: {
+    }
+    response: DefaultHistoryTTL
+  }
+  'contacts.exportContactToken': {
+    params: {
+    }
+    response: ExportedContactToken
+  }
+  'contacts.importContactToken': {
+    params: {
+      token: string;
+    }
+    response: User
+  }
+  'photos.uploadContactProfilePhoto': {
+    params: {
+      flags?: Number;
+      suggest?: True;
+      save?: True;
+      user_id: InputUser;
+      file?: InputFile;
+      video?: InputFile;
+      video_start_ts?: number;
+      video_emoji_markup?: VideoSize;
+    }
+    response: Photos$Photo
+  }
+  'channels.toggleParticipantsHidden': {
+    params: {
+      channel: InputChannel;
+      enabled: Bool;
+    }
+    response: Updates
+  }
+  'messages.sendBotRequestedPeer': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      button_id: number;
+      requested_peer: InputPeer;
+    }
+    response: Updates
+  }
+  'account.getDefaultProfilePhotoEmojis': {
+    params: {
+      hash: number;
+    }
+    response: EmojiList
+  }
+  'account.getDefaultGroupPhotoEmojis': {
+    params: {
+      hash: number;
+    }
+    response: EmojiList
+  }
+  'auth.requestFirebaseSms': {
+    params: {
+      flags?: Number;
+      phone_number: string;
+      phone_code_hash: string;
+      safety_net_token?: string;
+      ios_push_secret?: string;
+    }
+    response: Bool
+  }
+  'messages.getEmojiGroups': {
+    params: {
+      hash: number;
+    }
+    response: Messages$EmojiGroups
+  }
+  'messages.getEmojiStatusGroups': {
+    params: {
+      hash: number;
+    }
+    response: Messages$EmojiGroups
+  }
+  'messages.getEmojiProfilePhotoGroups': {
+    params: {
+      hash: number;
+    }
+    response: Messages$EmojiGroups
+  }
+  'messages.searchCustomEmoji': {
+    params: {
+      emoticon: string;
+      hash: number;
+    }
+    response: EmojiList
+  }
+  'messages.togglePeerTranslations': {
+    params: {
+      flags?: Number;
+      disabled?: True;
+      peer: InputPeer;
+    }
+    response: Bool
+  }
+  'account.getAutoSaveSettings': {
+    params: {
+    }
+    response: Account$AutoSaveSettings
+  }
+  'account.saveAutoSaveSettings': {
+    params: {
+      flags?: Number;
+      users?: True;
+      chats?: True;
+      broadcasts?: True;
+      peer?: InputPeer;
+      settings: AutoSaveSettings;
+    }
+    response: Bool
+  }
+  'account.deleteAutoSaveExceptions': {
+    params: {
+    }
+    response: Bool
+  }
+  'stickers.changeSticker': {
+    params: {
+      flags?: Number;
+      sticker: InputDocument;
+      emoji?: string;
+      mask_coords?: MaskCoords;
+      keywords?: string;
+    }
+    response: Messages$StickerSet
+  }
+  'stickers.renameStickerSet': {
+    params: {
+      stickerset: InputStickerSet;
+      title: string;
+    }
+    response: Messages$StickerSet
+  }
+  'stickers.deleteStickerSet': {
+    params: {
+      stickerset: InputStickerSet;
+    }
+    response: Bool
+  }
+  'messages.getBotApp': {
+    params: {
+      app: InputBotApp;
+      hash: number;
+    }
+    response: Messages$BotApp
+  }
+  'messages.requestAppWebView': {
+    params: {
+      flags?: Number;
+      write_allowed?: True;
+      peer: InputPeer;
+      app: InputBotApp;
+      start_param?: string;
+      theme_params?: DataJSON;
+      platform: string;
+    }
+    response: AppWebViewResult
+  }
+  'bots.setBotInfo': {
+    params: {
+      flags?: Number;
+      bot?: InputUser;
+      lang_code: string;
+      name?: string;
+      about?: string;
+      description?: string;
+    }
+    response: Bool
+  }
+  'bots.getBotInfo': {
+    params: {
+      flags?: Number;
+      bot?: InputUser;
+      lang_code: string;
+    }
+    response: Bots$BotInfo
+  }
+  'auth.resetLoginEmail': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+    }
+    response: Auth$SentCode
+  }
+  'chatlists.exportChatlistInvite': {
+    params: {
+      chatlist: InputChatlist;
+      title: string;
+      peers: InputPeer;
+    }
+    response: Chatlists$ExportedChatlistInvite
+  }
+  'chatlists.deleteExportedInvite': {
+    params: {
+      chatlist: InputChatlist;
+      slug: string;
+    }
+    response: Bool
+  }
+  'chatlists.editExportedInvite': {
+    params: {
+      flags?: Number;
+      chatlist: InputChatlist;
+      slug: string;
+      title?: string;
+      peers?: InputPeer;
+    }
+    response: ExportedChatlistInvite
+  }
+  'chatlists.getExportedInvites': {
+    params: {
+      chatlist: InputChatlist;
+    }
+    response: Chatlists$ExportedInvites
+  }
+  'chatlists.checkChatlistInvite': {
+    params: {
+      slug: string;
+    }
+    response: Chatlists$ChatlistInvite
+  }
+  'chatlists.joinChatlistInvite': {
+    params: {
+      slug: string;
+      peers: InputPeer;
+    }
+    response: Updates
+  }
+  'chatlists.getChatlistUpdates': {
+    params: {
+      chatlist: InputChatlist;
+    }
+    response: Chatlists$ChatlistUpdates
+  }
+  'chatlists.joinChatlistUpdates': {
+    params: {
+      chatlist: InputChatlist;
+      peers: InputPeer;
+    }
+    response: Updates
+  }
+  'chatlists.hideChatlistUpdates': {
+    params: {
+      chatlist: InputChatlist;
+    }
+    response: Bool
+  }
+  'chatlists.getLeaveChatlistSuggestions': {
+    params: {
+      chatlist: InputChatlist;
+    }
+    response: Peer[]
+  }
+  'chatlists.leaveChatlist': {
+    params: {
+      chatlist: InputChatlist;
+      peers: InputPeer;
+    }
+    response: Updates
+  }
+  'bots.reorderUsernames': {
+    params: {
+      bot: InputUser;
+      order: string[];
+    }
+    response: Bool
+  }
+  'bots.toggleUsername': {
+    params: {
+      bot: InputUser;
+      username: string;
+      active: Bool;
+    }
+    response: Bool
+  }
+  'messages.setChatWallPaper': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      wallpaper?: InputWallPaper;
+      settings?: WallPaperSettings;
+      id?: number;
+    }
+    response: Updates
+  }
 }

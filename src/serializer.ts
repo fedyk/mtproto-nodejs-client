@@ -1,6 +1,6 @@
 import bigInt from 'big-integer'
 import { Counter } from './counter.js'
-import { builderMap } from './builder.js'
+import { BuilderMap, builderMap } from './builder.js'
 
 export interface SerializerFn {
   (this: Serializer, params: unknown): void
@@ -139,7 +139,9 @@ export class Serializer {
     }
   }
 
-  predicate(params: any, bare = false) {
+  predicate(params: {
+    _: keyof BuilderMap
+  }, bare = false) {
     const fn = builderMap[params._];
 
     fn.call(this, params);

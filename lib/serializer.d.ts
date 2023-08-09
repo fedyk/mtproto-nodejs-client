@@ -1,3 +1,4 @@
+import { BuilderMap } from './builder.js';
 export interface SerializerFn {
     (this: Serializer, params: unknown): void;
 }
@@ -22,7 +23,9 @@ export declare class Serializer {
     flag(fn: any, value: any): void;
     flagVector(fn: any, value: any): void;
     vector(fn: any, value: any): void;
-    predicate(params: any, bare?: boolean): void;
+    predicate(params: {
+        _: keyof BuilderMap;
+    }, bare?: boolean): void;
     getBytes(): Uint8Array;
     getBuffer(): ArrayBuffer;
 }

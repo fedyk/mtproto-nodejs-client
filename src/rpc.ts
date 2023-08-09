@@ -41,7 +41,7 @@ export class RPC {
   isAuth: boolean;
   pendingAcks: unknown[];
   messagesWaitAuth: MessageWaitResponse[];
-  messagesWaitResponse: Map<unknown, MessageWaitResponse>;
+  messagesWaitResponse: Map<string, MessageWaitResponse>;
   sendAcks: Function & {
     cancel(): void;
   };
@@ -210,7 +210,7 @@ export class RPC {
     this.newNonce = getRandomBytes(32);
     this.serverNonce = server_nonce;
 
-    const serializer = new Serializer(builderMap.mt_p_q_inner_data, {
+    const serializer = new Serializer(builderMap.mt_p_q_inner_data_dc, {
       pq: pq,
       p: p,
       q: q,
@@ -648,7 +648,7 @@ export class RPC {
         const waitMessage = this.messagesWaitResponse.get(msgId);
 
         if (!waitMessage) {
-          throw new Error("`waitMessage` can't be empty")
+          return
         }
 
         const nextWaitMessage: MessageWaitResponse = {
@@ -699,7 +699,7 @@ export class RPC {
     this.sendAcks();
   }
 
-  call<T extends Methods>(method: T["method"] | string, params?: T["params"]): Promise<T["response"]> {
+  call<T extends keyof Methods>(method: T | string, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
     if (!this.isReady) {
       return new Promise((resolve, reject) => {
         this.messagesWaitAuth.push({ method, params, resolve, reject });
@@ -838,7 +838,7 @@ export class RPC {
   }
 
   async getMessageId(): Promise<[number, number]> {
-    const timeOffset = await this.storage.get('timeOffset');
+    const timeOffset = await this.storage.get('timeOffset') || 0;
 
     if (typeof timeOffset !== "number") {
       throw new RangeError("`timeOffset` needs to be a number")

@@ -21,10 +21,10 @@ export declare class MTProto {
         };
     });
     destroy(): void;
-    call<T extends Methods>(method: T["method"], params?: T["params"], options?: {
+    call<T extends keyof Methods>(method: T, params?: Methods[T]["params"], options?: {
         dcId?: number;
         syncAuth?: boolean;
-    }): Promise<T["response"]>;
+    }): Promise<Methods[T]["response"]>;
     syncAuth(dcId: number): Promise<any[]>;
     setDefaultDc(dcId: number): Promise<void>;
     getRPC(dcId: number): RPC;

@@ -1,10 +1,11 @@
 import events from "node:events"
 import Debug from "debug"
 import type { DC, IStorage } from "./types.js"
-import { RPC, RPCEventEmitter,  } from "./rpc.js"
+import { RPC, RPCEventEmitter, } from "./rpc.js"
 import { Transport } from "./transport.js"
 import { Methods } from "./mtptoto-types.js"
 import { Storage } from "./storage.js"
+import { RPCError } from "./errors.js"
 
 export const debug = Debug("mtproto")
 
@@ -96,14 +97,27 @@ export class MTProto {
     this.rpcs.clear()
   }
 
-  async call<T extends Methods>(method: T["method"], params?: T["params"], options?: {
+  async call<T extends keyof Methods>(method: T, params?: Methods[T]["params"], options?: {
     dcId?: number
     syncAuth?: boolean
-  }): Promise<T["response"]> {
+  }): Promise<Methods[T]["response"]> {
     const syncAuth = options?.syncAuth || true
     const dcId = options?.dcId || (await this.storage.get('defaultDcId')) || 2;
     const rpc = this.getRPC(Number(dcId));
-    const result = await rpc.call(method, params);
+    const result = await rpc.call(method, params).catch(async (err: RPCError) => {
+      if (err.code === 303 && err.message.includes("_MIGRATE_")) {
+        const [type, dcIdAsString] = err.message.split("_MIGRATE_");
+        const dcId = Number(dcIdAsString)
+
+        if (type === "PHONE") {
+          await this.setDefaultDc(dcId);
+        }
+
+        return this.getRPC(dcId).call(method, params)
+      }
+
+      throw err
+    })
 
     // @ts-ignore
     if (syncAuth && result._ === 'auth.authorization') {

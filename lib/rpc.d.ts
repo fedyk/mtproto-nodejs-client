@@ -33,7 +33,7 @@ export declare class RPC {
     isAuth: boolean;
     pendingAcks: unknown[];
     messagesWaitAuth: MessageWaitResponse[];
-    messagesWaitResponse: Map<unknown, MessageWaitResponse>;
+    messagesWaitResponse: Map<string, MessageWaitResponse>;
     sendAcks: Function & {
         cancel(): void;
     };
@@ -77,7 +77,7 @@ export declare class RPC {
     handleEncryptedMessage(buffer: ArrayBufferLike): Promise<void>;
     handleDecryptedMessage(message: any, params?: {}): Promise<void>;
     ackMessage(messageId: unknown): void;
-    call<T extends Methods>(method: T["method"] | string, params?: T["params"]): Promise<T["response"]>;
+    call<T extends keyof Methods>(method: T | string, params?: Methods[T]["params"]): Promise<Methods[T]["response"]>;
     sendEncryptedMessage(data: Uint8Array, options?: {
         isContentRelated?: boolean;
     }): Promise<[number, number]>;
