@@ -18,16 +18,16 @@
   "dependencies": {
     "aes-js": "3.1.2",
     "big-integer": "1.6.51",
-    "debug": "4.3.3",
+    "debug": "4.3.4",
     "leemon": "6.2.0",
     "lodash.debounce": "4.0.8",
-    "pako": "2.0.4"
+    "pako": "2.1.0"
   },
   "devDependencies": {
     "@types/aes-js": "^3.1.1",
     "@types/debug": "^4.1.8",
     "@types/lodash.debounce": "^4.0.7",
-    "@types/node": "^20.4.5",
+    "@types/node": "^20.5.4",
     "@types/pako": "^2.0.0",
     "typescript": "^5.1.6"
   }
