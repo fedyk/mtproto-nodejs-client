@@ -30,6 +30,7 @@ const primitiveTypes = new Map([
   ["string", "string"],
   ["bytes", "Uint8Array"],
   ["double", "number"],
+  ["Bool", "boolean"],
 ])
 
 function typeIsVector(type: string) {
@@ -156,16 +157,14 @@ function paramsToInterfaceLines(params: any[]) {
         type = `${primitiveType}[]`
       }
       else {
-        type = `${getTypeName(vectorType)}`
+        type = `${getTypeName(vectorType)}[]`
       }
     }
     else if ('!X' === type) {
       type = "unknown"
-      // fnName = 'predicate';
     }
     else if ('X' === type) {
       type = "unknown"
-      // fnName = 'predicate';
     }
     else {
       const primitiveType = primitiveTypes.get(type)

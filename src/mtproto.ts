@@ -71,11 +71,9 @@ export class MTProto {
     test: boolean
     api_id: string
     api_hash: string
-    storageOptions: {
-      instance: IStorage
-    }
+    storage: IStorage
   }) {
-    const { api_id, api_hash, storageOptions } = options;
+    const { api_id, api_hash, storage } = options;
 
     this.api_id = api_id;
     this.api_hash = api_hash;
@@ -85,7 +83,7 @@ export class MTProto {
     this.dcList = !!options.test ? TEST_DC_LIST : PRODUCTION_DC_LIST;
 
     this.rpcs = new Map<number, RPC>();
-    this.storage = new Storage(storageOptions);
+    this.storage = new Storage(storage);
     this.updates = new events.EventEmitter();
   }
 

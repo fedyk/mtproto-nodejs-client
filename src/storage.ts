@@ -1,15 +1,17 @@
+import { ok } from "node:assert/strict"
 import type { IStorage } from "./types.js";
 
 export class Storage {
   cache: Record<string, string>;
   localStorage: IStorage;
 
-  constructor(options: {
-    instance: IStorage;
-  }) {
-    this.cache = {};
+  constructor(localStorage: IStorage) {
+    ok(localStorage, new RangeError("`localStorage` is required"))
+    ok(typeof localStorage.get === "function", new RangeError("`localStorage.get` needs to be a function"))
+    ok(typeof localStorage.set === "function", new RangeError("`localStorage.set` needs to be a function"))
 
-    this.localStorage = options?.instance;
+    this.cache = {};
+    this.localStorage = localStorage;
   }
 
   async set(key: string, value: any) {

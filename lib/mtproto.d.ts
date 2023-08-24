@@ -16,9 +16,7 @@ export declare class MTProto {
         test: boolean;
         api_id: string;
         api_hash: string;
-        storageOptions: {
-            instance: IStorage;
-        };
+        storage: IStorage;
     });
     destroy(): void;
     call<T extends keyof Methods>(method: T, params?: Methods[T]["params"], options?: {
