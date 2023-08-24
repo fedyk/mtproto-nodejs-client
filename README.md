@@ -14,7 +14,7 @@ Telegram (MTProto) NodeJS client library for Node.js. Based on [alik0211/mtproto
 ## Install
 
 ```
-npm install fedyk/mtproto-nodejs-client
+npm install github:fedyk/mtproto-nodejs-client
 ```
 
 ## Example
