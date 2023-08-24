@@ -464,7 +464,7 @@ export interface $InputMediaEmpty {
 export interface $InputMediaUploadedPhoto {
   _: "inputMediaUploadedPhoto";
   flags?: Number;
-  spoiler?: True;
+  spoiler?: boolean;
   file: InputFile;
   stickers?: InputDocument[];
   ttl_seconds?: number;
@@ -473,7 +473,7 @@ export interface $InputMediaUploadedPhoto {
 export interface $InputMediaPhoto {
   _: "inputMediaPhoto";
   flags?: Number;
-  spoiler?: True;
+  spoiler?: boolean;
   id: InputPhoto;
   ttl_seconds?: number;
 }
@@ -602,8 +602,8 @@ export interface $UserProfilePhotoEmpty {
 export interface $UserProfilePhoto {
   _: "userProfilePhoto";
   flags?: Number;
-  has_video?: True;
-  personal?: True;
+  has_video?: boolean;
+  personal?: boolean;
   photo_id: number;
   stripped_thumb?: Uint8Array;
   dc_id: number;
@@ -631,12 +631,12 @@ export interface $ChatEmpty {
 export interface $Chat {
   _: "chat";
   flags?: Number;
-  creator?: True;
-  left?: True;
-  deactivated?: True;
-  call_active?: True;
-  call_not_empty?: True;
-  noforwards?: True;
+  creator?: boolean;
+  left?: boolean;
+  deactivated?: boolean;
+  call_active?: boolean;
+  call_not_empty?: boolean;
+  noforwards?: boolean;
   id: number;
   title: string;
   photo: ChatPhoto;
@@ -657,9 +657,9 @@ export interface $ChatForbidden {
 export interface $ChatFull {
   _: "chatFull";
   flags?: Number;
-  can_set_username?: True;
-  has_scheduled?: True;
-  translations_disabled?: True;
+  can_set_username?: boolean;
+  has_scheduled?: boolean;
+  translations_disabled?: boolean;
   id: number;
   about: string;
   participants: ChatParticipants;
@@ -706,7 +706,7 @@ export interface $ChatPhotoEmpty {
 export interface $ChatPhoto {
   _: "chatPhoto";
   flags?: Number;
-  has_video?: True;
+  has_video?: boolean;
   photo_id: number;
   stripped_thumb?: Uint8Array;
   dc_id: number;
@@ -722,16 +722,16 @@ export interface $MessageEmpty {
 export interface $Message {
   _: "message";
   flags?: Number;
-  out?: True;
-  mentioned?: True;
-  media_unread?: True;
-  silent?: True;
-  post?: True;
-  from_scheduled?: True;
-  legacy?: True;
-  edit_hide?: True;
-  pinned?: True;
-  noforwards?: True;
+  out?: boolean;
+  mentioned?: boolean;
+  media_unread?: boolean;
+  silent?: boolean;
+  post?: boolean;
+  from_scheduled?: boolean;
+  legacy?: boolean;
+  edit_hide?: boolean;
+  pinned?: boolean;
+  noforwards?: boolean;
   id: number;
   from_id?: Peer;
   peer_id: Peer;
@@ -757,12 +757,12 @@ export interface $Message {
 export interface $MessageService {
   _: "messageService";
   flags?: Number;
-  out?: True;
-  mentioned?: True;
-  media_unread?: True;
-  silent?: True;
-  post?: True;
-  legacy?: True;
+  out?: boolean;
+  mentioned?: boolean;
+  media_unread?: boolean;
+  silent?: boolean;
+  post?: boolean;
+  legacy?: boolean;
   id: number;
   from_id?: Peer;
   peer_id: Peer;
@@ -779,7 +779,7 @@ export interface $MessageMediaEmpty {
 export interface $MessageMediaPhoto {
   _: "messageMediaPhoto";
   flags?: Number;
-  spoiler?: True;
+  spoiler?: boolean;
   photo?: Photo;
   ttl_seconds?: number;
 }
@@ -839,8 +839,8 @@ export interface $MessageActionChatDeleteUser {
 export interface $Dialog {
   _: "dialog";
   flags?: Number;
-  pinned?: True;
-  unread_mark?: True;
+  pinned?: boolean;
+  unread_mark?: boolean;
   peer: Peer;
   top_message: number;
   read_inbox_max_id: number;
@@ -863,7 +863,7 @@ export interface $PhotoEmpty {
 export interface $Photo {
   _: "photo";
   flags?: Number;
-  has_stickers?: True;
+  has_stickers?: boolean;
   id: number;
   access_hash: number;
   file_reference: Uint8Array;
@@ -919,7 +919,7 @@ export interface $Auth$SentCode {
 export interface $Auth$Authorization {
   _: "auth.authorization";
   flags?: Number;
-  setup_password_required?: True;
+  setup_password_required?: boolean;
   otherwise_relogin_days?: number;
   tmp_sessions?: number;
   future_auth_token?: Uint8Array;
@@ -968,15 +968,15 @@ export interface $PeerNotifySettings {
 export interface $PeerSettings {
   _: "peerSettings";
   flags?: Number;
-  report_spam?: True;
-  add_contact?: True;
-  block_contact?: True;
-  share_contact?: True;
-  need_contacts_exception?: True;
-  report_geo?: True;
-  autoarchived?: True;
-  invite_members?: True;
-  request_chat_broadcast?: True;
+  report_spam?: boolean;
+  add_contact?: boolean;
+  block_contact?: boolean;
+  share_contact?: boolean;
+  need_contacts_exception?: boolean;
+  report_geo?: boolean;
+  autoarchived?: boolean;
+  invite_members?: boolean;
+  request_chat_broadcast?: boolean;
   geo_distance?: number;
   request_chat_title?: string;
   request_chat_date?: number;
@@ -986,10 +986,10 @@ export interface $WallPaper {
   _: "wallPaper";
   id: number;
   flags?: Number;
-  creator?: True;
-  default?: True;
-  pattern?: True;
-  dark?: True;
+  creator?: boolean;
+  default?: boolean;
+  pattern?: boolean;
+  dark?: boolean;
   access_hash: number;
   slug: string;
   document: Document;
@@ -1019,14 +1019,14 @@ export interface $InputReportReasonOther {
 export interface $UserFull {
   _: "userFull";
   flags?: Number;
-  blocked?: True;
-  phone_calls_available?: True;
-  phone_calls_private?: True;
-  can_pin_message?: True;
-  has_scheduled?: True;
-  video_calls_available?: True;
-  voice_messages_forbidden?: True;
-  translations_disabled?: True;
+  blocked?: boolean;
+  phone_calls_available?: boolean;
+  phone_calls_private?: boolean;
+  can_pin_message?: boolean;
+  has_scheduled?: boolean;
+  video_calls_available?: boolean;
+  voice_messages_forbidden?: boolean;
+  translations_disabled?: boolean;
   id: number;
   about?: string;
   settings: PeerSettings;
@@ -1126,7 +1126,7 @@ export interface $Messages$Messages {
 export interface $Messages$MessagesSlice {
   _: "messages.messagesSlice";
   flags?: Number;
-  inexact?: True;
+  inexact?: boolean;
   count: number;
   next_rate?: number;
   offset_id_offset?: number;
@@ -1276,10 +1276,10 @@ export interface $UpdatesTooLong {
 export interface $UpdateShortMessage {
   _: "updateShortMessage";
   flags?: Number;
-  out?: True;
-  mentioned?: True;
-  media_unread?: True;
-  silent?: True;
+  out?: boolean;
+  mentioned?: boolean;
+  media_unread?: boolean;
+  silent?: boolean;
   id: number;
   user_id: number;
   message: string;
@@ -1296,10 +1296,10 @@ export interface $UpdateShortMessage {
 export interface $UpdateShortChatMessage {
   _: "updateShortChatMessage";
   flags?: Number;
-  out?: True;
-  mentioned?: True;
-  media_unread?: True;
-  silent?: True;
+  out?: boolean;
+  mentioned?: boolean;
+  media_unread?: boolean;
+  silent?: boolean;
   id: number;
   from_id: number;
   chat_id: number;
@@ -1368,12 +1368,12 @@ export interface $Upload$File {
 export interface $DcOption {
   _: "dcOption";
   flags?: Number;
-  ipv6?: True;
-  media_only?: True;
-  tcpo_only?: True;
-  cdn?: True;
-  static?: True;
-  this_port_only?: True;
+  ipv6?: boolean;
+  media_only?: boolean;
+  tcpo_only?: boolean;
+  cdn?: boolean;
+  static?: boolean;
+  this_port_only?: boolean;
   id: number;
   ip_address: string;
   port: number;
@@ -1383,11 +1383,11 @@ export interface $DcOption {
 export interface $Config {
   _: "config";
   flags?: Number;
-  default_p2p_contacts?: True;
-  preload_featured_stickers?: True;
-  revoke_pm_inbox?: True;
-  blocked_mode?: True;
-  force_try_ipv6?: True;
+  default_p2p_contacts?: boolean;
+  preload_featured_stickers?: boolean;
+  revoke_pm_inbox?: boolean;
+  blocked_mode?: boolean;
+  force_try_ipv6?: boolean;
   date: number;
   expires: number;
   test_mode: boolean;
@@ -1442,7 +1442,7 @@ export interface $NearestDc {
 export interface $Help$AppUpdate {
   _: "help.appUpdate";
   flags?: Number;
-  can_not_skip?: True;
+  can_not_skip?: boolean;
   id: number;
   version: string;
   text: string;
@@ -1525,7 +1525,7 @@ export interface $EncryptedChat {
 export interface $EncryptedChatDiscarded {
   _: "encryptedChatDiscarded";
   flags?: Number;
-  history_deleted?: True;
+  history_deleted?: boolean;
   id: number;
 }
 
@@ -1651,9 +1651,9 @@ export interface $UpdateDcOptions {
 export interface $InputMediaUploadedDocument {
   _: "inputMediaUploadedDocument";
   flags?: Number;
-  nosound_video?: True;
-  force_file?: True;
-  spoiler?: True;
+  nosound_video?: boolean;
+  force_file?: boolean;
+  spoiler?: boolean;
   file: InputFile;
   thumb?: InputFile;
   mime_type: string;
@@ -1665,7 +1665,7 @@ export interface $InputMediaUploadedDocument {
 export interface $InputMediaDocument {
   _: "inputMediaDocument";
   flags?: Number;
-  spoiler?: True;
+  spoiler?: boolean;
   id: InputDocument;
   ttl_seconds?: number;
   query?: string;
@@ -1674,8 +1674,8 @@ export interface $InputMediaDocument {
 export interface $MessageMediaDocument {
   _: "messageMediaDocument";
   flags?: Number;
-  nopremium?: True;
-  spoiler?: True;
+  nopremium?: boolean;
+  spoiler?: boolean;
   document?: Document;
   ttl_seconds?: number;
 }
@@ -1799,7 +1799,7 @@ export interface $Contacts$Found {
 export interface $UpdateServiceNotification {
   _: "updateServiceNotification";
   flags?: Number;
-  popup?: True;
+  popup?: boolean;
   inbox_date?: number;
   type: string;
   message: string;
@@ -1916,7 +1916,7 @@ export interface $DocumentAttributeAnimated {
 export interface $DocumentAttributeSticker {
   _: "documentAttributeSticker";
   flags?: Number;
-  mask?: True;
+  mask?: boolean;
   alt: string;
   stickerset: InputStickerSet;
   mask_coords?: MaskCoords;
@@ -1925,8 +1925,8 @@ export interface $DocumentAttributeSticker {
 export interface $DocumentAttributeVideo {
   _: "documentAttributeVideo";
   flags?: Number;
-  round_message?: True;
-  supports_streaming?: True;
+  round_message?: boolean;
+  supports_streaming?: boolean;
   duration: number;
   w: number;
   h: number;
@@ -1935,7 +1935,7 @@ export interface $DocumentAttributeVideo {
 export interface $DocumentAttributeAudio {
   _: "documentAttributeAudio";
   flags?: Number;
-  voice?: True;
+  voice?: boolean;
   duration: number;
   title?: string;
   performer?: string;
@@ -2047,11 +2047,11 @@ export interface $MessageMediaWebPage {
 export interface $Authorization {
   _: "authorization";
   flags?: Number;
-  current?: True;
-  official_app?: True;
-  password_pending?: True;
-  encrypted_requests_disabled?: True;
-  call_requests_disabled?: True;
+  current?: boolean;
+  official_app?: boolean;
+  password_pending?: boolean;
+  encrypted_requests_disabled?: boolean;
+  call_requests_disabled?: boolean;
   hash: number;
   device_model: string;
   platform: string;
@@ -2075,9 +2075,9 @@ export interface $Account$Authorizations {
 export interface $Account$Password {
   _: "account.password";
   flags?: Number;
-  has_recovery?: True;
-  has_secure_values?: True;
-  has_password?: True;
+  has_recovery?: boolean;
+  has_secure_values?: boolean;
+  has_password?: boolean;
   current_algo?: PasswordKdfAlgo;
   srp_B?: Uint8Array;
   srp_id?: number;
@@ -2141,9 +2141,9 @@ export interface $ReceivedNotifyMessage {
 export interface $ChatInviteExported {
   _: "chatInviteExported";
   flags?: Number;
-  revoked?: True;
-  permanent?: True;
-  request_needed?: True;
+  revoked?: boolean;
+  permanent?: boolean;
+  request_needed?: boolean;
   link: string;
   admin_id: number;
   date: number;
@@ -2163,11 +2163,11 @@ export interface $ChatInviteAlready {
 export interface $ChatInvite {
   _: "chatInvite";
   flags?: Number;
-  channel?: True;
-  broadcast?: True;
-  public?: True;
-  megagroup?: True;
-  request_needed?: True;
+  channel?: boolean;
+  broadcast?: boolean;
+  public?: boolean;
+  megagroup?: boolean;
+  request_needed?: boolean;
   title: string;
   about?: string;
   photo: Photo;
@@ -2205,12 +2205,12 @@ export interface $InputStickerSetShortName {
 export interface $StickerSet {
   _: "stickerSet";
   flags?: Number;
-  archived?: True;
-  official?: True;
-  masks?: True;
-  animated?: True;
-  videos?: True;
-  emojis?: True;
+  archived?: boolean;
+  official?: boolean;
+  masks?: boolean;
+  animated?: boolean;
+  videos?: boolean;
+  emojis?: boolean;
   installed_date?: number;
   id: number;
   access_hash: number;
@@ -2235,26 +2235,26 @@ export interface $Messages$StickerSet {
 export interface $User {
   _: "user";
   flags?: Number;
-  self?: True;
-  contact?: True;
-  mutual_contact?: True;
-  deleted?: True;
-  bot?: True;
-  bot_chat_history?: True;
-  bot_nochats?: True;
-  verified?: True;
-  restricted?: True;
-  min?: True;
-  bot_inline_geo?: True;
-  support?: True;
-  scam?: True;
-  apply_min_photo?: True;
-  fake?: True;
-  bot_attach_menu?: True;
-  premium?: True;
-  attach_menu_enabled?: True;
+  self?: boolean;
+  contact?: boolean;
+  mutual_contact?: boolean;
+  deleted?: boolean;
+  bot?: boolean;
+  bot_chat_history?: boolean;
+  bot_nochats?: boolean;
+  verified?: boolean;
+  restricted?: boolean;
+  min?: boolean;
+  bot_inline_geo?: boolean;
+  support?: boolean;
+  scam?: boolean;
+  apply_min_photo?: boolean;
+  fake?: boolean;
+  bot_attach_menu?: boolean;
+  premium?: boolean;
+  attach_menu_enabled?: boolean;
   flags2?: Number;
-  bot_can_edit?: True;
+  bot_can_edit?: boolean;
   id: number;
   access_hash?: number;
   first_name?: string;
@@ -2301,24 +2301,24 @@ export interface $KeyboardButtonRow {
 export interface $ReplyKeyboardHide {
   _: "replyKeyboardHide";
   flags?: Number;
-  selective?: True;
+  selective?: boolean;
 }
 
 export interface $ReplyKeyboardForceReply {
   _: "replyKeyboardForceReply";
   flags?: Number;
-  single_use?: True;
-  selective?: True;
+  single_use?: boolean;
+  selective?: boolean;
   placeholder?: string;
 }
 
 export interface $ReplyKeyboardMarkup {
   _: "replyKeyboardMarkup";
   flags?: Number;
-  resize?: True;
-  single_use?: True;
-  selective?: True;
-  persistent?: True;
+  resize?: boolean;
+  single_use?: boolean;
+  selective?: boolean;
+  persistent?: boolean;
   rows: KeyboardButtonRow[];
   placeholder?: string;
 }
@@ -2406,7 +2406,7 @@ export interface $MessageEntityTextUrl {
 export interface $UpdateShortSentMessage {
   _: "updateShortSentMessage";
   flags?: Number;
-  out?: True;
+  out?: boolean;
   id: number;
   pts: number;
   pts_count: number;
@@ -2440,26 +2440,26 @@ export interface $InputPeerChannel {
 export interface $Channel {
   _: "channel";
   flags?: Number;
-  creator?: True;
-  left?: True;
-  broadcast?: True;
-  verified?: True;
-  megagroup?: True;
-  restricted?: True;
-  signatures?: True;
-  min?: True;
-  scam?: True;
-  has_link?: True;
-  has_geo?: True;
-  slowmode_enabled?: True;
-  call_active?: True;
-  call_not_empty?: True;
-  fake?: True;
-  gigagroup?: True;
-  noforwards?: True;
-  join_to_send?: True;
-  join_request?: True;
-  forum?: True;
+  creator?: boolean;
+  left?: boolean;
+  broadcast?: boolean;
+  verified?: boolean;
+  megagroup?: boolean;
+  restricted?: boolean;
+  signatures?: boolean;
+  min?: boolean;
+  scam?: boolean;
+  has_link?: boolean;
+  has_geo?: boolean;
+  slowmode_enabled?: boolean;
+  call_active?: boolean;
+  call_not_empty?: boolean;
+  fake?: boolean;
+  gigagroup?: boolean;
+  noforwards?: boolean;
+  join_to_send?: boolean;
+  join_request?: boolean;
+  forum?: boolean;
   flags2?: Number;
   id: number;
   access_hash?: number;
@@ -2478,8 +2478,8 @@ export interface $Channel {
 export interface $ChannelForbidden {
   _: "channelForbidden";
   flags?: Number;
-  broadcast?: True;
-  megagroup?: True;
+  broadcast?: boolean;
+  megagroup?: boolean;
   id: number;
   access_hash: number;
   title: string;
@@ -2496,19 +2496,19 @@ export interface $Contacts$ResolvedPeer {
 export interface $ChannelFull {
   _: "channelFull";
   flags?: Number;
-  can_view_participants?: True;
-  can_set_username?: True;
-  can_set_stickers?: True;
-  hidden_prehistory?: True;
-  can_set_location?: True;
-  has_scheduled?: True;
-  can_view_stats?: True;
-  blocked?: True;
+  can_view_participants?: boolean;
+  can_set_username?: boolean;
+  can_set_stickers?: boolean;
+  hidden_prehistory?: boolean;
+  can_set_location?: boolean;
+  has_scheduled?: boolean;
+  can_view_stats?: boolean;
+  blocked?: boolean;
   flags2?: Number;
-  can_delete_channel?: True;
-  antispam?: True;
-  participants_hidden?: True;
-  translations_disabled?: True;
+  can_delete_channel?: boolean;
+  antispam?: boolean;
+  participants_hidden?: boolean;
+  translations_disabled?: boolean;
   id: number;
   about: string;
   participants_count?: number;
@@ -2555,7 +2555,7 @@ export interface $MessageRange {
 export interface $Messages$ChannelMessages {
   _: "messages.channelMessages";
   flags?: Number;
-  inexact?: True;
+  inexact?: boolean;
   pts: number;
   count: number;
   offset_id_offset?: number;
@@ -2617,7 +2617,7 @@ export interface $UpdateChannelMessageViews {
 export interface $Updates$ChannelDifferenceEmpty {
   _: "updates.channelDifferenceEmpty";
   flags?: Number;
-  final?: True;
+  final?: boolean;
   pts: number;
   timeout?: number;
 }
@@ -2625,7 +2625,7 @@ export interface $Updates$ChannelDifferenceEmpty {
 export interface $Updates$ChannelDifferenceTooLong {
   _: "updates.channelDifferenceTooLong";
   flags?: Number;
-  final?: True;
+  final?: boolean;
   timeout?: number;
   dialog: Dialog;
   messages: Message[];
@@ -2636,7 +2636,7 @@ export interface $Updates$ChannelDifferenceTooLong {
 export interface $Updates$ChannelDifference {
   _: "updates.channelDifference";
   flags?: Number;
-  final?: True;
+  final?: boolean;
   pts: number;
   timeout?: number;
   new_messages: Message[];
@@ -2652,7 +2652,7 @@ export interface $ChannelMessagesFilterEmpty {
 export interface $ChannelMessagesFilter {
   _: "channelMessagesFilter";
   flags?: Number;
-  exclude_new_messages?: True;
+  exclude_new_messages?: boolean;
   ranges: MessageRange[];
 }
 
@@ -2665,7 +2665,7 @@ export interface $ChannelParticipant {
 export interface $ChannelParticipantSelf {
   _: "channelParticipantSelf";
   flags?: Number;
-  via_request?: True;
+  via_request?: boolean;
   user_id: number;
   inviter_id: number;
   date: number;
@@ -2745,7 +2745,7 @@ export interface $ChannelParticipantsBots {
 export interface $Help$TermsOfService {
   _: "help.termsOfService";
   flags?: Number;
-  popup?: True;
+  popup?: boolean;
   id: DataJSON;
   text: string;
   entities: MessageEntity[];
@@ -2760,16 +2760,16 @@ export interface $UpdateNewStickerSet {
 export interface $UpdateStickerSetsOrder {
   _: "updateStickerSetsOrder";
   flags?: Number;
-  masks?: True;
-  emojis?: True;
+  masks?: boolean;
+  emojis?: boolean;
   order: number[];
 }
 
 export interface $UpdateStickerSets {
   _: "updateStickerSets";
   flags?: Number;
-  masks?: True;
-  emojis?: True;
+  masks?: boolean;
+  emojis?: boolean;
 }
 
 export interface $Messages$SavedGifsNotModified {
@@ -2797,7 +2797,7 @@ export interface $InputBotInlineMessageMediaAuto {
 export interface $InputBotInlineMessageText {
   _: "inputBotInlineMessageText";
   flags?: Number;
-  no_webpage?: True;
+  no_webpage?: boolean;
   message: string;
   entities?: MessageEntity[];
   reply_markup?: ReplyMarkup;
@@ -2827,7 +2827,7 @@ export interface $BotInlineMessageMediaAuto {
 export interface $BotInlineMessageText {
   _: "botInlineMessageText";
   flags?: Number;
-  no_webpage?: True;
+  no_webpage?: boolean;
   message: string;
   entities?: MessageEntity[];
   reply_markup?: ReplyMarkup;
@@ -2849,7 +2849,7 @@ export interface $BotInlineResult {
 export interface $Messages$BotResults {
   _: "messages.botResults";
   flags?: Number;
-  gallery?: True;
+  gallery?: boolean;
   query_id: number;
   next_offset?: string;
   switch_pm?: InlineBotSwitchPM;
@@ -2905,7 +2905,7 @@ export interface $ExportedMessageLink {
 export interface $MessageFwdHeader {
   _: "messageFwdHeader";
   flags?: Number;
-  imported?: True;
+  imported?: boolean;
   from_id?: Peer;
   from_name?: string;
   date: number;
@@ -2968,7 +2968,7 @@ export interface $KeyboardButtonUrl {
 export interface $KeyboardButtonCallback {
   _: "keyboardButtonCallback";
   flags?: Number;
-  requires_password?: True;
+  requires_password?: boolean;
   text: string;
   data: Uint8Array;
 }
@@ -2986,7 +2986,7 @@ export interface $KeyboardButtonRequestGeoLocation {
 export interface $KeyboardButtonSwitchInline {
   _: "keyboardButtonSwitchInline";
   flags?: Number;
-  same_peer?: True;
+  same_peer?: boolean;
   text: string;
   query: string;
   peer_types?: InlineQueryPeerType[];
@@ -3000,9 +3000,9 @@ export interface $ReplyInlineMarkup {
 export interface $Messages$BotCallbackAnswer {
   _: "messages.botCallbackAnswer";
   flags?: Number;
-  alert?: True;
-  has_url?: True;
-  native_ui?: True;
+  alert?: boolean;
+  has_url?: boolean;
+  native_ui?: boolean;
   message?: string;
   url?: string;
   cache_time: number;
@@ -3023,7 +3023,7 @@ export interface $UpdateBotCallbackQuery {
 export interface $Messages$MessageEditData {
   _: "messages.messageEditData";
   flags?: Number;
-  caption?: True;
+  caption?: boolean;
 }
 
 export interface $UpdateEditMessage {
@@ -3246,7 +3246,7 @@ export interface $DraftMessageEmpty {
 export interface $DraftMessage {
   _: "draftMessage";
   flags?: Number;
-  no_webpage?: True;
+  no_webpage?: boolean;
   reply_to_msg_id?: number;
   message: string;
   entities?: MessageEntity[];
@@ -3265,7 +3265,7 @@ export interface $Messages$FeaturedStickersNotModified {
 export interface $Messages$FeaturedStickers {
   _: "messages.featuredStickers";
   flags?: Number;
-  premium?: True;
+  premium?: boolean;
   hash: number;
   count: number;
   sets: StickerSetCovered[];
@@ -3324,7 +3324,7 @@ export interface $UpdatePtsChanged {
 export interface $InputMediaPhotoExternal {
   _: "inputMediaPhotoExternal";
   flags?: Number;
-  spoiler?: True;
+  spoiler?: boolean;
   url: string;
   ttl_seconds?: number;
 }
@@ -3332,7 +3332,7 @@ export interface $InputMediaPhotoExternal {
 export interface $InputMediaDocumentExternal {
   _: "inputMediaDocumentExternal";
   flags?: Number;
-  spoiler?: True;
+  spoiler?: boolean;
   url: string;
   ttl_seconds?: number;
 }
@@ -3591,8 +3591,8 @@ export interface $PageBlockPhoto {
 export interface $PageBlockVideo {
   _: "pageBlockVideo";
   flags?: Number;
-  autoplay?: True;
-  loop?: True;
+  autoplay?: boolean;
+  loop?: boolean;
   video_id: number;
   caption: PageCaption;
 }
@@ -3605,8 +3605,8 @@ export interface $PageBlockCover {
 export interface $PageBlockEmbed {
   _: "pageBlockEmbed";
   flags?: Number;
-  full_width?: True;
-  allow_scrolling?: True;
+  full_width?: boolean;
+  allow_scrolling?: boolean;
   url?: string;
   html?: string;
   poster_photo_id?: number;
@@ -3675,7 +3675,7 @@ export interface $PhoneCallDiscardReasonBusy {
 export interface $UpdateDialogPinned {
   _: "updateDialogPinned";
   flags?: Number;
-  pinned?: True;
+  pinned?: boolean;
   folder_id?: number;
   peer: DialogPeer;
 }
@@ -3713,15 +3713,15 @@ export interface $LabeledPrice {
 export interface $Invoice {
   _: "invoice";
   flags?: Number;
-  test?: True;
-  name_requested?: True;
-  phone_requested?: True;
-  email_requested?: True;
-  shipping_address_requested?: True;
-  flexible?: True;
-  phone_to_provider?: True;
-  email_to_provider?: True;
-  recurring?: True;
+  test?: boolean;
+  name_requested?: boolean;
+  phone_requested?: boolean;
+  email_requested?: boolean;
+  shipping_address_requested?: boolean;
+  flexible?: boolean;
+  phone_to_provider?: boolean;
+  email_to_provider?: boolean;
+  recurring?: boolean;
   currency: string;
   prices: LabeledPrice[];
   max_tip_amount?: number;
@@ -3752,8 +3752,8 @@ export interface $PaymentCharge {
 export interface $MessageActionPaymentSentMe {
   _: "messageActionPaymentSentMe";
   flags?: Number;
-  recurring_init?: True;
-  recurring_used?: True;
+  recurring_init?: boolean;
+  recurring_used?: boolean;
   currency: string;
   total_amount: number;
   payload: Uint8Array;
@@ -3765,8 +3765,8 @@ export interface $MessageActionPaymentSentMe {
 export interface $MessageMediaInvoice {
   _: "messageMediaInvoice";
   flags?: Number;
-  shipping_address_requested?: True;
-  test?: True;
+  shipping_address_requested?: boolean;
+  test?: boolean;
   title: string;
   description: string;
   photo?: WebDocument;
@@ -3804,8 +3804,8 @@ export interface $KeyboardButtonBuy {
 export interface $MessageActionPaymentSent {
   _: "messageActionPaymentSent";
   flags?: Number;
-  recurring_init?: True;
-  recurring_used?: True;
+  recurring_init?: boolean;
+  recurring_used?: boolean;
   currency: string;
   total_amount: number;
   invoice_slug?: string;
@@ -3852,8 +3852,8 @@ export interface $Upload$WebFile {
 export interface $Payments$PaymentForm {
   _: "payments.paymentForm";
   flags?: Number;
-  can_save_credentials?: True;
-  password_missing?: True;
+  can_save_credentials?: boolean;
+  password_missing?: boolean;
   form_id: number;
   bot_id: number;
   title: string;
@@ -3904,7 +3904,7 @@ export interface $Payments$PaymentReceipt {
 export interface $Payments$SavedInfo {
   _: "payments.savedInfo";
   flags?: Number;
-  has_saved_credentials?: True;
+  has_saved_credentials?: boolean;
   saved_info?: PaymentRequestedInfo;
 }
 
@@ -3917,7 +3917,7 @@ export interface $InputPaymentCredentialsSaved {
 export interface $InputPaymentCredentials {
   _: "inputPaymentCredentials";
   flags?: Number;
-  save?: True;
+  save?: boolean;
   data: DataJSON;
 }
 
@@ -3982,7 +3982,7 @@ export interface $PhoneCallEmpty {
 export interface $PhoneCallWaiting {
   _: "phoneCallWaiting";
   flags?: Number;
-  video?: True;
+  video?: boolean;
   id: number;
   access_hash: number;
   date: number;
@@ -3995,7 +3995,7 @@ export interface $PhoneCallWaiting {
 export interface $PhoneCallRequested {
   _: "phoneCallRequested";
   flags?: Number;
-  video?: True;
+  video?: boolean;
   id: number;
   access_hash: number;
   date: number;
@@ -4008,7 +4008,7 @@ export interface $PhoneCallRequested {
 export interface $PhoneCallAccepted {
   _: "phoneCallAccepted";
   flags?: Number;
-  video?: True;
+  video?: boolean;
   id: number;
   access_hash: number;
   date: number;
@@ -4021,8 +4021,8 @@ export interface $PhoneCallAccepted {
 export interface $PhoneCall {
   _: "phoneCall";
   flags?: Number;
-  p2p_allowed?: True;
-  video?: True;
+  p2p_allowed?: boolean;
+  video?: boolean;
   id: number;
   access_hash: number;
   date: number;
@@ -4038,9 +4038,9 @@ export interface $PhoneCall {
 export interface $PhoneCallDiscarded {
   _: "phoneCallDiscarded";
   flags?: Number;
-  need_rating?: True;
-  need_debug?: True;
-  video?: True;
+  need_rating?: boolean;
+  need_debug?: boolean;
+  video?: boolean;
   id: number;
   reason?: PhoneCallDiscardReason;
   duration?: number;
@@ -4049,7 +4049,7 @@ export interface $PhoneCallDiscarded {
 export interface $PhoneConnection {
   _: "phoneConnection";
   flags?: Number;
-  tcp?: True;
+  tcp?: boolean;
   id: number;
   ip: string;
   ipv6: string;
@@ -4060,8 +4060,8 @@ export interface $PhoneConnection {
 export interface $PhoneCallProtocol {
   _: "phoneCallProtocol";
   flags?: Number;
-  udp_p2p?: True;
-  udp_reflector?: True;
+  udp_p2p?: boolean;
+  udp_reflector?: boolean;
   min_layer: number;
   max_layer: number;
   library_versions: string[];
@@ -4076,13 +4076,13 @@ export interface $Phone$PhoneCall {
 export interface $InputMessagesFilterPhoneCalls {
   _: "inputMessagesFilterPhoneCalls";
   flags?: Number;
-  missed?: True;
+  missed?: boolean;
 }
 
 export interface $MessageActionPhoneCall {
   _: "messageActionPhoneCall";
   flags?: Number;
-  video?: True;
+  video?: boolean;
   call_id: number;
   reason?: PhoneCallDiscardReason;
   duration?: number;
@@ -4174,9 +4174,9 @@ export interface $LangPackDifference {
 export interface $LangPackLanguage {
   _: "langPackLanguage";
   flags?: Number;
-  official?: True;
-  rtl?: True;
-  beta?: True;
+  official?: boolean;
+  rtl?: boolean;
+  beta?: boolean;
   name: string;
   native_name: string;
   lang_code: string;
@@ -4200,8 +4200,8 @@ export interface $UpdateLangPack {
 export interface $ChannelParticipantAdmin {
   _: "channelParticipantAdmin";
   flags?: Number;
-  can_edit?: True;
-  self?: True;
+  can_edit?: boolean;
+  self?: boolean;
   user_id: number;
   inviter_id?: number;
   promoted_by: number;
@@ -4213,7 +4213,7 @@ export interface $ChannelParticipantAdmin {
 export interface $ChannelParticipantBanned {
   _: "channelParticipantBanned";
   flags?: Number;
-  left?: True;
+  left?: boolean;
   peer: Peer;
   kicked_by: number;
   date: number;
@@ -4323,24 +4323,24 @@ export interface $Channels$AdminLogResults {
 export interface $ChannelAdminLogEventsFilter {
   _: "channelAdminLogEventsFilter";
   flags?: Number;
-  join?: True;
-  leave?: True;
-  invite?: True;
-  ban?: True;
-  unban?: True;
-  kick?: True;
-  unkick?: True;
-  promote?: True;
-  demote?: True;
-  info?: True;
-  settings?: True;
-  pinned?: True;
-  edit?: True;
-  delete?: True;
-  group_call?: True;
-  invites?: True;
-  send?: True;
-  forums?: True;
+  join?: boolean;
+  leave?: boolean;
+  invite?: boolean;
+  ban?: boolean;
+  unban?: boolean;
+  kick?: boolean;
+  unkick?: boolean;
+  promote?: boolean;
+  demote?: boolean;
+  info?: boolean;
+  settings?: boolean;
+  pinned?: boolean;
+  edit?: boolean;
+  delete?: boolean;
+  group_call?: boolean;
+  invites?: boolean;
+  send?: boolean;
+  forums?: boolean;
 }
 
 export interface $TopPeerCategoryPhoneCalls {
@@ -4432,7 +4432,7 @@ export interface $ChannelAdminLogEventActionTogglePreHistoryHidden {
 export interface $InputMediaGeoLive {
   _: "inputMediaGeoLive";
   flags?: Number;
-  stopped?: True;
+  stopped?: boolean;
   geo_point: InputGeoPoint;
   heading?: number;
   period?: number;
@@ -4550,7 +4550,7 @@ export interface $MessageEntityCashtag {
 export interface $MessageActionBotAllowed {
   _: "messageActionBotAllowed";
   flags?: Number;
-  attach_menu?: True;
+  attach_menu?: boolean;
   domain?: string;
   app?: BotApp;
 }
@@ -4829,7 +4829,7 @@ export interface $Help$DeepLinkInfoEmpty {
 export interface $Help$DeepLinkInfo {
   _: "help.deepLinkInfo";
   flags?: Number;
-  update_app?: True;
+  update_app?: boolean;
   message: string;
   entities?: MessageEntity[];
 }
@@ -4854,7 +4854,7 @@ export interface $InputTakeoutFileLocation {
 export interface $UpdateDialogUnreadMark {
   _: "updateDialogUnreadMark";
   flags?: Number;
-  unread?: True;
+  unread?: boolean;
   peer: DialogPeer;
 }
 
@@ -4949,9 +4949,9 @@ export interface $SecureValueErrorTranslationFiles {
 export interface $SecureRequiredType {
   _: "secureRequiredType";
   flags?: Number;
-  native_names?: True;
-  selfie_required?: True;
-  translation_required?: True;
+  native_names?: boolean;
+  selfie_required?: boolean;
+  translation_required?: boolean;
   type: SecureValueType;
 }
 
@@ -5057,11 +5057,11 @@ export interface $PageBlockKicker {
 export interface $PageTableCell {
   _: "pageTableCell";
   flags?: Number;
-  header?: True;
-  align_center?: True;
-  align_right?: True;
-  valign_middle?: True;
-  valign_bottom?: True;
+  header?: boolean;
+  align_center?: boolean;
+  align_right?: boolean;
+  valign_middle?: boolean;
+  valign_bottom?: boolean;
   text?: RichText;
   colspan?: number;
   rowspan?: number;
@@ -5075,8 +5075,8 @@ export interface $PageTableRow {
 export interface $PageBlockTable {
   _: "pageBlockTable";
   flags?: Number;
-  bordered?: True;
-  striped?: True;
+  bordered?: boolean;
+  striped?: boolean;
   title: RichText;
   rows: PageTableRow[];
 }
@@ -5117,7 +5117,7 @@ export interface $PageBlockOrderedList {
 export interface $PageBlockDetails {
   _: "pageBlockDetails";
   flags?: Number;
-  open?: True;
+  open?: boolean;
   blocks: PageBlock[];
   title: RichText;
 }
@@ -5152,9 +5152,9 @@ export interface $PageBlockMap {
 export interface $Page {
   _: "page";
   flags?: Number;
-  part?: True;
-  rtl?: True;
-  v2?: True;
+  part?: boolean;
+  rtl?: boolean;
+  v2?: boolean;
   url: string;
   blocks: PageBlock[];
   photos: Photo[];
@@ -5215,10 +5215,10 @@ export interface $Poll {
   _: "poll";
   id: number;
   flags?: Number;
-  closed?: True;
-  public_voters?: True;
-  multiple_choice?: True;
-  quiz?: True;
+  closed?: boolean;
+  public_voters?: boolean;
+  multiple_choice?: boolean;
+  quiz?: boolean;
   question: string;
   answers: PollAnswer[];
   close_period?: number;
@@ -5228,8 +5228,8 @@ export interface $Poll {
 export interface $PollAnswerVoters {
   _: "pollAnswerVoters";
   flags?: Number;
-  chosen?: True;
-  correct?: True;
+  chosen?: boolean;
+  correct?: boolean;
   option: Uint8Array;
   voters: number;
 }
@@ -5237,7 +5237,7 @@ export interface $PollAnswerVoters {
 export interface $PollResults {
   _: "pollResults";
   flags?: Number;
-  min?: True;
+  min?: boolean;
   results?: PollAnswerVoters[];
   total_voters?: number;
   recent_voters?: number[];
@@ -5279,43 +5279,43 @@ export interface $PhotoStrippedSize {
 export interface $ChatAdminRights {
   _: "chatAdminRights";
   flags?: Number;
-  change_info?: True;
-  post_messages?: True;
-  edit_messages?: True;
-  delete_messages?: True;
-  ban_users?: True;
-  invite_users?: True;
-  pin_messages?: True;
-  add_admins?: True;
-  anonymous?: True;
-  manage_call?: True;
-  other?: True;
-  manage_topics?: True;
+  change_info?: boolean;
+  post_messages?: boolean;
+  edit_messages?: boolean;
+  delete_messages?: boolean;
+  ban_users?: boolean;
+  invite_users?: boolean;
+  pin_messages?: boolean;
+  add_admins?: boolean;
+  anonymous?: boolean;
+  manage_call?: boolean;
+  other?: boolean;
+  manage_topics?: boolean;
 }
 
 export interface $ChatBannedRights {
   _: "chatBannedRights";
   flags?: Number;
-  view_messages?: True;
-  send_messages?: True;
-  send_media?: True;
-  send_stickers?: True;
-  send_gifs?: True;
-  send_games?: True;
-  send_inline?: True;
-  embed_links?: True;
-  send_polls?: True;
-  change_info?: True;
-  invite_users?: True;
-  pin_messages?: True;
-  manage_topics?: True;
-  send_photos?: True;
-  send_videos?: True;
-  send_roundvideos?: True;
-  send_audios?: True;
-  send_voices?: True;
-  send_docs?: True;
-  send_plain?: True;
+  view_messages?: boolean;
+  send_messages?: boolean;
+  send_media?: boolean;
+  send_stickers?: boolean;
+  send_gifs?: boolean;
+  send_games?: boolean;
+  send_inline?: boolean;
+  embed_links?: boolean;
+  send_polls?: boolean;
+  change_info?: boolean;
+  invite_users?: boolean;
+  pin_messages?: boolean;
+  manage_topics?: boolean;
+  send_photos?: boolean;
+  send_videos?: boolean;
+  send_roundvideos?: boolean;
+  send_audios?: boolean;
+  send_voices?: boolean;
+  send_docs?: boolean;
+  send_plain?: boolean;
   until_date: number;
 }
 
@@ -5366,11 +5366,11 @@ export interface $Account$WallPapers {
 export interface $CodeSettings {
   _: "codeSettings";
   flags?: Number;
-  allow_flashcall?: True;
-  current_number?: True;
-  allow_app_hash?: True;
-  allow_missed_call?: True;
-  allow_firebase?: True;
+  allow_flashcall?: boolean;
+  current_number?: boolean;
+  allow_app_hash?: boolean;
+  allow_missed_call?: boolean;
+  allow_firebase?: boolean;
   logout_tokens?: Uint8Array[];
   token?: string;
   app_sandbox?: boolean;
@@ -5379,8 +5379,8 @@ export interface $CodeSettings {
 export interface $WallPaperSettings {
   _: "wallPaperSettings";
   flags?: Number;
-  blur?: True;
-  motion?: True;
+  blur?: boolean;
+  motion?: boolean;
   background_color?: number;
   second_background_color?: number;
   third_background_color?: number;
@@ -5392,10 +5392,10 @@ export interface $WallPaperSettings {
 export interface $AutoDownloadSettings {
   _: "autoDownloadSettings";
   flags?: Number;
-  disabled?: True;
-  video_preload_large?: True;
-  audio_preload_next?: True;
-  phonecalls_less_data?: True;
+  disabled?: boolean;
+  video_preload_large?: boolean;
+  audio_preload_next?: boolean;
+  phonecalls_less_data?: boolean;
   photo_size_max: number;
   video_size_max: number;
   file_size_max: number;
@@ -5476,7 +5476,7 @@ export interface $InputPhotoLegacyFileLocation {
 export interface $InputPeerPhotoFileLocation {
   _: "inputPeerPhotoFileLocation";
   flags?: Number;
-  big?: True;
+  big?: boolean;
   peer: InputPeer;
   photo_id: number;
 }
@@ -5490,9 +5490,9 @@ export interface $InputStickerSetThumb {
 export interface $Folder {
   _: "folder";
   flags?: Number;
-  autofill_new_broadcasts?: True;
-  autofill_public_groups?: True;
-  autofill_new_correspondents?: True;
+  autofill_new_broadcasts?: boolean;
+  autofill_public_groups?: boolean;
+  autofill_new_correspondents?: boolean;
   id: number;
   title: string;
   photo?: ChatPhoto;
@@ -5501,7 +5501,7 @@ export interface $Folder {
 export interface $DialogFolder {
   _: "dialogFolder";
   flags?: Number;
-  pinned?: True;
+  pinned?: boolean;
   folder: Folder;
   peer: Peer;
   top_message: number;
@@ -5593,7 +5593,7 @@ export interface $ChannelAdminLogEventActionChangeLinkedChat {
 export interface $Messages$SearchCounter {
   _: "messages.searchCounter";
   flags?: Number;
-  inexact?: True;
+  inexact?: boolean;
   filter: MessagesFilter;
   count: number;
 }
@@ -5610,7 +5610,7 @@ export interface $KeyboardButtonUrlAuth {
 export interface $InputKeyboardButtonUrlAuth {
   _: "inputKeyboardButtonUrlAuth";
   flags?: Number;
-  request_write_access?: True;
+  request_write_access?: boolean;
   text: string;
   fwd_text?: string;
   url: string;
@@ -5620,7 +5620,7 @@ export interface $InputKeyboardButtonUrlAuth {
 export interface $UrlAuthResultRequest {
   _: "urlAuthResultRequest";
   flags?: Number;
-  request_write_access?: True;
+  request_write_access?: boolean;
   bot: User;
   domain: string;
 }
@@ -5763,9 +5763,9 @@ export interface $InputThemeSlug {
 export interface $Theme {
   _: "theme";
   flags?: Number;
-  creator?: True;
-  default?: True;
-  for_chat?: True;
+  creator?: boolean;
+  default?: boolean;
+  for_chat?: boolean;
   id: number;
   access_hash: number;
   slug: string;
@@ -5829,8 +5829,8 @@ export interface $Auth$LoginTokenSuccess {
 export interface $Account$ContentSettings {
   _: "account.contentSettings";
   flags?: Number;
-  sensitive_enabled?: True;
-  sensitive_can_change?: True;
+  sensitive_enabled?: boolean;
+  sensitive_can_change?: boolean;
 }
 
 export interface $Messages$InactiveChats {
@@ -5869,15 +5869,15 @@ export interface $WallPaperNoFile {
   _: "wallPaperNoFile";
   id: number;
   flags?: Number;
-  default?: True;
-  dark?: True;
+  default?: boolean;
+  dark?: boolean;
   settings?: WallPaperSettings;
 }
 
 export interface $InputThemeSettings {
   _: "inputThemeSettings";
   flags?: Number;
-  message_colors_animated?: True;
+  message_colors_animated?: boolean;
   base_theme: BaseTheme;
   accent_color: number;
   outbox_accent_color?: number;
@@ -5889,7 +5889,7 @@ export interface $InputThemeSettings {
 export interface $ThemeSettings {
   _: "themeSettings";
   flags?: Number;
-  message_colors_animated?: True;
+  message_colors_animated?: boolean;
   base_theme: BaseTheme;
   accent_color: number;
   outbox_accent_color?: number;
@@ -5974,14 +5974,14 @@ export interface $PeerSelfLocated {
 export interface $DialogFilter {
   _: "dialogFilter";
   flags?: Number;
-  contacts?: True;
-  non_contacts?: True;
-  groups?: True;
-  broadcasts?: True;
-  bots?: True;
-  exclude_muted?: True;
-  exclude_read?: True;
-  exclude_archived?: True;
+  contacts?: boolean;
+  non_contacts?: boolean;
+  groups?: boolean;
+  broadcasts?: boolean;
+  bots?: boolean;
+  exclude_muted?: boolean;
+  exclude_read?: boolean;
+  exclude_archived?: boolean;
   id: number;
   title: string;
   emoticon?: string;
@@ -6097,7 +6097,7 @@ export interface $Help$PromoDataEmpty {
 export interface $Help$PromoData {
   _: "help.promoData";
   flags?: Number;
-  proxy?: True;
+  proxy?: boolean;
   expires: number;
   peer: Peer;
   chats: Chat[];
@@ -6179,8 +6179,8 @@ export interface $GlobalPrivacySettings {
 export interface $PhoneConnectionWebrtc {
   _: "phoneConnectionWebrtc";
   flags?: Number;
-  turn?: True;
-  stun?: True;
+  turn?: boolean;
+  stun?: boolean;
   id: number;
   ip: string;
   ipv6: string;
@@ -6200,7 +6200,7 @@ export interface $Help$CountryCode {
 export interface $Help$Country {
   _: "help.country";
   flags?: Number;
-  hidden?: True;
+  hidden?: boolean;
   iso2: string;
   default_name: string;
   name?: string;
@@ -6279,8 +6279,8 @@ export interface $Messages$DiscussionMessage {
 export interface $MessageReplyHeader {
   _: "messageReplyHeader";
   flags?: Number;
-  reply_to_scheduled?: True;
-  forum_topic?: True;
+  reply_to_scheduled?: boolean;
+  forum_topic?: boolean;
   reply_to_msg_id: number;
   reply_to_peer_id?: Peer;
   reply_to_top_id?: number;
@@ -6289,7 +6289,7 @@ export interface $MessageReplyHeader {
 export interface $MessageReplies {
   _: "messageReplies";
   flags?: Number;
-  comments?: True;
+  comments?: boolean;
   replies: number;
   replies_pts: number;
   recent_repliers?: Peer[];
@@ -6340,7 +6340,7 @@ export interface $ChannelParticipantsMentions {
 export interface $UpdatePinnedMessages {
   _: "updatePinnedMessages";
   flags?: Number;
-  pinned?: True;
+  pinned?: boolean;
   peer: Peer;
   messages: number[];
   pts: number;
@@ -6350,7 +6350,7 @@ export interface $UpdatePinnedMessages {
 export interface $UpdatePinnedChannelMessages {
   _: "updatePinnedChannelMessages";
   flags?: Number;
-  pinned?: True;
+  pinned?: boolean;
   channel_id: number;
   messages: number[];
   pts: number;
@@ -6393,14 +6393,14 @@ export interface $GroupCallDiscarded {
 export interface $GroupCall {
   _: "groupCall";
   flags?: Number;
-  join_muted?: True;
-  can_change_join_muted?: True;
-  join_date_asc?: True;
-  schedule_start_subscribed?: True;
-  can_start_video?: True;
-  record_video_active?: True;
-  rtmp_stream?: True;
-  listeners_hidden?: True;
+  join_muted?: boolean;
+  can_change_join_muted?: boolean;
+  join_date_asc?: boolean;
+  schedule_start_subscribed?: boolean;
+  can_start_video?: boolean;
+  record_video_active?: boolean;
+  rtmp_stream?: boolean;
+  listeners_hidden?: boolean;
   id: number;
   access_hash: number;
   participants_count: number;
@@ -6435,16 +6435,16 @@ export interface $MessageActionInviteToGroupCall {
 export interface $GroupCallParticipant {
   _: "groupCallParticipant";
   flags?: Number;
-  muted?: True;
-  left?: True;
-  can_self_unmute?: True;
-  just_joined?: True;
-  versioned?: True;
-  min?: True;
-  muted_by_you?: True;
-  volume_by_admin?: True;
-  self?: True;
-  video_joined?: True;
+  muted?: boolean;
+  left?: boolean;
+  can_self_unmute?: boolean;
+  just_joined?: boolean;
+  versioned?: boolean;
+  min?: boolean;
+  muted_by_you?: boolean;
+  volume_by_admin?: boolean;
+  self?: boolean;
+  video_joined?: boolean;
   peer: Peer;
   date: number;
   active_date?: number;
@@ -6556,8 +6556,8 @@ export interface $SendMessageHistoryImportAction {
 export interface $Messages$HistoryImportParsed {
   _: "messages.historyImportParsed";
   flags?: Number;
-  pm?: True;
-  group?: True;
+  pm?: boolean;
+  group?: boolean;
   title?: string;
 }
 
@@ -6603,7 +6603,7 @@ export interface $UpdateChatParticipant {
 export interface $UpdateChannelParticipant {
   _: "updateChannelParticipant";
   flags?: Number;
-  via_chatlist?: True;
+  via_chatlist?: boolean;
   channel_id: number;
   date: number;
   actor_id: number;
@@ -6625,8 +6625,8 @@ export interface $UpdateBotStopped {
 export interface $ChatInviteImporter {
   _: "chatInviteImporter";
   flags?: Number;
-  requested?: True;
-  via_chatlist?: True;
+  requested?: boolean;
+  via_chatlist?: boolean;
   user_id: number;
   date: number;
   about?: string;
@@ -6676,7 +6676,7 @@ export interface $Messages$ChatAdminsWithInvites {
 export interface $ChannelAdminLogEventActionParticipantJoinByInvite {
   _: "channelAdminLogEventActionParticipantJoinByInvite";
   flags?: Number;
-  via_chatlist?: True;
+  via_chatlist?: boolean;
   invite: ExportedChatInvite;
 }
 
@@ -6750,8 +6750,8 @@ export interface $InputBotInlineMessageMediaInvoice {
 export interface $BotInlineMessageMediaInvoice {
   _: "botInlineMessageMediaInvoice";
   flags?: Number;
-  shipping_address_requested?: True;
-  test?: True;
+  shipping_address_requested?: boolean;
+  test?: boolean;
   title: string;
   description: string;
   photo?: WebDocument;
@@ -6775,7 +6775,7 @@ export interface $GroupCallParticipantVideoSourceGroup {
 export interface $GroupCallParticipantVideo {
   _: "groupCallParticipantVideo";
   flags?: Number;
-  paused?: True;
+  paused?: boolean;
   endpoint: string;
   source_groups: GroupCallParticipantVideoSourceGroup[];
   audio_source?: number;
@@ -6784,7 +6784,7 @@ export interface $GroupCallParticipantVideo {
 export interface $UpdateGroupCallConnection {
   _: "updateGroupCallConnection";
   flags?: Number;
-  presentation?: True;
+  presentation?: boolean;
   params: DataJSON;
 }
 
@@ -6858,8 +6858,8 @@ export interface $SendMessageChooseStickerAction {
 export interface $SponsoredMessage {
   _: "sponsoredMessage";
   flags?: Number;
-  recommended?: True;
-  show_peer_photo?: True;
+  recommended?: boolean;
+  show_peer_photo?: boolean;
   random_id: Uint8Array;
   from_id?: Peer;
   chat_invite?: ChatInvite;
@@ -6916,7 +6916,7 @@ export interface $SearchResultsCalendarPeriod {
 export interface $Messages$SearchResultsCalendar {
   _: "messages.searchResultsCalendar";
   flags?: Number;
-  inexact?: True;
+  inexact?: boolean;
   count: number;
   min_date: number;
   min_msg_id: number;
@@ -7050,8 +7050,8 @@ export interface $ReactionCount {
 export interface $MessageReactions {
   _: "messageReactions";
   flags?: Number;
-  min?: True;
-  can_see_list?: True;
+  min?: boolean;
+  can_see_list?: boolean;
   results: ReactionCount[];
   recent_reactions?: MessagePeerReaction[];
 }
@@ -7069,8 +7069,8 @@ export interface $Messages$MessageReactionsList {
 export interface $AvailableReaction {
   _: "availableReaction";
   flags?: Number;
-  inactive?: True;
-  premium?: True;
+  inactive?: boolean;
+  premium?: boolean;
   reaction: string;
   title: string;
   static_icon: Document;
@@ -7107,9 +7107,9 @@ export interface $ChannelAdminLogEventActionChangeAvailableReactions {
 export interface $MessagePeerReaction {
   _: "messagePeerReaction";
   flags?: Number;
-  big?: True;
-  unread?: True;
-  my?: True;
+  big?: boolean;
+  unread?: boolean;
+  my?: boolean;
   peer_id: Peer;
   date: number;
   reaction: Reaction;
@@ -7158,9 +7158,9 @@ export interface $AttachMenuBotIcon {
 export interface $AttachMenuBot {
   _: "attachMenuBot";
   flags?: Number;
-  inactive?: True;
-  has_settings?: True;
-  request_write_access?: True;
+  inactive?: boolean;
+  has_settings?: boolean;
+  request_write_access?: boolean;
   bot_id: number;
   short_name: string;
   peer_types: AttachMenuPeerType[];
@@ -7338,7 +7338,7 @@ export interface $Payments$ExportedInvoice {
 export interface $UpdateTranscribedAudio {
   _: "updateTranscribedAudio";
   flags?: Number;
-  pending?: True;
+  pending?: boolean;
   peer: Peer;
   msg_id: number;
   transcription_id: number;
@@ -7348,7 +7348,7 @@ export interface $UpdateTranscribedAudio {
 export interface $Messages$TranscribedAudio {
   _: "messages.transcribedAudio";
   flags?: Number;
-  pending?: True;
+  pending?: boolean;
   transcription_id: number;
   text: string;
 }
@@ -7377,8 +7377,8 @@ export interface $MessageEntityCustomEmoji {
 export interface $DocumentAttributeCustomEmoji {
   _: "documentAttributeCustomEmoji";
   flags?: Number;
-  free?: True;
-  text_color?: True;
+  free?: boolean;
+  text_color?: boolean;
   alt: string;
   stickerset: InputStickerSet;
 }
@@ -7394,8 +7394,8 @@ export interface $StickerSetFullCovered {
 export interface $InputStorePaymentPremiumSubscription {
   _: "inputStorePaymentPremiumSubscription";
   flags?: Number;
-  restore?: True;
-  upgrade?: True;
+  restore?: boolean;
+  upgrade?: boolean;
 }
 
 export interface $InputStorePaymentGiftPremium {
@@ -7450,7 +7450,7 @@ export interface $PaymentFormMethod {
 export interface $InputWebFileAudioAlbumThumbLocation {
   _: "inputWebFileAudioAlbumThumbLocation";
   flags?: Number;
-  small?: True;
+  small?: boolean;
   document?: InputDocument;
   title?: string;
   performer?: string;
@@ -7512,7 +7512,7 @@ export interface $ChatReactionsNone {
 export interface $ChatReactionsAll {
   _: "chatReactionsAll";
   flags?: Number;
-  allow_custom?: True;
+  allow_custom?: boolean;
 }
 
 export interface $ChatReactionsSome {
@@ -7537,16 +7537,16 @@ export interface $UpdateRecentReactions {
 export interface $UpdateMoveStickerSetToTop {
   _: "updateMoveStickerSetToTop";
   flags?: Number;
-  masks?: True;
-  emojis?: True;
+  masks?: boolean;
+  emojis?: boolean;
   stickerset: number;
 }
 
 export interface $Auth$SentCodeTypeEmailCode {
   _: "auth.sentCodeTypeEmailCode";
   flags?: Number;
-  apple_signin_allowed?: True;
-  google_signin_allowed?: True;
+  apple_signin_allowed?: boolean;
+  google_signin_allowed?: boolean;
   email_pattern: string;
   length: number;
   reset_available_period?: number;
@@ -7556,8 +7556,8 @@ export interface $Auth$SentCodeTypeEmailCode {
 export interface $Auth$SentCodeTypeSetUpEmailRequired {
   _: "auth.sentCodeTypeSetUpEmailRequired";
   flags?: Number;
-  apple_signin_allowed?: True;
-  google_signin_allowed?: True;
+  apple_signin_allowed?: boolean;
+  google_signin_allowed?: boolean;
 }
 
 export interface $EmailVerifyPurposeLoginSetup {
@@ -7603,8 +7603,8 @@ export interface $Account$EmailVerifiedLogin {
 export interface $PremiumSubscriptionOption {
   _: "premiumSubscriptionOption";
   flags?: Number;
-  current?: True;
-  can_purchase_upgrade?: True;
+  current?: boolean;
+  can_purchase_upgrade?: boolean;
   transaction?: string;
   months: number;
   currency: string;
@@ -7624,7 +7624,7 @@ export interface $InputStickerSetEmojiDefaultStatuses {
 export interface $SendAsPeer {
   _: "sendAsPeer";
   flags?: Number;
-  premium_required?: True;
+  premium_required?: boolean;
   peer: Peer;
 }
 
@@ -7658,8 +7658,8 @@ export interface $StickerKeyword {
 export interface $Username {
   _: "username";
   flags?: Number;
-  editable?: True;
-  active?: True;
+  editable?: boolean;
+  active?: boolean;
   username: string;
 }
 
@@ -7705,11 +7705,11 @@ export interface $ForumTopicDeleted {
 export interface $ForumTopic {
   _: "forumTopic";
   flags?: Number;
-  my?: True;
-  closed?: True;
-  pinned?: True;
-  short?: True;
-  hidden?: True;
+  my?: boolean;
+  closed?: boolean;
+  pinned?: boolean;
+  short?: boolean;
+  hidden?: boolean;
   id: number;
   date: number;
   title: string;
@@ -7729,7 +7729,7 @@ export interface $ForumTopic {
 export interface $Messages$ForumTopics {
   _: "messages.forumTopics";
   flags?: Number;
-  order_by_create_date?: True;
+  order_by_create_date?: boolean;
   count: number;
   topics: ForumTopic[];
   messages: Message[];
@@ -7758,7 +7758,7 @@ export interface $MessageActionTopicEdit {
 export interface $UpdateChannelPinnedTopic {
   _: "updateChannelPinnedTopic";
   flags?: Number;
-  pinned?: True;
+  pinned?: boolean;
   channel_id: number;
   topic_id: number;
 }
@@ -7852,8 +7852,8 @@ export interface $RequestPeerTypeUser {
 export interface $RequestPeerTypeChat {
   _: "requestPeerTypeChat";
   flags?: Number;
-  creator?: True;
-  bot_participant?: True;
+  creator?: boolean;
+  bot_participant?: boolean;
   has_username?: boolean;
   forum?: boolean;
   user_admin_rights?: ChatAdminRights;
@@ -7863,7 +7863,7 @@ export interface $RequestPeerTypeChat {
 export interface $RequestPeerTypeBroadcast {
   _: "requestPeerTypeBroadcast";
   flags?: Number;
-  creator?: True;
+  creator?: boolean;
   has_username?: boolean;
   user_admin_rights?: ChatAdminRights;
   bot_admin_rights?: ChatAdminRights;
@@ -7939,8 +7939,8 @@ export interface $Messages$TranslateResult {
 export interface $AutoSaveSettings {
   _: "autoSaveSettings";
   flags?: Number;
-  photos?: True;
-  videos?: True;
+  photos?: boolean;
+  videos?: boolean;
   video_max_size?: number;
 }
 
@@ -8006,8 +8006,8 @@ export interface $BotApp {
 export interface $Messages$BotApp {
   _: "messages.botApp";
   flags?: Number;
-  inactive?: True;
-  request_write_access?: True;
+  inactive?: boolean;
+  request_write_access?: boolean;
   app: BotApp;
 }
 
@@ -8036,7 +8036,7 @@ export interface $UpdateGroupInvitePrivacyForbidden {
 export interface $DialogFilterChatlist {
   _: "dialogFilterChatlist";
   flags?: Number;
-  has_my_invites?: True;
+  has_my_invites?: boolean;
   id: number;
   title: string;
   emoticon?: string;
@@ -8195,7 +8195,7 @@ export interface Methods {
   'account.registerDevice': {
     params: {
       flags?: Number;
-      no_muted?: True;
+      no_muted?: boolean;
       token_type: number;
       token: string;
       app_sandbox: boolean;
@@ -8334,7 +8334,7 @@ export interface Methods {
   'messages.getDialogs': {
     params: {
       flags?: Number;
-      exclude_pinned?: True;
+      exclude_pinned?: boolean;
       folder_id?: number;
       offset_date: number;
       offset_id: number;
@@ -8386,8 +8386,8 @@ export interface Methods {
   'messages.deleteHistory': {
     params: {
       flags?: Number;
-      just_clear?: True;
-      revoke?: True;
+      just_clear?: boolean;
+      revoke?: boolean;
       peer: InputPeer;
       max_id: number;
       min_date?: number;
@@ -8398,7 +8398,7 @@ export interface Methods {
   'messages.deleteMessages': {
     params: {
       flags?: Number;
-      revoke?: True;
+      revoke?: boolean;
       id: number[];
     }
     response: Messages$AffectedMessages
@@ -8421,12 +8421,12 @@ export interface Methods {
   'messages.sendMessage': {
     params: {
       flags?: Number;
-      no_webpage?: True;
-      silent?: True;
-      background?: True;
-      clear_draft?: True;
-      noforwards?: True;
-      update_stickersets_order?: True;
+      no_webpage?: boolean;
+      silent?: boolean;
+      background?: boolean;
+      clear_draft?: boolean;
+      noforwards?: boolean;
+      update_stickersets_order?: boolean;
       peer: InputPeer;
       reply_to_msg_id?: number;
       top_msg_id?: number;
@@ -8442,11 +8442,11 @@ export interface Methods {
   'messages.sendMedia': {
     params: {
       flags?: Number;
-      silent?: True;
-      background?: True;
-      clear_draft?: True;
-      noforwards?: True;
-      update_stickersets_order?: True;
+      silent?: boolean;
+      background?: boolean;
+      clear_draft?: boolean;
+      noforwards?: boolean;
+      update_stickersets_order?: boolean;
       peer: InputPeer;
       reply_to_msg_id?: number;
       top_msg_id?: number;
@@ -8463,12 +8463,12 @@ export interface Methods {
   'messages.forwardMessages': {
     params: {
       flags?: Number;
-      silent?: True;
-      background?: True;
-      with_my_score?: True;
-      drop_author?: True;
-      drop_media_captions?: True;
-      noforwards?: True;
+      silent?: boolean;
+      background?: boolean;
+      with_my_score?: boolean;
+      drop_author?: boolean;
+      drop_media_captions?: boolean;
+      noforwards?: boolean;
       from_peer: InputPeer;
       id: number[];
       random_id: number[];
@@ -8537,7 +8537,7 @@ export interface Methods {
   'messages.deleteChatUser': {
     params: {
       flags?: Number;
-      revoke_history?: True;
+      revoke_history?: boolean;
       chat_id: number;
       user_id: InputUser;
     }
@@ -8570,7 +8570,7 @@ export interface Methods {
   'photos.updateProfilePhoto': {
     params: {
       flags?: Number;
-      fallback?: True;
+      fallback?: boolean;
       bot?: InputUser;
       id: InputPhoto;
     }
@@ -8579,7 +8579,7 @@ export interface Methods {
   'photos.uploadProfilePhoto': {
     params: {
       flags?: Number;
-      fallback?: True;
+      fallback?: boolean;
       bot?: InputUser;
       file?: InputFile;
       video?: InputFile;
@@ -8605,8 +8605,8 @@ export interface Methods {
   'upload.getFile': {
     params: {
       flags?: Number;
-      precise?: True;
-      cdn_supported?: True;
+      precise?: boolean;
+      cdn_supported?: boolean;
       location: InputFileLocation;
       offset: number;
       limit: number;
@@ -8669,7 +8669,7 @@ export interface Methods {
   'messages.discardEncryption': {
     params: {
       flags?: Number;
-      delete_history?: True;
+      delete_history?: boolean;
       chat_id: number;
     }
     response: boolean
@@ -8691,7 +8691,7 @@ export interface Methods {
   'messages.sendEncrypted': {
     params: {
       flags?: Number;
-      silent?: True;
+      silent?: boolean;
       peer: InputEncryptedChat;
       random_id: number;
       data: Uint8Array;
@@ -8701,7 +8701,7 @@ export interface Methods {
   'messages.sendEncryptedFile': {
     params: {
       flags?: Number;
-      silent?: True;
+      silent?: boolean;
       peer: InputEncryptedChat;
       random_id: number;
       data: Uint8Array;
@@ -8937,8 +8937,8 @@ export interface Methods {
   'messages.exportChatInvite': {
     params: {
       flags?: Number;
-      legacy_revoke_permanent?: True;
-      request_needed?: True;
+      legacy_revoke_permanent?: boolean;
+      request_needed?: boolean;
       peer: InputPeer;
       expire_date?: number;
       usage_limit?: number;
@@ -9062,10 +9062,10 @@ export interface Methods {
   'channels.createChannel': {
     params: {
       flags?: Number;
-      broadcast?: True;
-      megagroup?: True;
-      for_import?: True;
-      forum?: True;
+      broadcast?: boolean;
+      megagroup?: boolean;
+      for_import?: boolean;
+      forum?: boolean;
       title: string;
       about: string;
       geo_point?: InputGeoPoint;
@@ -9139,7 +9139,7 @@ export interface Methods {
   'updates.getChannelDifference': {
     params: {
       flags?: Number;
-      force?: True;
+      force?: boolean;
       channel: InputChannel;
       filter: ChannelMessagesFilter;
       pts: number;
@@ -9179,8 +9179,8 @@ export interface Methods {
   'messages.reorderStickerSets': {
     params: {
       flags?: Number;
-      masks?: True;
-      emojis?: True;
+      masks?: boolean;
+      emojis?: boolean;
       order: number[];
     }
     response: boolean
@@ -9220,8 +9220,8 @@ export interface Methods {
   'messages.setInlineBotResults': {
     params: {
       flags?: Number;
-      gallery?: True;
-      private?: True;
+      gallery?: boolean;
+      private?: boolean;
       query_id: number;
       results: InputBotInlineResult[];
       cache_time: number;
@@ -9234,10 +9234,10 @@ export interface Methods {
   'messages.sendInlineBotResult': {
     params: {
       flags?: Number;
-      silent?: True;
-      background?: True;
-      clear_draft?: True;
-      hide_via?: True;
+      silent?: boolean;
+      background?: boolean;
+      clear_draft?: boolean;
+      hide_via?: boolean;
       peer: InputPeer;
       reply_to_msg_id?: number;
       top_msg_id?: number;
@@ -9252,8 +9252,8 @@ export interface Methods {
   'channels.exportMessageLink': {
     params: {
       flags?: Number;
-      grouped?: True;
-      thread?: True;
+      grouped?: boolean;
+      thread?: boolean;
       channel: InputChannel;
       id: number;
     }
@@ -9290,7 +9290,7 @@ export interface Methods {
   'messages.editMessage': {
     params: {
       flags?: Number;
-      no_webpage?: True;
+      no_webpage?: boolean;
       peer: InputPeer;
       id: number;
       message?: string;
@@ -9304,7 +9304,7 @@ export interface Methods {
   'messages.editInlineBotMessage': {
     params: {
       flags?: Number;
-      no_webpage?: True;
+      no_webpage?: boolean;
       id: InputBotInlineMessageID;
       message?: string;
       media?: InputMedia;
@@ -9316,7 +9316,7 @@ export interface Methods {
   'messages.getBotCallbackAnswer': {
     params: {
       flags?: Number;
-      game?: True;
+      game?: boolean;
       peer: InputPeer;
       msg_id: number;
       data?: Uint8Array;
@@ -9327,7 +9327,7 @@ export interface Methods {
   'messages.setBotCallbackAnswer': {
     params: {
       flags?: Number;
-      alert?: True;
+      alert?: boolean;
       query_id: number;
       message?: string;
       url?: string;
@@ -9338,14 +9338,14 @@ export interface Methods {
   'contacts.getTopPeers': {
     params: {
       flags?: Number;
-      correspondents?: True;
-      bots_pm?: True;
-      bots_inline?: True;
-      phone_calls?: True;
-      forward_users?: True;
-      forward_chats?: True;
-      groups?: True;
-      channels?: True;
+      correspondents?: boolean;
+      bots_pm?: boolean;
+      bots_inline?: boolean;
+      phone_calls?: boolean;
+      forward_users?: boolean;
+      forward_chats?: boolean;
+      groups?: boolean;
+      channels?: boolean;
       offset: number;
       limit: number;
       hash: number;
@@ -9368,7 +9368,7 @@ export interface Methods {
   'messages.saveDraft': {
     params: {
       flags?: Number;
-      no_webpage?: True;
+      no_webpage?: boolean;
       reply_to_msg_id?: number;
       top_msg_id?: number;
       peer: InputPeer;
@@ -9397,7 +9397,7 @@ export interface Methods {
   'messages.getRecentStickers': {
     params: {
       flags?: Number;
-      attached?: True;
+      attached?: boolean;
       hash: number;
     }
     response: Messages$RecentStickers
@@ -9405,7 +9405,7 @@ export interface Methods {
   'messages.saveRecentSticker': {
     params: {
       flags?: Number;
-      attached?: True;
+      attached?: boolean;
       id: InputDocument;
       unsave: boolean;
     }
@@ -9414,15 +9414,15 @@ export interface Methods {
   'messages.clearRecentStickers': {
     params: {
       flags?: Number;
-      attached?: True;
+      attached?: boolean;
     }
     response: boolean
   }
   'messages.getArchivedStickers': {
     params: {
       flags?: Number;
-      masks?: True;
-      emojis?: True;
+      masks?: boolean;
+      emojis?: boolean;
       offset_id: number;
       limit: number;
     }
@@ -9445,8 +9445,8 @@ export interface Methods {
   'channels.getAdminedPublicChannels': {
     params: {
       flags?: Number;
-      by_location?: True;
-      check_limit?: True;
+      by_location?: boolean;
+      check_limit?: boolean;
     }
     response: Messages$Chats
   }
@@ -9471,8 +9471,8 @@ export interface Methods {
   'messages.setGameScore': {
     params: {
       flags?: Number;
-      edit_message?: True;
-      force?: True;
+      edit_message?: boolean;
+      force?: boolean;
       peer: InputPeer;
       id: number;
       user_id: InputUser;
@@ -9483,8 +9483,8 @@ export interface Methods {
   'messages.setInlineGameScore': {
     params: {
       flags?: Number;
-      edit_message?: True;
-      force?: True;
+      edit_message?: boolean;
+      force?: boolean;
       id: InputBotInlineMessageID;
       user_id: InputUser;
       score: number;
@@ -9531,7 +9531,7 @@ export interface Methods {
   'messages.toggleDialogPin': {
     params: {
       flags?: Number;
-      pinned?: True;
+      pinned?: boolean;
       peer: InputDialogPeer;
     }
     response: boolean
@@ -9539,7 +9539,7 @@ export interface Methods {
   'messages.reorderPinnedDialogs': {
     params: {
       flags?: Number;
-      force?: True;
+      force?: boolean;
       folder_id: number;
       order: InputDialogPeer[];
     }
@@ -9591,7 +9591,7 @@ export interface Methods {
   'payments.validateRequestedInfo': {
     params: {
       flags?: Number;
-      save?: True;
+      save?: boolean;
       invoice: InputInvoice;
       info: PaymentRequestedInfo;
     }
@@ -9624,8 +9624,8 @@ export interface Methods {
   'payments.clearSavedInfo': {
     params: {
       flags?: Number;
-      credentials?: True;
-      info?: True;
+      credentials?: boolean;
+      info?: boolean;
     }
     response: boolean
   }
@@ -9641,7 +9641,7 @@ export interface Methods {
   'messages.setBotPrecheckoutResults': {
     params: {
       flags?: Number;
-      success?: True;
+      success?: boolean;
       query_id: number;
       error?: string;
     }
@@ -9650,11 +9650,11 @@ export interface Methods {
   'stickers.createStickerSet': {
     params: {
       flags?: Number;
-      masks?: True;
-      animated?: True;
-      videos?: True;
-      emojis?: True;
-      text_color?: True;
+      masks?: boolean;
+      animated?: boolean;
+      videos?: boolean;
+      emojis?: boolean;
+      text_color?: boolean;
       user_id: InputUser;
       title: string;
       short_name: string;
@@ -9699,7 +9699,7 @@ export interface Methods {
   'phone.requestCall': {
     params: {
       flags?: Number;
-      video?: True;
+      video?: boolean;
       user_id: InputUser;
       random_id: number;
       g_a_hash: Uint8Array;
@@ -9733,7 +9733,7 @@ export interface Methods {
   'phone.discardCall': {
     params: {
       flags?: Number;
-      video?: True;
+      video?: boolean;
       peer: InputPhoneCall;
       duration: number;
       reason: PhoneCallDiscardReason;
@@ -9744,7 +9744,7 @@ export interface Methods {
   'phone.setCallRating': {
     params: {
       flags?: Number;
-      user_initiative?: True;
+      user_initiative?: boolean;
       peer: InputPhoneCall;
       rating: number;
       comment: string;
@@ -9891,7 +9891,7 @@ export interface Methods {
   'channels.deleteHistory': {
     params: {
       flags?: Number;
-      for_everyone?: True;
+      for_everyone?: boolean;
       channel: InputChannel;
       max_id: number;
     }
@@ -9929,11 +9929,11 @@ export interface Methods {
   'messages.sendMultiMedia': {
     params: {
       flags?: Number;
-      silent?: True;
-      background?: True;
-      clear_draft?: True;
-      noforwards?: True;
-      update_stickersets_order?: True;
+      silent?: boolean;
+      background?: boolean;
+      clear_draft?: boolean;
+      noforwards?: boolean;
+      update_stickersets_order?: boolean;
       peer: InputPeer;
       reply_to_msg_id?: number;
       top_msg_id?: number;
@@ -9969,7 +9969,7 @@ export interface Methods {
   'messages.searchStickerSets': {
     params: {
       flags?: Number;
-      exclude_featured?: True;
+      exclude_featured?: boolean;
       q: string;
       hash: number;
     }
@@ -10091,12 +10091,12 @@ export interface Methods {
   'account.initTakeoutSession': {
     params: {
       flags?: Number;
-      contacts?: True;
-      message_users?: True;
-      message_chats?: True;
-      message_megagroups?: True;
-      message_channels?: True;
-      files?: True;
+      contacts?: boolean;
+      message_users?: boolean;
+      message_chats?: boolean;
+      message_megagroups?: boolean;
+      message_channels?: boolean;
+      files?: boolean;
       file_max_size?: number;
     }
     response: Account$Takeout
@@ -10104,7 +10104,7 @@ export interface Methods {
   'account.finishTakeoutSession': {
     params: {
       flags?: Number;
-      success?: True;
+      success?: boolean;
     }
     response: boolean
   }
@@ -10130,7 +10130,7 @@ export interface Methods {
   'messages.markDialogUnread': {
     params: {
       flags?: Number;
-      unread?: True;
+      unread?: boolean;
       peer: InputDialogPeer;
     }
     response: boolean
@@ -10179,9 +10179,9 @@ export interface Methods {
   'messages.updatePinnedMessage': {
     params: {
       flags?: Number;
-      silent?: True;
-      unpin?: True;
-      pm_oneside?: True;
+      silent?: boolean;
+      unpin?: boolean;
+      pm_oneside?: boolean;
       peer: InputPeer;
       id: number;
     }
@@ -10236,7 +10236,7 @@ export interface Methods {
   'account.getNotifyExceptions': {
     params: {
       flags?: Number;
-      compare_sound?: True;
+      compare_sound?: boolean;
       peer?: InputNotifyPeer;
     }
     response: Updates
@@ -10285,7 +10285,7 @@ export interface Methods {
   'account.uploadWallPaper': {
     params: {
       flags?: Number;
-      for_chat?: True;
+      for_chat?: boolean;
       file: InputFile;
       mime_type: string;
       settings: WallPaperSettings;
@@ -10320,8 +10320,8 @@ export interface Methods {
   'account.saveAutoDownloadSettings': {
     params: {
       flags?: Number;
-      low?: True;
-      high?: True;
+      low?: boolean;
+      high?: boolean;
       settings: AutoDownloadSettings;
     }
     response: boolean
@@ -10391,7 +10391,7 @@ export interface Methods {
   'messages.acceptUrlAuth': {
     params: {
       flags?: Number;
-      write_allowed?: True;
+      write_allowed?: boolean;
       peer?: InputPeer;
       msg_id?: number;
       button_id?: number;
@@ -10408,7 +10408,7 @@ export interface Methods {
   'contacts.addContact': {
     params: {
       flags?: Number;
-      add_phone_privacy_exception?: True;
+      add_phone_privacy_exception?: boolean;
       id: InputUser;
       first_name: string;
       last_name: string;
@@ -10433,7 +10433,7 @@ export interface Methods {
   'contacts.getLocated': {
     params: {
       flags?: Number;
-      background?: True;
+      background?: boolean;
       geo_point: InputGeoPoint;
       self_expires?: number;
     }
@@ -10524,7 +10524,7 @@ export interface Methods {
   'account.installTheme': {
     params: {
       flags?: Number;
-      dark?: True;
+      dark?: boolean;
       theme?: InputTheme;
       format?: string;
       base_theme?: BaseTheme;
@@ -10568,7 +10568,7 @@ export interface Methods {
   'account.setContentSettings': {
     params: {
       flags?: Number;
-      sensitive_enabled?: True;
+      sensitive_enabled?: boolean;
     }
     response: boolean
   }
@@ -10602,9 +10602,9 @@ export interface Methods {
   'messages.toggleStickerSets': {
     params: {
       flags?: Number;
-      uninstall?: True;
-      archive?: True;
-      unarchive?: True;
+      uninstall?: boolean;
+      archive?: boolean;
+      unarchive?: boolean;
       stickersets: InputStickerSet[];
     }
     response: boolean
@@ -10642,7 +10642,7 @@ export interface Methods {
   'stats.getBroadcastStats': {
     params: {
       flags?: Number;
-      dark?: True;
+      dark?: boolean;
       channel: InputChannel;
     }
     response: Stats$BroadcastStats
@@ -10701,7 +10701,7 @@ export interface Methods {
   'stats.getMegagroupStats': {
     params: {
       flags?: Number;
-      dark?: True;
+      dark?: boolean;
       channel: InputChannel;
     }
     response: Stats$MegagroupStats
@@ -10763,9 +10763,9 @@ export interface Methods {
   'contacts.blockFromReplies': {
     params: {
       flags?: Number;
-      delete_message?: True;
-      delete_history?: True;
-      report_spam?: True;
+      delete_message?: boolean;
+      delete_history?: boolean;
+      report_spam?: boolean;
       msg_id: number;
     }
     response: Updates
@@ -10784,7 +10784,7 @@ export interface Methods {
   'stats.getMessageStats': {
     params: {
       flags?: Number;
-      dark?: True;
+      dark?: boolean;
       channel: InputChannel;
       msg_id: number;
     }
@@ -10801,7 +10801,7 @@ export interface Methods {
   'phone.createGroupCall': {
     params: {
       flags?: Number;
-      rtmp_stream?: True;
+      rtmp_stream?: boolean;
       peer: InputPeer;
       random_id: number;
       title?: string;
@@ -10812,8 +10812,8 @@ export interface Methods {
   'phone.joinGroupCall': {
     params: {
       flags?: Number;
-      muted?: True;
-      video_stopped?: True;
+      muted?: boolean;
+      video_stopped?: boolean;
       call: InputGroupCall;
       join_as: InputPeer;
       invite_hash?: string;
@@ -10844,7 +10844,7 @@ export interface Methods {
   'phone.toggleGroupCallSettings': {
     params: {
       flags?: Number;
-      reset_invite_hash?: True;
+      reset_invite_hash?: boolean;
       call: InputGroupCall;
       join_muted?: boolean;
     }
@@ -10883,7 +10883,7 @@ export interface Methods {
   'messages.deletePhoneCallHistory': {
     params: {
       flags?: Number;
-      revoke?: True;
+      revoke?: boolean;
     }
     response: Messages$AffectedFoundMessages
   }
@@ -10920,7 +10920,7 @@ export interface Methods {
   'messages.getExportedChatInvites': {
     params: {
       flags?: Number;
-      revoked?: True;
+      revoked?: boolean;
       peer: InputPeer;
       admin_id: InputUser;
       offset_date?: number;
@@ -10939,7 +10939,7 @@ export interface Methods {
   'messages.editExportedChatInvite': {
     params: {
       flags?: Number;
-      revoked?: True;
+      revoked?: boolean;
       peer: InputPeer;
       link: string;
       expire_date?: number;
@@ -10972,7 +10972,7 @@ export interface Methods {
   'messages.getChatInviteImporters': {
     params: {
       flags?: Number;
-      requested?: True;
+      requested?: boolean;
       peer: InputPeer;
       link?: string;
       q?: string;
@@ -11013,8 +11013,8 @@ export interface Methods {
   'phone.toggleGroupCallRecord': {
     params: {
       flags?: Number;
-      start?: True;
-      video?: True;
+      start?: boolean;
+      video?: boolean;
       call: InputGroupCall;
       title?: string;
       video_portrait?: boolean;
@@ -11051,7 +11051,7 @@ export interface Methods {
   'phone.exportGroupCallInvite': {
     params: {
       flags?: Number;
-      can_self_unmute?: True;
+      can_self_unmute?: boolean;
       call: InputGroupCall;
     }
     response: Phone$ExportedGroupCallInvite
@@ -11185,7 +11185,7 @@ export interface Methods {
   'messages.hideChatJoinRequest': {
     params: {
       flags?: Number;
-      approved?: True;
+      approved?: boolean;
       peer: InputPeer;
       user_id: InputUser;
     }
@@ -11194,7 +11194,7 @@ export interface Methods {
   'messages.hideAllChatJoinRequests': {
     params: {
       flags?: Number;
-      approved?: True;
+      approved?: boolean;
       peer: InputPeer;
       link?: string;
     }
@@ -11245,8 +11245,8 @@ export interface Methods {
   'messages.sendReaction': {
     params: {
       flags?: Number;
-      big?: True;
-      add_to_recent?: True;
+      big?: boolean;
+      add_to_recent?: boolean;
       peer: InputPeer;
       msg_id: number;
       reaction?: Reaction[];
@@ -11363,7 +11363,7 @@ export interface Methods {
   'messages.toggleBotInAttachMenu': {
     params: {
       flags?: Number;
-      write_allowed?: True;
+      write_allowed?: boolean;
       bot: InputUser;
       enabled: boolean;
     }
@@ -11372,8 +11372,8 @@ export interface Methods {
   'messages.requestWebView': {
     params: {
       flags?: Number;
-      from_bot_menu?: True;
-      silent?: True;
+      from_bot_menu?: boolean;
+      silent?: boolean;
       peer: InputPeer;
       bot: InputUser;
       url?: string;
@@ -11389,7 +11389,7 @@ export interface Methods {
   'messages.prolongWebView': {
     params: {
       flags?: Number;
-      silent?: True;
+      silent?: boolean;
       peer: InputPeer;
       bot: InputUser;
       query_id: number;
@@ -11402,7 +11402,7 @@ export interface Methods {
   'messages.requestSimpleWebView': {
     params: {
       flags?: Number;
-      from_switch_webview?: True;
+      from_switch_webview?: boolean;
       bot: InputUser;
       url: string;
       theme_params?: DataJSON;
@@ -11725,7 +11725,7 @@ export interface Methods {
   'channels.reorderPinnedForumTopics': {
     params: {
       flags?: Number;
-      force?: True;
+      force?: boolean;
       channel: InputChannel;
       order: number[];
     }
@@ -11770,8 +11770,8 @@ export interface Methods {
   'photos.uploadContactProfilePhoto': {
     params: {
       flags?: Number;
-      suggest?: True;
-      save?: True;
+      suggest?: boolean;
+      save?: boolean;
       user_id: InputUser;
       file?: InputFile;
       video?: InputFile;
@@ -11846,7 +11846,7 @@ export interface Methods {
   'messages.togglePeerTranslations': {
     params: {
       flags?: Number;
-      disabled?: True;
+      disabled?: boolean;
       peer: InputPeer;
     }
     response: boolean
@@ -11859,9 +11859,9 @@ export interface Methods {
   'account.saveAutoSaveSettings': {
     params: {
       flags?: Number;
-      users?: True;
-      chats?: True;
-      broadcasts?: True;
+      users?: boolean;
+      chats?: boolean;
+      broadcasts?: boolean;
       peer?: InputPeer;
       settings: AutoSaveSettings;
     }
@@ -11905,7 +11905,7 @@ export interface Methods {
   'messages.requestAppWebView': {
     params: {
       flags?: Number;
-      write_allowed?: True;
+      write_allowed?: boolean;
       peer: InputPeer;
       app: InputBotApp;
       start_param?: string;

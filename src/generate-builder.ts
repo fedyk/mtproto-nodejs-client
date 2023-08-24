@@ -31,6 +31,7 @@ const primitiveTypes = new Map([
   ["bytes", "Uint8Array"],
   ["double", "number"],
   ["Bool", "boolean"],
+  ["true", "boolean"],
 ])
 
 function typeIsVector(type: string) {
@@ -132,7 +133,6 @@ function paramsToInterfaceLines(params: any[]) {
   params.forEach(function (param: any) {
     let name = String(param.name)
     let type = String(param.type)
-
 
     if (type.startsWith("flags")) {
       type = type.replace(/flags\d*\.\d*/, "")
