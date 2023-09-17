@@ -91,7 +91,7 @@ mtproto.call("updates.getState").then(function(state) {
 
 ## Credits
 
-The library was initially created by [@alik0211](https://github.com/alik0211/mtproto-core). I just added TypeScript.
+The library was initially created by [@alik0211](https://github.com/alik0211/mtproto-core). I added TypeScript, removed browser support and adjusted code to focus only on Node.js support.
 
 ## License
 

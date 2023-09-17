@@ -1,30 +1,30 @@
 import events from "node:events"
 import Debug from "debug"
-import type { DC, IStorage } from "./types.js"
-import { RPC, RPCEventEmitter, } from "./rpc.js"
-import { Transport } from "./transport.js"
-import { Methods } from "./mtptoto-types.js"
 import { Storage } from "./storage.js"
 import { RPCError } from "./errors.js"
+import { Transport } from "./transport.js"
+import { Methods } from "./mtptoto-types.js"
+import type { DC, IStorage } from "./types.js"
+import { RPC, RPCEventEmitter, } from "./rpc.js"
 
-export const debug = Debug("mtproto")
+const debug = Debug("mtproto")
 
 const TEST_DC_LIST: DC[] = [
   {
     id: 1,
-    ip: '149.154.175.10',
+    ip: "149.154.175.10",
     port: 80,
     test: true,
   },
   {
     id: 2,
-    ip: '149.154.167.40',
+    ip: "149.154.167.40",
     port: 443,
     test: true,
   },
   {
     id: 3,
-    ip: '149.154.175.117',
+    ip: "149.154.175.117",
     port: 443,
     test: true,
   },
@@ -33,27 +33,27 @@ const TEST_DC_LIST: DC[] = [
 const PRODUCTION_DC_LIST: DC[] = [
   {
     id: 1,
-    ip: '149.154.175.53',
+    ip: "149.154.175.53",
     port: 443,
   },
   {
     id: 2,
-    ip: '149.154.167.50',
+    ip: "149.154.167.50",
     port: 443,
   },
   {
     id: 3,
-    ip: '149.154.175.100',
+    ip: "149.154.175.100",
     port: 443,
   },
   {
     id: 4,
-    ip: '149.154.167.92',
+    ip: "149.154.167.92",
     port: 443,
   },
   {
     id: 5,
-    ip: '91.108.56.128',
+    ip: "91.108.56.128",
     port: 443,
   },
 ];
@@ -95,30 +95,45 @@ export class MTProto {
     this.rpcs.clear()
   }
 
-  async call<T extends keyof Methods>(method: T, params?: Methods[T]["params"], options?: {
+  async call<T extends keyof Methods>(method: T, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
+    try {
+      const result = await this._call(method, params)
+
+      return result
+    }
+    catch (err) {
+      if (err instanceof RPCError && err.message.includes("_MIGRATE_") && err.code === 303) {
+        const [type, dcIdAsString] = err.message.split("_MIGRATE_");
+        const dcId = Number(dcIdAsString);
+        const options: { dcId?: number } = {}
+
+        // If auth.sendCode call on incorrect DC need change default DC, because
+        // call auth.signIn on incorrect DC return PHONE_CODE_EXPIRED error
+        if (type === "PHONE") {
+          await this.setDefaultDc(dcId);
+        }
+        else {
+          options.dcId = dcId;
+        }
+
+        return this._call(method, params, options);
+      }
+
+      throw err
+    }
+  }
+
+  private async _call<T extends keyof Methods>(method: T, params?: Methods[T]["params"], options?: {
     dcId?: number
     syncAuth?: boolean
   }): Promise<Methods[T]["response"]> {
     const syncAuth = options?.syncAuth || true
-    const dcId = options?.dcId || (await this.storage.get('defaultDcId')) || 2;
+    const dcId = options?.dcId || (await this.storage.get("defaultDcId")) || 2;
     const rpc = this.getRPC(Number(dcId));
-    const result = await rpc.call(method, params).catch(async (err: RPCError) => {
-      if (err.code === 303 && err.message.includes("_MIGRATE_")) {
-        const [type, dcIdAsString] = err.message.split("_MIGRATE_");
-        const dcId = Number(dcIdAsString)
-
-        if (type === "PHONE") {
-          await this.setDefaultDc(dcId);
-        }
-
-        return this.getRPC(dcId).call(method, params)
-      }
-
-      throw err
-    })
+    const result = await rpc.call(method, params)
 
     // @ts-ignore
-    if (syncAuth && result._ === 'auth.authorization') {
+    if (syncAuth && result._ === "auth.authorization") {
       await this.syncAuth(Number(dcId));
     }
 
@@ -126,34 +141,25 @@ export class MTProto {
   }
 
   syncAuth(dcId: number) {
-    const promises: Promise<any>[] = [];
+    const promises: Promise<unknown>[] = [];
 
     this.dcList.forEach((dc) => {
       if (dcId === dc.id) {
         return;
       }
 
-      const promise = this.call(
-        'auth.exportAuthorization',
-        {
-          dc_id: dc.id,
-        },
-        { dcId }
-      )
-        .then((result: any) => {
-          return this.call(
-            'auth.importAuthorization',
-            {
-              id: result.id,
-              bytes: result.bytes,
-            },
-            { dcId: dc.id, syncAuth: false }
-          );
+      const promise = this._call("auth.exportAuthorization", { dc_id: dc.id }, { dcId })
+        .then((result) => {
+          return this._call("auth.importAuthorization", {
+            id: result.id,
+            bytes: result.bytes,
+          }, {
+            dcId: dc.id,
+            syncAuth: false
+          });
         })
         .catch((error) => {
-          debug(`error when copy auth to DC ${dc.id}`, error);
-
-          return Promise.resolve();
+          debug("error when copy auth to DC %o: %o", dc, error);
         });
 
       promises.push(promise);
@@ -163,7 +169,7 @@ export class MTProto {
   }
 
   setDefaultDc(dcId: number) {
-    return this.storage.set('defaultDcId', dcId);
+    return this.storage.set("defaultDcId", dcId);
   }
 
   getRPC(dcId: number): RPC {
@@ -176,7 +182,7 @@ export class MTProto {
     const dc = this.dcList.find(({ id }) => id === dcId);
 
     if (!dc) {
-      throw new Error(`don't find DC ${dcId}`)
+      throw new Error(`don"t find DC ${dcId}`)
     }
 
     const transport = createTransport(dc);
