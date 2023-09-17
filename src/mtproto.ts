@@ -140,6 +140,9 @@ export class MTProto {
     return result;
   }
 
+  /**
+   * @todo check if this logic is not obsolete
+   */
   syncAuth(dcId: number) {
     const promises: Promise<unknown>[] = [];
 
@@ -159,7 +162,13 @@ export class MTProto {
           });
         })
         .catch((error) => {
-          debug("error when copy auth to DC %o: %o", dc, error);
+          let message = "Unknown auth import/export error"
+
+          if (error instanceof Error) {
+            message = error.message
+          }
+
+          debug("error when copy auth to DC %o: %o", dc, message);
         });
 
       promises.push(promise);

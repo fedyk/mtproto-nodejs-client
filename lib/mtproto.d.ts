@@ -19,6 +19,9 @@ export declare class MTProto {
     destroy(): void;
     call<T extends keyof Methods>(method: T, params?: Methods[T]["params"]): Promise<Methods[T]["response"]>;
     private _call;
+    /**
+     * @todo check if this logic is not obsolete
+     */
     syncAuth(dcId: number): Promise<unknown[]>;
     setDefaultDc(dcId: number): Promise<void>;
     getRPC(dcId: number): RPC;
