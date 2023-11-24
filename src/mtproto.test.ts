@@ -1,10 +1,11 @@
 import test from "node:test"
+import assert from "node:assert/strict"
 import { MTProto } from "./mtproto.js";
 import { createTempStorage } from "./temp-storage.js";
 import { IStorage } from "./types.js";
 
-const api_id = Number(process.env.API_ID)
-const api_hash = String(process.env.API_HASH)
+const api_id = Number(process.env.API_ID || 0)
+const api_hash = String(process.env.API_HASH || "")
 const phone_number = "9996621111"
 const phone_code = "22222"
 
@@ -22,6 +23,11 @@ test.describe("MTProto", {
 
   test.after(function () {
     mtproto.destroy()
+  })
+
+  test.it("should have credentials for tests", function () {
+    assert.ok(api_id > 0, "`api_id` is required")
+    assert.ok(api_hash, "`api_hash` is required")
   })
 
   test.it("should get config", async function () {
