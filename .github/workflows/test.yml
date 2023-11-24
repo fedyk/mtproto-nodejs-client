@@ -3,6 +3,7 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     environment: test
     steps:
     - uses: actions/checkout@v4
@@ -14,5 +15,5 @@ jobs:
     - run: npm run test
       env:
         DEBUG: "*"
-        API_ID: ${{ secrets.API_ID }}
-        API_HASH: ${{ secrets.API_HASH }}
+        API_ID: ${{ vars.API_ID }}
+        API_HASH: ${{ vars.API_HASH }}
