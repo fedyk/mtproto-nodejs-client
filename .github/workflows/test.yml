@@ -14,3 +14,5 @@ jobs:
     - run: npm run test
       env:
         DEBUG: "*"
+        API_ID: ${{ secrets.API_ID }}
+        API_HASH: ${{ secrets.API_HASH }}
