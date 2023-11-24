@@ -1,5 +1,4 @@
 .DS_Store
+test.sh
 /lib
 /node_modules
-example.json
-src/example.ts

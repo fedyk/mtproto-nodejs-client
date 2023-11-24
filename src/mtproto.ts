@@ -59,7 +59,7 @@ const PRODUCTION_DC_LIST: DC[] = [
 ];
 
 export class MTProto {
-  api_id: string
+  api_id: number
   api_hash: string
   initConnectionParams: Record<string, unknown>
   dcList: DC[]
@@ -69,7 +69,7 @@ export class MTProto {
 
   constructor(options: {
     test: boolean
-    api_id: string
+    api_id: number
     api_hash: string
     storage: IStorage
   }) {
@@ -80,7 +80,7 @@ export class MTProto {
 
     this.initConnectionParams = {};
 
-    this.dcList = !!options.test ? TEST_DC_LIST : PRODUCTION_DC_LIST;
+    this.dcList = options.test ? TEST_DC_LIST : PRODUCTION_DC_LIST;
 
     this.rpcs = new Map<number, RPC>();
     this.storage = new Storage(storage);

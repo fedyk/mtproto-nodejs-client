@@ -29,7 +29,7 @@ export interface RPCEventEmitter extends events.EventEmitter {
 }
 
 export class RPC {
-  api_id: string
+  api_id: number
   api_hash: string
   initConnectionParams: any
   dc: DC;
@@ -61,7 +61,7 @@ export class RPC {
   seqNo?: number
 
   constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates, transport }: {
-    api_id: string
+    api_id: number
     api_hash: string
     initConnectionParams: any
     dc: DC;
