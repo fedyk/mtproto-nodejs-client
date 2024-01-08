@@ -1,6 +1,10 @@
 # mtproto-nodejs-client
 
-Telegram (MTProto) NodeJS client library for Node.js. Based on [alik0211/mtproto-core](https://github.com/alik0211/mtproto-core), is rewritten in Typescript. To make code simpler, browser support was removed.
+Telegram (MTProto) NodeJS client library for Node.js.
+
+Based on [alik0211/mtproto-core](https://github.com/alik0211/mtproto-core), rewritten to Typescript.
+
+To simpplify code, browser support is removed.
 
 * **Actual.** 158 layer in the API scheme
 * **Fast.** Uses the TCP and crypto module.
