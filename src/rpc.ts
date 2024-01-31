@@ -14,6 +14,7 @@ import { SHA1, SHA256, bigIntToBytes, bytesIsEqual, bytesToBigInt, bytesToBytesR
 import { Methods, Updates } from "./mtptoto-types.js";
 import { RPCError } from "./errors.js";
 import { Storage } from "./storage.js";
+import { LAYER } from "./layer.js";
 
 export interface MessageWaitResponse {
   method: string
@@ -719,7 +720,7 @@ export class RPC {
     };
 
     const serializer = new Serializer(builderMap.invokeWithLayer, {
-      layer: 158,
+      layer: LAYER,
       query: {
         _: 'initConnection',
         ...initConnectionParams,
