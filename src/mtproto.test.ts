@@ -4,6 +4,14 @@ import { MTProto } from "./mtproto.js";
 import { createTempStorage } from "./temp-storage.js";
 import { IStorage } from "./types.js";
 
+if (!process.env.API_ID) {
+  throw new RangeError("`process.env.API_ID` is missing")
+}
+
+if (!process.env.API_HASH) {
+  throw new RangeError("`process.env.API_HASH` is missing")
+}
+
 const api_id = Number(process.env.API_ID || 0)
 const api_hash = String(process.env.API_HASH || "")
 const phone_number = "9996621111"
@@ -25,17 +33,14 @@ test.describe("MTProto", {
     mtproto.destroy()
   })
 
-  test.it("should have credentials for tests", function () {
-    assert.ok(api_id > 0, "`api_id` is required")
-    assert.ok(api_hash, "`api_hash` is required")
-  })
-
   test.it("should get config", async function () {
     await mtproto.call("help.getConfig")
   })
 
   test.it("should get countries list", async function () {
-    await mtproto.call("help.getCountriesList")
+    const countries = await mtproto.call("help.getCountriesList")
+
+    assert.equal(countries._, "help.countriesList")
   })
 
   test.it("should sign in on test server", async function () {
@@ -67,7 +72,11 @@ test.describe("MTProto", {
     }
   })
 
-  test.it("should get state", async function () {
+  test.it("should call `updates.getState`", async function () {
     await mtproto.call("updates.getState")
+  })
+
+  test.it("should call logOut", async function () {
+    await mtproto.call("auth.logOut")
   })
 })

@@ -191,7 +191,7 @@ export class MTProto {
     const dc = this.dcList.find(({ id }) => id === dcId);
 
     if (!dc) {
-      throw new Error(`don"t find DC ${dcId}`)
+      throw new Error(`DC ${dcId} not found`)
     }
 
     const transport = createTransport(dc);
