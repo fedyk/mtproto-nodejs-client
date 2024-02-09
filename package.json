@@ -3,13 +3,11 @@
   "version": "7.1.6",
   "type": "module",
   "description": "Telegram API JS (MTProto) client library for Node.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fedyk/mtproto-nodejs-client.git"
-  },
-  "exports": "./lib/index.js",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/*"
+  ],
   "engines": {
     "node": ">=20"
   },
@@ -35,5 +33,9 @@
     "@types/node": "^20.11.15",
     "@types/pako": "^2.0.3",
     "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fedyk/mtproto-nodejs-client.git"
   }
 }
