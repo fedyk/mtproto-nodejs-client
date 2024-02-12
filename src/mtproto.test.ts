@@ -26,7 +26,15 @@ test.describe("MTProto", {
 
   test.before(function () {
     storage = createTempStorage()
-    mtproto = new MTProto({ test: true, api_id, api_hash, storage })
+    mtproto = new MTProto({
+      test: true,
+      api_id,
+      api_hash,
+      storage,
+      initConnectionParams: {
+        device_model: "Test Device",
+      }
+    })
   })
 
   test.after(function () {

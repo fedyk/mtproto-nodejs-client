@@ -4,7 +4,7 @@ import bigInt, { BigInteger } from "big-integer";
 import debounce from "lodash.debounce";
 import { Serializer, SerializerFn } from "./serializer.js";
 import { RSA } from "./rsa.js";
-import type { DC } from "./types.js";
+import type { InitConnectionParams, DC } from "./types.js";
 import { builderMap } from "./builder.js";
 import { Transport } from "./transport.js";
 import { Deserializer } from "./deserializer.js";
@@ -32,7 +32,7 @@ export interface RPCEventEmitter extends events.EventEmitter {
 export class RPC {
   api_id: number
   api_hash: string
-  initConnectionParams: any
+  initConnectionParams: InitConnectionParams
   dc: DC;
   storage: Storage;
   updates: RPCEventEmitter;
@@ -64,7 +64,7 @@ export class RPC {
   constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates, transport }: {
     api_id: number
     api_hash: string
-    initConnectionParams: any
+    initConnectionParams: InitConnectionParams
     dc: DC;
     storage: Storage
     updates: RPCEventEmitter;
@@ -708,22 +708,11 @@ export class RPC {
     }
 
     const { api_id, api_hash } = this;
-
-    const initConnectionParams = {
-      api_id,
-      device_model: '@mtproto-nodejs-client',
-      system_version: '1.0.0',
-      app_version: '1.0.0',
-      system_lang_code: 'en',
-      lang_code: 'en',
-      ...this.initConnectionParams,
-    };
-
     const serializer = new Serializer(builderMap.invokeWithLayer, {
       layer: LAYER,
       query: {
         _: 'initConnection',
-        ...initConnectionParams,
+        ...this.initConnectionParams,
         query: {
           _: method,
           api_id,

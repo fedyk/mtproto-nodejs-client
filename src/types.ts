@@ -1,7 +1,6 @@
 export interface IStorage {
   get(key: string): Promise<string | undefined>
   set(key: string, value: any): Promise<void> | void
-  toJSON(): Promise<Record<string, any>> | Record<string, any>
 }
 
 export interface DC {
@@ -16,3 +15,12 @@ export interface Parser<T> {
   (this: T): void
 }
 
+export interface InitConnectionParams {
+  api_id: number
+  device_model: string
+  system_version: string
+  app_version: string
+  system_lang_code: string
+  lang_pack: string
+  lang_code: string
+}

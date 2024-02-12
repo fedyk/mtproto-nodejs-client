@@ -1,11 +1,12 @@
-import events from "node:events"
 import Debug from "debug"
+import events from "node:events"
+import { readFileSync } from "node:fs"
 import { Storage } from "./storage.js"
 import { RPCError } from "./errors.js"
 import { Transport } from "./transport.js"
 import { Methods } from "./mtptoto-types.js"
-import type { DC, IStorage } from "./types.js"
 import { RPC, RPCEventEmitter, } from "./rpc.js"
+import type { DC, IStorage, InitConnectionParams } from "./types.js"
 
 const debug = Debug("mtproto")
 
@@ -61,7 +62,7 @@ const PRODUCTION_DC_LIST: DC[] = [
 export class MTProto {
   api_id: number
   api_hash: string
-  initConnectionParams: Record<string, unknown>
+  initConnectionParams: InitConnectionParams
   dcList: DC[]
   rpcs: Map<number, RPC>
   storage: Storage
@@ -72,13 +73,23 @@ export class MTProto {
     api_id: number
     api_hash: string
     storage: IStorage
+    initConnectionParams: Partial<InitConnectionParams>
   }) {
     const { api_id, api_hash, storage } = options;
+    const { name, version } = getPackageJSON()
 
     this.api_id = api_id;
     this.api_hash = api_hash;
-
-    this.initConnectionParams = {};
+    this.initConnectionParams = {
+      api_id,
+      device_model: name,
+      system_version: process.versions.node,
+      app_version: version,
+      system_lang_code: 'en',
+      lang_code: 'en',
+      lang_pack: 'en',
+      ...options.initConnectionParams,
+    };
 
     this.dcList = options.test ? TEST_DC_LIST : PRODUCTION_DC_LIST;
 
@@ -194,7 +205,7 @@ export class MTProto {
       throw new Error(`DC ${dcId} not found`)
     }
 
-    const transport = createTransport(dc);
+    const transport = new Transport(dc)
 
     rpc = new RPC({
       dc,
@@ -210,14 +221,12 @@ export class MTProto {
 
     return rpc;
   }
-
-  updateInitConnectionParams(params: any) {
-    this.initConnectionParams = params;
-  }
 }
 
-function createTransport(dc: DC) {
-  return new Transport(dc);
+function getPackageJSON() {
+  const url = new URL('../package.json', import.meta.url)
+
+  return JSON.parse(readFileSync(url, {
+    encoding: "utf-8"
+  }))
 }
-
-
