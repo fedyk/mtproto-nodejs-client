@@ -11,7 +11,7 @@ import { Deserializer } from "./deserializer.js";
 import { ModeOfOperationIGE } from "./aes.js";
 import { pqPrimeFactorization } from "./pg.js";
 import { SHA1, SHA256, bigIntToBytes, bytesIsEqual, bytesToBigInt, bytesToBytesRaw, concatBytes, getRandomBytes, getRandomInt, intsToLong, longToBytesRaw, xorBytes } from "./common.js"
-import { Methods, Update } from "./mtptoto-types.js";
+import { Methods, Updates } from "./mtptoto-types.js";
 import { RPCError } from "./errors.js";
 import { Storage } from "./storage.js";
 import { LAYER } from "./layer.js";
@@ -25,8 +25,8 @@ export interface MessageWaitResponse {
 }
 
 export interface RPCEventEmitter extends events.EventEmitter {
-  on<T extends Update>(eventName: T["_"], listener: (arg0: T) => void): this;
-  emit<T extends Update>(eventName: T["_"], arg0: T): boolean
+  on<T extends Updates>(eventName: T["_"], listener: (arg0: T) => void): this;
+  emit<T extends Updates>(eventName: T["_"], arg0: T): boolean
 }
 
 export class RPC {
