@@ -107,7 +107,6 @@ export function getRandomInt(maxValue: number) {
   return Math.floor(Math.random() * maxValue);
 }
 
-
 export function PBKDF2(password: string, salt: crypto.BinaryLike, iterations: number) {
   return crypto.pbkdf2Sync(password, salt, iterations, 64, "sha512")
 }

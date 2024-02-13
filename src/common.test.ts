@@ -1,7 +1,7 @@
 import test from "node:test"
 import assert from "node:assert"
 import bigInt from "big-integer"
-import { bigIntToBytes, bytesIsEqual, bytesToHex, concatBytes, getRandomInt, hexToBytesRaw, xorBytes } from "./common.js";
+import { bigIntToBytes, bytesIsEqual, bytesToHex, concatBytes, getRandomInt, hexToBytesRaw, intsToLong, xorBytes } from "./common.js";
 
 test.describe('bytesIsEqual', function () {
   test.it('return false if the length is different', function () {
@@ -131,5 +131,12 @@ test.describe('getRandomInt', function () {
 
   test.it('result does not exceed the maximum value', function () {
     assert.ok(result <= max);
+  });
+});
+
+test.describe('intsToLong', function () {
+  test.it('result parse bigInt to string', function () {
+    assert.equal(intsToLong(1707818549, 799509732), "7335024816256683236")
+    assert.equal(intsToLong(0, 136817688), "136817688")
   });
 });

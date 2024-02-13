@@ -24,7 +24,7 @@ const aviableTypes = new Set([
 
 const primitiveTypes = new Map([
   ["int", "number"],
-  ["long", "number"],
+  ["long", "string"],
   ["int128", "number"],
   ["int256", "number"],
   ["string", "string"],

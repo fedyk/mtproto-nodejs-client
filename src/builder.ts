@@ -1,15 +1,17 @@
 export interface BuilderMap {
   'mt_vector': (this: any, params: any) => void
   'mt_resPQ': (this: any, params: any) => void
+  'mt_p_q_inner_data': (this: any, params: any) => void
   'mt_p_q_inner_data_dc': (this: any, params: any) => void
+  'mt_p_q_inner_data_temp': (this: any, params: any) => void
   'mt_p_q_inner_data_temp_dc': (this: any, params: any) => void
+  'mt_server_DH_params_fail': (this: any, params: any) => void
   'mt_server_DH_params_ok': (this: any, params: any) => void
   'mt_server_DH_inner_data': (this: any, params: any) => void
   'mt_client_DH_inner_data': (this: any, params: any) => void
   'mt_dh_gen_ok': (this: any, params: any) => void
   'mt_dh_gen_retry': (this: any, params: any) => void
   'mt_dh_gen_fail': (this: any, params: any) => void
-  'mt_bind_auth_key_inner': (this: any, params: any) => void
   'mt_rpc_result': (this: any, params: any) => void
   'mt_rpc_error': (this: any, params: any) => void
   'mt_rpc_answer_unknown': (this: any, params: any) => void
@@ -18,8 +20,6 @@ export interface BuilderMap {
   'mt_future_salt': (this: any, params: any) => void
   'mt_future_salts': (this: any, params: any) => void
   'mt_pong': (this: any, params: any) => void
-  'mt_destroy_session_ok': (this: any, params: any) => void
-  'mt_destroy_session_none': (this: any, params: any) => void
   'mt_new_session_created': (this: any, params: any) => void
   'mt_msg_container': (this: any, params: any) => void
   'mt_message': (this: any, params: any) => void
@@ -29,14 +29,19 @@ export interface BuilderMap {
   'mt_bad_msg_notification': (this: any, params: any) => void
   'mt_bad_server_salt': (this: any, params: any) => void
   'mt_msg_resend_req': (this: any, params: any) => void
+  'mt_msg_resend_ans_req': (this: any, params: any) => void
   'mt_msgs_state_req': (this: any, params: any) => void
   'mt_msgs_state_info': (this: any, params: any) => void
   'mt_msgs_all_info': (this: any, params: any) => void
   'mt_msg_detailed_info': (this: any, params: any) => void
   'mt_msg_new_detailed_info': (this: any, params: any) => void
+  'mt_bind_auth_key_inner': (this: any, params: any) => void
   'mt_destroy_auth_key_ok': (this: any, params: any) => void
   'mt_destroy_auth_key_none': (this: any, params: any) => void
   'mt_destroy_auth_key_fail': (this: any, params: any) => void
+  'mt_destroy_session_ok': (this: any, params: any) => void
+  'mt_destroy_session_none': (this: any, params: any) => void
+  'mt_req_pq': (this: any, params: any) => void
   'mt_req_pq_multi': (this: any, params: any) => void
   'mt_req_DH_params': (this: any, params: any) => void
   'mt_set_client_DH_params': (this: any, params: any) => void
@@ -44,9 +49,9 @@ export interface BuilderMap {
   'mt_get_future_salts': (this: any, params: any) => void
   'mt_ping': (this: any, params: any) => void
   'mt_ping_delay_disconnect': (this: any, params: any) => void
-  'mt_destroy_session': (this: any, params: any) => void
   'mt_http_wait': (this: any, params: any) => void
   'mt_destroy_auth_key': (this: any, params: any) => void
+  'mt_destroy_session': (this: any, params: any) => void
   'boolFalse': (this: any, params: any) => void
   'boolTrue': (this: any, params: any) => void
   'true': (this: any, params: any) => void
@@ -1683,6 +1688,15 @@ export const builderMap: BuilderMap = {
     this.bytes(params.pq);
     this.vector(this.long, params.server_public_key_fingerprints);
   },
+  'mt_p_q_inner_data': function(params) {
+    this.int32(-2083955988);
+    this.bytes(params.pq);
+    this.bytes(params.p);
+    this.bytes(params.q);
+    this.int128(params.nonce);
+    this.int128(params.server_nonce);
+    this.int256(params.new_nonce);
+  },
   'mt_p_q_inner_data_dc': function(params) {
     this.int32(-1443537003);
     this.bytes(params.pq);
@@ -1692,6 +1706,16 @@ export const builderMap: BuilderMap = {
     this.int128(params.server_nonce);
     this.int256(params.new_nonce);
     this.int(params.dc);
+  },
+  'mt_p_q_inner_data_temp': function(params) {
+    this.int32(1013613780);
+    this.bytes(params.pq);
+    this.bytes(params.p);
+    this.bytes(params.q);
+    this.int128(params.nonce);
+    this.int128(params.server_nonce);
+    this.int256(params.new_nonce);
+    this.int(params.expires_in);
   },
   'mt_p_q_inner_data_temp_dc': function(params) {
     this.int32(1459478408);
@@ -1703,6 +1727,12 @@ export const builderMap: BuilderMap = {
     this.int256(params.new_nonce);
     this.int(params.dc);
     this.int(params.expires_in);
+  },
+  'mt_server_DH_params_fail': function(params) {
+    this.int32(2043348061);
+    this.int128(params.nonce);
+    this.int128(params.server_nonce);
+    this.int128(params.new_nonce_hash);
   },
   'mt_server_DH_params_ok': function(params) {
     this.int32(-790100132);
@@ -1744,14 +1774,6 @@ export const builderMap: BuilderMap = {
     this.int128(params.server_nonce);
     this.int128(params.new_nonce_hash3);
   },
-  'mt_bind_auth_key_inner': function(params) {
-    this.int32(1973679973);
-    this.long(params.nonce);
-    this.long(params.temp_auth_key_id);
-    this.long(params.perm_auth_key_id);
-    this.long(params.temp_session_id);
-    this.int(params.expires_at);
-  },
   'mt_rpc_result': function(params) {
     this.int32(-212046591);
     this.long(params.req_msg_id);
@@ -1790,14 +1812,6 @@ export const builderMap: BuilderMap = {
     this.int32(880243653);
     this.long(params.msg_id);
     this.long(params.ping_id);
-  },
-  'mt_destroy_session_ok': function(params) {
-    this.int32(-501201412);
-    this.long(params.session_id);
-  },
-  'mt_destroy_session_none': function(params) {
-    this.int32(1658015945);
-    this.long(params.session_id);
   },
   'mt_new_session_created': function(params) {
     this.int32(-1631450872);
@@ -1845,6 +1859,10 @@ export const builderMap: BuilderMap = {
     this.int32(2105940488);
     this.vector(this.long, params.msg_ids);
   },
+  'mt_msg_resend_ans_req': function(params) {
+    this.int32(-2045723925);
+    this.vector(this.long, params.msg_ids);
+  },
   'mt_msgs_state_req': function(params) {
     this.int32(-630588590);
     this.vector(this.long, params.msg_ids);
@@ -1872,6 +1890,14 @@ export const builderMap: BuilderMap = {
     this.int(params.bytes);
     this.int(params.status);
   },
+  'mt_bind_auth_key_inner': function(params) {
+    this.int32(1973679973);
+    this.long(params.nonce);
+    this.long(params.temp_auth_key_id);
+    this.long(params.perm_auth_key_id);
+    this.long(params.temp_session_id);
+    this.int(params.expires_at);
+  },
   'mt_destroy_auth_key_ok': function(params) {
     this.int32(-161422892);
   },
@@ -1880,6 +1906,18 @@ export const builderMap: BuilderMap = {
   },
   'mt_destroy_auth_key_fail': function(params) {
     this.int32(-368010477);
+  },
+  'mt_destroy_session_ok': function(params) {
+    this.int32(-501201412);
+    this.long(params.session_id);
+  },
+  'mt_destroy_session_none': function(params) {
+    this.int32(1658015945);
+    this.long(params.session_id);
+  },
+  'mt_req_pq': function(params) {
+    this.int32(1615239032);
+    this.int128(params.nonce);
   },
   'mt_req_pq_multi': function(params) {
     this.int32(-1099002127);
@@ -1917,10 +1955,6 @@ export const builderMap: BuilderMap = {
     this.long(params.ping_id);
     this.int(params.disconnect_delay);
   },
-  'mt_destroy_session': function(params) {
-    this.int32(-414113498);
-    this.long(params.session_id);
-  },
   'mt_http_wait': function(params) {
     this.int32(-1835453025);
     this.int(params.max_delay);
@@ -1929,6 +1963,10 @@ export const builderMap: BuilderMap = {
   },
   'mt_destroy_auth_key': function(params) {
     this.int32(-784117408);
+  },
+  'mt_destroy_session': function(params) {
+    this.int32(-414113498);
+    this.long(params.session_id);
   },
   'boolFalse': function(params) {
     this.int32(-1132882121);
