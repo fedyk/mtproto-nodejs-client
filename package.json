@@ -24,10 +24,10 @@
     "debug": "4.3.4",
     "leemon": "6.2.0",
     "lodash.debounce": "4.0.8",
+    "@types/aes-js": "^3.1.4",
     "pako": "2.1.0"
   },
   "devDependencies": {
-    "@types/aes-js": "^3.1.4",
     "@types/debug": "^4.1.12",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.11.17",
