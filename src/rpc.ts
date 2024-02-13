@@ -30,14 +30,14 @@ export interface RPCEventEmitter extends events.EventEmitter {
 }
 
 export class RPC {
-  api_id: number
-  api_hash: string
-  initConnectionParams: InitConnectionParams
-  dc: DC;
-  storage: Storage;
-  updates: RPCEventEmitter;
-  transport: Transport;
-  debug: Debug.Debugger;
+  protected api_id: number
+  protected api_hash: string
+  protected initConnectionParams: InitConnectionParams
+  protected dc: DC;
+  protected storage: Storage;
+  protected updates: RPCEventEmitter;
+  protected transport: Transport;
+  protected debug: Debug.Debugger;
 
   isAuth: boolean;
   pendingAcks: unknown[];

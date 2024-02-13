@@ -1,7 +1,7 @@
 import net from "node:net";
 import Debug from "debug";
 import type { DC } from "./types.js";
-import {Obfuscated  } from "./obfuscated.js"
+import { Obfuscated } from "./obfuscated.js"
 
 export class Transport extends Obfuscated {
   dc: DC;

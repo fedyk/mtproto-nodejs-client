@@ -3,8 +3,8 @@ import aesjs from "aes-js";
 import { getRandomBytes } from "./common.js";
 
 export class Obfuscated extends events.EventEmitter {
-  encryptAES?: aesjs.ModeOfOperation.ModeOfOperationCTR;
-  decryptAES?: aesjs.ModeOfOperation.ModeOfOperationCTR;
+  protected encryptAES?: aesjs.ModeOfOperation.ModeOfOperationCTR;
+  protected decryptAES?: aesjs.ModeOfOperation.ModeOfOperationCTR;
 
   // https://core.telegram.org/mtproto/mtproto-transports#transport-obfuscation
   async generateObfuscationKeys() {

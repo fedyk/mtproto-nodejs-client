@@ -205,8 +205,6 @@ export class MTProto {
       throw new Error(`DC ${dcId} not found`)
     }
 
-    const transport = new Transport(dc)
-
     rpc = new RPC({
       dc,
       api_id: this.api_id,
@@ -214,7 +212,7 @@ export class MTProto {
       initConnectionParams: this.initConnectionParams,
       storage: this.storage,
       updates: this.updates,
-      transport,
+      transport: new Transport(dc),
     });
 
     this.rpcs.set(dcId, rpc);
