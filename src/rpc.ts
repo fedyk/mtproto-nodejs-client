@@ -134,7 +134,7 @@ export class RPC {
   }) {
     const { type } = payload;
 
-    this.debug('transport error', payload);
+    this.debug('transport error %o', payload);
 
     // https://core.telegram.org/mtproto/mtproto-transports#transport-errors
     if (type === 'transport') {
@@ -573,7 +573,7 @@ export class RPC {
     const { messageId } = params;
 
     if (bigInt(messageId).isEven()) {
-      this.debug('message id from server is even', message);
+      this.debug('message id from server is even %o', message);
 
       return;
     }
@@ -623,7 +623,7 @@ export class RPC {
           .catch(waitMessage.reject);
         this.messagesWaitResponse.delete(message.bad_msg_id);
       } else {
-        this.debug(`${message._} for a non-existent message`, message);
+        this.debug(`${message._} for a non-existent message %o`, message);
       }
 
       return;
@@ -642,7 +642,7 @@ export class RPC {
     }
 
     if (message._ === 'mt_msgs_ack') {
-      this.debug('handling acknowledge for', message.msg_ids);
+      this.debug('handling acknowledge for %o', message.msg_ids);
 
       // @ts-ignore
       message.msg_ids.forEach((msgId) => {
@@ -666,7 +666,7 @@ export class RPC {
     if (message._ === "mt_rpc_result") {
       this.ackMessage(messageId);
 
-      this.debug("handling RPC result for message", message.req_msg_id);
+      this.debug("handling RPC result for message %s", message.req_msg_id);
 
       const waitMessage = this.messagesWaitResponse.get(message.req_msg_id);
 
@@ -689,7 +689,7 @@ export class RPC {
       return;
     }
 
-    this.debug('handling update', message._);
+    this.debug('handling update %o', message);
     this.ackMessage(messageId);
     this.updates.emit(message._, message);
   }
