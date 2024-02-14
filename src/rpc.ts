@@ -1,9 +1,10 @@
 import events from "node:events";
-import Debug from "debug";
+import { Debugger } from "debug";
 import bigInt, { BigInteger } from "big-integer";
 import debounce from "lodash.debounce";
 import { Serializer, SerializerFn } from "./serializer.js";
 import { RSA } from "./rsa.js";
+import { debug } from "./debug.js";
 import type { InitConnectionParams, DC } from "./types.js";
 import { builderMap } from "./builder.js";
 import { Transport } from "./transport.js";
@@ -37,7 +38,7 @@ export class RPC {
   protected storage: Storage;
   protected updates: RPCEventEmitter;
   protected transport: Transport;
-  protected debug: Debug.Debugger;
+  protected debug: Debugger;
 
   isAuth: boolean;
   pendingAcks: unknown[];
@@ -78,7 +79,7 @@ export class RPC {
     this.updates = updates;
     this.transport = transport;
 
-    this.debug = Debug(`rpc-${this.dc.id}`);
+    this.debug = debug.extend(`rpc:${this.dc.id}`);
     this.debug('init');
 
     this.isAuth = false;

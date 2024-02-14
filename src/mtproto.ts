@@ -7,8 +7,7 @@ import { Transport } from "./transport.js"
 import { Methods } from "./mtptoto-types.js"
 import { RPC, RPCEventEmitter, } from "./rpc.js"
 import type { DC, IStorage, InitConnectionParams } from "./types.js"
-
-const debug = Debug("mtproto")
+import { debug } from "./debug.js"
 
 const TEST_DC_LIST: DC[] = [
   {

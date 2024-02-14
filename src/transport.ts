@@ -1,11 +1,12 @@
 import net from "node:net";
-import Debug from "debug";
+import { Debugger } from "debug";
 import type { DC } from "./types.js";
 import { Obfuscated } from "./obfuscated.js"
+import { debug } from "./debug.js";
 
 export class Transport extends Obfuscated {
   dc: DC;
-  debug: Debug.Debugger;
+  debug: Debugger;
   destroyed: boolean;
   socket?: net.Socket;
   stream?: Uint8Array;
@@ -14,7 +15,7 @@ export class Transport extends Obfuscated {
     super();
 
     this.dc = dc;
-    this.debug = Debug(`transport-${this.dc.id}`);
+    this.debug = debug.extend(`transport:${this.dc.id}`);
     this.destroyed = false;
     this.handleConnect = this.handleConnect.bind(this);
     this.handleData = this.handleData.bind(this);
