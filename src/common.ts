@@ -130,3 +130,13 @@ export function SHA256(data: ArrayBuffer): Uint8Array {
 export function getRandomBytes(length: number) {
   return new Uint8Array(crypto.randomBytes(length));
 }
+
+export function getIntermediateBytes(bytes: Uint8Array) {
+  const resultBytes = new Uint8Array(bytes.length + 4);
+  const dataView = new DataView(resultBytes.buffer);
+
+  dataView.setUint32(0, bytes.length, true);
+  resultBytes.set(bytes, 4);
+
+  return resultBytes;
+}
