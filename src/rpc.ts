@@ -31,10 +31,10 @@ export interface RPCEventEmitter extends events.EventEmitter {
 }
 
 export class RPC {
+  protected dc: DC;
   protected api_id: number
   protected api_hash: string
   protected initConnectionParams: InitConnectionParams
-  protected dc: DC;
   protected storage: Storage;
   protected updates: RPCEventEmitter;
   protected transport: Transport;
@@ -62,14 +62,13 @@ export class RPC {
   lastMessageId?: any
   seqNo?: number
 
-  constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates, transport }: {
+  constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates }: {
     api_id: number
     api_hash: string
     initConnectionParams: InitConnectionParams
     dc: DC;
     storage: Storage
     updates: RPCEventEmitter;
-    transport: Transport;
   }) {
     this.api_id = api_id
     this.api_hash = api_hash
@@ -77,7 +76,7 @@ export class RPC {
     this.dc = dc;
     this.storage = storage;
     this.updates = updates;
-    this.transport = transport;
+    this.transport = new Transport(dc);
 
     this.debug = debug.extend(`rpc:${this.dc.id}`);
     this.debug('init');
@@ -86,15 +85,18 @@ export class RPC {
     this.pendingAcks = [];
     this.messagesWaitAuth = [];
     this.messagesWaitResponse = new Map();
+
     this.handleTransportOpen = this.handleTransportOpen.bind(this);
     this.handleTransportError = this.handleTransportError.bind(this);
     this.handleTransportMessage = this.handleTransportMessage.bind(this);
+    this.handleTransportClose = this.handleTransportClose.bind(this);
 
     this.updateSession();
 
     this.transport.on('open', this.handleTransportOpen);
     this.transport.on('error', this.handleTransportError);
     this.transport.on('message', this.handleTransportMessage);
+    this.transport.on('close', this.handleTransportClose);
 
     this.sendAcks = debounce(() => {
       if (!this.pendingAcks.length || !this.isReady) {
@@ -178,6 +180,11 @@ export class RPC {
 
   handleTransportMessage(buffer: Buffer) {
     this.handleMessage(buffer);
+  }
+
+
+  handleTransportClose() {
+    
   }
 
   handleMessage(buffer: Buffer) {
@@ -602,10 +609,7 @@ export class RPC {
       this.debug(`handling ${message._} for message ${message.bad_msg_id}`);
 
       if (message.error_code === 48) {
-        await this.setStorageItem(
-          'serverSalt',
-          longToBytesRaw(message.new_server_salt)
-        );
+        await this.setStorageItem('serverSalt', longToBytesRaw(message.new_server_salt));
       }
 
       if ([16, 17].includes(message.error_code)) {
@@ -634,10 +638,8 @@ export class RPC {
       this.debug(`handling new session created`);
 
       this.ackMessage(messageId);
-      await this.setStorageItem(
-        'serverSalt',
-        longToBytesRaw(message.server_salt)
-      );
+
+      await this.setStorageItem('serverSalt', longToBytesRaw(message.server_salt));
 
       return;
     }
