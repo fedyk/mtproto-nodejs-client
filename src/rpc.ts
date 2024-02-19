@@ -124,7 +124,18 @@ export class RPC {
     this.transport.off('open', this.handleTransportOpen);
     this.transport.off('error', this.handleTransportError);
     this.transport.off('message', this.handleTransportMessage);
-    this.clearWaitMessages();
+
+    for (let message of this.messagesWaitResponse.values()) {
+      message.reject(new RPCError("RPC_DESTROYED", 500));
+    }
+
+    this.messagesWaitResponse.clear();
+
+    for (let message of this.messagesWaitAuth) {
+      message.reject(new RPCError("RPC_DESTROYED", 500));
+    }
+
+    this.messagesWaitAuth = []
   }
 
   get isReady() {
@@ -182,9 +193,12 @@ export class RPC {
     this.handleMessage(buffer);
   }
 
-
   handleTransportClose() {
-    
+    for (const [id, message] of this.messagesWaitResponse) {
+      message.reject(new RPCError("RPC_WAS_CLOSED", 500));
+
+      this.messagesWaitResponse.delete(id)
+    }
   }
 
   handleMessage(buffer: Buffer) {
@@ -486,23 +500,6 @@ export class RPC {
     }
 
     throw new Error(`Invalid Set_client_DH_params_answer: ${serverDHAnswer}`);
-  }
-
-  clearWaitMessages() {
-    for (let message of this.messagesWaitResponse.values()) {
-      if (message.isAck) {
-        continue;
-      }
-
-      message.reject(new RPCError("RPC_DESTROYED", 500));
-    }
-
-    this.messagesWaitAuth.forEach(function (message) {
-      message.reject(new RPCError("RPC_DESTROYED", 500));
-    });
-
-    this.messagesWaitAuth = [];
-    this.messagesWaitResponse.clear();
   }
 
   async sendWaitMessages() {

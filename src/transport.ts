@@ -45,14 +45,21 @@ export class Transport extends events.EventEmitter {
 
   connect() {
     this.stream = new Uint8Array();
-
     this.socket = net.connect(this.dc.port, this.dc.ip, this.handleConnect);
-
     this.socket.on('data', this.handleData);
     this.socket.on('error', this.handleError);
     this.socket.on('close', this.handleClose);
 
-    this.debug('connect');
+    this.debug('connect to %s:%s', this.dc.ip, this.dc.port)
+  }
+
+  handleConnect() {
+    const initialMessage = this.generateObfuscationKeys();
+
+    this.socket?.write(initialMessage);
+
+    this.debug('open with %s:%s', this.dc.ip, this.dc.port)
+    this.emit('open');
   }
 
   /**
@@ -98,13 +105,18 @@ export class Transport extends events.EventEmitter {
     }
   }
 
-  handleError() {
+  handleError(err: Error) {
+    this.debug('error with %s:%s', this.dc.ip, this.dc.port)
+
     this.emit('error', {
       type: 'socket',
+      message: err?.message
     });
   }
 
   handleClose() {
+    this.debug('close with %s:%s', this.dc.ip, this.dc.port)
+
     if (this.socket && !this.socket.destroyed) {
       this.socket.destroy();
     }
@@ -115,22 +127,13 @@ export class Transport extends events.EventEmitter {
       this.socket.off('close', this.handleClose);
     }
 
+    this.emit('close');
+
     if (!this.destroyed) {
       this.connect();
     }
   }
 
-  handleConnect() {
-    const initialMessage = this.generateObfuscationKeys();
-
-    this.socket?.write(initialMessage);
-
-    this.emit('open');
-  }
-
-  /**
-   * not sure if data is Uint8Array
-   */
   send(bytes: Uint8Array) {
     const intermediateBytes = getIntermediateBytes(bytes);
     const obfuscatedBytes = this.obfuscate(intermediateBytes);
@@ -138,7 +141,9 @@ export class Transport extends events.EventEmitter {
     this.socket?.write(obfuscatedBytes);
   }
 
-  // https://core.telegram.org/mtproto/mtproto-transports#transport-obfuscation
+  /**
+   * @see https://core.telegram.org/mtproto/mtproto-transports#transport-obfuscation
+   */
   generateObfuscationKeys() {
     let initBytes: Uint8Array;
 

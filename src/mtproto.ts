@@ -1,9 +1,7 @@
-import Debug from "debug"
 import events from "node:events"
 import { readFileSync } from "node:fs"
 import { Storage } from "./storage.js"
 import { RPCError } from "./errors.js"
-import { Transport } from "./transport.js"
 import { Methods } from "./mtptoto-types.js"
 import { RPC, RPCEventEmitter, } from "./rpc.js"
 import type { DC, IStorage, InitConnectionParams } from "./types.js"
@@ -211,7 +209,6 @@ export class MTProto {
       initConnectionParams: this.initConnectionParams,
       storage: this.storage,
       updates: this.updates,
-      transport: new Transport(dc),
     });
 
     this.rpcs.set(dcId, rpc);
