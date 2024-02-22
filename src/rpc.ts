@@ -169,6 +169,8 @@ export class RPC {
     const authKey = await this.getStorageItem('authKey');
     const serverSalt = await this.getStorageItem('serverSalt');
 
+    this.debug("handling transport open")
+
     if (authKey && serverSalt) {
       this.handleMessage = this.handleEncryptedMessage;
       this.isAuth = true;
@@ -206,6 +208,8 @@ export class RPC {
   }
 
   async handlePQResponse(buffer: Buffer) {
+    this.debug("handling PQ response")
+
     const deserializer = new Deserializer(buffer);
     deserializer.long(); // auth_key_id
     deserializer.long(); // msg_id
@@ -268,6 +272,8 @@ export class RPC {
   }
 
   async handleDHParams(buffer: ArrayBufferLike) {
+    this.debug("handling DH params")
+    
     const deserializer = new Deserializer(buffer);
     deserializer.long(); // auth_key_id
     deserializer.long(); // msg_id
@@ -430,6 +436,8 @@ export class RPC {
   }
 
   async handleDHAnswer(buffer: Buffer) {
+    this.debug("handling DH answer")
+
     const deserializer = new Deserializer(buffer);
     deserializer.long(); // auth_key_id
     deserializer.long(); // msg_id
