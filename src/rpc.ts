@@ -20,7 +20,6 @@ import { LAYER } from "./layer.js";
 export interface MessageWaitResponse {
   method: string
   params: any
-  cause: Error
   resolve(value: unknown): unknown
   reject(err: Error): void
   isAck?: boolean
@@ -127,17 +126,13 @@ export class RPC {
     this.transport.off('message', this.handleTransportMessage);
 
     for (const message of this.messagesWaitResponse.values()) {
-      message.reject(new RPCError("RPC_DESTROYED", 500, {
-        cause: message.cause
-      }));
+      message.reject(new RPCError("RPC_DESTROYED", 500));
     }
 
     this.messagesWaitResponse.clear();
 
     for (const message of this.messagesWaitAuth) {
-      message.reject(new RPCError("RPC_DESTROYED", 500, {
-        cause: message.cause
-      }));
+      message.reject(new RPCError("RPC_DESTROYED", 500));
     }
 
     this.messagesWaitAuth = []
@@ -200,9 +195,7 @@ export class RPC {
 
   handleTransportClose() {
     for (const [id, message] of this.messagesWaitResponse) {
-      message.reject(new RPCError("RPC_WAS_CLOSED", 500, {
-        cause: message.cause
-      }));
+      message.reject(new RPCError("RPC_WAS_CLOSED", 500));
 
       this.messagesWaitResponse.delete(id)
     }
@@ -512,14 +505,12 @@ export class RPC {
   async sendWaitMessages() {
     for (const [key, message] of this.messagesWaitResponse) {
       if (message.isAck) {
-        message.reject(new Error(`'${message.method}' has Ack but missing a response`, {
-          cause: message.cause
-        }))
+        message.reject(new Error(`'${message.method}' has Ack but missing a response`))
       }
       else {
         this.call(message.method, message.params).then(message.resolve).catch(message.reject);
       }
-      
+
       this.messagesWaitResponse.delete(key)
     }
 
@@ -683,9 +674,7 @@ export class RPC {
         const errorCode = Number(message.result.error_code)
         const errorMessage = String(message.result.error_message || JSON.stringify(message.result))
 
-        waitMessage.reject(new RPCError(errorMessage, errorCode, {
-          cause: waitMessage.cause
-        }));
+        waitMessage.reject(new RPCError(errorMessage, errorCode));
       }
       else {
         waitMessage.resolve(message.result);
@@ -710,7 +699,7 @@ export class RPC {
   call<T extends keyof Methods>(method: T | string, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
     if (!this.isReady) {
       return new Promise((resolve, reject) => {
-        this.messagesWaitAuth.push({ method, params, resolve, reject, cause: new Error("cause") });
+        this.messagesWaitAuth.push({ method, params, resolve, reject });
       });
     }
 
@@ -741,7 +730,6 @@ export class RPC {
         resolve,
         reject,
         isAck: false,
-        cause: new Error("cause")
       });
     });
   }
