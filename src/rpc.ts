@@ -17,12 +17,13 @@ import { RPCError } from "./errors.js";
 import { Storage } from "./storage.js";
 import { LAYER } from "./layer.js";
 
-export interface MessageWaitResponse {
+export interface Message {
   method: string
   params: any
   resolve(value: unknown): unknown
   reject(err: Error): void
-  isAck?: boolean
+  isAck: boolean
+  createAt: number
 }
 
 export interface RPCEventEmitter extends events.EventEmitter {
@@ -42,8 +43,8 @@ export class RPC {
 
   isAuth: boolean;
   pendingAcks: unknown[];
-  messagesWaitAuth: MessageWaitResponse[];
-  messagesWaitResponse: Map<string, MessageWaitResponse>;
+  messagesWaitAuth: Message[];
+  messagesWaitResponse: Map<string, Message>;
   sendAcks: Function & {
     cancel(): void;
   };
@@ -126,13 +127,13 @@ export class RPC {
     this.transport.off('message', this.handleTransportMessage);
 
     for (const message of this.messagesWaitResponse.values()) {
-      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to destroyed RPC (ack=${message.isAck})`, 500));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to destroyed RPC (ack=${message.isAck}, time=${Date.now() - message.createAt}ms)`, 500));
     }
 
     this.messagesWaitResponse.clear();
 
     for (const message of this.messagesWaitAuth) {
-      message.reject(new RPCError(`call to '${message.method}' failed to receive an auth due to destroyed RPC (ack=${message.isAck})`, 500));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive an auth due to destroyed RPC (ack=${message.isAck}, time=${Date.now() - message.createAt}ms)`, 500));
     }
 
     this.messagesWaitAuth = []
@@ -197,7 +198,7 @@ export class RPC {
 
   handleTransportClose() {
     for (const [id, message] of this.messagesWaitResponse) {
-      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to closed connection (ack=${message.isAck})`, 500));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to closed connection (ack=${message.isAck}, time=${Date.now() - message.createAt}ms))`, 500));
 
       this.messagesWaitResponse.delete(id)
     }
@@ -273,7 +274,7 @@ export class RPC {
 
   async handleDHParams(buffer: ArrayBufferLike) {
     this.debug("handling DH params")
-    
+
     const deserializer = new Deserializer(buffer);
     deserializer.long(); // auth_key_id
     deserializer.long(); // msg_id
@@ -707,7 +708,14 @@ export class RPC {
   call<T extends keyof Methods>(method: T | string, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
     if (!this.isReady) {
       return new Promise((resolve, reject) => {
-        this.messagesWaitAuth.push({ method, params, resolve, reject });
+        this.messagesWaitAuth.push({
+          method,
+          params,
+          resolve,
+          reject,
+          isAck: false,
+          createAt: Date.now()
+        });
       });
     }
 
@@ -738,6 +746,7 @@ export class RPC {
         resolve,
         reject,
         isAck: false,
+        createAt: Date.now()
       });
     });
   }
