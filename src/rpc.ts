@@ -126,13 +126,13 @@ export class RPC {
     this.transport.off('message', this.handleTransportMessage);
 
     for (const message of this.messagesWaitResponse.values()) {
-      message.reject(new RPCError("RPC_DESTROYED", 500));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to destroyed RPC (ack=${message.isAck})`, 500));
     }
 
     this.messagesWaitResponse.clear();
 
     for (const message of this.messagesWaitAuth) {
-      message.reject(new RPCError("RPC_DESTROYED", 500));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive an auth due to destroyed RPC (ack=${message.isAck})`, 500));
     }
 
     this.messagesWaitAuth = []
@@ -197,7 +197,7 @@ export class RPC {
 
   handleTransportClose() {
     for (const [id, message] of this.messagesWaitResponse) {
-      message.reject(new RPCError("RPC_WAS_CLOSED", 500));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to closed connection (ack=${message.isAck})`, 500));
 
       this.messagesWaitResponse.delete(id)
     }

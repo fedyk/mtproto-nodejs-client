@@ -1,8 +1,8 @@
 export class RPCError extends Error {
-  code: number
+  status: number
 
-  constructor(message: string, code: number, options?: ErrorOptions) {
+  constructor(message: string, status: number, options?: ErrorOptions) {
     super(message, options)
-    this.code = code
+    this.status = status
   }
 }

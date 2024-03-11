@@ -110,7 +110,7 @@ export class MTProto {
       return result
     }
     catch (err) {
-      if (err instanceof RPCError && err.message.includes("_MIGRATE_") && err.code === 303) {
+      if (err instanceof RPCError && err.message.includes("_MIGRATE_") && err.status === 303) {
         const [type, dcIdAsString] = err.message.split("_MIGRATE_");
         const dcId = Number(dcIdAsString);
         const options: { dcId?: number } = {}
