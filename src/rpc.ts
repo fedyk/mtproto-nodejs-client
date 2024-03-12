@@ -40,11 +40,16 @@ export class RPC {
   protected updates: RPCEventEmitter;
   protected transport: Transport;
   protected debug: Debugger;
+  protected destroyed = false;
+  protected pingTimeout = 60 * 1000
+  protected pongTimeout = 15 * 1000
+  protected pingTimer: NodeJS.Timeout | null = null;
+  protected pongTimer: NodeJS.Timeout | null = null;
+  protected isAuth = false
+  protected pendingAcks = new Array<string>()
+  protected messagesWaitAuth = new Array<Message>()
+  protected messagesWaitResponse = new Map<string, Message>()
 
-  isAuth: boolean;
-  pendingAcks: unknown[];
-  messagesWaitAuth: Message[];
-  messagesWaitResponse: Map<string, Message>;
   sendAcks: Function & {
     cancel(): void;
   };
@@ -82,7 +87,6 @@ export class RPC {
     this.debug = debug.extend(`rpc:${this.dc.id}`);
     this.debug('init');
 
-    this.isAuth = false;
     this.pendingAcks = [];
     this.messagesWaitAuth = [];
     this.messagesWaitResponse = new Map();
@@ -91,6 +95,11 @@ export class RPC {
     this.handleTransportError = this.handleTransportError.bind(this);
     this.handleTransportMessage = this.handleTransportMessage.bind(this);
     this.handleTransportClose = this.handleTransportClose.bind(this);
+    this.ping = this.ping.bind(this)
+    this.pong = this.pong.bind(this)
+    this.pongError = this.pongError.bind(this)
+    this.reconnect = this.reconnect.bind(this)
+    this.schedulePing = this.schedulePing.bind(this)
 
     this.updateSession();
 
@@ -120,6 +129,7 @@ export class RPC {
 
   destroy() {
     this.debug('destroy rpc instance');
+    this.destroyed = true
     this.sendAcks.cancel();
     this.transport.destroy();
     this.transport.off('open', this.handleTransportOpen);
@@ -178,14 +188,9 @@ export class RPC {
       this.sendWaitMessages();
 
       // This request is necessary to ensure that you start interacting with the server. If we have not made any request, the server will not send us updates.
-      this.call('help.getConfig')
-        .then((result) => {
-          // TODO: Handle config
-        })
-        .catch((error) => {
-          this.debug(`error when calling the method help.getConfig:`, error);
-        });
-    } else {
+      this.ping()
+    }
+    else {
       this.nonce = getRandomBytes(16);
       this.handleMessage = this.handlePQResponse;
       this.sendPlainMessage(builderMap.mt_req_pq_multi, { nonce: this.nonce });
@@ -699,7 +704,7 @@ export class RPC {
     this.updates.emit(message._, message);
   }
 
-  ackMessage(messageId: unknown) {
+  ackMessage(messageId: string) {
     this.pendingAcks.push(messageId);
 
     this.sendAcks();
@@ -916,5 +921,52 @@ export class RPC {
 
   getStorageItem(key: string) {
     return this.storage.get(`${this.dc.id}${key}`);
+  }
+
+  ping() {
+    this.pongTimer = setTimeout(this.reconnect, this.pongTimeout).unref()
+
+    this.call("help.getConfig")
+      .then(this.pong)
+      .catch(this.pongError)
+      .finally(this.schedulePing)
+  }
+
+  pong() {
+    if (this.pongTimer) {
+      clearTimeout(this.pongTimer)
+    }
+  }
+
+  pongError(err: unknown) {
+    if (err instanceof Error) {
+      console.warn("ping failed due to %s", err.message)
+    }
+  }
+
+  reconnect() {
+    if (this.transport.socket) {
+      this.transport.socket.destroy()
+    }
+  }
+
+  schedulePing() {
+    if (this.destroyed) {
+      return
+    }
+
+    if (!this.transport.isAvailable) {
+      return
+    }
+
+    if (this.pingTimer) {
+      clearTimeout(this.pingTimer)
+    }
+
+    if (this.pongTimer) {
+      clearTimeout(this.pongTimer)
+    }
+
+    this.pingTimer = setTimeout(this.ping, this.pingTimeout)
   }
 }

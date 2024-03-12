@@ -39,8 +39,8 @@ export class Transport extends events.EventEmitter {
     }
   }
 
-  get isAvailable() {
-    return this.socket?.writable;
+  get isAvailable(): boolean {
+    return this.socket?.writable ?? false
   }
 
   connect() {
