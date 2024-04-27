@@ -1,6 +1,6 @@
 {
   "name": "mtproto-nodejs-client",
-  "version": "7.1.24",
+  "version": "7.1.25",
   "type": "module",
   "description": "Telegram API JS (MTProto) client library for Node.js",
   "main": "lib/index.js",
