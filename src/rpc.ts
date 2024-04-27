@@ -753,10 +753,6 @@ export class RPC {
         isAck: false,
         createAt: Date.now()
       });
-    }).catch(function (cause) {
-      throw new RPCError(`Fail to send message: ${method}`, 500, {
-        cause
-      })
     })
   }
 
