@@ -4,19 +4,19 @@ import { xorBytes } from './common.js'
 export class ModeOfOperationIGE {
   description: string
   name: string
-  _aes: aesjs.AES
-  _iv: Uint8Array
-  _ivp: Uint8Array | null
-  _iv2p: Uint8Array | null
+  #aes: aesjs.AES
+  #iv: Uint8Array
+  #ivp: Uint8Array | null
+  #iv2p: Uint8Array | null
 
   constructor(key: aesjs.ByteSource, iv: Uint8Array) {
     this.description = 'Infinite Garble Extension';
     this.name = 'ige';
 
-    this._aes = new aesjs.AES(key);
-    this._iv = iv;
-    this._ivp = null
-    this._iv2p = null
+    this.#aes = new aesjs.AES(key);
+    this.#iv = iv;
+    this.#ivp = null
+    this.#iv2p = null
   }
 
   encrypt(plaintext: Uint8Array) {
@@ -24,15 +24,15 @@ export class ModeOfOperationIGE {
       throw new Error('invalid plaintext size (must be multiple of 16 bytes)');
     }
 
-    const ciphertext = createArray(plaintext.length);
-    let block: Uint8Array| ByteSource = createArray(16);
+    const ciphertext = new Uint8Array(plaintext.length);
+    let block: Uint8Array | ByteSource = new Uint8Array(16);
 
-    if (this._ivp === null) {
-      this._ivp = this._iv.slice(0, 16);
-      this._iv2p = this._iv.slice(16, 32);
+    if (this.#ivp === null) {
+      this.#ivp = this.#iv.slice(0, 16);
+      this.#iv2p = this.#iv.slice(16, 32);
     }
 
-    if (!this._iv2p) {
+    if (!this.#iv2p) {
       throw new Error("`this._iv2p` is required")
     }
 
@@ -40,13 +40,13 @@ export class ModeOfOperationIGE {
       const nextIv2p = plaintext.slice(i, i + 16);
 
       copyArray(plaintext, block, 0, i, i + 16);
-      block = xorBytes(block, this._ivp);
-      block = this._aes.encrypt(block);
-      block = xorBytes(block, this._iv2p);
+      block = xorBytes(block, this.#ivp);
+      block = this.#aes.encrypt(block);
+      block = xorBytes(block, this.#iv2p);
       copyArray(block, ciphertext, i);
 
-      this._ivp = ciphertext.slice(i, i + 16);
-      this._iv2p = nextIv2p;
+      this.#ivp = ciphertext.slice(i, i + 16);
+      this.#iv2p = nextIv2p;
     }
 
     return ciphertext;
@@ -57,15 +57,15 @@ export class ModeOfOperationIGE {
       throw new Error('invalid ciphertext size (must be multiple of 16 bytes)');
     }
 
-    const plaintext = createArray(ciphertext.length);
-    let block = createArray(16);
+    const plaintext = new Uint8Array(ciphertext.length);
+    let block = new Uint8Array(16);
 
-    if (this._ivp === null) {
-      this._ivp = this._iv.slice(0, 16);
-      this._iv2p = this._iv.slice(16, 32);
+    if (this.#ivp === null) {
+      this.#ivp = this.#iv.slice(0, 16);
+      this.#iv2p = this.#iv.slice(16, 32);
     }
 
-    if (!this._iv2p) {
+    if (!this.#iv2p) {
       throw new Error("`this._iv2p` is required")
     }
 
@@ -73,24 +73,20 @@ export class ModeOfOperationIGE {
       const nextIvp = ciphertext.slice(i, i + 16);
 
       copyArray(ciphertext, block, 0, i, i + 16);
-      block = xorBytes(block, this._iv2p);
+      block = xorBytes(block, this.#iv2p);
       /**
        * @todo: fix ts error
        */
       // @ts-ignore
-      block = this._aes.decrypt(block);
-      block = xorBytes(block, this._ivp);
+      block = this.#aes.decrypt(block);
+      block = xorBytes(block, this.#ivp);
       copyArray(block, plaintext, i);
 
-      this._ivp = nextIvp;
-      this._iv2p = plaintext.slice(i, i + 16);
+      this.#ivp = nextIvp;
+      this.#iv2p = plaintext.slice(i, i + 16);
     }
     return plaintext;
   }
-}
-
-function createArray(length: number) {
-  return new Uint8Array(length);
 }
 
 function copyArray(sourceArray: any, targetArray: any, targetStart?: number, sourceStart?: number, sourceEnd?: number) {
@@ -101,5 +97,6 @@ function copyArray(sourceArray: any, targetArray: any, targetStart?: number, sou
       sourceArray = Array.prototype.slice.call(sourceArray, sourceStart, sourceEnd);
     }
   }
+
   targetArray.set(sourceArray, targetStart);
 }
