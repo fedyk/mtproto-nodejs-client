@@ -12,10 +12,18 @@ if (!process.env.API_HASH) {
   throw new RangeError("`process.env.API_HASH` is missing")
 }
 
+if (!process.env.PHONE_NUMBER) {
+  throw new RangeError("`process.env.PHONE_NUMBER` is missing")
+}
+
+if (!process.env.PHONE_CODE) {
+  throw new RangeError("`process.env.PHONE_CODE` is missing")
+}
+
 const api_id = Number(process.env.API_ID || 0)
 const api_hash = String(process.env.API_HASH || "")
-const phone_number = "9996621112"
-const phone_code = "22222"
+const phone_number = String(process.env.PHONE_NUMBER || "")
+const phone_code = String(process.env.PHONE_CODE || "")
 
 test.describe("MTProto", {
   timeout: 30000,

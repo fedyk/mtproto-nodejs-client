@@ -19,3 +19,5 @@ jobs:
         DEBUG: "*"
         API_ID: ${{ vars.API_ID }}
         API_HASH: ${{ vars.API_HASH }}
+        PHONE_NUMBER: ${{ vars.PHONE_NUMBER }}
+        PHONE_CODE: ${{ vars.PHONE_CODE }}
