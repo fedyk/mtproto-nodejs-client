@@ -1,15 +1,19 @@
 import fs from 'node:fs'
 
+/**
+ * Builder
+ */
+
 const apiSchema = JSON.parse(fs.readFileSync("scheme/api.json", "utf8"))
 const mtprotoSchema = JSON.parse(fs.readFileSync("scheme/mtproto.json", "utf8"))
 
-const lines: string[] = [];
+const builder: string[] = [];
 const builderInterfaceLines: string[] = [];
-const typingTypes = new Map<string, string[]>
+const typingTypes = createGroupMap()
 const typingInterfacesLines: string[] = []
 const methodInterfacesLines: string[] = []
 
-const aviableTypes = new Set([
+const aviableTypesBuilder = new Set([
   'int',
   'long',
   'int128',
@@ -34,36 +38,7 @@ const primitiveTypes = new Map([
   ["true", "boolean"],
 ])
 
-function typeIsVector(type: string) {
-  return type.substring(0, 6).toLocaleLowerCase() === 'vector';
-}
-
-function calcFlags(name: string, params: string[]) {
-  const bitMap: string[] = [];
-
-  params.forEach((param: any) => {
-    if (param.type.includes('?')) {
-      const [left] = param.type.split('?');
-      const [flagsName, count] = left.split('.');
-
-      if (flagsName !== name) {
-        return;
-      }
-
-      bitMap.push(`(this.has(params.${param.name}) << ${count})`);
-    }
-  });
-
-  if (!bitMap.length) {
-    bitMap.push("0");
-  }
-
-  const flagsLine = `    const ${name} = ${bitMap.join(' | ')};`;
-
-  return flagsLine;
-};
-
-function paramsToLines(params: any) {
+function builderParamsToLines(params: any) {
   const paramsLines: string[] = [];
 
   params.forEach(function (param: any) {
@@ -72,24 +47,26 @@ function paramsToLines(params: any) {
 
     // Flags
     if (param.type === '#') {
-      const flagsLine = calcFlags(param.name, params);
+      const flagsLine = buildFlags(param.name, params);
 
       paramsLines.push(flagsLine);
 
       fnName = 'int32';
       args = [param.name];
-    } else if (param.type.includes('?')) {
+    }
+    else if (param.type.includes('?')) {
       let flagType = param.type.split('?')[1];
 
       if (flagType === 'true') {
         return;
       }
 
-      if (typeIsVector(flagType)) {
+      if (isVectorType(flagType)) {
         flagType = flagType.substr(7, flagType.length - 8);
 
         fnName = 'flagVector';
-      } else {
+      }
+      else {
         fnName = 'flag';
       }
 
@@ -97,27 +74,30 @@ function paramsToLines(params: any) {
         flagType = 'Bool';
       }
 
-      if (!aviableTypes.has(flagType)) {
+      if (!aviableTypesBuilder.has(flagType)) {
         flagType = 'predicate';
       }
 
       args = [`this.${flagType}`, `params.${param.name}`];
-    } else if (typeIsVector(param.type)) {
+    }
+    else if (isVectorType(param.type)) {
       let vectorType = param.type.substr(7, param.type.length - 8);
 
       if (vectorType.charAt(0) === '%') {
         vectorType = vectorType.substr(1);
       }
 
-      if (!aviableTypes.has(vectorType)) {
+      if (!aviableTypesBuilder.has(vectorType)) {
         vectorType = 'predicate';
       }
 
       fnName = 'vector';
       args = [`this.${vectorType}`, `params.${param.name}`];
-    } else if (['!X'].includes(param.type)) {
+    }
+    else if (['!X'].includes(param.type)) {
       fnName = 'predicate';
-    } else if (!aviableTypes.has(param.type)) {
+    }
+    else if (!aviableTypesBuilder.has(param.type)) {
       fnName = 'predicate';
     }
 
@@ -125,7 +105,7 @@ function paramsToLines(params: any) {
   });
 
   return paramsLines;
-};
+}
 
 function paramsToInterfaceLines(params: any[]) {
   const interfaceLines: string[] = [];
@@ -188,7 +168,10 @@ const builderMapLines: string[] = [];
 mtprotoSchema.constructors.forEach(function (constructor: any) {
   const { id, predicate, params } = constructor;
 
-  const body = [`    this.int32(${id});`, ...paramsToLines(params)].join('\n');
+  const body = [
+    `    this.int32(${id});`,
+    ...builderParamsToLines(params)
+  ].join('\n');
 
   builderMapLines.push(
     `  'mt_${predicate}': function(params) {\n${body}\n  },`
@@ -197,24 +180,27 @@ mtprotoSchema.constructors.forEach(function (constructor: any) {
   builderInterfaceLines.push(
     `  'mt_${predicate}': (this: any, params: any) => void`
   )
-});
+})
 
 mtprotoSchema.methods.forEach(function (method: any) {
   const { id, method: name, params } = method;
 
-  const body = [`    this.int32(${id});`, ...paramsToLines(params)].join('\n');
+  const body = [`    this.int32(${id});`, ...builderParamsToLines(params)].join('\n');
 
   builderMapLines.push(`  'mt_${name}': function(params) {\n${body}\n  },`);
 
   builderInterfaceLines.push(
     `  'mt_${name}': (this: any, params: any) => void`
   )
-});
+})
 
 apiSchema.constructors.forEach(function (constructor: any) {
   const { id, predicate, params, type } = constructor;
 
-  const body = [`    this.int32(${id});`, ...paramsToLines(params)].join('\n');
+  const body = [
+    `    this.int32(${id});`,
+    ...builderParamsToLines(params)
+  ].join('\n');
 
   builderMapLines.push(`  '${predicate}': function(params) {\n${body}\n  },`);
 
@@ -238,15 +224,7 @@ apiSchema.constructors.forEach(function (constructor: any) {
   typingInterfacesLines.push(interfaceBody.join("\n"))
 
   if (type) {
-    const typeName = getTypeName(type)
-    let types = typingTypes.get(typeName)
-
-    if (types) {
-      types.push(interfaceName)
-    }
-    else {
-      typingTypes.set(typeName, [interfaceName])
-    }
+    typingTypes.append(getTypeName(type), interfaceName)
   }
 });
 
@@ -254,7 +232,7 @@ apiSchema.methods.forEach(function (method: any) {
   const { id, method: name, params } = method;
   let type = method.type
 
-  const body = [`    this.int32(${id});`, ...paramsToLines(params)].join('\n');
+  const body = [`    this.int32(${id});`, ...builderParamsToLines(params)].join('\n');
 
   builderMapLines.push(`  '${name}': function(params) {\n${body}\n  },`);
 
@@ -299,21 +277,19 @@ apiSchema.methods.forEach(function (method: any) {
   ].join("\n"))
 });
 
-lines.push(`export interface BuilderMap {`, builderInterfaceLines.join("\n"), "}")
+builder.push(`export interface BuilderMap {`, builderInterfaceLines.join("\n"), "}")
 
-lines.push(`export const builderMap: BuilderMap = {\n${builderMapLines.join('\n')}\n};`);
+builder.push(`export const builderMap: BuilderMap = {\n${builderMapLines.join('\n')}\n};`);
 
-fs.writeFileSync('src/builder.ts', lines.join('\n'));
+fs.writeFileSync('src/builder.ts', builder.join('\n'));
 
 const mtprotoTypesLines = new Array<string>()
 
-
-mtprotoTypesLines.push(
-  ...Array.from(typingTypes.entries())
-    .map(function ([typeName, interfaces]) {
-      return `export type ${typeName} = ${interfaces.join(" | ")};`
-    })
-)
+for(const [typeName, interfaces] of typingTypes) {
+  mtprotoTypesLines.push(
+    `export type ${typeName} = ${interfaces.join(" | ")};`
+  )
+}
 
 mtprotoTypesLines.push(...typingInterfacesLines)
 mtprotoTypesLines.push(`export interface Methods {`)
@@ -336,13 +312,191 @@ const mtprotoTypesContent = Array.from(typingTypes.entries())
 
 fs.writeFileSync("src/mtptoto-types.ts", mtprotoTypesLines.join("\n"));
 
+
+/**
+ * Parser
+ */
+
+const parser: string[] = [];
+
+const aviableTypes = [
+  'int',
+  'long',
+  'int128',
+  'int256',
+  'string',
+  'bytes',
+  'double',
+  'mt_message',
+  'vector',
+  'predicate',
+];
+
+const bodyById = new Map([
+  [481674261, 'return this.vector(this.predicate, true);'],
+  [3162085175, 'return false;'],
+  [2574415285, 'return true;'],
+  [1072550713, 'return true;'],
+  [1450380236, 'return null;'],
+  [812830625, 'return this.gzip();'],
+]);
+
+function calcFlag(name: string, type: string) {
+  const [left, flagType] = type.split('?');
+  const [flagsName, flagBit] = left.split('.');
+
+  const condition = `result.${flagsName} & ${2 ** Number(flagBit)}`;
+
+  let fnName = flagType;
+  let args: string[] = [];
+
+  if (flagType === 'true') {
+    return `result.${name} = !!(${condition});`;
+  }
+  else if (isVectorType(flagType)) {
+    let vectorType = flagType.substr(7, flagType.length - 8);
+
+    if (!aviableTypes.includes(vectorType)) {
+      vectorType = 'predicate';
+    }
+
+    fnName = 'vector';
+    args = [`this.${vectorType}`];
+  }
+  else if (!aviableTypes.includes(flagType)) {
+    fnName = 'predicate';
+  }
+
+  return `if (${condition}) result.${name} = this.${fnName}(${args.join(
+    ', '
+  )});`;
+};
+
+const parserMapLines: string[] = [];
+
+function paramsToLines(params: any[]) {
+  const paramsLines: string[] = [];
+
+  params.forEach(function (param: any) {
+    let fnName = param.type;
+    let args: any = [];
+
+    if (param.type === '#') {
+      fnName = 'int';
+    }
+    else if (param.type.includes('?')) {
+      const flagLine = calcFlag(param.name, param.type);
+
+      paramsLines.push(flagLine);
+
+      return;
+    }
+    else if (isVectorType(param.type)) {
+      let vectorType = param.type.substr(7, param.type.length - 8);
+
+      const isBare = vectorType.charAt(0) === '%';
+
+      if (isBare) {
+        vectorType = 'mt_message';
+      }
+
+      if (!aviableTypes.includes(vectorType)) {
+        vectorType = 'predicate';
+      }
+
+      fnName = 'vector';
+      args = [`this.${vectorType}`, isBare];
+    }
+    else if (!aviableTypes.includes(param.type)) {
+      fnName = 'predicate';
+    }
+
+    paramsLines.push(
+      `result.${param.name} = this.${fnName}(${args.join(', ')});`
+    );
+  });
+
+  return paramsLines;
+};
+
+mtprotoSchema.constructors.forEach(function (constructor: any) {
+  const { predicate, params } = constructor;
+
+  const id = constructor.id >>> 0;
+
+  const body = bodyById.has(id)
+    ? bodyById.get(id)
+    : [
+      `const result: any = { _: 'mt_${predicate}' };`,
+      ...paramsToLines(params),
+      'return result;',
+    ].join('\n');
+
+  parserMapLines.push(`  [${id}, function() {\n${body}\n  }],`);
+});
+
+apiSchema.constructors.forEach(function (constructor: any) {
+  const { predicate, params } = constructor;
+
+  const id = constructor.id >>> 0;
+
+  const body = bodyById.has(id)
+    ? bodyById.get(id)
+    : [
+      `const result: any = { _: '${predicate}' };`,
+      ...paramsToLines(params),
+      'return result;',
+    ].join('\n');
+
+  parserMapLines.push(`  [${id}, function() {\n${body}\n  }],`);
+});
+
+parser.push(`interface Parser {
+  (this: any): any
+}
+
+export const parserMap = new Map<number, Parser>([\n${parserMapLines.join('\n')}\n]);
+`);
+
+const fileContent = parser.join('\n');
+
+fs.writeFileSync('src/parser.ts', fileContent);
+
+
+function buildFlags(name: string, params: string[]) {
+  const bitMap: string[] = [];
+
+  params.forEach((param: any) => {
+    if (param.type.includes('?')) {
+      const [left] = param.type.split('?');
+      const [flagsName, count] = left.split('.');
+
+      if (flagsName !== name) {
+        return;
+      }
+
+      bitMap.push(`(this.has(params.${param.name}) << ${count})`);
+    }
+  });
+
+  if (!bitMap.length) {
+    bitMap.push("0");
+  }
+
+  const flagsLine = `    const ${name} = ${bitMap.join(' | ')};`;
+
+  return flagsLine;
+}
+
+function isVectorType(type: string) {
+  return type.toLocaleLowerCase().startsWith('vector')
+}
+
 /**
  * @example getInterfaceName("auth.SentCode") -> "$Auth$SendCode"
  */
 function getInterfaceName(key: string) {
-  return "$" + key.split(".")
-    .map(capitalizeFirstLetter)
-    .join("$")
+  return "$" + getTypeName(key)
 }
 
 /**
@@ -356,4 +510,21 @@ function getTypeName(key: string) {
 
 function capitalizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function createGroupMap() {
+  return new class extends Map<string, string[]> {
+    append(key: string, value: string) {
+      const group = this.get(key)
+  
+      if (group) {
+        group.push(value)
+      }
+      else {
+        this.set(key, [value])
+      }
+  
+      return this
+    }
+  }
 }

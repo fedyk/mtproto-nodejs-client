@@ -15,7 +15,7 @@ import { SHA1, SHA256, bigIntToBytes, bytesIsEqual, bytesToBigInt, bytesToBytesR
 import { Methods, Updates } from "./mtptoto-types.js";
 import { RPCError } from "./errors.js";
 import { Storage } from "./storage.js";
-import { LAYER } from "./layer.js";
+import { LAYER } from "./config.js";
 
 export interface Message {
   method: string

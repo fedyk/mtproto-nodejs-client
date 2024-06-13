@@ -11,19 +11,6 @@ interface Params {
 }
 
 export function getSRPParams({ g, p, salt1, salt2, gB, password }: Params) {
-  const SH = (data: Uint8Array, salt: Uint8Array) => {
-    return SHA256(concatBytes(salt, data, salt));
-  };
-  const PH1 = (password: Uint8Array, salt1: Uint8Array, salt2: Uint8Array) => {
-    return SH(SH(password, salt1), salt2);
-  };
-  const PH2 = (password: Uint8Array, salt1: Uint8Array, salt2: Uint8Array) => {
-    return SH(
-      PBKDF2(PH1(password, salt1, salt2), salt1, 100000),
-      salt2
-    );
-  };
-
   const encoder = new TextEncoder();
   const gBigInt = bigInt(g);
   const gBytes = bigIntToBytes(gBigInt, 256);
@@ -64,4 +51,19 @@ export function getSRPParams({ g, p, salt1, salt2, gB, password }: Params) {
   );
 
   return { A: gABytes, M1 };
+}
+
+function SH(data: Uint8Array, salt: Uint8Array) {
+  return SHA256(concatBytes(salt, data, salt));
+}
+
+function PH1(password: Uint8Array, salt1: Uint8Array, salt2: Uint8Array) {
+  return SH(SH(password, salt1), salt2);
+}
+
+function PH2(password: Uint8Array, salt1: Uint8Array, salt2: Uint8Array) {
+  return SH(
+    PBKDF2(PH1(password, salt1, salt2), salt1, 100000),
+    salt2
+  )
 }

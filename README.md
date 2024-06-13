@@ -6,14 +6,14 @@ Based on [alik0211/mtproto-core](https://github.com/alik0211/mtproto-core), rewr
 
 To simpplify code, browser support is removed.
 
-* **Actual.** 158 layer in the API scheme
+* **Actual.** 170 layer in the API scheme
 * **Fast.** Uses the TCP and crypto module.
 * **Easy.** Cryptography is hidden. Work with the API at a high level
 * **Smart.** Automatically sync authorization on all DCs
 * **2FA.** Use the library's built-in function to calculate 2FA parameters
 * **Secure.** Complies with Telegram security guidelines
-* **Typescript.** Written in Typescript + typing for updates and API methods
-* **ECMAScript modules.**  ECMAScript modules are the official standard JavaScript packages
+* **Typescript.** Typescript + Typing for updates and API methods
+* **ECMAScript modules.** ECMAScript modules are the official standard for JavaScript packages
 
 ## Install
 
