@@ -10,6 +10,7 @@ interface Params {
   password: string
 }
 
+/** @see https://core.telegram.org/api/srp */
 export function getSRPParams({ g, p, salt1, salt2, gB, password }: Params) {
   const encoder = new TextEncoder();
   const gBigInt = bigInt(g);
@@ -62,8 +63,5 @@ function PH1(password: Uint8Array, salt1: Uint8Array, salt2: Uint8Array) {
 }
 
 function PH2(password: Uint8Array, salt1: Uint8Array, salt2: Uint8Array) {
-  return SH(
-    PBKDF2(PH1(password, salt1, salt2), salt1, 100000),
-    salt2
-  )
+  return SH(PBKDF2(PH1(password, salt1, salt2), salt1, 100000), salt2)
 }

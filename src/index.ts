@@ -1,5 +1,6 @@
 export { MTProto } from "./mtproto.js"
 export { RPCError } from "./errors.js"
+export { getSRPParams } from "./get-srp-params.js"
 export * from "./temp-storage.js"
 export * from "./types.js"
 export * from "./mtptoto-types.js"
