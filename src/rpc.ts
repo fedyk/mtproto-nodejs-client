@@ -147,6 +147,14 @@ export class RPC {
     }
 
     this.messagesWaitAuth = []
+
+    if (this.pingTimer) {
+      clearTimeout(this.pingTimer)
+    }
+
+    if (this.pongTimer) {
+      clearTimeout(this.pongTimer)
+    }
   }
 
   get isReady() {
@@ -967,6 +975,6 @@ export class RPC {
       clearTimeout(this.pongTimer)
     }
 
-    this.pingTimer = setTimeout(this.ping, this.pingTimeout)
+    this.pingTimer = setTimeout(this.ping, this.pingTimeout).unref()
   }
 }
