@@ -1,24 +1,22 @@
 # mtproto-nodejs-client
 
-Telegram (MTProto) NodeJS client library for Node.js.
+Telegram API (MTProto) client for Node.js.
 
-Based on [alik0211/mtproto-core](https://github.com/alik0211/mtproto-core), rewritten to Typescript.
+Written in TypeScript for typings. Use Node.js native API for crypto and hashing. Simple and more reliable thanks to removing browser support.
 
-To simpplify code, browser support is removed.
-
-* **Actual.** 170 layer in the API scheme
-* **Fast.** Uses the TCP and crypto module.
+* **Actual.** 195 layer in the API scheme
+* **Fast.** Uses the TCP and `node:crypto`.
 * **Easy.** Cryptography is hidden. Work with the API at a high level
 * **Smart.** Automatically sync authorization on all DCs
 * **2FA.** Use the library's built-in function to calculate 2FA parameters
 * **Secure.** Complies with Telegram security guidelines
 * **Typescript.** Typescript + Typing for updates and API methods
-* **ECMAScript modules.** ECMAScript modules are the official standard for JavaScript packages
+* **ECMAScript.** ECMAScript modules are the official standard for JavaScript packages.
 
 ## Install
 
 ```
-npm install github:fedyk/mtproto-nodejs-client
+npm install mtproto-nodejs-client
 ```
 
 ## Example
@@ -26,13 +24,11 @@ npm install github:fedyk/mtproto-nodejs-client
 Connect to Telegram servers
 
 ```js
-const api_id = 12345678 27563128
-const api_hash = "abcdef1234567890abcdef1234567890"
-const storage = createLocalStorage({
-  path: "storage.json"
-})
+const api_id = 12345678;
+const api_hash = "abcdef1234567890abcdef1234567890”;
+const storage = createLocalStorage({ path: "storage.json" })
 const mtproto = new MTProto({  
-  api_id: String(api_id),
+  api_id: api_id,
   api_hash: api_hash,
   storage: storage
 })
@@ -95,7 +91,7 @@ mtproto.call("updates.getState").then(function(state) {
 
 ## Credits
 
-The library was initially created by [@alik0211](https://github.com/alik0211/mtproto-core). I added TypeScript, removed browser support and adjusted code to focus only on Node.js support.
+The library was initially created by [@alik0211](https://github.com/alik0211/mtproto-core).
 
 ## License
 
