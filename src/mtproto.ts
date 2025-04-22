@@ -41,7 +41,6 @@ export class MTProto {
     };
 
     this.dcList = options.test ? TEST_DC_LIST : PRODUCTION_DC_LIST;
-
     this.rpcs = new Map<number, RPC>();
     this.storage = new Storage(storage);
     this.updates = new events.EventEmitter();

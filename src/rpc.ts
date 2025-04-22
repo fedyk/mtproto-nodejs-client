@@ -211,7 +211,9 @@ export class RPC {
 
   handleTransportClose() {
     for (const [id, message] of this.messagesWaitResponse) {
-      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to closed connection (ack=${message.isAck}, time=${Date.now() - message.createAt}ms))`, 500));
+      const duration = Date.now() - message.createAt
+
+      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to closed connection (ack=${message.isAck}, duration=${duration}ms))`, 500));
 
       this.messagesWaitResponse.delete(id)
     }

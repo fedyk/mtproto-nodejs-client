@@ -57,7 +57,6 @@ export class Transport extends events.EventEmitter {
     const initialMessage = this.generateObfuscationKeys();
 
     this.socket?.write(initialMessage);
-
     this.debug('open with %s:%s', this.dc.ip, this.dc.port)
     this.emit('open');
   }

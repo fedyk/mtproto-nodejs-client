@@ -18,8 +18,6 @@ import {
 } from 'leemon';
 import { bytesToBigInt, getRandomInt, hexToBytes } from './common.js';
 
-
-
 function leemonBigIntToBytes(bigInt: BigInteger) {
   const str = bigInt2str(bigInt, 16);
 
