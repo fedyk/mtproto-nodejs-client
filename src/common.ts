@@ -111,7 +111,7 @@ export function PBKDF2(password: string | Uint8Array, salt: crypto.BinaryLike, i
   return crypto.pbkdf2Sync(password, salt, iterations, 64, "sha512")
 }
 
-export function SHA1(data: ArrayBuffer): Uint8Array {
+export function SHA1(data: ArrayBufferLike): Uint8Array {
   const hash = crypto.createHash("sha1");
 
   hash.update(new Uint8Array(data));

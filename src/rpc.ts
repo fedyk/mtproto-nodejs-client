@@ -58,8 +58,8 @@ export class RPC {
   tmpAesIV?: Uint8Array
   sessionId?: Uint8Array
   nonce?: Uint8Array
-  newNonce: any
-  serverNonce: any
+  newNonce?: Uint8Array<ArrayBufferLike>
+  serverNonce?: Uint8Array<ArrayBufferLike>
 
   dhPrime?: bigInt.BigInteger
   g?: bigInt.BigInteger
@@ -201,11 +201,13 @@ export class RPC {
     else {
       this.nonce = getRandomBytes(16);
       this.handleMessage = this.handlePQResponse;
-      this.sendPlainMessage(builderMap.mt_req_pq_multi, { nonce: this.nonce });
+      this.sendPlainMessage(builderMap.mt_req_pq_multi, { 
+        nonce: this.nonce
+      });
     }
   }
 
-  handleTransportMessage(buffer: Buffer) {
+  handleTransportMessage(buffer: ArrayBufferLike) {
     this.handleMessage(buffer);
   }
 
@@ -219,11 +221,11 @@ export class RPC {
     }
   }
 
-  handleMessage(buffer: Buffer) {
+  handleMessage(_: ArrayBufferLike) {
     throw new Error("`handleMessage` needs to be implemented")
   }
 
-  async handlePQResponse(buffer: Buffer) {
+  async handlePQResponse(buffer: ArrayBufferLike) {
     this.debug("handling PQ response")
 
     const deserializer = new Deserializer(buffer);
@@ -451,7 +453,7 @@ export class RPC {
     this.handleMessage = this.handleDHAnswer;
   }
 
-  async handleDHAnswer(buffer: Buffer) {
+  async handleDHAnswer(buffer: ArrayBufferLike) {
     this.debug("handling DH answer")
 
     const deserializer = new Deserializer(buffer);
@@ -812,12 +814,16 @@ export class RPC {
 
     const plainData = plainDataSerializer.getBytes();
 
-    const messageKeyLarge = SHA256(concatBytes(authKey.slice(88, 120), plainData));
+    const messageKeyLarge = SHA256(
+      concatBytes(authKey.slice(88, 120), plainData)
+    );
+
     const messageKey = messageKeyLarge.slice(8, 24);
 
-    const encryptedData = this.getAESInstance(authKey, messageKey, false).encrypt(plainData);
+    const encryptedData = this.getAESInstance(authKey, messageKey, false)
+      .encrypt(plainData);
 
-    const authKeyId = (SHA1(authKey)).slice(-8);
+    const authKeyId = SHA1(authKey).slice(-8);
     const serializer = new Serializer(function () {
       this.bytesRaw(authKeyId);
       this.bytesRaw(messageKey);
