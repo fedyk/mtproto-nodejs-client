@@ -26,12 +26,12 @@ export const TEST_DC_LIST: DC[] = [
 export const PRODUCTION_DC_LIST: DC[] = [
   {
     id: 1,
-    ip: "149.154.175.57",
+    ip: "149.154.175.50",
     port: 443,
   },
   {
     id: 2,
-    ip: "149.154.167.50",
+    ip: "149.154.167.51",
     port: 443,
   },
   {
@@ -46,7 +46,7 @@ export const PRODUCTION_DC_LIST: DC[] = [
   },
   {
     id: 5,
-    ip: "91.108.56.186",
+    ip: "149.154.171.5",
     port: 443,
   },
 ];
