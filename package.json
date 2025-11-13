@@ -12,14 +12,15 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
+    "build": "tsgo",
+    "watch": "tsgo --watch",
     "test": "node --test lib/**/*.test.js",
     "sync-schema": "node lib/sync-schema.js",
     "generate": "node lib/generate.js"
   },
   "license": "GPL-3.0",
   "dependencies": {
+    "@typescript/native-preview": "^7.0.0-dev.20251113.1",
     "aes-js": "3.1.2",
     "big-integer": "1.6.52",
     "debug": "4.4.3",
@@ -32,8 +33,7 @@
     "@types/debug": "^4.1.12",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^24.10.1",
-    "@types/pako": "^2.0.4",
-    "typescript": "^5.9.3"
+    "@types/pako": "^2.0.4"
   },
   "repository": {
     "type": "git",
