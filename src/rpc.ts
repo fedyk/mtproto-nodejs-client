@@ -66,7 +66,7 @@ export class RPC {
   gA?: bigInt.BigInteger
   authKeyAuxHash?: any
   lastMessageId?: any
-  seqNo?: number
+  seqNo: number
 
   constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates }: {
     api_id: number
@@ -93,6 +93,7 @@ export class RPC {
     this.nonce = new Uint8Array()
     this.newNonce = new Uint8Array()
     this.serverNonce = new Uint8Array()
+    this.seqNo = 0
 
     this.handleTransportOpen = this.handleTransportOpen.bind(this);
     this.handleTransportError = this.handleTransportError.bind(this);
@@ -897,7 +898,6 @@ export class RPC {
   }
 
   getSeqNo(isContentRelated = true) {
-    // @ts-ignore
     let seqNo = this.seqNo * 2;
 
     if (isContentRelated) {
