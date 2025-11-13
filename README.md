@@ -93,6 +93,12 @@ mtproto.call("updates.getState").then(function(state) {
 
 The library was initially created by [@alik0211](https://github.com/alik0211/mtproto-core).
 
+## Resources
+
+The `mtproto.json` is well described [here](https://core.telegram.org/schema/mtproto) ([detailed schema in JSON](https://core.telegram.org/schema/mtproto-json)).
+
+The `api.json` is well desctibed [here](https://core.telegram.org/schema) ([detailed schema in JSON](https://core.telegram.org/schema/json)).
+
 ## License
 
 GPLv3
