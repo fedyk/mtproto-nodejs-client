@@ -1,6 +1,6 @@
 {
   "name": "mtproto-nodejs-client",
-  "version": "7.3.1",
+  "version": "8.0.0",
   "type": "module",
   "description": "Telegram API JS (MTProto) client library for Node.js",
   "main": "lib/index.js",
@@ -15,7 +15,8 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "node --test lib/**/*.test.js",
-    "prepublishOnly": "tsc"
+    "sync-schema": "node lib/sync-schema.js",
+    "generate": "node lib/generate.js"
   },
   "license": "GPL-3.0",
   "dependencies": {
