@@ -57,16 +57,16 @@ export class RPC {
   tmpAesKey?: Uint8Array
   tmpAesIV?: Uint8Array
   sessionId?: Uint8Array
-  nonce?: Uint8Array
-  newNonce: any
-  serverNonce: any
+  nonce: Uint8Array
+  newNonce: Uint8Array
+  serverNonce: Uint8Array
 
   dhPrime?: bigInt.BigInteger
   g?: bigInt.BigInteger
   gA?: bigInt.BigInteger
   authKeyAuxHash?: any
   lastMessageId?: any
-  seqNo?: number
+  seqNo: number
 
   constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates }: {
     api_id: number
@@ -90,6 +90,10 @@ export class RPC {
     this.pendingAcks = [];
     this.messagesWaitAuth = [];
     this.messagesWaitResponse = new Map();
+    this.nonce = new Uint8Array()
+    this.newNonce = new Uint8Array()
+    this.serverNonce = new Uint8Array()
+    this.seqNo = 0
 
     this.handleTransportOpen = this.handleTransportOpen.bind(this);
     this.handleTransportError = this.handleTransportError.bind(this);
@@ -201,11 +205,13 @@ export class RPC {
     else {
       this.nonce = getRandomBytes(16);
       this.handleMessage = this.handlePQResponse;
-      this.sendPlainMessage(builderMap.mt_req_pq_multi, { nonce: this.nonce });
+      this.sendPlainMessage(builderMap.mt_req_pq_multi, {
+        nonce: this.nonce
+      });
     }
   }
 
-  handleTransportMessage(buffer: Buffer) {
+  handleTransportMessage(buffer: ArrayBufferLike) {
     this.handleMessage(buffer);
   }
 
@@ -219,11 +225,11 @@ export class RPC {
     }
   }
 
-  handleMessage(buffer: Buffer) {
+  handleMessage(_: ArrayBufferLike) {
     throw new Error("`handleMessage` needs to be implemented")
   }
 
-  async handlePQResponse(buffer: Buffer) {
+  handlePQResponse(buffer: ArrayBufferLike) {
     this.debug("handling PQ response")
 
     const deserializer = new Deserializer(buffer);
@@ -244,7 +250,7 @@ export class RPC {
       throw new Error('The nonce are not equal');
     }
 
-    const publicKey = await RSA.getRsaKeyByFingerprints(
+    const publicKey = RSA.getRsaKeyByFingerprints(
       server_public_key_fingerprints
     );
 
@@ -299,15 +305,19 @@ export class RPC {
     const { nonce, server_nonce, encrypted_answer } = serverDH;
 
     if (!this.nonce) {
-      throw new Error("`this.nonce` can't be empty")
+      throw new TypeError("`this.nonce` can't be empty")
+    }
+
+    if (!this.serverNonce) {
+      throw new TypeError("`this.serverNonce` can't be empty")
     }
 
     if (!bytesIsEqual(this.nonce, nonce)) {
-      throw new Error('The nonce are not equal');
+      throw new RangeError('The nonce are not equal');
     }
 
     if (!bytesIsEqual(this.serverNonce, server_nonce)) {
-      throw new Error('The server_nonce are not equal');
+      throw new RangeError('The server_nonce are not equal');
     }
 
     this.tmpAesKey = concatBytes(
@@ -451,7 +461,7 @@ export class RPC {
     this.handleMessage = this.handleDHAnswer;
   }
 
-  async handleDHAnswer(buffer: Buffer) {
+  async handleDHAnswer(buffer: ArrayBufferLike) {
     this.debug("handling DH answer")
 
     const deserializer = new Deserializer(buffer);
@@ -476,9 +486,10 @@ export class RPC {
     }
 
     if (serverDHAnswer._ === 'mt_dh_gen_ok') {
+      debugger
       const hash = (
         SHA1(
-          concatBytes(this.newNonce, [1], this.authKeyAuxHash)
+          concatBytes(this.newNonce, new Uint8Array([1]), this.authKeyAuxHash)
         )
       ).slice(4, 20);
 
@@ -494,9 +505,10 @@ export class RPC {
     }
 
     if (serverDHAnswer._ === 'mt_dh_gen_retry') {
+      debugger
       const hash = (
         SHA1(
-          concatBytes(this.newNonce, [2], this.authKeyAuxHash)
+          concatBytes(this.newNonce, new Uint8Array([2]), this.authKeyAuxHash)
         )
       ).slice(4, 20);
 
@@ -512,7 +524,7 @@ export class RPC {
     if (serverDHAnswer._ === 'mt_dh_gen_fail') {
       const hash = (
         SHA1(
-          concatBytes(this.newNonce, [3], this.authKeyAuxHash)
+          concatBytes(this.newNonce, new Uint8Array([3]), this.authKeyAuxHash)
         )
       ).slice(4, 20);
 
@@ -812,12 +824,16 @@ export class RPC {
 
     const plainData = plainDataSerializer.getBytes();
 
-    const messageKeyLarge = SHA256(concatBytes(authKey.slice(88, 120), plainData));
+    const messageKeyLarge = SHA256(
+      concatBytes(authKey.slice(88, 120), plainData)
+    );
+
     const messageKey = messageKeyLarge.slice(8, 24);
 
-    const encryptedData = this.getAESInstance(authKey, messageKey, false).encrypt(plainData);
+    const encryptedData = this.getAESInstance(authKey, messageKey, false)
+      .encrypt(plainData);
 
-    const authKeyId = (SHA1(authKey)).slice(-8);
+    const authKeyId = SHA1(authKey).slice(-8);
     const serializer = new Serializer(function () {
       this.bytesRaw(authKeyId);
       this.bytesRaw(messageKey);
@@ -882,7 +898,6 @@ export class RPC {
   }
 
   getSeqNo(isContentRelated = true) {
-    // @ts-ignore
     let seqNo = this.seqNo * 2;
 
     if (isContentRelated) {

@@ -57,7 +57,7 @@ export function xorBytes(bytes1: Uint8Array | ByteSource, bytes2: Uint8Array | B
   return bytes;
 }
 
-export function concatBytes(...arrays: ArrayLike<number>[]) {
+export function concatBytes(...arrays: Uint8Array[]) {
   let length = 0;
 
   for (let bytes of arrays) {
@@ -111,7 +111,7 @@ export function PBKDF2(password: string | Uint8Array, salt: crypto.BinaryLike, i
   return crypto.pbkdf2Sync(password, salt, iterations, 64, "sha512")
 }
 
-export function SHA1(data: ArrayBuffer): Uint8Array {
+export function SHA1(data: Uint8Array | ArrayBuffer): Uint8Array {
   const hash = crypto.createHash("sha1");
 
   hash.update(new Uint8Array(data));
@@ -119,7 +119,7 @@ export function SHA1(data: ArrayBuffer): Uint8Array {
   return new Uint8Array(hash.digest());
 }
 
-export function SHA256(data: ArrayBuffer): Uint8Array {
+export function SHA256(data: Uint8Array): Uint8Array {
   const hash = crypto.createHash("sha256");
 
   hash.update(new Uint8Array(data));

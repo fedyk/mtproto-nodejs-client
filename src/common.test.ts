@@ -1,7 +1,16 @@
 import test from "node:test"
 import assert from "node:assert"
 import bigInt from "big-integer"
-import { bigIntToBytes, bytesIsEqual, bytesToHex, concatBytes, getRandomInt, hexToBytesRaw, intsToLong, xorBytes } from "./common.js";
+import {
+  bigIntToBytes,
+  bytesIsEqual,
+  bytesToHex,
+  concatBytes,
+  getRandomInt,
+  hexToBytesRaw,
+  intsToLong,
+  xorBytes
+} from "./common.js";
 
 test.describe('bytesIsEqual', function () {
   test.it('return false if the length is different', function () {
@@ -58,7 +67,7 @@ test.describe('hexToBytesRaw', function () {
   });
 
   test.it('return correct result', function () {
-    result.forEach(function(value, index) {
+    result.forEach(function (value, index) {
       assert.equal(value, expectedResult[index])
     })
   });
@@ -90,7 +99,12 @@ test.describe('xorBytes', function () {
 
 test.describe('concatBytes', function () {
   const expectedResult = new Uint8Array([1, 2, 3, 4]);
-  const result = concatBytes([1], [2], [3], [4]);
+  const result = concatBytes(
+    new Uint8Array([1]),
+    new Uint8Array([2]),
+    new Uint8Array([3]),
+    new Uint8Array([4])
+  );
 
   test.it('return Uint8Array', function () {
     assert.ok(result instanceof Uint8Array);

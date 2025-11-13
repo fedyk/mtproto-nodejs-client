@@ -8,16 +8,10 @@ jobs:
     timeout-minutes: 5
     environment: test
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v6
       with:
-        node-version: 20
+        node-version: 22
     - run: npm ci
     - run: npm run build
     - run: npm run test
-      env:
-        DEBUG: "*"
-        API_ID: ${{ vars.API_ID }}
-        API_HASH: ${{ vars.API_HASH }}
-        PHONE_NUMBER: ${{ vars.PHONE_NUMBER }}
-        PHONE_CODE: ${{ vars.PHONE_CODE }}
