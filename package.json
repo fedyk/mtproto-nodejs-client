@@ -14,7 +14,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "node --test",
+    "test": "node --test lib/**/*.test.js",
     "prepublishOnly": "tsc"
   },
   "license": "GPL-3.0",

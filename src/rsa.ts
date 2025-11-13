@@ -46,7 +46,7 @@ const publisKeys: PublicKey[] = [
 ];
 
 export namespace RSA {
-  export async function getPublisKeysByHex() {
+  export function getPublisKeysByHex() {
     const publisKeysByHex: Record<string, PublicKey> = {};
 
     for (const publisKey of publisKeys) {
@@ -56,8 +56,7 @@ export namespace RSA {
       });
 
       const buffer = RSAPublicKey.getBuffer();
-
-      const fingerprintBytes = (await SHA1(buffer)).slice(-8);
+      const fingerprintBytes = SHA1(buffer).slice(-8);
 
       fingerprintBytes.reverse();
 
@@ -70,10 +69,10 @@ export namespace RSA {
     return publisKeysByHex;
   }
 
-  export async function getRsaKeyByFingerprints(fingerprints: string[]): Promise<RsaKey | null> {
+  export function getRsaKeyByFingerprints(fingerprints: string[]): RsaKey | null {
     let resultKey: RsaKey | null = null;
 
-    const publisKeysByHex = await getPublisKeysByHex();
+    const publisKeysByHex = getPublisKeysByHex();
 
     fingerprints.forEach((fingerprint) => {
       if (!!resultKey) {
