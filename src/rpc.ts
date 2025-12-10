@@ -80,6 +80,7 @@ export class RPC {
   authKeyAuxHash?: any
   lastMessageId?: any
   seqNo: number
+  pingId: number
 
   constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates }: {
     api_id: number
@@ -107,6 +108,7 @@ export class RPC {
     this.newNonce = new Uint8Array()
     this.serverNonce = new Uint8Array()
     this.seqNo = 0
+    this.pingId = Date.now()
 
     this.handleTransportOpen = this.handleTransportOpen.bind(this);
     this.handleTransportError = this.handleTransportError.bind(this);
@@ -212,8 +214,13 @@ export class RPC {
       this.isAuth = true;
       this.sendWaitMessages();
 
-      // This request is necessary to ensure that you start interacting with the server. If we have not made any request, the server will not send us updates.
-      this.ping()
+      // This request is necessary to ensure that you start interacting with the server.
+      // If we have not made any request, the server will not send us updates.
+      await this.getConfig()
+
+      setTimeout(() => {
+        this.ping()
+      }, 5000).unref()
     }
     else {
       this.nonce = getRandomBytes(16);
@@ -745,7 +752,7 @@ export class RPC {
     this.sendAcks();
   }
 
-  call<T extends keyof Methods>(method: T | string, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
+  call<T extends keyof Methods>(method: T, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
     if (!this.isReady) {
       return new Promise((resolve, reject) => {
         this.messagesWaitAuth.push({
@@ -961,10 +968,24 @@ export class RPC {
     return this.storage.get(`${this.dc.id}${key}`);
   }
 
+  getConfig() {
+    debug("try to get server config after opening the connection")
+
+    return this.call("help.getConfig")
+      .then(config => {
+        debug("get config after open connection %j", config)
+      })
+      .catch(err => {
+        debug("fail to get config after open connection err=%s err_data=%j", String(err), JSON.stringify(err))
+      })
+  }
+
   ping() {
     this.pongTimer = setTimeout(this.reconnect, this.pongTimeout).unref()
+    
+    debugger
 
-    this.call("help.getConfig")
+    this.call("mt_ping", { ping_id: this.pingId++, })
       .then(this.pong)
       .catch(this.pongError)
       .finally(this.schedulePing)
