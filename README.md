@@ -21,7 +21,9 @@ npm install mtproto-nodejs-client
 
 ## Example
 
-Connect to Telegram servers
+Check out the full sign-in example in [example.ts](src/example.ts) and the QR code login example in [example-qr.ts](src/example-qr.ts).
+
+To connect to Telegram servers:
 
 ```js
 const api_id = 12345678;
