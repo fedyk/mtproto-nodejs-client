@@ -17003,5 +17003,14 @@ export interface Methods {
       hash: string;
     }
     response: Account$ChatThemes
+  },
+  'mt_ping': {
+    params: {
+      ping_id: number
+    }
+    response: {
+      msg_id: number
+      ping_id: number
+    }
   }
 }
