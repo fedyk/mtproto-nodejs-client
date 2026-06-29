@@ -1,5 +1,4 @@
 .DS_Store
-test.sh
-spec.sh
+*.sh
 /lib
 /node_modules
