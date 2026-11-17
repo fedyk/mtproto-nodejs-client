@@ -55,8 +55,11 @@ export class MTProto {
   }
 
   async call<T extends keyof Methods>(method: T, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
+    const origin = new Error(`RPC requested: ${method}`)
+    Error.captureStackTrace(origin, this.call)
+
     try {
-      const result = await this._call(method, params)
+      const result = await this._call(method, params, { origin })
 
       return result
     }
@@ -64,7 +67,7 @@ export class MTProto {
       if (err instanceof RPCError && err.message.includes("_MIGRATE_") && err.status === 303) {
         const [type, dcIdAsString] = err.message.split("_MIGRATE_");
         const dcId = Number(dcIdAsString);
-        const options: { dcId?: number } = {}
+        const options: { dcId?: number; origin: Error } = { origin }
 
         // If auth.sendCode call on incorrect DC need change default DC, because
         // call auth.signIn on incorrect DC return PHONE_CODE_EXPIRED error
@@ -85,11 +88,12 @@ export class MTProto {
   private async _call<T extends keyof Methods>(method: T, params?: Methods[T]["params"], options?: {
     dcId?: number
     syncAuth?: boolean
+    origin?: Error
   }): Promise<Methods[T]["response"]> {
     const syncAuth = options?.syncAuth || true
     const dcId = options?.dcId || (await this.storage.get("defaultDcId")) || 2;
     const rpc = this.getRPC(Number(dcId));
-    const result = await rpc.call(method, params)
+    const result = await rpc.call(method, params, options?.origin)
 
     // @ts-ignore
     if (syncAuth && result._ === "auth.authorization") {

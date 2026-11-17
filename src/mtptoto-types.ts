@@ -6,7 +6,7 @@ export type InputPeer = $InputPeerEmpty | $InputPeerSelf | $InputPeerChat | $Inp
 export type InputUser = $InputUserEmpty | $InputUserSelf | $InputUser | $InputUserFromMessage;
 export type InputContact = $InputPhoneContact;
 export type InputFile = $InputFile | $InputFileBig | $InputFileStoryDocument;
-export type InputMedia = $InputMediaEmpty | $InputMediaUploadedPhoto | $InputMediaPhoto | $InputMediaGeoPoint | $InputMediaContact | $InputMediaUploadedDocument | $InputMediaDocument | $InputMediaVenue | $InputMediaPhotoExternal | $InputMediaDocumentExternal | $InputMediaGame | $InputMediaInvoice | $InputMediaGeoLive | $InputMediaPoll | $InputMediaDice | $InputMediaStory | $InputMediaWebPage | $InputMediaPaidMedia | $InputMediaTodo;
+export type InputMedia = $InputMediaEmpty | $InputMediaUploadedPhoto | $InputMediaPhoto | $InputMediaGeoPoint | $InputMediaContact | $InputMediaUploadedDocument | $InputMediaDocument | $InputMediaVenue | $InputMediaPhotoExternal | $InputMediaDocumentExternal | $InputMediaGame | $InputMediaInvoice | $InputMediaGeoLive | $InputMediaPoll | $InputMediaDice | $InputMediaStory | $InputMediaWebPage | $InputMediaPaidMedia | $InputMediaTodo | $InputMediaStakeDice;
 export type InputChatPhoto = $InputChatPhotoEmpty | $InputChatUploadedPhoto | $InputChatPhoto;
 export type InputGeoPoint = $InputGeoPointEmpty | $InputGeoPoint;
 export type InputPhoto = $InputPhotoEmpty | $InputPhoto;
@@ -22,8 +22,8 @@ export type ChatParticipant = $ChatParticipant | $ChatParticipantCreator | $Chat
 export type ChatParticipants = $ChatParticipantsForbidden | $ChatParticipants;
 export type ChatPhoto = $ChatPhotoEmpty | $ChatPhoto;
 export type Message = $MessageEmpty | $Message | $MessageService;
-export type MessageMedia = $MessageMediaEmpty | $MessageMediaPhoto | $MessageMediaGeo | $MessageMediaContact | $MessageMediaUnsupported | $MessageMediaDocument | $MessageMediaWebPage | $MessageMediaVenue | $MessageMediaGame | $MessageMediaInvoice | $MessageMediaGeoLive | $MessageMediaPoll | $MessageMediaDice | $MessageMediaStory | $MessageMediaGiveaway | $MessageMediaGiveawayResults | $MessageMediaPaidMedia | $MessageMediaToDo;
-export type MessageAction = $MessageActionEmpty | $MessageActionChatCreate | $MessageActionChatEditTitle | $MessageActionChatEditPhoto | $MessageActionChatDeletePhoto | $MessageActionChatAddUser | $MessageActionChatDeleteUser | $MessageActionChatJoinedByLink | $MessageActionChannelCreate | $MessageActionChatMigrateTo | $MessageActionChannelMigrateFrom | $MessageActionPinMessage | $MessageActionHistoryClear | $MessageActionGameScore | $MessageActionPaymentSentMe | $MessageActionPaymentSent | $MessageActionPhoneCall | $MessageActionScreenshotTaken | $MessageActionCustomAction | $MessageActionBotAllowed | $MessageActionSecureValuesSentMe | $MessageActionSecureValuesSent | $MessageActionContactSignUp | $MessageActionGeoProximityReached | $MessageActionGroupCall | $MessageActionInviteToGroupCall | $MessageActionSetMessagesTTL | $MessageActionGroupCallScheduled | $MessageActionSetChatTheme | $MessageActionChatJoinedByRequest | $MessageActionWebViewDataSentMe | $MessageActionWebViewDataSent | $MessageActionGiftPremium | $MessageActionTopicCreate | $MessageActionTopicEdit | $MessageActionSuggestProfilePhoto | $MessageActionRequestedPeer | $MessageActionSetChatWallPaper | $MessageActionGiftCode | $MessageActionGiveawayLaunch | $MessageActionGiveawayResults | $MessageActionBoostApply | $MessageActionRequestedPeerSentMe | $MessageActionPaymentRefunded | $MessageActionGiftStars | $MessageActionPrizeStars | $MessageActionStarGift | $MessageActionStarGiftUnique | $MessageActionPaidMessagesRefunded | $MessageActionPaidMessagesPrice | $MessageActionConferenceCall | $MessageActionTodoCompletions | $MessageActionTodoAppendTasks | $MessageActionSuggestedPostApproval | $MessageActionSuggestedPostSuccess | $MessageActionSuggestedPostRefund | $MessageActionGiftTon;
+export type MessageMedia = $MessageMediaEmpty | $MessageMediaPhoto | $MessageMediaGeo | $MessageMediaContact | $MessageMediaUnsupported | $MessageMediaDocument | $MessageMediaWebPage | $MessageMediaVenue | $MessageMediaGame | $MessageMediaInvoice | $MessageMediaGeoLive | $MessageMediaPoll | $MessageMediaDice | $MessageMediaStory | $MessageMediaGiveaway | $MessageMediaGiveawayResults | $MessageMediaPaidMedia | $MessageMediaToDo | $MessageMediaVideoStream;
+export type MessageAction = $MessageActionEmpty | $MessageActionChatCreate | $MessageActionChatEditTitle | $MessageActionChatEditPhoto | $MessageActionChatDeletePhoto | $MessageActionChatAddUser | $MessageActionChatDeleteUser | $MessageActionChatJoinedByLink | $MessageActionChannelCreate | $MessageActionChatMigrateTo | $MessageActionChannelMigrateFrom | $MessageActionPinMessage | $MessageActionHistoryClear | $MessageActionGameScore | $MessageActionPaymentSentMe | $MessageActionPaymentSent | $MessageActionPhoneCall | $MessageActionScreenshotTaken | $MessageActionCustomAction | $MessageActionBotAllowed | $MessageActionSecureValuesSentMe | $MessageActionSecureValuesSent | $MessageActionContactSignUp | $MessageActionGeoProximityReached | $MessageActionGroupCall | $MessageActionInviteToGroupCall | $MessageActionSetMessagesTTL | $MessageActionGroupCallScheduled | $MessageActionSetChatTheme | $MessageActionChatJoinedByRequest | $MessageActionWebViewDataSentMe | $MessageActionWebViewDataSent | $MessageActionGiftPremium | $MessageActionTopicCreate | $MessageActionTopicEdit | $MessageActionSuggestProfilePhoto | $MessageActionRequestedPeer | $MessageActionSetChatWallPaper | $MessageActionGiftCode | $MessageActionGiveawayLaunch | $MessageActionGiveawayResults | $MessageActionBoostApply | $MessageActionRequestedPeerSentMe | $MessageActionPaymentRefunded | $MessageActionGiftStars | $MessageActionPrizeStars | $MessageActionStarGift | $MessageActionStarGiftUnique | $MessageActionPaidMessagesRefunded | $MessageActionPaidMessagesPrice | $MessageActionConferenceCall | $MessageActionTodoCompletions | $MessageActionTodoAppendTasks | $MessageActionSuggestedPostApproval | $MessageActionSuggestedPostSuccess | $MessageActionSuggestedPostRefund | $MessageActionGiftTon | $MessageActionSuggestBirthday | $MessageActionStarGiftPurchaseOffer | $MessageActionStarGiftPurchaseOfferDeclined | $MessageActionNewCreatorPending | $MessageActionChangeCreator | $MessageActionNoForwardsToggle | $MessageActionNoForwardsRequest;
 export type Dialog = $Dialog | $DialogFolder;
 export type Photo = $PhotoEmpty | $Photo;
 export type PhotoSize = $PhotoSizeEmpty | $PhotoSize | $PhotoCachedSize | $PhotoStrippedSize | $PhotoSizeProgressive | $PhotoPathSize;
@@ -50,7 +50,7 @@ export type Messages$Chats = $Messages$Chats | $Messages$ChatsSlice;
 export type Messages$ChatFull = $Messages$ChatFull;
 export type Messages$AffectedHistory = $Messages$AffectedHistory;
 export type MessagesFilter = $InputMessagesFilterEmpty | $InputMessagesFilterPhotos | $InputMessagesFilterVideo | $InputMessagesFilterPhotoVideo | $InputMessagesFilterDocument | $InputMessagesFilterUrl | $InputMessagesFilterGif | $InputMessagesFilterVoice | $InputMessagesFilterMusic | $InputMessagesFilterChatPhotos | $InputMessagesFilterPhoneCalls | $InputMessagesFilterRoundVoice | $InputMessagesFilterRoundVideo | $InputMessagesFilterMyMentions | $InputMessagesFilterGeo | $InputMessagesFilterContacts | $InputMessagesFilterPinned;
-export type Update = $UpdateNewMessage | $UpdateMessageID | $UpdateDeleteMessages | $UpdateUserTyping | $UpdateChatUserTyping | $UpdateChatParticipants | $UpdateUserStatus | $UpdateUserName | $UpdateNewAuthorization | $UpdateNewEncryptedMessage | $UpdateEncryptedChatTyping | $UpdateEncryption | $UpdateEncryptedMessagesRead | $UpdateChatParticipantAdd | $UpdateChatParticipantDelete | $UpdateDcOptions | $UpdateNotifySettings | $UpdateServiceNotification | $UpdatePrivacy | $UpdateUserPhone | $UpdateReadHistoryInbox | $UpdateReadHistoryOutbox | $UpdateWebPage | $UpdateReadMessagesContents | $UpdateChannelTooLong | $UpdateChannel | $UpdateNewChannelMessage | $UpdateReadChannelInbox | $UpdateDeleteChannelMessages | $UpdateChannelMessageViews | $UpdateChatParticipantAdmin | $UpdateNewStickerSet | $UpdateStickerSetsOrder | $UpdateStickerSets | $UpdateSavedGifs | $UpdateBotInlineQuery | $UpdateBotInlineSend | $UpdateEditChannelMessage | $UpdateBotCallbackQuery | $UpdateEditMessage | $UpdateInlineBotCallbackQuery | $UpdateReadChannelOutbox | $UpdateDraftMessage | $UpdateReadFeaturedStickers | $UpdateRecentStickers | $UpdateConfig | $UpdatePtsChanged | $UpdateChannelWebPage | $UpdateDialogPinned | $UpdatePinnedDialogs | $UpdateBotWebhookJSON | $UpdateBotWebhookJSONQuery | $UpdateBotShippingQuery | $UpdateBotPrecheckoutQuery | $UpdatePhoneCall | $UpdateLangPackTooLong | $UpdateLangPack | $UpdateFavedStickers | $UpdateChannelReadMessagesContents | $UpdateContactsReset | $UpdateChannelAvailableMessages | $UpdateDialogUnreadMark | $UpdateMessagePoll | $UpdateChatDefaultBannedRights | $UpdateFolderPeers | $UpdatePeerSettings | $UpdatePeerLocated | $UpdateNewScheduledMessage | $UpdateDeleteScheduledMessages | $UpdateTheme | $UpdateGeoLiveViewed | $UpdateLoginToken | $UpdateMessagePollVote | $UpdateDialogFilter | $UpdateDialogFilterOrder | $UpdateDialogFilters | $UpdatePhoneCallSignalingData | $UpdateChannelMessageForwards | $UpdateReadChannelDiscussionInbox | $UpdateReadChannelDiscussionOutbox | $UpdatePeerBlocked | $UpdateChannelUserTyping | $UpdatePinnedMessages | $UpdatePinnedChannelMessages | $UpdateChat | $UpdateGroupCallParticipants | $UpdateGroupCall | $UpdatePeerHistoryTTL | $UpdateChatParticipant | $UpdateChannelParticipant | $UpdateBotStopped | $UpdateGroupCallConnection | $UpdateBotCommands | $UpdatePendingJoinRequests | $UpdateBotChatInviteRequester | $UpdateMessageReactions | $UpdateAttachMenuBots | $UpdateWebViewResultSent | $UpdateBotMenuButton | $UpdateSavedRingtones | $UpdateTranscribedAudio | $UpdateReadFeaturedEmojiStickers | $UpdateUserEmojiStatus | $UpdateRecentEmojiStatuses | $UpdateRecentReactions | $UpdateMoveStickerSetToTop | $UpdateMessageExtendedMedia | $UpdateChannelPinnedTopic | $UpdateChannelPinnedTopics | $UpdateUser | $UpdateAutoSaveSettings | $UpdateStory | $UpdateReadStories | $UpdateStoryID | $UpdateStoriesStealthMode | $UpdateSentStoryReaction | $UpdateBotChatBoost | $UpdateChannelViewForumAsMessages | $UpdatePeerWallpaper | $UpdateBotMessageReaction | $UpdateBotMessageReactions | $UpdateSavedDialogPinned | $UpdatePinnedSavedDialogs | $UpdateSavedReactionTags | $UpdateSmsJob | $UpdateQuickReplies | $UpdateNewQuickReply | $UpdateDeleteQuickReply | $UpdateQuickReplyMessage | $UpdateDeleteQuickReplyMessages | $UpdateBotBusinessConnect | $UpdateBotNewBusinessMessage | $UpdateBotEditBusinessMessage | $UpdateBotDeleteBusinessMessage | $UpdateNewStoryReaction | $UpdateStarsBalance | $UpdateBusinessBotCallbackQuery | $UpdateStarsRevenueStatus | $UpdateBotPurchasedPaidMedia | $UpdatePaidReactionPrivacy | $UpdateSentPhoneCode | $UpdateGroupCallChainBlocks | $UpdateReadMonoForumInbox | $UpdateReadMonoForumOutbox | $UpdateMonoForumNoPaidException;
+export type Update = $UpdateNewMessage | $UpdateMessageID | $UpdateDeleteMessages | $UpdateUserTyping | $UpdateChatUserTyping | $UpdateChatParticipants | $UpdateUserStatus | $UpdateUserName | $UpdateNewAuthorization | $UpdateNewEncryptedMessage | $UpdateEncryptedChatTyping | $UpdateEncryption | $UpdateEncryptedMessagesRead | $UpdateChatParticipantAdd | $UpdateChatParticipantDelete | $UpdateDcOptions | $UpdateNotifySettings | $UpdateServiceNotification | $UpdatePrivacy | $UpdateUserPhone | $UpdateReadHistoryInbox | $UpdateReadHistoryOutbox | $UpdateWebPage | $UpdateReadMessagesContents | $UpdateChannelTooLong | $UpdateChannel | $UpdateNewChannelMessage | $UpdateReadChannelInbox | $UpdateDeleteChannelMessages | $UpdateChannelMessageViews | $UpdateChatParticipantAdmin | $UpdateNewStickerSet | $UpdateStickerSetsOrder | $UpdateStickerSets | $UpdateSavedGifs | $UpdateBotInlineQuery | $UpdateBotInlineSend | $UpdateEditChannelMessage | $UpdateBotCallbackQuery | $UpdateEditMessage | $UpdateInlineBotCallbackQuery | $UpdateReadChannelOutbox | $UpdateDraftMessage | $UpdateReadFeaturedStickers | $UpdateRecentStickers | $UpdateConfig | $UpdatePtsChanged | $UpdateChannelWebPage | $UpdateDialogPinned | $UpdatePinnedDialogs | $UpdateBotWebhookJSON | $UpdateBotWebhookJSONQuery | $UpdateBotShippingQuery | $UpdateBotPrecheckoutQuery | $UpdatePhoneCall | $UpdateLangPackTooLong | $UpdateLangPack | $UpdateFavedStickers | $UpdateChannelReadMessagesContents | $UpdateContactsReset | $UpdateChannelAvailableMessages | $UpdateDialogUnreadMark | $UpdateMessagePoll | $UpdateChatDefaultBannedRights | $UpdateFolderPeers | $UpdatePeerSettings | $UpdatePeerLocated | $UpdateNewScheduledMessage | $UpdateDeleteScheduledMessages | $UpdateTheme | $UpdateGeoLiveViewed | $UpdateLoginToken | $UpdateMessagePollVote | $UpdateDialogFilter | $UpdateDialogFilterOrder | $UpdateDialogFilters | $UpdatePhoneCallSignalingData | $UpdateChannelMessageForwards | $UpdateReadChannelDiscussionInbox | $UpdateReadChannelDiscussionOutbox | $UpdatePeerBlocked | $UpdateChannelUserTyping | $UpdatePinnedMessages | $UpdatePinnedChannelMessages | $UpdateChat | $UpdateGroupCallParticipants | $UpdateGroupCall | $UpdatePeerHistoryTTL | $UpdateChatParticipant | $UpdateChannelParticipant | $UpdateBotStopped | $UpdateGroupCallConnection | $UpdateBotCommands | $UpdatePendingJoinRequests | $UpdateBotChatInviteRequester | $UpdateMessageReactions | $UpdateAttachMenuBots | $UpdateWebViewResultSent | $UpdateBotMenuButton | $UpdateSavedRingtones | $UpdateTranscribedAudio | $UpdateReadFeaturedEmojiStickers | $UpdateUserEmojiStatus | $UpdateRecentEmojiStatuses | $UpdateRecentReactions | $UpdateMoveStickerSetToTop | $UpdateMessageExtendedMedia | $UpdateUser | $UpdateAutoSaveSettings | $UpdateStory | $UpdateReadStories | $UpdateStoryID | $UpdateStoriesStealthMode | $UpdateSentStoryReaction | $UpdateBotChatBoost | $UpdateChannelViewForumAsMessages | $UpdatePeerWallpaper | $UpdateBotMessageReaction | $UpdateBotMessageReactions | $UpdateSavedDialogPinned | $UpdatePinnedSavedDialogs | $UpdateSavedReactionTags | $UpdateSmsJob | $UpdateQuickReplies | $UpdateNewQuickReply | $UpdateDeleteQuickReply | $UpdateQuickReplyMessage | $UpdateDeleteQuickReplyMessages | $UpdateBotBusinessConnect | $UpdateBotNewBusinessMessage | $UpdateBotEditBusinessMessage | $UpdateBotDeleteBusinessMessage | $UpdateNewStoryReaction | $UpdateStarsBalance | $UpdateBusinessBotCallbackQuery | $UpdateStarsRevenueStatus | $UpdateBotPurchasedPaidMedia | $UpdatePaidReactionPrivacy | $UpdateSentPhoneCode | $UpdateGroupCallChainBlocks | $UpdateReadMonoForumInbox | $UpdateReadMonoForumOutbox | $UpdateMonoForumNoPaidException | $UpdateGroupCallMessage | $UpdateGroupCallEncryptedMessage | $UpdatePinnedForumTopic | $UpdatePinnedForumTopics | $UpdateDeleteGroupCallMessages | $UpdateStarGiftAuctionState | $UpdateStarGiftAuctionUserState | $UpdateEmojiGameInfo | $UpdateStarGiftCraftFail | $UpdateChatParticipantRank;
 export type Updates$State = $Updates$State;
 export type Updates$Difference = $Updates$DifferenceEmpty | $Updates$Difference | $Updates$DifferenceSlice | $Updates$DifferenceTooLong;
 export type Updates = $UpdatesTooLong | $UpdateShortMessage | $UpdateShortChatMessage | $UpdateShort | $UpdatesCombined | $Updates | $UpdateShortSentMessage;
@@ -73,10 +73,10 @@ export type InputDocument = $InputDocumentEmpty | $InputDocument;
 export type Document = $DocumentEmpty | $Document;
 export type Help$Support = $Help$Support;
 export type NotifyPeer = $NotifyPeer | $NotifyUsers | $NotifyChats | $NotifyBroadcasts | $NotifyForumTopic;
-export type SendMessageAction = $SendMessageTypingAction | $SendMessageCancelAction | $SendMessageRecordVideoAction | $SendMessageUploadVideoAction | $SendMessageRecordAudioAction | $SendMessageUploadAudioAction | $SendMessageUploadPhotoAction | $SendMessageUploadDocumentAction | $SendMessageGeoLocationAction | $SendMessageChooseContactAction | $SendMessageGamePlayAction | $SendMessageRecordRoundAction | $SendMessageUploadRoundAction | $SpeakingInGroupCallAction | $SendMessageHistoryImportAction | $SendMessageChooseStickerAction | $SendMessageEmojiInteraction | $SendMessageEmojiInteractionSeen;
+export type SendMessageAction = $SendMessageTypingAction | $SendMessageCancelAction | $SendMessageRecordVideoAction | $SendMessageUploadVideoAction | $SendMessageRecordAudioAction | $SendMessageUploadAudioAction | $SendMessageUploadPhotoAction | $SendMessageUploadDocumentAction | $SendMessageGeoLocationAction | $SendMessageChooseContactAction | $SendMessageGamePlayAction | $SendMessageRecordRoundAction | $SendMessageUploadRoundAction | $SpeakingInGroupCallAction | $SendMessageHistoryImportAction | $SendMessageChooseStickerAction | $SendMessageEmojiInteraction | $SendMessageEmojiInteractionSeen | $SendMessageTextDraftAction;
 export type Contacts$Found = $Contacts$Found;
-export type InputPrivacyKey = $InputPrivacyKeyStatusTimestamp | $InputPrivacyKeyChatInvite | $InputPrivacyKeyPhoneCall | $InputPrivacyKeyPhoneP2P | $InputPrivacyKeyForwards | $InputPrivacyKeyProfilePhoto | $InputPrivacyKeyPhoneNumber | $InputPrivacyKeyAddedByPhone | $InputPrivacyKeyVoiceMessages | $InputPrivacyKeyAbout | $InputPrivacyKeyBirthday | $InputPrivacyKeyStarGiftsAutoSave | $InputPrivacyKeyNoPaidMessages;
-export type PrivacyKey = $PrivacyKeyStatusTimestamp | $PrivacyKeyChatInvite | $PrivacyKeyPhoneCall | $PrivacyKeyPhoneP2P | $PrivacyKeyForwards | $PrivacyKeyProfilePhoto | $PrivacyKeyPhoneNumber | $PrivacyKeyAddedByPhone | $PrivacyKeyVoiceMessages | $PrivacyKeyAbout | $PrivacyKeyBirthday | $PrivacyKeyStarGiftsAutoSave | $PrivacyKeyNoPaidMessages;
+export type InputPrivacyKey = $InputPrivacyKeyStatusTimestamp | $InputPrivacyKeyChatInvite | $InputPrivacyKeyPhoneCall | $InputPrivacyKeyPhoneP2P | $InputPrivacyKeyForwards | $InputPrivacyKeyProfilePhoto | $InputPrivacyKeyPhoneNumber | $InputPrivacyKeyAddedByPhone | $InputPrivacyKeyVoiceMessages | $InputPrivacyKeyAbout | $InputPrivacyKeyBirthday | $InputPrivacyKeyStarGiftsAutoSave | $InputPrivacyKeyNoPaidMessages | $InputPrivacyKeySavedMusic;
+export type PrivacyKey = $PrivacyKeyStatusTimestamp | $PrivacyKeyChatInvite | $PrivacyKeyPhoneCall | $PrivacyKeyPhoneP2P | $PrivacyKeyForwards | $PrivacyKeyProfilePhoto | $PrivacyKeyPhoneNumber | $PrivacyKeyAddedByPhone | $PrivacyKeyVoiceMessages | $PrivacyKeyAbout | $PrivacyKeyBirthday | $PrivacyKeyStarGiftsAutoSave | $PrivacyKeyNoPaidMessages | $PrivacyKeySavedMusic;
 export type InputPrivacyRule = $InputPrivacyValueAllowContacts | $InputPrivacyValueAllowAll | $InputPrivacyValueAllowUsers | $InputPrivacyValueDisallowContacts | $InputPrivacyValueDisallowAll | $InputPrivacyValueDisallowUsers | $InputPrivacyValueAllowChatParticipants | $InputPrivacyValueDisallowChatParticipants | $InputPrivacyValueAllowCloseFriends | $InputPrivacyValueAllowPremium | $InputPrivacyValueAllowBots | $InputPrivacyValueDisallowBots;
 export type PrivacyRule = $PrivacyValueAllowContacts | $PrivacyValueAllowAll | $PrivacyValueAllowUsers | $PrivacyValueDisallowContacts | $PrivacyValueDisallowAll | $PrivacyValueDisallowUsers | $PrivacyValueAllowChatParticipants | $PrivacyValueDisallowChatParticipants | $PrivacyValueAllowCloseFriends | $PrivacyValueAllowPremium | $PrivacyValueAllowBots | $PrivacyValueDisallowBots;
 export type Account$PrivacyRules = $Account$PrivacyRules;
@@ -104,7 +104,7 @@ export type BotInfo = $BotInfo;
 export type KeyboardButton = $KeyboardButton | $KeyboardButtonUrl | $KeyboardButtonCallback | $KeyboardButtonRequestPhone | $KeyboardButtonRequestGeoLocation | $KeyboardButtonSwitchInline | $KeyboardButtonGame | $KeyboardButtonBuy | $KeyboardButtonUrlAuth | $InputKeyboardButtonUrlAuth | $KeyboardButtonRequestPoll | $InputKeyboardButtonUserProfile | $KeyboardButtonUserProfile | $KeyboardButtonWebView | $KeyboardButtonSimpleWebView | $KeyboardButtonRequestPeer | $InputKeyboardButtonRequestPeer | $KeyboardButtonCopy;
 export type KeyboardButtonRow = $KeyboardButtonRow;
 export type ReplyMarkup = $ReplyKeyboardHide | $ReplyKeyboardForceReply | $ReplyKeyboardMarkup | $ReplyInlineMarkup;
-export type MessageEntity = $MessageEntityUnknown | $MessageEntityMention | $MessageEntityHashtag | $MessageEntityBotCommand | $MessageEntityUrl | $MessageEntityEmail | $MessageEntityBold | $MessageEntityItalic | $MessageEntityCode | $MessageEntityPre | $MessageEntityTextUrl | $MessageEntityMentionName | $InputMessageEntityMentionName | $MessageEntityPhone | $MessageEntityCashtag | $MessageEntityUnderline | $MessageEntityStrike | $MessageEntityBankCard | $MessageEntitySpoiler | $MessageEntityCustomEmoji | $MessageEntityBlockquote;
+export type MessageEntity = $MessageEntityUnknown | $MessageEntityMention | $MessageEntityHashtag | $MessageEntityBotCommand | $MessageEntityUrl | $MessageEntityEmail | $MessageEntityBold | $MessageEntityItalic | $MessageEntityCode | $MessageEntityPre | $MessageEntityTextUrl | $MessageEntityMentionName | $InputMessageEntityMentionName | $MessageEntityPhone | $MessageEntityCashtag | $MessageEntityUnderline | $MessageEntityStrike | $MessageEntityBankCard | $MessageEntitySpoiler | $MessageEntityCustomEmoji | $MessageEntityBlockquote | $MessageEntityFormattedDate;
 export type InputChannel = $InputChannelEmpty | $InputChannel | $InputChannelFromMessage;
 export type Contacts$ResolvedPeer = $Contacts$ResolvedPeer;
 export type MessageRange = $MessageRange;
@@ -180,7 +180,7 @@ export type CdnConfig = $CdnConfig;
 export type LangPackString = $LangPackString | $LangPackStringPluralized | $LangPackStringDeleted;
 export type LangPackDifference = $LangPackDifference;
 export type LangPackLanguage = $LangPackLanguage;
-export type ChannelAdminLogEventAction = $ChannelAdminLogEventActionChangeTitle | $ChannelAdminLogEventActionChangeAbout | $ChannelAdminLogEventActionChangeUsername | $ChannelAdminLogEventActionChangePhoto | $ChannelAdminLogEventActionToggleInvites | $ChannelAdminLogEventActionToggleSignatures | $ChannelAdminLogEventActionUpdatePinned | $ChannelAdminLogEventActionEditMessage | $ChannelAdminLogEventActionDeleteMessage | $ChannelAdminLogEventActionParticipantJoin | $ChannelAdminLogEventActionParticipantLeave | $ChannelAdminLogEventActionParticipantInvite | $ChannelAdminLogEventActionParticipantToggleBan | $ChannelAdminLogEventActionParticipantToggleAdmin | $ChannelAdminLogEventActionChangeStickerSet | $ChannelAdminLogEventActionTogglePreHistoryHidden | $ChannelAdminLogEventActionDefaultBannedRights | $ChannelAdminLogEventActionStopPoll | $ChannelAdminLogEventActionChangeLinkedChat | $ChannelAdminLogEventActionChangeLocation | $ChannelAdminLogEventActionToggleSlowMode | $ChannelAdminLogEventActionStartGroupCall | $ChannelAdminLogEventActionDiscardGroupCall | $ChannelAdminLogEventActionParticipantMute | $ChannelAdminLogEventActionParticipantUnmute | $ChannelAdminLogEventActionToggleGroupCallSetting | $ChannelAdminLogEventActionParticipantJoinByInvite | $ChannelAdminLogEventActionExportedInviteDelete | $ChannelAdminLogEventActionExportedInviteRevoke | $ChannelAdminLogEventActionExportedInviteEdit | $ChannelAdminLogEventActionParticipantVolume | $ChannelAdminLogEventActionChangeHistoryTTL | $ChannelAdminLogEventActionParticipantJoinByRequest | $ChannelAdminLogEventActionToggleNoForwards | $ChannelAdminLogEventActionSendMessage | $ChannelAdminLogEventActionChangeAvailableReactions | $ChannelAdminLogEventActionChangeUsernames | $ChannelAdminLogEventActionToggleForum | $ChannelAdminLogEventActionCreateTopic | $ChannelAdminLogEventActionEditTopic | $ChannelAdminLogEventActionDeleteTopic | $ChannelAdminLogEventActionPinTopic | $ChannelAdminLogEventActionToggleAntiSpam | $ChannelAdminLogEventActionChangePeerColor | $ChannelAdminLogEventActionChangeProfilePeerColor | $ChannelAdminLogEventActionChangeWallpaper | $ChannelAdminLogEventActionChangeEmojiStatus | $ChannelAdminLogEventActionChangeEmojiStickerSet | $ChannelAdminLogEventActionToggleSignatureProfiles | $ChannelAdminLogEventActionParticipantSubExtend | $ChannelAdminLogEventActionToggleAutotranslation;
+export type ChannelAdminLogEventAction = $ChannelAdminLogEventActionChangeTitle | $ChannelAdminLogEventActionChangeAbout | $ChannelAdminLogEventActionChangeUsername | $ChannelAdminLogEventActionChangePhoto | $ChannelAdminLogEventActionToggleInvites | $ChannelAdminLogEventActionToggleSignatures | $ChannelAdminLogEventActionUpdatePinned | $ChannelAdminLogEventActionEditMessage | $ChannelAdminLogEventActionDeleteMessage | $ChannelAdminLogEventActionParticipantJoin | $ChannelAdminLogEventActionParticipantLeave | $ChannelAdminLogEventActionParticipantInvite | $ChannelAdminLogEventActionParticipantToggleBan | $ChannelAdminLogEventActionParticipantToggleAdmin | $ChannelAdminLogEventActionChangeStickerSet | $ChannelAdminLogEventActionTogglePreHistoryHidden | $ChannelAdminLogEventActionDefaultBannedRights | $ChannelAdminLogEventActionStopPoll | $ChannelAdminLogEventActionChangeLinkedChat | $ChannelAdminLogEventActionChangeLocation | $ChannelAdminLogEventActionToggleSlowMode | $ChannelAdminLogEventActionStartGroupCall | $ChannelAdminLogEventActionDiscardGroupCall | $ChannelAdminLogEventActionParticipantMute | $ChannelAdminLogEventActionParticipantUnmute | $ChannelAdminLogEventActionToggleGroupCallSetting | $ChannelAdminLogEventActionParticipantJoinByInvite | $ChannelAdminLogEventActionExportedInviteDelete | $ChannelAdminLogEventActionExportedInviteRevoke | $ChannelAdminLogEventActionExportedInviteEdit | $ChannelAdminLogEventActionParticipantVolume | $ChannelAdminLogEventActionChangeHistoryTTL | $ChannelAdminLogEventActionParticipantJoinByRequest | $ChannelAdminLogEventActionToggleNoForwards | $ChannelAdminLogEventActionSendMessage | $ChannelAdminLogEventActionChangeAvailableReactions | $ChannelAdminLogEventActionChangeUsernames | $ChannelAdminLogEventActionToggleForum | $ChannelAdminLogEventActionCreateTopic | $ChannelAdminLogEventActionEditTopic | $ChannelAdminLogEventActionDeleteTopic | $ChannelAdminLogEventActionPinTopic | $ChannelAdminLogEventActionToggleAntiSpam | $ChannelAdminLogEventActionChangePeerColor | $ChannelAdminLogEventActionChangeProfilePeerColor | $ChannelAdminLogEventActionChangeWallpaper | $ChannelAdminLogEventActionChangeEmojiStatus | $ChannelAdminLogEventActionChangeEmojiStickerSet | $ChannelAdminLogEventActionToggleSignatureProfiles | $ChannelAdminLogEventActionParticipantSubExtend | $ChannelAdminLogEventActionToggleAutotranslation | $ChannelAdminLogEventActionParticipantEditRank;
 export type ChannelAdminLogEvent = $ChannelAdminLogEvent;
 export type Channels$AdminLogResults = $Channels$AdminLogResults;
 export type ChannelAdminLogEventsFilter = $ChannelAdminLogEventsFilter;
@@ -266,7 +266,7 @@ export type Messages$InactiveChats = $Messages$InactiveChats;
 export type BaseTheme = $BaseThemeClassic | $BaseThemeDay | $BaseThemeNight | $BaseThemeTinted | $BaseThemeArctic;
 export type InputThemeSettings = $InputThemeSettings;
 export type ThemeSettings = $ThemeSettings;
-export type WebPageAttribute = $WebPageAttributeTheme | $WebPageAttributeStory | $WebPageAttributeStickerSet | $WebPageAttributeUniqueStarGift | $WebPageAttributeStarGiftCollection;
+export type WebPageAttribute = $WebPageAttributeTheme | $WebPageAttributeStory | $WebPageAttributeStickerSet | $WebPageAttributeUniqueStarGift | $WebPageAttributeStarGiftCollection | $WebPageAttributeStarGiftAuction;
 export type Messages$VotesList = $Messages$VotesList;
 export type BankCardOpenUrl = $BankCardOpenUrl;
 export type Payments$BankCardData = $Payments$BankCardData;
@@ -350,7 +350,7 @@ export type Account$SavedRingtones = $Account$SavedRingtonesNotModified | $Accou
 export type NotificationSound = $NotificationSoundDefault | $NotificationSoundNone | $NotificationSoundLocal | $NotificationSoundRingtone;
 export type Account$SavedRingtone = $Account$SavedRingtone | $Account$SavedRingtoneConverted;
 export type AttachMenuPeerType = $AttachMenuPeerTypeSameBotPM | $AttachMenuPeerTypeBotPM | $AttachMenuPeerTypePM | $AttachMenuPeerTypeChat | $AttachMenuPeerTypeBroadcast;
-export type InputInvoice = $InputInvoiceMessage | $InputInvoiceSlug | $InputInvoicePremiumGiftCode | $InputInvoiceStars | $InputInvoiceChatInviteSubscription | $InputInvoiceStarGift | $InputInvoiceStarGiftUpgrade | $InputInvoiceStarGiftTransfer | $InputInvoicePremiumGiftStars | $InputInvoiceBusinessBotTransferStars | $InputInvoiceStarGiftResale | $InputInvoiceStarGiftPrepaidUpgrade;
+export type InputInvoice = $InputInvoiceMessage | $InputInvoiceSlug | $InputInvoicePremiumGiftCode | $InputInvoiceStars | $InputInvoiceChatInviteSubscription | $InputInvoiceStarGift | $InputInvoiceStarGiftUpgrade | $InputInvoiceStarGiftTransfer | $InputInvoicePremiumGiftStars | $InputInvoiceBusinessBotTransferStars | $InputInvoiceStarGiftResale | $InputInvoiceStarGiftPrepaidUpgrade | $InputInvoicePremiumAuthCode | $InputInvoiceStarGiftDropOriginalDetails | $InputInvoiceStarGiftAuctionBid;
 export type Payments$ExportedInvoice = $Payments$ExportedInvoice;
 export type Messages$TranscribedAudio = $Messages$TranscribedAudio;
 export type Help$PremiumPromo = $Help$PremiumPromo;
@@ -425,7 +425,7 @@ export type PostInteractionCounters = $PostInteractionCountersMessage | $PostInt
 export type Stats$StoryStats = $Stats$StoryStats;
 export type PublicForward = $PublicForwardMessage | $PublicForwardStory;
 export type Stats$PublicForwards = $Stats$PublicForwards;
-export type PeerColor = $PeerColor;
+export type PeerColor = $PeerColor | $PeerColorCollectible | $InputPeerColorCollectible;
 export type Help$PeerColorSet = $Help$PeerColorSet | $Help$PeerColorProfileSet;
 export type Help$PeerColorOption = $Help$PeerColorOption;
 export type Help$PeerColors = $Help$PeerColorsNotModified | $Help$PeerColors;
@@ -555,6 +555,33 @@ export type Users$SavedMusic = $Users$SavedMusicNotModified | $Users$SavedMusic;
 export type Account$SavedMusicIds = $Account$SavedMusicIdsNotModified | $Account$SavedMusicIds;
 export type Payments$CheckCanSendGiftResult = $Payments$CheckCanSendGiftResultOk | $Payments$CheckCanSendGiftResultFail;
 export type InputChatTheme = $InputChatThemeEmpty | $InputChatTheme | $InputChatThemeUniqueGift;
+export type StarGiftUpgradePrice = $StarGiftUpgradePrice;
+export type GroupCallMessage = $GroupCallMessage;
+export type GroupCallDonor = $GroupCallDonor;
+export type Phone$GroupCallStars = $Phone$GroupCallStars;
+export type RecentStory = $RecentStory;
+export type AuctionBidLevel = $AuctionBidLevel;
+export type StarGiftAuctionState = $StarGiftAuctionStateNotModified | $StarGiftAuctionState | $StarGiftAuctionStateFinished;
+export type StarGiftAuctionUserState = $StarGiftAuctionUserState;
+export type Payments$StarGiftAuctionState = $Payments$StarGiftAuctionState;
+export type StarGiftAuctionAcquiredGift = $StarGiftAuctionAcquiredGift;
+export type Payments$StarGiftAuctionAcquiredGifts = $Payments$StarGiftAuctionAcquiredGifts;
+export type StarGiftActiveAuctionState = $StarGiftActiveAuctionState;
+export type Payments$StarGiftActiveAuctions = $Payments$StarGiftActiveAuctionsNotModified | $Payments$StarGiftActiveAuctions;
+export type InputStarGiftAuction = $InputStarGiftAuction | $InputStarGiftAuctionSlug;
+export type Passkey = $Passkey;
+export type Account$Passkeys = $Account$Passkeys;
+export type Account$PasskeyRegistrationOptions = $Account$PasskeyRegistrationOptions;
+export type Auth$PasskeyLoginOptions = $Auth$PasskeyLoginOptions;
+export type InputPasskeyResponse = $InputPasskeyResponseRegister | $InputPasskeyResponseLogin;
+export type InputPasskeyCredential = $InputPasskeyCredentialPublicKey;
+export type StarGiftBackground = $StarGiftBackground;
+export type StarGiftAuctionRound = $StarGiftAuctionRound | $StarGiftAuctionRoundExtendable;
+export type Payments$StarGiftUpgradeAttributes = $Payments$StarGiftUpgradeAttributes;
+export type Messages$EmojiGameOutcome = $Messages$EmojiGameOutcome;
+export type Messages$EmojiGameInfo = $Messages$EmojiGameUnavailable | $Messages$EmojiGameDiceInfo;
+export type StarGiftAttributeRarity = $StarGiftAttributeRarity | $StarGiftAttributeRarityUncommon | $StarGiftAttributeRarityRare | $StarGiftAttributeRarityEpic | $StarGiftAttributeRarityLegendary;
+export type KeyboardButtonStyle = $KeyboardButtonStyle;
 export interface $BoolFalse {
   _: "boolFalse";
 }
@@ -600,10 +627,12 @@ export interface $InputUserSelf {
 
 export interface $InputPhoneContact {
   _: "inputPhoneContact";
+  flags?: number;
   client_id: string;
   phone: string;
   first_name: string;
   last_name: string;
+  note?: TextWithEntities;
 }
 
 export interface $InputFile {
@@ -620,7 +649,7 @@ export interface $InputMediaEmpty {
 
 export interface $InputMediaUploadedPhoto {
   _: "inputMediaUploadedPhoto";
-  flags?: Number;
+  flags?: number;
   spoiler?: boolean;
   file: InputFile;
   stickers?: InputDocument[];
@@ -629,7 +658,7 @@ export interface $InputMediaUploadedPhoto {
 
 export interface $InputMediaPhoto {
   _: "inputMediaPhoto";
-  flags?: Number;
+  flags?: number;
   spoiler?: boolean;
   id: InputPhoto;
   ttl_seconds?: number;
@@ -654,7 +683,7 @@ export interface $InputChatPhotoEmpty {
 
 export interface $InputChatUploadedPhoto {
   _: "inputChatUploadedPhoto";
-  flags?: Number;
+  flags?: number;
   file?: InputFile;
   video?: InputFile;
   video_start_ts?: number;
@@ -672,7 +701,7 @@ export interface $InputGeoPointEmpty {
 
 export interface $InputGeoPoint {
   _: "inputGeoPoint";
-  flags?: Number;
+  flags?: number;
   lat: number;
   long: number;
   accuracy_radius?: number;
@@ -758,7 +787,7 @@ export interface $UserProfilePhotoEmpty {
 
 export interface $UserProfilePhoto {
   _: "userProfilePhoto";
-  flags?: Number;
+  flags?: number;
   has_video?: boolean;
   personal?: boolean;
   photo_id: string;
@@ -787,7 +816,7 @@ export interface $ChatEmpty {
 
 export interface $Chat {
   _: "chat";
-  flags?: Number;
+  flags?: number;
   creator?: boolean;
   left?: boolean;
   deactivated?: boolean;
@@ -813,7 +842,7 @@ export interface $ChatForbidden {
 
 export interface $ChatFull {
   _: "chatFull";
-  flags?: Number;
+  flags?: number;
   can_set_username?: boolean;
   has_scheduled?: boolean;
   translations_disabled?: boolean;
@@ -838,14 +867,16 @@ export interface $ChatFull {
 
 export interface $ChatParticipant {
   _: "chatParticipant";
+  flags?: number;
   user_id: string;
   inviter_id: string;
   date: number;
+  rank?: string;
 }
 
 export interface $ChatParticipantsForbidden {
   _: "chatParticipantsForbidden";
-  flags?: Number;
+  flags?: number;
   chat_id: string;
   self_participant?: ChatParticipant;
 }
@@ -863,7 +894,7 @@ export interface $ChatPhotoEmpty {
 
 export interface $ChatPhoto {
   _: "chatPhoto";
-  flags?: Number;
+  flags?: number;
   has_video?: boolean;
   photo_id: string;
   stripped_thumb?: Uint8Array;
@@ -872,14 +903,14 @@ export interface $ChatPhoto {
 
 export interface $MessageEmpty {
   _: "messageEmpty";
-  flags?: Number;
+  flags?: number;
   id: number;
   peer_id?: Peer;
 }
 
 export interface $Message {
   _: "message";
-  flags?: Number;
+  flags?: number;
   out?: boolean;
   mentioned?: boolean;
   media_unread?: boolean;
@@ -891,7 +922,7 @@ export interface $Message {
   pinned?: boolean;
   noforwards?: boolean;
   invert_media?: boolean;
-  flags2?: Number;
+  flags2?: number;
   offline?: boolean;
   video_processing_pending?: boolean;
   paid_suggested_post_stars?: boolean;
@@ -899,6 +930,7 @@ export interface $Message {
   id: number;
   from_id?: Peer;
   from_boosts_applied?: number;
+  from_rank?: string;
   peer_id: Peer;
   saved_peer_id?: Peer;
   fwd_from?: MessageFwdHeader;
@@ -925,11 +957,13 @@ export interface $Message {
   report_delivery_until_date?: number;
   paid_message_stars?: string;
   suggested_post?: SuggestedPost;
+  schedule_repeat_period?: number;
+  summary_from_language?: string;
 }
 
 export interface $MessageService {
   _: "messageService";
-  flags?: Number;
+  flags?: number;
   out?: boolean;
   mentioned?: boolean;
   media_unread?: boolean;
@@ -954,7 +988,7 @@ export interface $MessageMediaEmpty {
 
 export interface $MessageMediaPhoto {
   _: "messageMediaPhoto";
-  flags?: Number;
+  flags?: number;
   spoiler?: boolean;
   photo?: Photo;
   ttl_seconds?: number;
@@ -1014,7 +1048,7 @@ export interface $MessageActionChatDeleteUser {
 
 export interface $Dialog {
   _: "dialog";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   unread_mark?: boolean;
   view_forum_as_messages?: boolean;
@@ -1039,7 +1073,7 @@ export interface $PhotoEmpty {
 
 export interface $Photo {
   _: "photo";
-  flags?: Number;
+  flags?: number;
   has_stickers?: boolean;
   id: string;
   access_hash: string;
@@ -1077,7 +1111,7 @@ export interface $GeoPointEmpty {
 
 export interface $GeoPoint {
   _: "geoPoint";
-  flags?: Number;
+  flags?: number;
   long: number;
   lat: number;
   access_hash: string;
@@ -1086,7 +1120,7 @@ export interface $GeoPoint {
 
 export interface $Auth$SentCode {
   _: "auth.sentCode";
-  flags?: Number;
+  flags?: number;
   type: Auth$SentCodeType;
   phone_code_hash: string;
   next_type?: Auth$CodeType;
@@ -1095,7 +1129,7 @@ export interface $Auth$SentCode {
 
 export interface $Auth$Authorization {
   _: "auth.authorization";
-  flags?: Number;
+  flags?: number;
   setup_password_required?: boolean;
   otherwise_relogin_days?: number;
   tmp_sessions?: number;
@@ -1124,7 +1158,7 @@ export interface $InputNotifyChats {
 
 export interface $InputPeerNotifySettings {
   _: "inputPeerNotifySettings";
-  flags?: Number;
+  flags?: number;
   show_previews?: boolean;
   silent?: boolean;
   mute_until?: number;
@@ -1136,7 +1170,7 @@ export interface $InputPeerNotifySettings {
 
 export interface $PeerNotifySettings {
   _: "peerNotifySettings";
-  flags?: Number;
+  flags?: number;
   show_previews?: boolean;
   silent?: boolean;
   mute_until?: number;
@@ -1152,7 +1186,7 @@ export interface $PeerNotifySettings {
 
 export interface $PeerSettings {
   _: "peerSettings";
-  flags?: Number;
+  flags?: number;
   report_spam?: boolean;
   add_contact?: boolean;
   block_contact?: boolean;
@@ -1179,7 +1213,7 @@ export interface $PeerSettings {
 export interface $WallPaper {
   _: "wallPaper";
   id: string;
-  flags?: Number;
+  flags?: number;
   creator?: boolean;
   default?: boolean;
   pattern?: boolean;
@@ -1212,7 +1246,7 @@ export interface $InputReportReasonOther {
 
 export interface $UserFull {
   _: "userFull";
-  flags?: Number;
+  flags?: number;
   blocked?: boolean;
   phone_calls_available?: boolean;
   phone_calls_private?: boolean;
@@ -1226,11 +1260,13 @@ export interface $UserFull {
   wallpaper_overridden?: boolean;
   contact_require_premium?: boolean;
   read_dates_private?: boolean;
-  flags2?: Number;
+  flags2?: number;
   sponsored_enabled?: boolean;
   can_view_revenue?: boolean;
   bot_can_manage_emoji_status?: boolean;
   display_gifts_button?: boolean;
+  noforwards_my_enabled?: boolean;
+  noforwards_peer_enabled?: boolean;
   id: string;
   about?: string;
   settings: PeerSettings;
@@ -1267,6 +1303,7 @@ export interface $UserFull {
   stars_my_pending_rating_date?: number;
   main_tab?: ProfileTab;
   saved_music?: Document;
+  note?: TextWithEntities;
 }
 
 export interface $Contact {
@@ -1341,19 +1378,21 @@ export interface $Messages$DialogsSlice {
 export interface $Messages$Messages {
   _: "messages.messages";
   messages: Message[];
+  topics: ForumTopic[];
   chats: Chat[];
   users: User[];
 }
 
 export interface $Messages$MessagesSlice {
   _: "messages.messagesSlice";
-  flags?: Number;
+  flags?: number;
   inexact?: boolean;
   count: number;
   next_rate?: number;
   offset_id_offset?: number;
   search_flood?: SearchPostsFlood;
   messages: Message[];
+  topics: ForumTopic[];
   chats: Chat[];
   users: User[];
 }
@@ -1427,7 +1466,9 @@ export interface $UpdateDeleteMessages {
 
 export interface $UpdateUserTyping {
   _: "updateUserTyping";
+  flags?: number;
   user_id: string;
+  top_msg_id?: number;
   action: SendMessageAction;
 }
 
@@ -1459,7 +1500,7 @@ export interface $UpdateUserName {
 
 export interface $UpdateNewAuthorization {
   _: "updateNewAuthorization";
-  flags?: Number;
+  flags?: number;
   unconfirmed?: boolean;
   hash: string;
   date?: number;
@@ -1508,7 +1549,7 @@ export interface $UpdatesTooLong {
 
 export interface $UpdateShortMessage {
   _: "updateShortMessage";
-  flags?: Number;
+  flags?: number;
   out?: boolean;
   mentioned?: boolean;
   media_unread?: boolean;
@@ -1528,7 +1569,7 @@ export interface $UpdateShortMessage {
 
 export interface $UpdateShortChatMessage {
   _: "updateShortChatMessage";
-  flags?: Number;
+  flags?: number;
   out?: boolean;
   mentioned?: boolean;
   media_unread?: boolean;
@@ -1600,7 +1641,7 @@ export interface $Upload$File {
 
 export interface $DcOption {
   _: "dcOption";
-  flags?: Number;
+  flags?: number;
   ipv6?: boolean;
   media_only?: boolean;
   tcpo_only?: boolean;
@@ -1615,7 +1656,7 @@ export interface $DcOption {
 
 export interface $Config {
   _: "config";
-  flags?: Number;
+  flags?: number;
   default_p2p_contacts?: boolean;
   preload_featured_stickers?: boolean;
   revoke_pm_inbox?: boolean;
@@ -1674,7 +1715,7 @@ export interface $NearestDc {
 
 export interface $Help$AppUpdate {
   _: "help.appUpdate";
-  flags?: Number;
+  flags?: number;
   can_not_skip?: boolean;
   id: number;
   version: string;
@@ -1734,7 +1775,7 @@ export interface $EncryptedChatWaiting {
 
 export interface $EncryptedChatRequested {
   _: "encryptedChatRequested";
-  flags?: Number;
+  flags?: number;
   folder_id?: number;
   id: number;
   access_hash: string;
@@ -1757,7 +1798,7 @@ export interface $EncryptedChat {
 
 export interface $EncryptedChatDiscarded {
   _: "encryptedChatDiscarded";
-  flags?: Number;
+  flags?: number;
   history_deleted?: boolean;
   id: number;
 }
@@ -1883,7 +1924,7 @@ export interface $UpdateDcOptions {
 
 export interface $InputMediaUploadedDocument {
   _: "inputMediaUploadedDocument";
-  flags?: Number;
+  flags?: number;
   nosound_video?: boolean;
   force_file?: boolean;
   spoiler?: boolean;
@@ -1899,7 +1940,7 @@ export interface $InputMediaUploadedDocument {
 
 export interface $InputMediaDocument {
   _: "inputMediaDocument";
-  flags?: Number;
+  flags?: number;
   spoiler?: boolean;
   id: InputDocument;
   video_cover?: InputPhoto;
@@ -1910,7 +1951,7 @@ export interface $InputMediaDocument {
 
 export interface $MessageMediaDocument {
   _: "messageMediaDocument";
-  flags?: Number;
+  flags?: number;
   nopremium?: boolean;
   spoiler?: boolean;
   video?: boolean;
@@ -1949,7 +1990,7 @@ export interface $DocumentEmpty {
 
 export interface $Document {
   _: "document";
-  flags?: Number;
+  flags?: number;
   id: string;
   access_hash: string;
   file_reference: Uint8Array;
@@ -2041,7 +2082,7 @@ export interface $Contacts$Found {
 
 export interface $UpdateServiceNotification {
   _: "updateServiceNotification";
-  flags?: Number;
+  flags?: number;
   popup?: boolean;
   invert_media?: boolean;
   inbox_date?: number;
@@ -2053,19 +2094,19 @@ export interface $UpdateServiceNotification {
 
 export interface $UserStatusRecently {
   _: "userStatusRecently";
-  flags?: Number;
+  flags?: number;
   by_me?: boolean;
 }
 
 export interface $UserStatusLastWeek {
   _: "userStatusLastWeek";
-  flags?: Number;
+  flags?: number;
   by_me?: boolean;
 }
 
 export interface $UserStatusLastMonth {
   _: "userStatusLastMonth";
-  flags?: Number;
+  flags?: number;
   by_me?: boolean;
 }
 
@@ -2165,7 +2206,7 @@ export interface $DocumentAttributeAnimated {
 
 export interface $DocumentAttributeSticker {
   _: "documentAttributeSticker";
-  flags?: Number;
+  flags?: number;
   mask?: boolean;
   alt: string;
   stickerset: InputStickerSet;
@@ -2174,7 +2215,7 @@ export interface $DocumentAttributeSticker {
 
 export interface $DocumentAttributeVideo {
   _: "documentAttributeVideo";
-  flags?: Number;
+  flags?: number;
   round_message?: boolean;
   supports_streaming?: boolean;
   nosound?: boolean;
@@ -2188,7 +2229,7 @@ export interface $DocumentAttributeVideo {
 
 export interface $DocumentAttributeAudio {
   _: "documentAttributeAudio";
-  flags?: Number;
+  flags?: number;
   voice?: boolean;
   duration: number;
   title?: string;
@@ -2229,9 +2270,10 @@ export interface $Messages$AllStickers {
 
 export interface $UpdateReadHistoryInbox {
   _: "updateReadHistoryInbox";
-  flags?: Number;
+  flags?: number;
   folder_id?: number;
   peer: Peer;
+  top_msg_id?: number;
   max_id: number;
   still_unread_count: number;
   pts: number;
@@ -2261,14 +2303,14 @@ export interface $UpdateWebPage {
 
 export interface $WebPageEmpty {
   _: "webPageEmpty";
-  flags?: Number;
+  flags?: number;
   id: string;
   url?: string;
 }
 
 export interface $WebPagePending {
   _: "webPagePending";
-  flags?: Number;
+  flags?: number;
   id: string;
   url?: string;
   date: number;
@@ -2276,7 +2318,7 @@ export interface $WebPagePending {
 
 export interface $WebPage {
   _: "webPage";
-  flags?: Number;
+  flags?: number;
   has_large_media?: boolean;
   video_cover_photo?: boolean;
   id: string;
@@ -2301,7 +2343,7 @@ export interface $WebPage {
 
 export interface $MessageMediaWebPage {
   _: "messageMediaWebPage";
-  flags?: Number;
+  flags?: number;
   force_large_media?: boolean;
   force_small_media?: boolean;
   manual?: boolean;
@@ -2311,7 +2353,7 @@ export interface $MessageMediaWebPage {
 
 export interface $Authorization {
   _: "authorization";
-  flags?: Number;
+  flags?: number;
   current?: boolean;
   official_app?: boolean;
   password_pending?: boolean;
@@ -2340,7 +2382,7 @@ export interface $Account$Authorizations {
 
 export interface $Account$Password {
   _: "account.password";
-  flags?: Number;
+  flags?: number;
   has_recovery?: boolean;
   has_secure_values?: boolean;
   has_password?: boolean;
@@ -2358,14 +2400,14 @@ export interface $Account$Password {
 
 export interface $Account$PasswordSettings {
   _: "account.passwordSettings";
-  flags?: Number;
+  flags?: number;
   email?: string;
   secure_settings?: SecureSecretSettings;
 }
 
 export interface $Account$PasswordInputSettings {
   _: "account.passwordInputSettings";
-  flags?: Number;
+  flags?: number;
   new_algo?: PasswordKdfAlgo;
   new_password_hash?: Uint8Array;
   hint?: string;
@@ -2406,7 +2448,7 @@ export interface $ReceivedNotifyMessage {
 
 export interface $ChatInviteExported {
   _: "chatInviteExported";
-  flags?: Number;
+  flags?: number;
   revoked?: boolean;
   permanent?: boolean;
   request_needed?: boolean;
@@ -2430,7 +2472,7 @@ export interface $ChatInviteAlready {
 
 export interface $ChatInvite {
   _: "chatInvite";
-  flags?: Number;
+  flags?: number;
   channel?: boolean;
   broadcast?: boolean;
   public?: boolean;
@@ -2458,7 +2500,7 @@ export interface $MessageActionChatJoinedByLink {
 
 export interface $UpdateReadMessagesContents {
   _: "updateReadMessagesContents";
-  flags?: Number;
+  flags?: number;
   messages: number[];
   pts: number;
   pts_count: number;
@@ -2482,7 +2524,7 @@ export interface $InputStickerSetShortName {
 
 export interface $StickerSet {
   _: "stickerSet";
-  flags?: Number;
+  flags?: number;
   archived?: boolean;
   official?: boolean;
   masks?: boolean;
@@ -2513,7 +2555,7 @@ export interface $Messages$StickerSet {
 
 export interface $User {
   _: "user";
-  flags?: Number;
+  flags?: number;
   self?: boolean;
   contact?: boolean;
   mutual_contact?: boolean;
@@ -2532,7 +2574,7 @@ export interface $User {
   bot_attach_menu?: boolean;
   premium?: boolean;
   attach_menu_enabled?: boolean;
-  flags2?: Number;
+  flags2?: number;
   bot_can_edit?: boolean;
   close_friend?: boolean;
   stories_hidden?: boolean;
@@ -2540,6 +2582,8 @@ export interface $User {
   contact_require_premium?: boolean;
   bot_business?: boolean;
   bot_has_main_app?: boolean;
+  bot_forum_view?: boolean;
+  bot_forum_can_manage_topics?: boolean;
   id: string;
   access_hash?: string;
   first_name?: string;
@@ -2554,7 +2598,7 @@ export interface $User {
   lang_code?: string;
   emoji_status?: EmojiStatus;
   usernames?: Username[];
-  stories_max_id?: number;
+  stories_max_id?: RecentStory;
   color?: PeerColor;
   profile_color?: PeerColor;
   bot_active_users?: number;
@@ -2570,7 +2614,7 @@ export interface $BotCommand {
 
 export interface $BotInfo {
   _: "botInfo";
-  flags?: Number;
+  flags?: number;
   has_preview_medias?: boolean;
   user_id?: string;
   description?: string;
@@ -2585,6 +2629,8 @@ export interface $BotInfo {
 
 export interface $KeyboardButton {
   _: "keyboardButton";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
@@ -2595,13 +2641,13 @@ export interface $KeyboardButtonRow {
 
 export interface $ReplyKeyboardHide {
   _: "replyKeyboardHide";
-  flags?: Number;
+  flags?: number;
   selective?: boolean;
 }
 
 export interface $ReplyKeyboardForceReply {
   _: "replyKeyboardForceReply";
-  flags?: Number;
+  flags?: number;
   single_use?: boolean;
   selective?: boolean;
   placeholder?: string;
@@ -2609,7 +2655,7 @@ export interface $ReplyKeyboardForceReply {
 
 export interface $ReplyKeyboardMarkup {
   _: "replyKeyboardMarkup";
-  flags?: Number;
+  flags?: number;
   resize?: boolean;
   single_use?: boolean;
   selective?: boolean;
@@ -2700,7 +2746,7 @@ export interface $MessageEntityTextUrl {
 
 export interface $UpdateShortSentMessage {
   _: "updateShortSentMessage";
-  flags?: Number;
+  flags?: number;
   out?: boolean;
   id: number;
   pts: number;
@@ -2734,7 +2780,7 @@ export interface $InputPeerChannel {
 
 export interface $Channel {
   _: "channel";
-  flags?: Number;
+  flags?: number;
   creator?: boolean;
   left?: boolean;
   broadcast?: boolean;
@@ -2755,7 +2801,7 @@ export interface $Channel {
   join_to_send?: boolean;
   join_request?: boolean;
   forum?: boolean;
-  flags2?: Number;
+  flags2?: number;
   stories_hidden?: boolean;
   stories_hidden_min?: boolean;
   stories_unavailable?: boolean;
@@ -2776,7 +2822,7 @@ export interface $Channel {
   default_banned_rights?: ChatBannedRights;
   participants_count?: number;
   usernames?: Username[];
-  stories_max_id?: number;
+  stories_max_id?: RecentStory;
   color?: PeerColor;
   profile_color?: PeerColor;
   emoji_status?: EmojiStatus;
@@ -2789,9 +2835,10 @@ export interface $Channel {
 
 export interface $ChannelForbidden {
   _: "channelForbidden";
-  flags?: Number;
+  flags?: number;
   broadcast?: boolean;
   megagroup?: boolean;
+  monoforum?: boolean;
   id: string;
   access_hash: string;
   title: string;
@@ -2807,7 +2854,7 @@ export interface $Contacts$ResolvedPeer {
 
 export interface $ChannelFull {
   _: "channelFull";
-  flags?: Number;
+  flags?: number;
   can_view_participants?: boolean;
   can_set_username?: boolean;
   can_set_stickers?: boolean;
@@ -2816,7 +2863,7 @@ export interface $ChannelFull {
   has_scheduled?: boolean;
   can_view_stats?: boolean;
   blocked?: boolean;
-  flags2?: Number;
+  flags2?: number;
   can_delete_channel?: boolean;
   antispam?: boolean;
   participants_hidden?: boolean;
@@ -2885,7 +2932,7 @@ export interface $MessageRange {
 
 export interface $Messages$ChannelMessages {
   _: "messages.channelMessages";
-  flags?: Number;
+  flags?: number;
   inexact?: boolean;
   pts: number;
   count: number;
@@ -2903,7 +2950,7 @@ export interface $MessageActionChannelCreate {
 
 export interface $UpdateChannelTooLong {
   _: "updateChannelTooLong";
-  flags?: Number;
+  flags?: number;
   channel_id: string;
   pts?: number;
 }
@@ -2922,7 +2969,7 @@ export interface $UpdateNewChannelMessage {
 
 export interface $UpdateReadChannelInbox {
   _: "updateReadChannelInbox";
-  flags?: Number;
+  flags?: number;
   folder_id?: number;
   channel_id: string;
   max_id: number;
@@ -2947,7 +2994,7 @@ export interface $UpdateChannelMessageViews {
 
 export interface $Updates$ChannelDifferenceEmpty {
   _: "updates.channelDifferenceEmpty";
-  flags?: Number;
+  flags?: number;
   final?: boolean;
   pts: number;
   timeout?: number;
@@ -2955,7 +3002,7 @@ export interface $Updates$ChannelDifferenceEmpty {
 
 export interface $Updates$ChannelDifferenceTooLong {
   _: "updates.channelDifferenceTooLong";
-  flags?: Number;
+  flags?: number;
   final?: boolean;
   timeout?: number;
   dialog: Dialog;
@@ -2966,7 +3013,7 @@ export interface $Updates$ChannelDifferenceTooLong {
 
 export interface $Updates$ChannelDifference {
   _: "updates.channelDifference";
-  flags?: Number;
+  flags?: number;
   final?: boolean;
   pts: number;
   timeout?: number;
@@ -2982,32 +3029,34 @@ export interface $ChannelMessagesFilterEmpty {
 
 export interface $ChannelMessagesFilter {
   _: "channelMessagesFilter";
-  flags?: Number;
+  flags?: number;
   exclude_new_messages?: boolean;
   ranges: MessageRange[];
 }
 
 export interface $ChannelParticipant {
   _: "channelParticipant";
-  flags?: Number;
+  flags?: number;
   user_id: string;
   date: number;
   subscription_until_date?: number;
+  rank?: string;
 }
 
 export interface $ChannelParticipantSelf {
   _: "channelParticipantSelf";
-  flags?: Number;
+  flags?: number;
   via_request?: boolean;
   user_id: string;
   inviter_id: string;
   date: number;
   subscription_until_date?: number;
+  rank?: string;
 }
 
 export interface $ChannelParticipantCreator {
   _: "channelParticipantCreator";
-  flags?: Number;
+  flags?: number;
   user_id: string;
   admin_rights: ChatAdminRights;
   rank?: string;
@@ -3043,14 +3092,18 @@ export interface $Channels$ChannelParticipant {
 
 export interface $ChatParticipantCreator {
   _: "chatParticipantCreator";
+  flags?: number;
   user_id: string;
+  rank?: string;
 }
 
 export interface $ChatParticipantAdmin {
   _: "chatParticipantAdmin";
+  flags?: number;
   user_id: string;
   inviter_id: string;
   date: number;
+  rank?: string;
 }
 
 export interface $UpdateChatParticipantAdmin {
@@ -3078,7 +3131,7 @@ export interface $ChannelParticipantsBots {
 
 export interface $Help$TermsOfService {
   _: "help.termsOfService";
-  flags?: Number;
+  flags?: number;
   popup?: boolean;
   id: DataJSON;
   text: string;
@@ -3093,7 +3146,7 @@ export interface $UpdateNewStickerSet {
 
 export interface $UpdateStickerSetsOrder {
   _: "updateStickerSetsOrder";
-  flags?: Number;
+  flags?: number;
   masks?: boolean;
   emojis?: boolean;
   order: string[];
@@ -3101,7 +3154,7 @@ export interface $UpdateStickerSetsOrder {
 
 export interface $UpdateStickerSets {
   _: "updateStickerSets";
-  flags?: Number;
+  flags?: number;
   masks?: boolean;
   emojis?: boolean;
 }
@@ -3122,7 +3175,7 @@ export interface $UpdateSavedGifs {
 
 export interface $InputBotInlineMessageMediaAuto {
   _: "inputBotInlineMessageMediaAuto";
-  flags?: Number;
+  flags?: number;
   invert_media?: boolean;
   message: string;
   entities?: MessageEntity[];
@@ -3131,7 +3184,7 @@ export interface $InputBotInlineMessageMediaAuto {
 
 export interface $InputBotInlineMessageText {
   _: "inputBotInlineMessageText";
-  flags?: Number;
+  flags?: number;
   no_webpage?: boolean;
   invert_media?: boolean;
   message: string;
@@ -3141,7 +3194,7 @@ export interface $InputBotInlineMessageText {
 
 export interface $InputBotInlineResult {
   _: "inputBotInlineResult";
-  flags?: Number;
+  flags?: number;
   id: string;
   type: string;
   title?: string;
@@ -3154,7 +3207,7 @@ export interface $InputBotInlineResult {
 
 export interface $BotInlineMessageMediaAuto {
   _: "botInlineMessageMediaAuto";
-  flags?: Number;
+  flags?: number;
   invert_media?: boolean;
   message: string;
   entities?: MessageEntity[];
@@ -3163,7 +3216,7 @@ export interface $BotInlineMessageMediaAuto {
 
 export interface $BotInlineMessageText {
   _: "botInlineMessageText";
-  flags?: Number;
+  flags?: number;
   no_webpage?: boolean;
   invert_media?: boolean;
   message: string;
@@ -3173,7 +3226,7 @@ export interface $BotInlineMessageText {
 
 export interface $BotInlineResult {
   _: "botInlineResult";
-  flags?: Number;
+  flags?: number;
   id: string;
   type: string;
   title?: string;
@@ -3186,7 +3239,7 @@ export interface $BotInlineResult {
 
 export interface $Messages$BotResults {
   _: "messages.botResults";
-  flags?: Number;
+  flags?: number;
   gallery?: boolean;
   query_id: string;
   next_offset?: string;
@@ -3199,7 +3252,7 @@ export interface $Messages$BotResults {
 
 export interface $UpdateBotInlineQuery {
   _: "updateBotInlineQuery";
-  flags?: Number;
+  flags?: number;
   query_id: string;
   user_id: string;
   query: string;
@@ -3210,7 +3263,7 @@ export interface $UpdateBotInlineQuery {
 
 export interface $UpdateBotInlineSend {
   _: "updateBotInlineSend";
-  flags?: Number;
+  flags?: number;
   user_id: string;
   query: string;
   geo?: GeoPoint;
@@ -3242,7 +3295,7 @@ export interface $ExportedMessageLink {
 
 export interface $MessageFwdHeader {
   _: "messageFwdHeader";
-  flags?: Number;
+  flags?: number;
   imported?: boolean;
   saved_out?: boolean;
   from_id?: Peer;
@@ -3303,32 +3356,40 @@ export interface $Auth$SentCodeTypeFlashCall {
 
 export interface $KeyboardButtonUrl {
   _: "keyboardButtonUrl";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   url: string;
 }
 
 export interface $KeyboardButtonCallback {
   _: "keyboardButtonCallback";
-  flags?: Number;
+  flags?: number;
   requires_password?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   data: Uint8Array;
 }
 
 export interface $KeyboardButtonRequestPhone {
   _: "keyboardButtonRequestPhone";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
 export interface $KeyboardButtonRequestGeoLocation {
   _: "keyboardButtonRequestGeoLocation";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
 export interface $KeyboardButtonSwitchInline {
   _: "keyboardButtonSwitchInline";
-  flags?: Number;
+  flags?: number;
   same_peer?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   query: string;
   peer_types?: InlineQueryPeerType[];
@@ -3341,7 +3402,7 @@ export interface $ReplyInlineMarkup {
 
 export interface $Messages$BotCallbackAnswer {
   _: "messages.botCallbackAnswer";
-  flags?: Number;
+  flags?: number;
   alert?: boolean;
   has_url?: boolean;
   native_ui?: boolean;
@@ -3352,7 +3413,7 @@ export interface $Messages$BotCallbackAnswer {
 
 export interface $UpdateBotCallbackQuery {
   _: "updateBotCallbackQuery";
-  flags?: Number;
+  flags?: number;
   query_id: string;
   user_id: string;
   peer: Peer;
@@ -3364,7 +3425,7 @@ export interface $UpdateBotCallbackQuery {
 
 export interface $Messages$MessageEditData {
   _: "messages.messageEditData";
-  flags?: Number;
+  flags?: number;
   caption?: boolean;
 }
 
@@ -3377,7 +3438,7 @@ export interface $UpdateEditMessage {
 
 export interface $InputBotInlineMessageMediaGeo {
   _: "inputBotInlineMessageMediaGeo";
-  flags?: Number;
+  flags?: number;
   geo_point: InputGeoPoint;
   heading?: number;
   period?: number;
@@ -3387,7 +3448,7 @@ export interface $InputBotInlineMessageMediaGeo {
 
 export interface $InputBotInlineMessageMediaVenue {
   _: "inputBotInlineMessageMediaVenue";
-  flags?: Number;
+  flags?: number;
   geo_point: InputGeoPoint;
   title: string;
   address: string;
@@ -3399,7 +3460,7 @@ export interface $InputBotInlineMessageMediaVenue {
 
 export interface $InputBotInlineMessageMediaContact {
   _: "inputBotInlineMessageMediaContact";
-  flags?: Number;
+  flags?: number;
   phone_number: string;
   first_name: string;
   last_name: string;
@@ -3409,7 +3470,7 @@ export interface $InputBotInlineMessageMediaContact {
 
 export interface $BotInlineMessageMediaGeo {
   _: "botInlineMessageMediaGeo";
-  flags?: Number;
+  flags?: number;
   geo: GeoPoint;
   heading?: number;
   period?: number;
@@ -3419,7 +3480,7 @@ export interface $BotInlineMessageMediaGeo {
 
 export interface $BotInlineMessageMediaVenue {
   _: "botInlineMessageMediaVenue";
-  flags?: Number;
+  flags?: number;
   geo: GeoPoint;
   title: string;
   address: string;
@@ -3431,7 +3492,7 @@ export interface $BotInlineMessageMediaVenue {
 
 export interface $BotInlineMessageMediaContact {
   _: "botInlineMessageMediaContact";
-  flags?: Number;
+  flags?: number;
   phone_number: string;
   first_name: string;
   last_name: string;
@@ -3449,7 +3510,7 @@ export interface $InputBotInlineResultPhoto {
 
 export interface $InputBotInlineResultDocument {
   _: "inputBotInlineResultDocument";
-  flags?: Number;
+  flags?: number;
   id: string;
   type: string;
   title?: string;
@@ -3460,7 +3521,7 @@ export interface $InputBotInlineResultDocument {
 
 export interface $BotInlineMediaResult {
   _: "botInlineMediaResult";
-  flags?: Number;
+  flags?: number;
   id: string;
   type: string;
   photo?: Photo;
@@ -3479,7 +3540,7 @@ export interface $InputBotInlineMessageID {
 
 export interface $UpdateInlineBotCallbackQuery {
   _: "updateInlineBotCallbackQuery";
-  flags?: Number;
+  flags?: number;
   query_id: string;
   user_id: string;
   msg_id: InputBotInlineMessageID;
@@ -3573,7 +3634,7 @@ export interface $UpdateReadChannelOutbox {
 
 export interface $UpdateDraftMessage {
   _: "updateDraftMessage";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   top_msg_id?: number;
   saved_peer_id?: Peer;
@@ -3582,13 +3643,13 @@ export interface $UpdateDraftMessage {
 
 export interface $DraftMessageEmpty {
   _: "draftMessageEmpty";
-  flags?: Number;
+  flags?: number;
   date?: number;
 }
 
 export interface $DraftMessage {
   _: "draftMessage";
-  flags?: Number;
+  flags?: number;
   no_webpage?: boolean;
   invert_media?: boolean;
   reply_to?: InputReplyTo;
@@ -3611,7 +3672,7 @@ export interface $Messages$FeaturedStickersNotModified {
 
 export interface $Messages$FeaturedStickers {
   _: "messages.featuredStickers";
-  flags?: Number;
+  flags?: number;
   premium?: boolean;
   hash: string;
   count: number;
@@ -3670,7 +3731,7 @@ export interface $UpdatePtsChanged {
 
 export interface $InputMediaPhotoExternal {
   _: "inputMediaPhotoExternal";
-  flags?: Number;
+  flags?: number;
   spoiler?: boolean;
   url: string;
   ttl_seconds?: number;
@@ -3678,7 +3739,7 @@ export interface $InputMediaPhotoExternal {
 
 export interface $InputMediaDocumentExternal {
   _: "inputMediaDocumentExternal";
-  flags?: Number;
+  flags?: number;
   spoiler?: boolean;
   url: string;
   ttl_seconds?: number;
@@ -3716,7 +3777,7 @@ export interface $InputStickeredMediaDocument {
 
 export interface $Game {
   _: "game";
-  flags?: Number;
+  flags?: number;
   id: string;
   access_hash: string;
   short_name: string;
@@ -3735,7 +3796,7 @@ export interface $InputBotInlineResultGame {
 
 export interface $InputBotInlineMessageGame {
   _: "inputBotInlineMessageGame";
-  flags?: Number;
+  flags?: number;
   reply_markup?: ReplyMarkup;
 }
 
@@ -3763,6 +3824,8 @@ export interface $InputGameShortName {
 
 export interface $KeyboardButtonGame {
   _: "keyboardButtonGame";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
@@ -3930,7 +3993,7 @@ export interface $PageBlockPullquote {
 
 export interface $PageBlockPhoto {
   _: "pageBlockPhoto";
-  flags?: Number;
+  flags?: number;
   photo_id: string;
   caption: PageCaption;
   url?: string;
@@ -3939,7 +4002,7 @@ export interface $PageBlockPhoto {
 
 export interface $PageBlockVideo {
   _: "pageBlockVideo";
-  flags?: Number;
+  flags?: number;
   autoplay?: boolean;
   loop?: boolean;
   video_id: string;
@@ -3953,7 +4016,7 @@ export interface $PageBlockCover {
 
 export interface $PageBlockEmbed {
   _: "pageBlockEmbed";
-  flags?: Number;
+  flags?: number;
   full_width?: boolean;
   allow_scrolling?: boolean;
   url?: string;
@@ -3989,7 +4052,7 @@ export interface $PageBlockSlideshow {
 
 export interface $WebPageNotModified {
   _: "webPageNotModified";
-  flags?: Number;
+  flags?: number;
   cached_page_views?: number;
 }
 
@@ -4023,7 +4086,7 @@ export interface $PhoneCallDiscardReasonBusy {
 
 export interface $UpdateDialogPinned {
   _: "updateDialogPinned";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   folder_id?: number;
   peer: DialogPeer;
@@ -4031,7 +4094,7 @@ export interface $UpdateDialogPinned {
 
 export interface $UpdatePinnedDialogs {
   _: "updatePinnedDialogs";
-  flags?: Number;
+  flags?: number;
   folder_id?: number;
   order?: DialogPeer[];
 }
@@ -4061,7 +4124,7 @@ export interface $LabeledPrice {
 
 export interface $Invoice {
   _: "invoice";
-  flags?: Number;
+  flags?: number;
   test?: boolean;
   name_requested?: boolean;
   phone_requested?: boolean;
@@ -4081,7 +4144,7 @@ export interface $Invoice {
 
 export interface $InputMediaInvoice {
   _: "inputMediaInvoice";
-  flags?: Number;
+  flags?: number;
   title: string;
   description: string;
   photo?: InputWebDocument;
@@ -4101,7 +4164,7 @@ export interface $PaymentCharge {
 
 export interface $MessageActionPaymentSentMe {
   _: "messageActionPaymentSentMe";
-  flags?: Number;
+  flags?: number;
   recurring_init?: boolean;
   recurring_used?: boolean;
   currency: string;
@@ -4115,7 +4178,7 @@ export interface $MessageActionPaymentSentMe {
 
 export interface $MessageMediaInvoice {
   _: "messageMediaInvoice";
-  flags?: Number;
+  flags?: number;
   shipping_address_requested?: boolean;
   test?: boolean;
   title: string;
@@ -4140,7 +4203,7 @@ export interface $PostAddress {
 
 export interface $PaymentRequestedInfo {
   _: "paymentRequestedInfo";
-  flags?: Number;
+  flags?: number;
   name?: string;
   phone?: string;
   email?: string;
@@ -4149,12 +4212,14 @@ export interface $PaymentRequestedInfo {
 
 export interface $KeyboardButtonBuy {
   _: "keyboardButtonBuy";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
 export interface $MessageActionPaymentSent {
   _: "messageActionPaymentSent";
-  flags?: Number;
+  flags?: number;
   recurring_init?: boolean;
   recurring_used?: boolean;
   currency: string;
@@ -4203,7 +4268,7 @@ export interface $Upload$WebFile {
 
 export interface $Payments$PaymentForm {
   _: "payments.paymentForm";
-  flags?: Number;
+  flags?: number;
   can_save_credentials?: boolean;
   password_missing?: boolean;
   form_id: string;
@@ -4224,7 +4289,7 @@ export interface $Payments$PaymentForm {
 
 export interface $Payments$ValidatedRequestedInfo {
   _: "payments.validatedRequestedInfo";
-  flags?: Number;
+  flags?: number;
   id?: string;
   shipping_options?: ShippingOption[];
 }
@@ -4236,7 +4301,7 @@ export interface $Payments$PaymentResult {
 
 export interface $Payments$PaymentReceipt {
   _: "payments.paymentReceipt";
-  flags?: Number;
+  flags?: number;
   date: number;
   bot_id: string;
   provider_id: string;
@@ -4255,7 +4320,7 @@ export interface $Payments$PaymentReceipt {
 
 export interface $Payments$SavedInfo {
   _: "payments.savedInfo";
-  flags?: Number;
+  flags?: number;
   has_saved_credentials?: boolean;
   saved_info?: PaymentRequestedInfo;
 }
@@ -4268,7 +4333,7 @@ export interface $InputPaymentCredentialsSaved {
 
 export interface $InputPaymentCredentials {
   _: "inputPaymentCredentials";
-  flags?: Number;
+  flags?: number;
   save?: boolean;
   data: DataJSON;
 }
@@ -4296,7 +4361,7 @@ export interface $UpdateBotShippingQuery {
 
 export interface $UpdateBotPrecheckoutQuery {
   _: "updateBotPrecheckoutQuery";
-  flags?: Number;
+  flags?: number;
   query_id: string;
   user_id: string;
   payload: Uint8Array;
@@ -4308,7 +4373,7 @@ export interface $UpdateBotPrecheckoutQuery {
 
 export interface $InputStickerSetItem {
   _: "inputStickerSetItem";
-  flags?: Number;
+  flags?: number;
   document: InputDocument;
   emoji: string;
   mask_coords?: MaskCoords;
@@ -4333,7 +4398,7 @@ export interface $PhoneCallEmpty {
 
 export interface $PhoneCallWaiting {
   _: "phoneCallWaiting";
-  flags?: Number;
+  flags?: number;
   video?: boolean;
   id: string;
   access_hash: string;
@@ -4346,7 +4411,7 @@ export interface $PhoneCallWaiting {
 
 export interface $PhoneCallRequested {
   _: "phoneCallRequested";
-  flags?: Number;
+  flags?: number;
   video?: boolean;
   id: string;
   access_hash: string;
@@ -4359,7 +4424,7 @@ export interface $PhoneCallRequested {
 
 export interface $PhoneCallAccepted {
   _: "phoneCallAccepted";
-  flags?: Number;
+  flags?: number;
   video?: boolean;
   id: string;
   access_hash: string;
@@ -4372,7 +4437,7 @@ export interface $PhoneCallAccepted {
 
 export interface $PhoneCall {
   _: "phoneCall";
-  flags?: Number;
+  flags?: number;
   p2p_allowed?: boolean;
   video?: boolean;
   conference_supported?: boolean;
@@ -4391,7 +4456,7 @@ export interface $PhoneCall {
 
 export interface $PhoneCallDiscarded {
   _: "phoneCallDiscarded";
-  flags?: Number;
+  flags?: number;
   need_rating?: boolean;
   need_debug?: boolean;
   video?: boolean;
@@ -4402,7 +4467,7 @@ export interface $PhoneCallDiscarded {
 
 export interface $PhoneConnection {
   _: "phoneConnection";
-  flags?: Number;
+  flags?: number;
   tcp?: boolean;
   id: string;
   ip: string;
@@ -4413,7 +4478,7 @@ export interface $PhoneConnection {
 
 export interface $PhoneCallProtocol {
   _: "phoneCallProtocol";
-  flags?: Number;
+  flags?: number;
   udp_p2p?: boolean;
   udp_reflector?: boolean;
   min_layer: number;
@@ -4429,13 +4494,13 @@ export interface $Phone$PhoneCall {
 
 export interface $InputMessagesFilterPhoneCalls {
   _: "inputMessagesFilterPhoneCalls";
-  flags?: Number;
+  flags?: number;
   missed?: boolean;
 }
 
 export interface $MessageActionPhoneCall {
   _: "messageActionPhoneCall";
-  flags?: Number;
+  flags?: number;
   video?: boolean;
   call_id: string;
   reason?: PhoneCallDiscardReason;
@@ -4502,7 +4567,7 @@ export interface $LangPackString {
 
 export interface $LangPackStringPluralized {
   _: "langPackStringPluralized";
-  flags?: Number;
+  flags?: number;
   key: string;
   zero_value?: string;
   one_value?: string;
@@ -4527,7 +4592,7 @@ export interface $LangPackDifference {
 
 export interface $LangPackLanguage {
   _: "langPackLanguage";
-  flags?: Number;
+  flags?: number;
   official?: boolean;
   rtl?: boolean;
   beta?: boolean;
@@ -4553,7 +4618,7 @@ export interface $UpdateLangPack {
 
 export interface $ChannelParticipantAdmin {
   _: "channelParticipantAdmin";
-  flags?: Number;
+  flags?: number;
   can_edit?: boolean;
   self?: boolean;
   user_id: string;
@@ -4566,12 +4631,13 @@ export interface $ChannelParticipantAdmin {
 
 export interface $ChannelParticipantBanned {
   _: "channelParticipantBanned";
-  flags?: Number;
+  flags?: number;
   left?: boolean;
   peer: Peer;
   kicked_by: string;
   date: number;
   banned_rights: ChatBannedRights;
+  rank?: string;
 }
 
 export interface $ChannelParticipantsBanned {
@@ -4676,7 +4742,7 @@ export interface $Channels$AdminLogResults {
 
 export interface $ChannelAdminLogEventsFilter {
   _: "channelAdminLogEventsFilter";
-  flags?: Number;
+  flags?: number;
   join?: boolean;
   leave?: boolean;
   invite?: boolean;
@@ -4696,6 +4762,7 @@ export interface $ChannelAdminLogEventsFilter {
   send?: boolean;
   forums?: boolean;
   sub_extend?: boolean;
+  edit_rank?: boolean;
 }
 
 export interface $TopPeerCategoryPhoneCalls {
@@ -4735,7 +4802,7 @@ export interface $UpdateFavedStickers {
 
 export interface $UpdateChannelReadMessagesContents {
   _: "updateChannelReadMessagesContents";
-  flags?: Number;
+  flags?: number;
   channel_id: string;
   top_msg_id?: number;
   saved_peer_id?: Peer;
@@ -4787,7 +4854,7 @@ export interface $ChannelAdminLogEventActionTogglePreHistoryHidden {
 
 export interface $InputMediaGeoLive {
   _: "inputMediaGeoLive";
-  flags?: Number;
+  flags?: number;
   stopped?: boolean;
   geo_point: InputGeoPoint;
   heading?: number;
@@ -4797,7 +4864,7 @@ export interface $InputMediaGeoLive {
 
 export interface $MessageMediaGeoLive {
   _: "messageMediaGeoLive";
-  flags?: Number;
+  flags?: number;
   geo: GeoPoint;
   heading?: number;
   period: number;
@@ -4851,7 +4918,7 @@ export interface $Messages$MessagesNotModified {
 
 export interface $InputSingleMedia {
   _: "inputSingleMedia";
-  flags?: Number;
+  flags?: number;
   media: InputMedia;
   random_id: string;
   message: string;
@@ -4905,7 +4972,7 @@ export interface $MessageEntityCashtag {
 
 export interface $MessageActionBotAllowed {
   _: "messageActionBotAllowed";
-  flags?: Number;
+  flags?: number;
   attach_menu?: boolean;
   from_request?: boolean;
   domain?: string;
@@ -5071,7 +5138,7 @@ export interface $SecureValueTypeEmail {
 
 export interface $SecureValue {
   _: "secureValue";
-  flags?: Number;
+  flags?: number;
   type: SecureValueType;
   data?: SecureData;
   front_side?: SecureFile;
@@ -5085,7 +5152,7 @@ export interface $SecureValue {
 
 export interface $InputSecureValue {
   _: "inputSecureValue";
-  flags?: Number;
+  flags?: number;
   type: SecureValueType;
   data?: SecureData;
   front_side?: InputSecureFile;
@@ -5154,7 +5221,7 @@ export interface $SecureCredentialsEncrypted {
 
 export interface $Account$AuthorizationForm {
   _: "account.authorizationForm";
-  flags?: Number;
+  flags?: number;
   required_types: SecureRequiredType[];
   values: SecureValue[];
   errors: SecureValueError[];
@@ -5185,7 +5252,7 @@ export interface $Help$DeepLinkInfoEmpty {
 
 export interface $Help$DeepLinkInfo {
   _: "help.deepLinkInfo";
-  flags?: Number;
+  flags?: number;
   update_app?: boolean;
   message: string;
   entities?: MessageEntity[];
@@ -5210,7 +5277,7 @@ export interface $InputTakeoutFileLocation {
 
 export interface $UpdateDialogUnreadMark {
   _: "updateDialogUnreadMark";
-  flags?: Number;
+  flags?: number;
   unread?: boolean;
   peer: DialogPeer;
   saved_peer_id?: Peer;
@@ -5306,7 +5373,7 @@ export interface $SecureValueErrorTranslationFiles {
 
 export interface $SecureRequiredType {
   _: "secureRequiredType";
-  flags?: Number;
+  flags?: number;
   native_names?: boolean;
   selfie_required?: boolean;
   translation_required?: boolean;
@@ -5414,7 +5481,7 @@ export interface $PageBlockKicker {
 
 export interface $PageTableCell {
   _: "pageTableCell";
-  flags?: Number;
+  flags?: number;
   header?: boolean;
   align_center?: boolean;
   align_right?: boolean;
@@ -5432,7 +5499,7 @@ export interface $PageTableRow {
 
 export interface $PageBlockTable {
   _: "pageBlockTable";
-  flags?: Number;
+  flags?: number;
   bordered?: boolean;
   striped?: boolean;
   title: RichText;
@@ -5474,7 +5541,7 @@ export interface $PageBlockOrderedList {
 
 export interface $PageBlockDetails {
   _: "pageBlockDetails";
-  flags?: Number;
+  flags?: number;
   open?: boolean;
   blocks: PageBlock[];
   title: RichText;
@@ -5482,7 +5549,7 @@ export interface $PageBlockDetails {
 
 export interface $PageRelatedArticle {
   _: "pageRelatedArticle";
-  flags?: Number;
+  flags?: number;
   url: string;
   webpage_id: string;
   title?: string;
@@ -5509,7 +5576,7 @@ export interface $PageBlockMap {
 
 export interface $Page {
   _: "page";
-  flags?: Number;
+  flags?: number;
   part?: boolean;
   rtl?: boolean;
   v2?: boolean;
@@ -5557,7 +5624,7 @@ export interface $MessageActionContactSignUp {
 
 export interface $UpdateMessagePoll {
   _: "updateMessagePoll";
-  flags?: Number;
+  flags?: number;
   poll_id: string;
   poll?: Poll;
   results: PollResults;
@@ -5572,7 +5639,7 @@ export interface $PollAnswer {
 export interface $Poll {
   _: "poll";
   id: string;
-  flags?: Number;
+  flags?: number;
   closed?: boolean;
   public_voters?: boolean;
   multiple_choice?: boolean;
@@ -5585,7 +5652,7 @@ export interface $Poll {
 
 export interface $PollAnswerVoters {
   _: "pollAnswerVoters";
-  flags?: Number;
+  flags?: number;
   chosen?: boolean;
   correct?: boolean;
   option: Uint8Array;
@@ -5594,7 +5661,7 @@ export interface $PollAnswerVoters {
 
 export interface $PollResults {
   _: "pollResults";
-  flags?: Number;
+  flags?: number;
   min?: boolean;
   results?: PollAnswerVoters[];
   total_voters?: number;
@@ -5605,7 +5672,7 @@ export interface $PollResults {
 
 export interface $InputMediaPoll {
   _: "inputMediaPoll";
-  flags?: Number;
+  flags?: number;
   poll: Poll;
   correct_answers?: Uint8Array[];
   solution?: string;
@@ -5636,7 +5703,7 @@ export interface $PhotoStrippedSize {
 
 export interface $ChatAdminRights {
   _: "chatAdminRights";
-  flags?: Number;
+  flags?: number;
   change_info?: boolean;
   post_messages?: boolean;
   edit_messages?: boolean;
@@ -5653,11 +5720,12 @@ export interface $ChatAdminRights {
   edit_stories?: boolean;
   delete_stories?: boolean;
   manage_direct_messages?: boolean;
+  manage_ranks?: boolean;
 }
 
 export interface $ChatBannedRights {
   _: "chatBannedRights";
-  flags?: Number;
+  flags?: number;
   view_messages?: boolean;
   send_messages?: boolean;
   send_media?: boolean;
@@ -5678,6 +5746,7 @@ export interface $ChatBannedRights {
   send_voices?: boolean;
   send_docs?: boolean;
   send_plain?: boolean;
+  edit_rank?: boolean;
   until_date: number;
 }
 
@@ -5727,7 +5796,7 @@ export interface $Account$WallPapers {
 
 export interface $CodeSettings {
   _: "codeSettings";
-  flags?: Number;
+  flags?: number;
   allow_flashcall?: boolean;
   current_number?: boolean;
   allow_app_hash?: boolean;
@@ -5741,7 +5810,7 @@ export interface $CodeSettings {
 
 export interface $WallPaperSettings {
   _: "wallPaperSettings";
-  flags?: Number;
+  flags?: number;
   blur?: boolean;
   motion?: boolean;
   background_color?: number;
@@ -5755,7 +5824,7 @@ export interface $WallPaperSettings {
 
 export interface $AutoDownloadSettings {
   _: "autoDownloadSettings";
-  flags?: Number;
+  flags?: number;
   disabled?: boolean;
   video_preload_large?: boolean;
   audio_preload_next?: boolean;
@@ -5842,7 +5911,7 @@ export interface $InputPhotoLegacyFileLocation {
 
 export interface $InputPeerPhotoFileLocation {
   _: "inputPeerPhotoFileLocation";
-  flags?: Number;
+  flags?: number;
   big?: boolean;
   peer: InputPeer;
   photo_id: string;
@@ -5856,7 +5925,7 @@ export interface $InputStickerSetThumb {
 
 export interface $Folder {
   _: "folder";
-  flags?: Number;
+  flags?: number;
   autofill_new_broadcasts?: boolean;
   autofill_public_groups?: boolean;
   autofill_new_correspondents?: boolean;
@@ -5867,7 +5936,7 @@ export interface $Folder {
 
 export interface $DialogFolder {
   _: "dialogFolder";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   folder: Folder;
   peer: Peer;
@@ -5959,7 +6028,7 @@ export interface $ChannelAdminLogEventActionChangeLinkedChat {
 
 export interface $Messages$SearchCounter {
   _: "messages.searchCounter";
-  flags?: Number;
+  flags?: number;
   inexact?: boolean;
   filter: MessagesFilter;
   count: number;
@@ -5967,7 +6036,8 @@ export interface $Messages$SearchCounter {
 
 export interface $KeyboardButtonUrlAuth {
   _: "keyboardButtonUrlAuth";
-  flags?: Number;
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   fwd_text?: string;
   url: string;
@@ -5976,8 +6046,9 @@ export interface $KeyboardButtonUrlAuth {
 
 export interface $InputKeyboardButtonUrlAuth {
   _: "inputKeyboardButtonUrlAuth";
-  flags?: Number;
+  flags?: number;
   request_write_access?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   fwd_text?: string;
   url: string;
@@ -5986,15 +6057,24 @@ export interface $InputKeyboardButtonUrlAuth {
 
 export interface $UrlAuthResultRequest {
   _: "urlAuthResultRequest";
-  flags?: Number;
+  flags?: number;
   request_write_access?: boolean;
+  request_phone_number?: boolean;
+  match_codes_first?: boolean;
   bot: User;
   domain: string;
+  browser?: string;
+  platform?: string;
+  ip?: string;
+  region?: string;
+  match_codes?: string[];
+  user_id_hint?: string;
 }
 
 export interface $UrlAuthResultAccepted {
   _: "urlAuthResultAccepted";
-  url: string;
+  flags?: number;
+  url?: string;
 }
 
 export interface $UrlAuthResultDefault {
@@ -6079,7 +6159,7 @@ export interface $ChannelAdminLogEventActionToggleSlowMode {
 
 export interface $Auth$AuthorizationSignUpRequired {
   _: "auth.authorizationSignUpRequired";
-  flags?: Number;
+  flags?: number;
   terms_of_service?: Help$TermsOfService;
 }
 
@@ -6099,7 +6179,7 @@ export interface $UpdateNewScheduledMessage {
 
 export interface $UpdateDeleteScheduledMessages {
   _: "updateDeleteScheduledMessages";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   messages: number[];
   sent_messages?: number[];
@@ -6125,7 +6205,7 @@ export interface $InputThemeSlug {
 
 export interface $Theme {
   _: "theme";
-  flags?: Number;
+  flags?: number;
   creator?: boolean;
   default?: boolean;
   for_chat?: boolean;
@@ -6191,7 +6271,7 @@ export interface $Auth$LoginTokenSuccess {
 
 export interface $Account$ContentSettings {
   _: "account.contentSettings";
-  flags?: Number;
+  flags?: number;
   sensitive_enabled?: boolean;
   sensitive_can_change?: boolean;
 }
@@ -6231,7 +6311,7 @@ export interface $InputWallPaperNoFile {
 export interface $WallPaperNoFile {
   _: "wallPaperNoFile";
   id: string;
-  flags?: Number;
+  flags?: number;
   default?: boolean;
   dark?: boolean;
   settings?: WallPaperSettings;
@@ -6239,7 +6319,7 @@ export interface $WallPaperNoFile {
 
 export interface $InputThemeSettings {
   _: "inputThemeSettings";
-  flags?: Number;
+  flags?: number;
   message_colors_animated?: boolean;
   base_theme: BaseTheme;
   accent_color: number;
@@ -6251,7 +6331,7 @@ export interface $InputThemeSettings {
 
 export interface $ThemeSettings {
   _: "themeSettings";
-  flags?: Number;
+  flags?: number;
   message_colors_animated?: boolean;
   base_theme: BaseTheme;
   accent_color: number;
@@ -6262,7 +6342,7 @@ export interface $ThemeSettings {
 
 export interface $WebPageAttributeTheme {
   _: "webPageAttributeTheme";
-  flags?: Number;
+  flags?: number;
   documents?: Document[];
   settings?: ThemeSettings;
 }
@@ -6277,7 +6357,7 @@ export interface $UpdateMessagePollVote {
 
 export interface $Messages$VotesList {
   _: "messages.votesList";
-  flags?: Number;
+  flags?: number;
   count: number;
   votes: MessagePeerVote[];
   chats: Chat[];
@@ -6287,7 +6367,8 @@ export interface $Messages$VotesList {
 
 export interface $KeyboardButtonRequestPoll {
   _: "keyboardButtonRequestPoll";
-  flags?: Number;
+  flags?: number;
+  style?: KeyboardButtonStyle;
   quiz?: boolean;
   text: string;
 }
@@ -6317,7 +6398,7 @@ export interface $PeerSelfLocated {
 
 export interface $DialogFilter {
   _: "dialogFilter";
-  flags?: Number;
+  flags?: number;
   contacts?: boolean;
   non_contacts?: boolean;
   groups?: boolean;
@@ -6344,7 +6425,7 @@ export interface $DialogFilterSuggested {
 
 export interface $UpdateDialogFilter {
   _: "updateDialogFilter";
-  flags?: Number;
+  flags?: number;
   id: number;
   filter?: DialogFilter;
 }
@@ -6388,7 +6469,7 @@ export interface $StatsGraphError {
 
 export interface $StatsGraph {
   _: "statsGraph";
-  flags?: Number;
+  flags?: number;
   json: DataJSON;
   zoom_token?: string;
 }
@@ -6426,8 +6507,10 @@ export interface $InputMediaDice {
 
 export interface $MessageMediaDice {
   _: "messageMediaDice";
+  flags?: number;
   value: number;
   emoticon: string;
+  game_outcome?: Messages$EmojiGameOutcome;
 }
 
 export interface $InputStickerSetDice {
@@ -6442,7 +6525,7 @@ export interface $Help$PromoDataEmpty {
 
 export interface $Help$PromoData {
   _: "help.promoData";
-  flags?: Number;
+  flags?: number;
   proxy?: boolean;
   expires: number;
   peer?: Peer;
@@ -6457,7 +6540,7 @@ export interface $Help$PromoData {
 
 export interface $VideoSize {
   _: "videoSize";
-  flags?: Number;
+  flags?: number;
   type: string;
   w: number;
   h: number;
@@ -6521,7 +6604,7 @@ export interface $Stats$MegagroupStats {
 
 export interface $GlobalPrivacySettings {
   _: "globalPrivacySettings";
-  flags?: Number;
+  flags?: number;
   archive_and_mute_new_noncontact_peers?: boolean;
   keep_archived_unmuted?: boolean;
   keep_archived_folders?: boolean;
@@ -6534,7 +6617,7 @@ export interface $GlobalPrivacySettings {
 
 export interface $PhoneConnectionWebrtc {
   _: "phoneConnectionWebrtc";
-  flags?: Number;
+  flags?: number;
   turn?: boolean;
   stun?: boolean;
   id: string;
@@ -6547,7 +6630,7 @@ export interface $PhoneConnectionWebrtc {
 
 export interface $Help$CountryCode {
   _: "help.countryCode";
-  flags?: Number;
+  flags?: number;
   country_code: string;
   prefixes?: string[];
   patterns?: string[];
@@ -6555,7 +6638,7 @@ export interface $Help$CountryCode {
 
 export interface $Help$Country {
   _: "help.country";
-  flags?: Number;
+  flags?: number;
   hidden?: boolean;
   iso2: string;
   default_name: string;
@@ -6575,7 +6658,7 @@ export interface $Help$CountriesList {
 
 export interface $MessageViews {
   _: "messageViews";
-  flags?: Number;
+  flags?: number;
   views?: number;
   forwards?: number;
   replies?: MessageReplies;
@@ -6605,7 +6688,7 @@ export interface $Messages$MessageViews {
 
 export interface $UpdateReadChannelDiscussionInbox {
   _: "updateReadChannelDiscussionInbox";
-  flags?: Number;
+  flags?: number;
   channel_id: string;
   top_msg_id: number;
   read_max_id: number;
@@ -6622,7 +6705,7 @@ export interface $UpdateReadChannelDiscussionOutbox {
 
 export interface $Messages$DiscussionMessage {
   _: "messages.discussionMessage";
-  flags?: Number;
+  flags?: number;
   messages: Message[];
   max_id?: number;
   read_inbox_max_id?: number;
@@ -6634,7 +6717,7 @@ export interface $Messages$DiscussionMessage {
 
 export interface $MessageReplyHeader {
   _: "messageReplyHeader";
-  flags?: Number;
+  flags?: number;
   reply_to_scheduled?: boolean;
   forum_topic?: boolean;
   quote?: boolean;
@@ -6651,7 +6734,7 @@ export interface $MessageReplyHeader {
 
 export interface $MessageReplies {
   _: "messageReplies";
-  flags?: Number;
+  flags?: number;
   comments?: boolean;
   replies: number;
   replies_pts: number;
@@ -6663,7 +6746,7 @@ export interface $MessageReplies {
 
 export interface $UpdatePeerBlocked {
   _: "updatePeerBlocked";
-  flags?: Number;
+  flags?: number;
   blocked?: boolean;
   blocked_my_stories_from?: boolean;
   peer_id: Peer;
@@ -6677,7 +6760,7 @@ export interface $PeerBlocked {
 
 export interface $UpdateChannelUserTyping {
   _: "updateChannelUserTyping";
-  flags?: Number;
+  flags?: number;
   channel_id: string;
   top_msg_id?: number;
   from_id: Peer;
@@ -6697,14 +6780,14 @@ export interface $ChannelParticipantLeft {
 
 export interface $ChannelParticipantsMentions {
   _: "channelParticipantsMentions";
-  flags?: Number;
+  flags?: number;
   q?: string;
   top_msg_id?: number;
 }
 
 export interface $UpdatePinnedMessages {
   _: "updatePinnedMessages";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   peer: Peer;
   messages: number[];
@@ -6714,7 +6797,7 @@ export interface $UpdatePinnedMessages {
 
 export interface $UpdatePinnedChannelMessages {
   _: "updatePinnedChannelMessages";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   channel_id: string;
   messages: number[];
@@ -6758,7 +6841,7 @@ export interface $GroupCallDiscarded {
 
 export interface $GroupCall {
   _: "groupCall";
-  flags?: Number;
+  flags?: number;
   join_muted?: boolean;
   can_change_join_muted?: boolean;
   join_date_asc?: boolean;
@@ -6769,6 +6852,9 @@ export interface $GroupCall {
   listeners_hidden?: boolean;
   conference?: boolean;
   creator?: boolean;
+  messages_enabled?: boolean;
+  can_change_messages_enabled?: boolean;
+  min?: boolean;
   id: string;
   access_hash: string;
   participants_count: number;
@@ -6780,6 +6866,8 @@ export interface $GroupCall {
   unmuted_video_limit: number;
   version: number;
   invite_link?: string;
+  send_paid_messages_stars?: string;
+  default_send_as?: Peer;
 }
 
 export interface $InputGroupCall {
@@ -6790,7 +6878,7 @@ export interface $InputGroupCall {
 
 export interface $MessageActionGroupCall {
   _: "messageActionGroupCall";
-  flags?: Number;
+  flags?: number;
   call: InputGroupCall;
   duration?: number;
 }
@@ -6803,7 +6891,7 @@ export interface $MessageActionInviteToGroupCall {
 
 export interface $GroupCallParticipant {
   _: "groupCallParticipant";
-  flags?: Number;
+  flags?: number;
   muted?: boolean;
   left?: boolean;
   can_self_unmute?: boolean;
@@ -6823,6 +6911,7 @@ export interface $GroupCallParticipant {
   raise_hand_rating?: string;
   video?: GroupCallParticipantVideo;
   presentation?: GroupCallParticipantVideo;
+  paid_stars_total?: string;
 }
 
 export interface $UpdateChat {
@@ -6839,8 +6928,9 @@ export interface $UpdateGroupCallParticipants {
 
 export interface $UpdateGroupCall {
   _: "updateGroupCall";
-  flags?: Number;
-  chat_id?: string;
+  flags?: number;
+  live_story?: boolean;
+  peer?: Peer;
   call: GroupCall;
 }
 
@@ -6925,7 +7015,7 @@ export interface $SendMessageHistoryImportAction {
 
 export interface $Messages$HistoryImportParsed {
   _: "messages.historyImportParsed";
-  flags?: Number;
+  flags?: number;
   pm?: boolean;
   group?: boolean;
   title?: string;
@@ -6945,21 +7035,21 @@ export interface $Messages$AffectedFoundMessages {
 
 export interface $MessageActionSetMessagesTTL {
   _: "messageActionSetMessagesTTL";
-  flags?: Number;
+  flags?: number;
   period: number;
   auto_setting_from?: string;
 }
 
 export interface $UpdatePeerHistoryTTL {
   _: "updatePeerHistoryTTL";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   ttl_period?: number;
 }
 
 export interface $UpdateChatParticipant {
   _: "updateChatParticipant";
-  flags?: Number;
+  flags?: number;
   chat_id: string;
   date: number;
   actor_id: string;
@@ -6972,7 +7062,7 @@ export interface $UpdateChatParticipant {
 
 export interface $UpdateChannelParticipant {
   _: "updateChannelParticipant";
-  flags?: Number;
+  flags?: number;
   via_chatlist?: boolean;
   channel_id: string;
   date: number;
@@ -6994,7 +7084,7 @@ export interface $UpdateBotStopped {
 
 export interface $ChatInviteImporter {
   _: "chatInviteImporter";
-  flags?: Number;
+  flags?: number;
   requested?: boolean;
   via_chatlist?: boolean;
   user_id: string;
@@ -7045,7 +7135,7 @@ export interface $Messages$ChatAdminsWithInvites {
 
 export interface $ChannelAdminLogEventActionParticipantJoinByInvite {
   _: "channelAdminLogEventActionParticipantJoinByInvite";
-  flags?: Number;
+  flags?: number;
   via_chatlist?: boolean;
   invite: ExportedChatInvite;
 }
@@ -7084,7 +7174,7 @@ export interface $Messages$CheckedHistoryImportPeer {
 
 export interface $InputGroupCallStream {
   _: "inputGroupCallStream";
-  flags?: Number;
+  flags?: number;
   call: InputGroupCall;
   time_ms: string;
   scale: number;
@@ -7106,7 +7196,7 @@ export interface $Phone$ExportedGroupCallInvite {
 
 export interface $InputBotInlineMessageMediaInvoice {
   _: "inputBotInlineMessageMediaInvoice";
-  flags?: Number;
+  flags?: number;
   title: string;
   description: string;
   photo?: InputWebDocument;
@@ -7119,7 +7209,7 @@ export interface $InputBotInlineMessageMediaInvoice {
 
 export interface $BotInlineMessageMediaInvoice {
   _: "botInlineMessageMediaInvoice";
-  flags?: Number;
+  flags?: number;
   shipping_address_requested?: boolean;
   test?: boolean;
   title: string;
@@ -7144,7 +7234,7 @@ export interface $GroupCallParticipantVideoSourceGroup {
 
 export interface $GroupCallParticipantVideo {
   _: "groupCallParticipantVideo";
-  flags?: Number;
+  flags?: number;
   paused?: boolean;
   endpoint: string;
   source_groups: GroupCallParticipantVideoSourceGroup[];
@@ -7153,7 +7243,7 @@ export interface $GroupCallParticipantVideo {
 
 export interface $UpdateGroupCallConnection {
   _: "updateGroupCallConnection";
-  flags?: Number;
+  flags?: number;
   presentation?: boolean;
   params: DataJSON;
 }
@@ -7227,12 +7317,12 @@ export interface $Account$ChatThemesNotModified {
 
 export interface $Account$ChatThemes {
   _: "account.chatThemes";
-  flags?: Number;
+  flags?: number;
   hash: string;
   themes: ChatTheme[];
   chats: Chat[];
   users: User[];
-  next_offset?: number;
+  next_offset?: string;
 }
 
 export interface $MessageActionSetChatTheme {
@@ -7246,7 +7336,7 @@ export interface $SendMessageChooseStickerAction {
 
 export interface $SponsoredMessage {
   _: "sponsoredMessage";
-  flags?: Number;
+  flags?: number;
   recommended?: boolean;
   can_report?: boolean;
   random_id: Uint8Array;
@@ -7266,7 +7356,7 @@ export interface $SponsoredMessage {
 
 export interface $Messages$SponsoredMessages {
   _: "messages.sponsoredMessages";
-  flags?: Number;
+  flags?: number;
   posts_between?: number;
   start_delay?: number;
   between_delay?: number;
@@ -7309,7 +7399,7 @@ export interface $SearchResultsCalendarPeriod {
 
 export interface $Messages$SearchResultsCalendar {
   _: "messages.searchResultsCalendar";
-  flags?: Number;
+  flags?: number;
   inexact?: boolean;
   count: number;
   min_date: number;
@@ -7363,12 +7453,16 @@ export interface $ChannelAdminLogEventActionParticipantJoinByRequest {
 
 export interface $InputKeyboardButtonUserProfile {
   _: "inputKeyboardButtonUserProfile";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   user_id: InputUser;
 }
 
 export interface $KeyboardButtonUserProfile {
   _: "keyboardButtonUserProfile";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   user_id: string;
 }
@@ -7420,13 +7514,13 @@ export interface $Auth$SentCodeTypeMissedCall {
 
 export interface $Auth$LoggedOut {
   _: "auth.loggedOut";
-  flags?: Number;
+  flags?: number;
   future_auth_token?: Uint8Array;
 }
 
 export interface $UpdateMessageReactions {
   _: "updateMessageReactions";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   msg_id: number;
   top_msg_id?: number;
@@ -7436,7 +7530,7 @@ export interface $UpdateMessageReactions {
 
 export interface $ReactionCount {
   _: "reactionCount";
-  flags?: Number;
+  flags?: number;
   chosen_order?: number;
   reaction: Reaction;
   count: number;
@@ -7444,7 +7538,7 @@ export interface $ReactionCount {
 
 export interface $MessageReactions {
   _: "messageReactions";
-  flags?: Number;
+  flags?: number;
   min?: boolean;
   can_see_list?: boolean;
   reactions_as_tags?: boolean;
@@ -7455,7 +7549,7 @@ export interface $MessageReactions {
 
 export interface $Messages$MessageReactionsList {
   _: "messages.messageReactionsList";
-  flags?: Number;
+  flags?: number;
   count: number;
   reactions: MessagePeerReaction[];
   chats: Chat[];
@@ -7465,7 +7559,7 @@ export interface $Messages$MessageReactionsList {
 
 export interface $AvailableReaction {
   _: "availableReaction";
-  flags?: Number;
+  flags?: number;
   inactive?: boolean;
   premium?: boolean;
   reaction: string;
@@ -7503,7 +7597,7 @@ export interface $ChannelAdminLogEventActionChangeAvailableReactions {
 
 export interface $MessagePeerReaction {
   _: "messagePeerReaction";
-  flags?: Number;
+  flags?: number;
   big?: boolean;
   unread?: boolean;
   my?: boolean;
@@ -7546,7 +7640,7 @@ export interface $AttachMenuBotIconColor {
 
 export interface $AttachMenuBotIcon {
   _: "attachMenuBotIcon";
-  flags?: Number;
+  flags?: number;
   name: string;
   icon: Document;
   colors?: AttachMenuBotIconColor[];
@@ -7554,7 +7648,7 @@ export interface $AttachMenuBotIcon {
 
 export interface $AttachMenuBot {
   _: "attachMenuBot";
-  flags?: Number;
+  flags?: number;
   inactive?: boolean;
   has_settings?: boolean;
   request_write_access?: boolean;
@@ -7590,7 +7684,7 @@ export interface $UpdateAttachMenuBots {
 
 export interface $WebViewResultUrl {
   _: "webViewResultUrl";
-  flags?: Number;
+  flags?: number;
   fullsize?: boolean;
   fullscreen?: boolean;
   query_id?: string;
@@ -7599,7 +7693,7 @@ export interface $WebViewResultUrl {
 
 export interface $WebViewMessageSent {
   _: "webViewMessageSent";
-  flags?: Number;
+  flags?: number;
   msg_id?: InputBotInlineMessageID;
 }
 
@@ -7610,12 +7704,16 @@ export interface $UpdateWebViewResultSent {
 
 export interface $KeyboardButtonWebView {
   _: "keyboardButtonWebView";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   url: string;
 }
 
 export interface $KeyboardButtonSimpleWebView {
   _: "keyboardButtonSimpleWebView";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   url: string;
 }
@@ -7735,7 +7833,7 @@ export interface $Payments$ExportedInvoice {
 
 export interface $UpdateTranscribedAudio {
   _: "updateTranscribedAudio";
-  flags?: Number;
+  flags?: number;
   pending?: boolean;
   peer: Peer;
   msg_id: number;
@@ -7745,7 +7843,7 @@ export interface $UpdateTranscribedAudio {
 
 export interface $Messages$TranscribedAudio {
   _: "messages.transcribedAudio";
-  flags?: Number;
+  flags?: number;
   pending?: boolean;
   transcription_id: string;
   text: string;
@@ -7776,7 +7874,7 @@ export interface $MessageEntityCustomEmoji {
 
 export interface $DocumentAttributeCustomEmoji {
   _: "documentAttributeCustomEmoji";
-  flags?: Number;
+  flags?: number;
   free?: boolean;
   text_color?: boolean;
   alt: string;
@@ -7793,7 +7891,7 @@ export interface $StickerSetFullCovered {
 
 export interface $InputStorePaymentPremiumSubscription {
   _: "inputStorePaymentPremiumSubscription";
-  flags?: Number;
+  flags?: number;
   restore?: boolean;
   upgrade?: boolean;
 }
@@ -7807,10 +7905,10 @@ export interface $InputStorePaymentGiftPremium {
 
 export interface $MessageActionGiftPremium {
   _: "messageActionGiftPremium";
-  flags?: Number;
+  flags?: number;
   currency: string;
   amount: string;
-  months: number;
+  days: number;
   crypto_currency?: string;
   crypto_amount?: string;
   message?: TextWithEntities;
@@ -7840,7 +7938,7 @@ export interface $PaymentFormMethod {
 
 export interface $InputWebFileAudioAlbumThumbLocation {
   _: "inputWebFileAudioAlbumThumbLocation";
-  flags?: Number;
+  flags?: number;
   small?: boolean;
   document?: InputDocument;
   title?: string;
@@ -7853,7 +7951,7 @@ export interface $EmojiStatusEmpty {
 
 export interface $EmojiStatus {
   _: "emojiStatus";
-  flags?: Number;
+  flags?: number;
   document_id: string;
   until?: number;
 }
@@ -7898,7 +7996,7 @@ export interface $ChatReactionsNone {
 
 export interface $ChatReactionsAll {
   _: "chatReactionsAll";
-  flags?: Number;
+  flags?: number;
   allow_custom?: boolean;
 }
 
@@ -7923,7 +8021,7 @@ export interface $UpdateRecentReactions {
 
 export interface $UpdateMoveStickerSetToTop {
   _: "updateMoveStickerSetToTop";
-  flags?: Number;
+  flags?: number;
   masks?: boolean;
   emojis?: boolean;
   stickerset: string;
@@ -7931,7 +8029,7 @@ export interface $UpdateMoveStickerSetToTop {
 
 export interface $Auth$SentCodeTypeEmailCode {
   _: "auth.sentCodeTypeEmailCode";
-  flags?: Number;
+  flags?: number;
   apple_signin_allowed?: boolean;
   google_signin_allowed?: boolean;
   email_pattern: string;
@@ -7942,7 +8040,7 @@ export interface $Auth$SentCodeTypeEmailCode {
 
 export interface $Auth$SentCodeTypeSetUpEmailRequired {
   _: "auth.sentCodeTypeSetUpEmailRequired";
-  flags?: Number;
+  flags?: number;
   apple_signin_allowed?: boolean;
   google_signin_allowed?: boolean;
 }
@@ -7989,7 +8087,7 @@ export interface $Account$EmailVerifiedLogin {
 
 export interface $PremiumSubscriptionOption {
   _: "premiumSubscriptionOption";
-  flags?: Number;
+  flags?: number;
   current?: boolean;
   can_purchase_upgrade?: boolean;
   transaction?: string;
@@ -8010,14 +8108,14 @@ export interface $InputStickerSetEmojiDefaultStatuses {
 
 export interface $SendAsPeer {
   _: "sendAsPeer";
-  flags?: Number;
+  flags?: number;
   premium_required?: boolean;
   peer: Peer;
 }
 
 export interface $MessageExtendedMediaPreview {
   _: "messageExtendedMediaPreview";
-  flags?: Number;
+  flags?: number;
   w?: number;
   h?: number;
   thumb?: PhotoSize;
@@ -8044,7 +8142,7 @@ export interface $StickerKeyword {
 
 export interface $Username {
   _: "username";
-  flags?: Number;
+  flags?: number;
   editable?: boolean;
   active?: boolean;
   username: string;
@@ -8079,7 +8177,7 @@ export interface $ChannelAdminLogEventActionDeleteTopic {
 
 export interface $ChannelAdminLogEventActionPinTopic {
   _: "channelAdminLogEventActionPinTopic";
-  flags?: Number;
+  flags?: number;
   prev_topic?: ForumTopic;
   new_topic?: ForumTopic;
 }
@@ -8091,14 +8189,16 @@ export interface $ForumTopicDeleted {
 
 export interface $ForumTopic {
   _: "forumTopic";
-  flags?: Number;
+  flags?: number;
   my?: boolean;
   closed?: boolean;
   pinned?: boolean;
   short?: boolean;
   hidden?: boolean;
+  title_missing?: boolean;
   id: number;
   date: number;
+  peer: Peer;
   title: string;
   icon_color: number;
   icon_emoji_id?: string;
@@ -8115,7 +8215,7 @@ export interface $ForumTopic {
 
 export interface $Messages$ForumTopics {
   _: "messages.forumTopics";
-  flags?: Number;
+  flags?: number;
   order_by_create_date?: boolean;
   count: number;
   topics: ForumTopic[];
@@ -8127,7 +8227,8 @@ export interface $Messages$ForumTopics {
 
 export interface $MessageActionTopicCreate {
   _: "messageActionTopicCreate";
-  flags?: Number;
+  flags?: number;
+  title_missing?: boolean;
   title: string;
   icon_color: number;
   icon_emoji_id?: string;
@@ -8135,19 +8236,11 @@ export interface $MessageActionTopicCreate {
 
 export interface $MessageActionTopicEdit {
   _: "messageActionTopicEdit";
-  flags?: Number;
+  flags?: number;
   title?: string;
   icon_emoji_id?: string;
   closed?: boolean;
   hidden?: boolean;
-}
-
-export interface $UpdateChannelPinnedTopic {
-  _: "updateChannelPinnedTopic";
-  flags?: Number;
-  pinned?: boolean;
-  channel_id: string;
-  topic_id: number;
 }
 
 export interface $InputNotifyForumTopic {
@@ -8168,13 +8261,6 @@ export interface $InputStickerSetEmojiDefaultTopicIcons {
 
 export interface $Messages$SponsoredMessagesEmpty {
   _: "messages.sponsoredMessagesEmpty";
-}
-
-export interface $UpdateChannelPinnedTopics {
-  _: "updateChannelPinnedTopics";
-  flags?: Number;
-  channel_id: string;
-  order?: number[];
 }
 
 export interface $DefaultHistoryTTL {
@@ -8231,14 +8317,14 @@ export interface $MessageActionRequestedPeer {
 
 export interface $RequestPeerTypeUser {
   _: "requestPeerTypeUser";
-  flags?: Number;
+  flags?: number;
   bot?: boolean;
   premium?: boolean;
 }
 
 export interface $RequestPeerTypeChat {
   _: "requestPeerTypeChat";
-  flags?: Number;
+  flags?: number;
   creator?: boolean;
   bot_participant?: boolean;
   has_username?: boolean;
@@ -8249,7 +8335,7 @@ export interface $RequestPeerTypeChat {
 
 export interface $RequestPeerTypeBroadcast {
   _: "requestPeerTypeBroadcast";
-  flags?: Number;
+  flags?: number;
   creator?: boolean;
   has_username?: boolean;
   user_admin_rights?: ChatAdminRights;
@@ -8258,6 +8344,8 @@ export interface $RequestPeerTypeBroadcast {
 
 export interface $KeyboardButtonRequestPeer {
   _: "keyboardButtonRequestPeer";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   button_id: number;
   peer_type: RequestPeerType;
@@ -8276,7 +8364,7 @@ export interface $EmojiList {
 
 export interface $Auth$SentCodeTypeFirebaseSms {
   _: "auth.sentCodeTypeFirebaseSms";
-  flags?: Number;
+  flags?: number;
   nonce?: Uint8Array;
   play_integrity_project_id?: string;
   play_integrity_nonce?: Uint8Array;
@@ -8328,7 +8416,7 @@ export interface $Messages$TranslateResult {
 
 export interface $AutoSaveSettings {
   _: "autoSaveSettings";
-  flags?: Number;
+  flags?: number;
   photos?: boolean;
   videos?: boolean;
   video_max_size?: string;
@@ -8382,7 +8470,7 @@ export interface $BotAppNotModified {
 
 export interface $BotApp {
   _: "botApp";
-  flags?: Number;
+  flags?: number;
   id: string;
   access_hash: string;
   short_name: string;
@@ -8395,7 +8483,7 @@ export interface $BotApp {
 
 export interface $Messages$BotApp {
   _: "messages.botApp";
-  flags?: Number;
+  flags?: number;
   inactive?: boolean;
   request_write_access?: boolean;
   has_settings?: boolean;
@@ -8416,7 +8504,7 @@ export interface $ReadParticipantDate {
 
 export interface $DialogFilterChatlist {
   _: "dialogFilterChatlist";
-  flags?: Number;
+  flags?: number;
   has_my_invites?: boolean;
   title_noanimate?: boolean;
   id: number;
@@ -8434,7 +8522,7 @@ export interface $InputChatlistDialogFilter {
 
 export interface $ExportedChatlistInvite {
   _: "exportedChatlistInvite";
-  flags?: Number;
+  flags?: number;
   title: string;
   url: string;
   peers: Peer[];
@@ -8464,7 +8552,7 @@ export interface $Chatlists$ChatlistInviteAlready {
 
 export interface $Chatlists$ChatlistInvite {
   _: "chatlists.chatlistInvite";
-  flags?: Number;
+  flags?: number;
   title_noanimate?: boolean;
   title: TextWithEntities;
   emoticon?: string;
@@ -8482,7 +8570,7 @@ export interface $Chatlists$ChatlistUpdates {
 
 export interface $MessageActionSetChatWallPaper {
   _: "messageActionSetChatWallPaper";
-  flags?: Number;
+  flags?: number;
   same?: boolean;
   for_both?: boolean;
   wallpaper: WallPaper;
@@ -8529,7 +8617,7 @@ export interface $PrivacyKeyAbout {
 
 export interface $StoryViews {
   _: "storyViews";
-  flags?: Number;
+  flags?: number;
   has_viewers?: boolean;
   views_count: number;
   forwards_count?: number;
@@ -8545,8 +8633,9 @@ export interface $StoryItemDeleted {
 
 export interface $StoryItemSkipped {
   _: "storyItemSkipped";
-  flags?: Number;
+  flags?: number;
   close_friends?: boolean;
+  live?: boolean;
   id: number;
   date: number;
   expire_date: number;
@@ -8554,7 +8643,7 @@ export interface $StoryItemSkipped {
 
 export interface $StoryItem {
   _: "storyItem";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   public?: boolean;
   close_friends?: boolean;
@@ -8593,14 +8682,14 @@ export interface $UpdateReadStories {
 
 export interface $Stories$AllStoriesNotModified {
   _: "stories.allStoriesNotModified";
-  flags?: Number;
+  flags?: number;
   state: string;
   stealth_mode: StoriesStealthMode;
 }
 
 export interface $Stories$AllStories {
   _: "stories.allStories";
-  flags?: Number;
+  flags?: number;
   has_more?: boolean;
   count: number;
   state: string;
@@ -8612,7 +8701,7 @@ export interface $Stories$AllStories {
 
 export interface $Stories$Stories {
   _: "stories.stories";
-  flags?: Number;
+  flags?: number;
   count: number;
   stories: StoryItem[];
   pinned_to_top?: number[];
@@ -8630,7 +8719,7 @@ export interface $PrivacyValueAllowCloseFriends {
 
 export interface $StoryView {
   _: "storyView";
-  flags?: Number;
+  flags?: number;
   blocked?: boolean;
   blocked_my_stories_from?: boolean;
   user_id: string;
@@ -8640,7 +8729,7 @@ export interface $StoryView {
 
 export interface $Stories$StoryViewsList {
   _: "stories.storyViewsList";
-  flags?: Number;
+  flags?: number;
   count: number;
   views_count: number;
   forwards_count: number;
@@ -8659,7 +8748,7 @@ export interface $Stories$StoryViews {
 
 export interface $InputReplyToMessage {
   _: "inputReplyToMessage";
-  flags?: Number;
+  flags?: number;
   reply_to_msg_id: number;
   top_msg_id?: number;
   reply_to_peer_id?: InputPeer;
@@ -8701,7 +8790,7 @@ export interface $InputMediaStory {
 
 export interface $MessageMediaStory {
   _: "messageMediaStory";
-  flags?: Number;
+  flags?: number;
   via_mention?: boolean;
   peer: Peer;
   id: number;
@@ -8710,7 +8799,7 @@ export interface $MessageMediaStory {
 
 export interface $WebPageAttributeStory {
   _: "webPageAttributeStory";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   id: number;
   story?: StoryItem;
@@ -8718,7 +8807,7 @@ export interface $WebPageAttributeStory {
 
 export interface $StoriesStealthMode {
   _: "storiesStealthMode";
-  flags?: Number;
+  flags?: number;
   active_until_date?: number;
   cooldown_until_date?: number;
 }
@@ -8730,7 +8819,7 @@ export interface $UpdateStoriesStealthMode {
 
 export interface $MediaAreaCoordinates {
   _: "mediaAreaCoordinates";
-  flags?: Number;
+  flags?: number;
   x: number;
   y: number;
   w: number;
@@ -8759,7 +8848,7 @@ export interface $InputMediaAreaVenue {
 
 export interface $MediaAreaGeoPoint {
   _: "mediaAreaGeoPoint";
-  flags?: Number;
+  flags?: number;
   coordinates: MediaAreaCoordinates;
   geo: GeoPoint;
   address?: GeoPointAddress;
@@ -8774,7 +8863,7 @@ export interface $UpdateSentStoryReaction {
 
 export interface $MediaAreaSuggestedReaction {
   _: "mediaAreaSuggestedReaction";
-  flags?: Number;
+  flags?: number;
   dark?: boolean;
   flipped?: boolean;
   coordinates: MediaAreaCoordinates;
@@ -8783,7 +8872,7 @@ export interface $MediaAreaSuggestedReaction {
 
 export interface $PeerStories {
   _: "peerStories";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   max_read_id?: number;
   stories: StoryItem[];
@@ -8805,7 +8894,7 @@ export interface $Messages$WebPage {
 
 export interface $InputStorePaymentPremiumGiftCode {
   _: "inputStorePaymentPremiumGiftCode";
-  flags?: Number;
+  flags?: number;
   users: InputUser[];
   boost_peer?: InputPeer;
   currency: string;
@@ -8815,7 +8904,7 @@ export interface $InputStorePaymentPremiumGiftCode {
 
 export interface $InputStorePaymentPremiumGiveaway {
   _: "inputStorePaymentPremiumGiveaway";
-  flags?: Number;
+  flags?: number;
   only_new_subscribers?: boolean;
   winners_are_visible?: boolean;
   boost_peer: InputPeer;
@@ -8836,7 +8925,7 @@ export interface $InputInvoicePremiumGiftCode {
 
 export interface $PremiumGiftCodeOption {
   _: "premiumGiftCodeOption";
-  flags?: Number;
+  flags?: number;
   users: number;
   months: number;
   store_product?: string;
@@ -8847,13 +8936,13 @@ export interface $PremiumGiftCodeOption {
 
 export interface $Payments$CheckedGiftCode {
   _: "payments.checkedGiftCode";
-  flags?: Number;
+  flags?: number;
   via_giveaway?: boolean;
   from_id?: Peer;
   giveaway_msg_id?: number;
   to_id?: string;
   date: number;
-  months: number;
+  days: number;
   used_date?: number;
   chats: Chat[];
   users: User[];
@@ -8861,7 +8950,7 @@ export interface $Payments$CheckedGiftCode {
 
 export interface $MessageMediaGiveaway {
   _: "messageMediaGiveaway";
-  flags?: Number;
+  flags?: number;
   only_new_subscribers?: boolean;
   winners_are_visible?: boolean;
   channels: string[];
@@ -8875,11 +8964,11 @@ export interface $MessageMediaGiveaway {
 
 export interface $MessageActionGiftCode {
   _: "messageActionGiftCode";
-  flags?: Number;
+  flags?: number;
   via_giveaway?: boolean;
   unclaimed?: boolean;
   boost_peer?: Peer;
-  months: number;
+  days: number;
   slug: string;
   currency?: string;
   amount?: string;
@@ -8890,13 +8979,13 @@ export interface $MessageActionGiftCode {
 
 export interface $MessageActionGiveawayLaunch {
   _: "messageActionGiveawayLaunch";
-  flags?: Number;
+  flags?: number;
   stars?: string;
 }
 
 export interface $Payments$GiveawayInfo {
   _: "payments.giveawayInfo";
-  flags?: Number;
+  flags?: number;
   participating?: boolean;
   preparing_results?: boolean;
   start_date: number;
@@ -8907,7 +8996,7 @@ export interface $Payments$GiveawayInfo {
 
 export interface $Payments$GiveawayInfoResults {
   _: "payments.giveawayInfoResults";
-  flags?: Number;
+  flags?: number;
   winner?: boolean;
   refunded?: boolean;
   start_date: number;
@@ -8920,7 +9009,7 @@ export interface $Payments$GiveawayInfoResults {
 
 export interface $MessageEntityBlockquote {
   _: "messageEntityBlockquote";
-  flags?: Number;
+  flags?: number;
   collapsed?: boolean;
   offset: number;
   length: number;
@@ -8936,7 +9025,7 @@ export interface $PrepaidGiveaway {
 
 export interface $InputMediaWebPage {
   _: "inputMediaWebPage";
-  flags?: Number;
+  flags?: number;
   force_large_media?: boolean;
   force_small_media?: boolean;
   optional?: boolean;
@@ -8945,7 +9034,7 @@ export interface $InputMediaWebPage {
 
 export interface $InputBotInlineMessageMediaWebPage {
   _: "inputBotInlineMessageMediaWebPage";
-  flags?: Number;
+  flags?: number;
   invert_media?: boolean;
   force_large_media?: boolean;
   force_small_media?: boolean;
@@ -8958,7 +9047,7 @@ export interface $InputBotInlineMessageMediaWebPage {
 
 export interface $BotInlineMessageMediaWebPage {
   _: "botInlineMessageMediaWebPage";
-  flags?: Number;
+  flags?: number;
   invert_media?: boolean;
   force_large_media?: boolean;
   force_small_media?: boolean;
@@ -8972,7 +9061,7 @@ export interface $BotInlineMessageMediaWebPage {
 
 export interface $Boost {
   _: "boost";
-  flags?: Number;
+  flags?: number;
   gift?: boolean;
   giveaway?: boolean;
   unclaimed?: boolean;
@@ -8988,7 +9077,7 @@ export interface $Boost {
 
 export interface $Premium$BoostsList {
   _: "premium.boostsList";
-  flags?: Number;
+  flags?: number;
   count: number;
   boosts: Boost[];
   next_offset?: string;
@@ -8997,7 +9086,7 @@ export interface $Premium$BoostsList {
 
 export interface $MyBoost {
   _: "myBoost";
-  flags?: Number;
+  flags?: number;
   slot: number;
   peer?: Peer;
   date: number;
@@ -9014,7 +9103,7 @@ export interface $Premium$MyBoosts {
 
 export interface $Premium$BoostsStatus {
   _: "premium.boostsStatus";
-  flags?: Number;
+  flags?: number;
   my_boost?: boolean;
   level: number;
   current_level_boosts: number;
@@ -9042,7 +9131,7 @@ export interface $UpdateChannelViewForumAsMessages {
 
 export interface $MessageActionGiveawayResults {
   _: "messageActionGiveawayResults";
-  flags?: Number;
+  flags?: number;
   stars?: boolean;
   winners_count: number;
   unclaimed_count: number;
@@ -9050,7 +9139,7 @@ export interface $MessageActionGiveawayResults {
 
 export interface $UpdatePeerWallpaper {
   _: "updatePeerWallpaper";
-  flags?: Number;
+  flags?: number;
   wallpaper_overridden?: boolean;
   peer: Peer;
   wallpaper?: WallPaper;
@@ -9058,7 +9147,7 @@ export interface $UpdatePeerWallpaper {
 
 export interface $StoryFwdHeader {
   _: "storyFwdHeader";
-  flags?: Number;
+  flags?: number;
   modified?: boolean;
   from?: Peer;
   from_name?: string;
@@ -9100,7 +9189,7 @@ export interface $PublicForwardStory {
 
 export interface $Stats$PublicForwards {
   _: "stats.publicForwards";
-  flags?: Number;
+  flags?: number;
   count: number;
   forwards: PublicForward[];
   next_offset?: string;
@@ -9110,7 +9199,7 @@ export interface $Stats$PublicForwards {
 
 export interface $PeerColor {
   _: "peerColor";
-  flags?: Number;
+  flags?: number;
   color?: number;
   background_emoji_id?: string;
 }
@@ -9129,7 +9218,7 @@ export interface $Help$PeerColorProfileSet {
 
 export interface $Help$PeerColorOption {
   _: "help.peerColorOption";
-  flags?: Number;
+  flags?: number;
   hidden?: boolean;
   color_id: number;
   colors?: Help$PeerColorSet;
@@ -9150,7 +9239,7 @@ export interface $Help$PeerColors {
 
 export interface $MessageMediaGiveawayResults {
   _: "messageMediaGiveawayResults";
-  flags?: Number;
+  flags?: number;
   only_new_subscribers?: boolean;
   refunded?: boolean;
   channel_id: string;
@@ -9185,7 +9274,7 @@ export interface $StoryReactionPublicRepost {
 
 export interface $Stories$StoryReactionsList {
   _: "stories.storyReactionsList";
-  flags?: Number;
+  flags?: number;
   count: number;
   reactions: StoryReaction[];
   chats: Chat[];
@@ -9195,7 +9284,7 @@ export interface $Stories$StoryReactionsList {
 
 export interface $StoryViewPublicForward {
   _: "storyViewPublicForward";
-  flags?: Number;
+  flags?: number;
   blocked?: boolean;
   blocked_my_stories_from?: boolean;
   message: Message;
@@ -9203,7 +9292,7 @@ export interface $StoryViewPublicForward {
 
 export interface $StoryViewPublicRepost {
   _: "storyViewPublicRepost";
-  flags?: Number;
+  flags?: number;
   blocked?: boolean;
   blocked_my_stories_from?: boolean;
   peer_id: Peer;
@@ -9274,7 +9363,7 @@ export interface $UpdateBotMessageReactions {
 
 export interface $SavedDialog {
   _: "savedDialog";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   peer: Peer;
   top_message: number;
@@ -9282,14 +9371,14 @@ export interface $SavedDialog {
 
 export interface $UpdateSavedDialogPinned {
   _: "updateSavedDialogPinned";
-  flags?: Number;
+  flags?: number;
   pinned?: boolean;
   peer: DialogPeer;
 }
 
 export interface $UpdatePinnedSavedDialogs {
   _: "updatePinnedSavedDialogs";
-  flags?: Number;
+  flags?: number;
   order?: DialogPeer[];
 }
 
@@ -9317,7 +9406,7 @@ export interface $Messages$SavedDialogsNotModified {
 
 export interface $SavedReactionTag {
   _: "savedReactionTag";
-  flags?: Number;
+  flags?: number;
   reaction: Reaction;
   title?: string;
   count: number;
@@ -9361,7 +9450,7 @@ export interface $Smsjobs$EligibleToJoin {
 
 export interface $Smsjobs$Status {
   _: "smsjobs.status";
-  flags?: Number;
+  flags?: number;
   allow_international?: boolean;
   recent_sent: number;
   recent_since: number;
@@ -9392,7 +9481,7 @@ export interface $BusinessWeeklyOpen {
 
 export interface $BusinessWorkHours {
   _: "businessWorkHours";
-  flags?: Number;
+  flags?: number;
   open_now?: boolean;
   timezone_id: string;
   weekly_open: BusinessWeeklyOpen[];
@@ -9400,14 +9489,14 @@ export interface $BusinessWorkHours {
 
 export interface $BusinessLocation {
   _: "businessLocation";
-  flags?: Number;
+  flags?: number;
   geo_point?: GeoPoint;
   address: string;
 }
 
 export interface $InputBusinessRecipients {
   _: "inputBusinessRecipients";
-  flags?: Number;
+  flags?: number;
   existing_chats?: boolean;
   new_chats?: boolean;
   contacts?: boolean;
@@ -9418,7 +9507,7 @@ export interface $InputBusinessRecipients {
 
 export interface $BusinessRecipients {
   _: "businessRecipients";
-  flags?: Number;
+  flags?: number;
   existing_chats?: boolean;
   new_chats?: boolean;
   contacts?: boolean;
@@ -9457,7 +9546,7 @@ export interface $BusinessGreetingMessage {
 
 export interface $InputBusinessAwayMessage {
   _: "inputBusinessAwayMessage";
-  flags?: Number;
+  flags?: number;
   offline_only?: boolean;
   shortcut_id: number;
   schedule: BusinessAwayMessageSchedule;
@@ -9466,7 +9555,7 @@ export interface $InputBusinessAwayMessage {
 
 export interface $BusinessAwayMessage {
   _: "businessAwayMessage";
-  flags?: Number;
+  flags?: number;
   offline_only?: boolean;
   shortcut_id: number;
   schedule: BusinessAwayMessageSchedule;
@@ -9548,7 +9637,7 @@ export interface $UpdateDeleteQuickReplyMessages {
 
 export interface $ConnectedBot {
   _: "connectedBot";
-  flags?: Number;
+  flags?: number;
   bot_id: string;
   recipients: BusinessBotRecipients;
   rights: BusinessBotRights;
@@ -9562,14 +9651,14 @@ export interface $Account$ConnectedBots {
 
 export interface $Messages$DialogFilters {
   _: "messages.dialogFilters";
-  flags?: Number;
+  flags?: number;
   tags_enabled?: boolean;
   filters: DialogFilter[];
 }
 
 export interface $Birthday {
   _: "birthday";
-  flags?: Number;
+  flags?: number;
   day: number;
   month: number;
   year?: number;
@@ -9583,7 +9672,7 @@ export interface $UpdateBotBusinessConnect {
 
 export interface $UpdateBotNewBusinessMessage {
   _: "updateBotNewBusinessMessage";
-  flags?: Number;
+  flags?: number;
   connection_id: string;
   message: Message;
   reply_to_message?: Message;
@@ -9592,7 +9681,7 @@ export interface $UpdateBotNewBusinessMessage {
 
 export interface $UpdateBotEditBusinessMessage {
   _: "updateBotEditBusinessMessage";
-  flags?: Number;
+  flags?: number;
   connection_id: string;
   message: Message;
   reply_to_message?: Message;
@@ -9609,7 +9698,7 @@ export interface $UpdateBotDeleteBusinessMessage {
 
 export interface $BotBusinessConnection {
   _: "botBusinessConnection";
-  flags?: Number;
+  flags?: number;
   disabled?: boolean;
   connection_id: string;
   user_id: string;
@@ -9620,7 +9709,7 @@ export interface $BotBusinessConnection {
 
 export interface $InputBusinessIntro {
   _: "inputBusinessIntro";
-  flags?: Number;
+  flags?: number;
   title: string;
   description: string;
   sticker?: InputDocument;
@@ -9628,7 +9717,7 @@ export interface $InputBusinessIntro {
 
 export interface $BusinessIntro {
   _: "businessIntro";
-  flags?: Number;
+  flags?: number;
   title: string;
   description: string;
   sticker?: Document;
@@ -9662,7 +9751,7 @@ export interface $Fragment$CollectibleInfo {
 
 export interface $InputBusinessBotRecipients {
   _: "inputBusinessBotRecipients";
-  flags?: Number;
+  flags?: number;
   existing_chats?: boolean;
   new_chats?: boolean;
   contacts?: boolean;
@@ -9674,7 +9763,7 @@ export interface $InputBusinessBotRecipients {
 
 export interface $BusinessBotRecipients {
   _: "businessBotRecipients";
-  flags?: Number;
+  flags?: number;
   existing_chats?: boolean;
   new_chats?: boolean;
   contacts?: boolean;
@@ -9714,7 +9803,7 @@ export interface $PrivacyValueAllowPremium {
 
 export interface $MissingInvitee {
   _: "missingInvitee";
-  flags?: Number;
+  flags?: number;
   premium_would_allow_invite?: boolean;
   premium_required_for_pm?: boolean;
   user_id: string;
@@ -9728,7 +9817,7 @@ export interface $Messages$InvitedUsers {
 
 export interface $InputBusinessChatLink {
   _: "inputBusinessChatLink";
-  flags?: Number;
+  flags?: number;
   message: string;
   entities?: MessageEntity[];
   title?: string;
@@ -9736,7 +9825,7 @@ export interface $InputBusinessChatLink {
 
 export interface $BusinessChatLink {
   _: "businessChatLink";
-  flags?: Number;
+  flags?: number;
   link: string;
   message: string;
   entities?: MessageEntity[];
@@ -9753,7 +9842,7 @@ export interface $Account$BusinessChatLinks {
 
 export interface $Account$ResolvedBusinessChatLinks {
   _: "account.resolvedBusinessChatLinks";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   message: string;
   entities?: MessageEntity[];
@@ -9763,7 +9852,7 @@ export interface $Account$ResolvedBusinessChatLinks {
 
 export interface $RequestedPeerUser {
   _: "requestedPeerUser";
-  flags?: Number;
+  flags?: number;
   user_id: string;
   first_name?: string;
   last_name?: string;
@@ -9773,7 +9862,7 @@ export interface $RequestedPeerUser {
 
 export interface $RequestedPeerChat {
   _: "requestedPeerChat";
-  flags?: Number;
+  flags?: number;
   chat_id: string;
   title?: string;
   photo?: Photo;
@@ -9781,7 +9870,7 @@ export interface $RequestedPeerChat {
 
 export interface $RequestedPeerChannel {
   _: "requestedPeerChannel";
-  flags?: Number;
+  flags?: number;
   channel_id: string;
   title?: string;
   username?: string;
@@ -9796,10 +9885,11 @@ export interface $MessageActionRequestedPeerSentMe {
 
 export interface $InputKeyboardButtonRequestPeer {
   _: "inputKeyboardButtonRequestPeer";
-  flags?: Number;
+  flags?: number;
   name_requested?: boolean;
   username_requested?: boolean;
   photo_requested?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   button_id: number;
   peer_type: RequestPeerType;
@@ -9828,7 +9918,7 @@ export interface $Channels$SponsoredMessageReportResultReported {
 
 export interface $WebPageAttributeStickerSet {
   _: "webPageAttributeStickerSet";
-  flags?: Number;
+  flags?: number;
   emojis?: boolean;
   text_color?: boolean;
   stickers: Document[];
@@ -9844,7 +9934,7 @@ export interface $ReactionNotificationsFromAll {
 
 export interface $ReactionsNotifySettings {
   _: "reactionsNotifySettings";
-  flags?: Number;
+  flags?: number;
   messages_notify_from?: ReactionNotificationsFrom;
   stories_notify_from?: ReactionNotificationsFrom;
   sound: NotificationSound;
@@ -9860,13 +9950,13 @@ export interface $UpdateNewStoryReaction {
 
 export interface $Auth$SentCodeTypeSmsWord {
   _: "auth.sentCodeTypeSmsWord";
-  flags?: Number;
+  flags?: number;
   beginning?: string;
 }
 
 export interface $Auth$SentCodeTypeSmsPhrase {
   _: "auth.sentCodeTypeSmsPhrase";
-  flags?: Number;
+  flags?: number;
   beginning?: string;
 }
 
@@ -9885,7 +9975,7 @@ export interface $EmojiGroupPremium {
 
 export interface $AvailableEffect {
   _: "availableEffect";
-  flags?: Number;
+  flags?: number;
   premium_required?: boolean;
   id: string;
   emoticon: string;
@@ -9907,7 +9997,7 @@ export interface $Messages$AvailableEffects {
 
 export interface $FactCheck {
   _: "factCheck";
-  flags?: Number;
+  flags?: number;
   need_check?: boolean;
   country?: string;
   text?: TextWithEntities;
@@ -9941,7 +10031,7 @@ export interface $StarsTransactionPeer {
 
 export interface $StarsTopupOption {
   _: "starsTopupOption";
-  flags?: Number;
+  flags?: number;
   extended?: boolean;
   stars: string;
   store_product?: string;
@@ -9956,7 +10046,7 @@ export interface $InputInvoiceStars {
 
 export interface $StarsTransaction {
   _: "starsTransaction";
-  flags?: Number;
+  flags?: number;
   refund?: boolean;
   pending?: boolean;
   failed?: boolean;
@@ -9967,6 +10057,10 @@ export interface $StarsTransaction {
   stargift_resale?: boolean;
   posts_search?: boolean;
   stargift_prepaid_upgrade?: boolean;
+  stargift_drop_original_details?: boolean;
+  phonegroup_message?: boolean;
+  stargift_auction_bid?: boolean;
+  offer?: boolean;
   id: string;
   amount: StarsAmount;
   date: number;
@@ -9994,7 +10088,7 @@ export interface $StarsTransaction {
 
 export interface $Payments$StarsStatus {
   _: "payments.starsStatus";
-  flags?: Number;
+  flags?: number;
   balance: StarsAmount;
   subscriptions?: StarsSubscription[];
   subscriptions_next_offset?: string;
@@ -10012,7 +10106,7 @@ export interface $UpdateStarsBalance {
 
 export interface $Payments$PaymentFormStars {
   _: "payments.paymentFormStars";
-  flags?: Number;
+  flags?: number;
   form_id: string;
   bot_id: string;
   title: string;
@@ -10024,7 +10118,7 @@ export interface $Payments$PaymentFormStars {
 
 export interface $Payments$PaymentReceiptStars {
   _: "payments.paymentReceiptStars";
-  flags?: Number;
+  flags?: number;
   date: number;
   bot_id: string;
   title: string;
@@ -10051,7 +10145,7 @@ export interface $FoundStory {
 
 export interface $Stories$FoundStories {
   _: "stories.foundStories";
-  flags?: Number;
+  flags?: number;
   count: number;
   stories: FoundStory[];
   next_offset?: string;
@@ -10061,7 +10155,7 @@ export interface $Stories$FoundStories {
 
 export interface $GeoPointAddress {
   _: "geoPointAddress";
-  flags?: Number;
+  flags?: number;
   country_iso2: string;
   state?: string;
   city?: string;
@@ -10070,7 +10164,7 @@ export interface $GeoPointAddress {
 
 export interface $UpdateBusinessBotCallbackQuery {
   _: "updateBusinessBotCallbackQuery";
-  flags?: Number;
+  flags?: number;
   query_id: string;
   user_id: string;
   connection_id: string;
@@ -10082,7 +10176,7 @@ export interface $UpdateBusinessBotCallbackQuery {
 
 export interface $StarsRevenueStatus {
   _: "starsRevenueStatus";
-  flags?: Number;
+  flags?: number;
   withdrawal_enabled?: boolean;
   current_balance: StarsAmount;
   available_balance: StarsAmount;
@@ -10092,7 +10186,7 @@ export interface $StarsRevenueStatus {
 
 export interface $Payments$StarsRevenueStats {
   _: "payments.starsRevenueStats";
-  flags?: Number;
+  flags?: number;
   top_hours_graph?: StatsGraph;
   revenue_graph: StatsGraph;
   status: StarsRevenueStatus;
@@ -10112,7 +10206,7 @@ export interface $UpdateStarsRevenueStatus {
 
 export interface $InputMediaPaidMedia {
   _: "inputMediaPaidMedia";
-  flags?: Number;
+  flags?: number;
   stars_amount: string;
   extended_media: InputMedia[];
   payload?: string;
@@ -10135,14 +10229,14 @@ export interface $Payments$StarsRevenueAdsAccountUrl {
 
 export interface $InputStarsTransaction {
   _: "inputStarsTransaction";
-  flags?: Number;
+  flags?: number;
   refund?: boolean;
   id: string;
 }
 
 export interface $MessageActionPaymentRefunded {
   _: "messageActionPaymentRefunded";
-  flags?: Number;
+  flags?: number;
   peer: Peer;
   currency: string;
   total_amount: string;
@@ -10152,7 +10246,7 @@ export interface $MessageActionPaymentRefunded {
 
 export interface $InputStorePaymentStarsTopup {
   _: "inputStorePaymentStarsTopup";
-  flags?: Number;
+  flags?: number;
   stars: string;
   currency: string;
   amount: string;
@@ -10169,7 +10263,7 @@ export interface $InputStorePaymentStarsGift {
 
 export interface $StarsGiftOption {
   _: "starsGiftOption";
-  flags?: Number;
+  flags?: number;
   extended?: boolean;
   stars: string;
   store_product?: string;
@@ -10179,7 +10273,7 @@ export interface $StarsGiftOption {
 
 export interface $MessageActionGiftStars {
   _: "messageActionGiftStars";
-  flags?: Number;
+  flags?: number;
   currency: string;
   amount: string;
   stars: string;
@@ -10194,7 +10288,7 @@ export interface $TopPeerCategoryBotsApp {
 
 export interface $Bots$PopularAppBots {
   _: "bots.popularAppBots";
-  flags?: Number;
+  flags?: number;
   next_offset?: string;
   users: User[];
 }
@@ -10237,7 +10331,7 @@ export interface $StarsSubscriptionPricing {
 
 export interface $StarsSubscription {
   _: "starsSubscription";
-  flags?: Number;
+  flags?: number;
   canceled?: boolean;
   can_refulfill?: boolean;
   missing_balance?: boolean;
@@ -10258,7 +10352,7 @@ export interface $ReactionPaid {
 
 export interface $MessageReactor {
   _: "messageReactor";
-  flags?: Number;
+  flags?: number;
   top?: boolean;
   my?: boolean;
   anonymous?: boolean;
@@ -10286,7 +10380,7 @@ export interface $ChannelAdminLogEventActionParticipantSubExtend {
 
 export interface $InputStorePaymentStarsGiveaway {
   _: "inputStorePaymentStarsGiveaway";
-  flags?: Number;
+  flags?: number;
   only_new_subscribers?: boolean;
   winners_are_visible?: boolean;
   stars: string;
@@ -10303,7 +10397,7 @@ export interface $InputStorePaymentStarsGiveaway {
 
 export interface $MessageActionPrizeStars {
   _: "messageActionPrizeStars";
-  flags?: Number;
+  flags?: number;
   unclaimed?: boolean;
   stars: string;
   transaction_id: string;
@@ -10318,7 +10412,7 @@ export interface $UpdatePaidReactionPrivacy {
 
 export interface $StarsGiveawayOption {
   _: "starsGiveawayOption";
-  flags?: Number;
+  flags?: number;
   extended?: boolean;
   default?: boolean;
   stars: string;
@@ -10331,7 +10425,7 @@ export interface $StarsGiveawayOption {
 
 export interface $StarsGiveawayWinnersOption {
   _: "starsGiveawayWinnersOption";
-  flags?: Number;
+  flags?: number;
   default?: boolean;
   users: number;
   per_user_stars: string;
@@ -10348,18 +10442,22 @@ export interface $PrepaidStarsGiveaway {
 
 export interface $KeyboardButtonCopy {
   _: "keyboardButtonCopy";
+  flags?: number;
+  style?: KeyboardButtonStyle;
   text: string;
   copy_text: string;
 }
 
 export interface $StarGift {
   _: "starGift";
-  flags?: Number;
+  flags?: number;
   limited?: boolean;
   sold_out?: boolean;
   birthday?: boolean;
   require_premium?: boolean;
   limited_per_user?: boolean;
+  peer_color_available?: boolean;
+  auction?: boolean;
   id: string;
   sticker: Document;
   stars: string;
@@ -10376,6 +10474,11 @@ export interface $StarGift {
   per_user_total?: number;
   per_user_remains?: number;
   locked_until_date?: number;
+  auction_slug?: string;
+  gifts_per_round?: number;
+  auction_start_date?: number;
+  upgrade_variants?: number;
+  background?: StarGiftBackground;
 }
 
 export interface $Payments$StarGiftsNotModified {
@@ -10392,7 +10495,7 @@ export interface $Payments$StarGifts {
 
 export interface $InputInvoiceStarGift {
   _: "inputInvoiceStarGift";
-  flags?: Number;
+  flags?: number;
   hide_name?: boolean;
   include_upgrade?: boolean;
   peer: InputPeer;
@@ -10408,7 +10511,7 @@ export interface $Payments$PaymentFormStarGift {
 
 export interface $MessageActionStarGift {
   _: "messageActionStarGift";
-  flags?: Number;
+  flags?: number;
   name_hidden?: boolean;
   saved?: boolean;
   converted?: boolean;
@@ -10417,6 +10520,7 @@ export interface $MessageActionStarGift {
   can_upgrade?: boolean;
   prepaid_upgrade?: boolean;
   upgrade_separate?: boolean;
+  auction_acquired?: boolean;
   gift: StarGift;
   message?: TextWithEntities;
   convert_stars?: string;
@@ -10427,6 +10531,8 @@ export interface $MessageActionStarGift {
   saved_id?: string;
   prepaid_upgrade_hash?: string;
   gift_msg_id?: number;
+  to_id?: Peer;
+  gift_num?: number;
 }
 
 export interface $MessageReportOption {
@@ -10443,7 +10549,7 @@ export interface $ReportResultChooseOption {
 
 export interface $ReportResultAddComment {
   _: "reportResultAddComment";
-  flags?: Number;
+  flags?: number;
   optional?: boolean;
   option: Uint8Array;
 }
@@ -10473,7 +10579,7 @@ export interface $Messages$PreparedInlineMessage {
 
 export interface $BotAppSettings {
   _: "botAppSettings";
-  flags?: Number;
+  flags?: number;
   placeholder_path?: Uint8Array;
   background_color?: number;
   background_dark_color?: number;
@@ -10507,7 +10613,7 @@ export interface $PrivacyKeyStarGiftsAutoSave {
 
 export interface $StarRefProgram {
   _: "starRefProgram";
-  flags?: Number;
+  flags?: number;
   bot_id: string;
   commission_permille: number;
   duration_months?: number;
@@ -10517,7 +10623,7 @@ export interface $StarRefProgram {
 
 export interface $ConnectedBotStarRef {
   _: "connectedBotStarRef";
-  flags?: Number;
+  flags?: number;
   revoked?: boolean;
   url: string;
   date: number;
@@ -10537,7 +10643,7 @@ export interface $Payments$ConnectedStarRefBots {
 
 export interface $Payments$SuggestedStarRefBots {
   _: "payments.suggestedStarRefBots";
-  flags?: Number;
+  flags?: number;
   count: number;
   suggested_bots: StarRefProgram[];
   users: User[];
@@ -10552,13 +10658,13 @@ export interface $StarsAmount {
 
 export interface $Messages$FoundStickersNotModified {
   _: "messages.foundStickersNotModified";
-  flags?: Number;
+  flags?: number;
   next_offset?: number;
 }
 
 export interface $Messages$FoundStickers {
   _: "messages.foundStickers";
-  flags?: Number;
+  flags?: number;
   next_offset?: number;
   hash: string;
   stickers: Document[];
@@ -10566,7 +10672,7 @@ export interface $Messages$FoundStickers {
 
 export interface $BotVerifierSettings {
   _: "botVerifierSettings";
-  flags?: Number;
+  flags?: number;
   can_modify_custom_description?: boolean;
   icon: string;
   company: string;
@@ -10582,16 +10688,18 @@ export interface $BotVerification {
 
 export interface $StarGiftAttributeModel {
   _: "starGiftAttributeModel";
+  flags?: number;
+  crafted?: boolean;
   name: string;
   document: Document;
-  rarity_permille: number;
+  rarity: StarGiftAttributeRarity;
 }
 
 export interface $StarGiftAttributePattern {
   _: "starGiftAttributePattern";
   name: string;
   document: Document;
-  rarity_permille: number;
+  rarity: StarGiftAttributeRarity;
 }
 
 export interface $StarGiftAttributeBackdrop {
@@ -10602,12 +10710,12 @@ export interface $StarGiftAttributeBackdrop {
   edge_color: number;
   pattern_color: number;
   text_color: number;
-  rarity_permille: number;
+  rarity: StarGiftAttributeRarity;
 }
 
 export interface $StarGiftAttributeOriginalDetails {
   _: "starGiftAttributeOriginalDetails";
-  flags?: Number;
+  flags?: number;
   sender_id?: Peer;
   recipient_id: Peer;
   date: number;
@@ -10616,10 +10724,12 @@ export interface $StarGiftAttributeOriginalDetails {
 
 export interface $StarGiftUnique {
   _: "starGiftUnique";
-  flags?: Number;
+  flags?: number;
   require_premium?: boolean;
   resale_ton_only?: boolean;
   theme_available?: boolean;
+  burned?: boolean;
+  crafted?: boolean;
   id: string;
   gift_id: string;
   title: string;
@@ -10636,17 +10746,25 @@ export interface $StarGiftUnique {
   released_by?: Peer;
   value_amount?: string;
   value_currency?: string;
+  value_usd_amount?: string;
   theme_peer?: Peer;
+  peer_color?: PeerColor;
+  host_id?: Peer;
+  offer_min_stars?: number;
+  craft_chance_permille?: number;
 }
 
 export interface $MessageActionStarGiftUnique {
   _: "messageActionStarGiftUnique";
-  flags?: Number;
+  flags?: number;
   upgrade?: boolean;
   transferred?: boolean;
   saved?: boolean;
   refunded?: boolean;
   prepaid_upgrade?: boolean;
+  assigned?: boolean;
+  from_offer?: boolean;
+  craft?: boolean;
   gift: StarGift;
   can_export_at?: number;
   transfer_stars?: string;
@@ -10656,11 +10774,13 @@ export interface $MessageActionStarGiftUnique {
   resale_amount?: StarsAmount;
   can_transfer_at?: number;
   can_resell_at?: number;
+  drop_original_details_stars?: string;
+  can_craft_at?: number;
 }
 
 export interface $InputInvoiceStarGiftUpgrade {
   _: "inputInvoiceStarGiftUpgrade";
-  flags?: Number;
+  flags?: number;
   keep_original_details?: boolean;
   stargift: InputSavedStarGift;
 }
@@ -10674,6 +10794,8 @@ export interface $InputInvoiceStarGiftTransfer {
 export interface $Payments$StarGiftUpgradePreview {
   _: "payments.starGiftUpgradePreview";
   sample_attributes: StarGiftAttribute[];
+  prices: StarGiftUpgradePrice[];
+  next_prices: StarGiftUpgradePrice[];
 }
 
 export interface $Users$Users {
@@ -10714,7 +10836,7 @@ export interface $Messages$WebPagePreview {
 
 export interface $EmojiStatusCollectible {
   _: "emojiStatusCollectible";
-  flags?: Number;
+  flags?: number;
   collectible_id: string;
   document_id: string;
   title: string;
@@ -10729,14 +10851,14 @@ export interface $EmojiStatusCollectible {
 
 export interface $InputEmojiStatusCollectible {
   _: "inputEmojiStatusCollectible";
-  flags?: Number;
+  flags?: number;
   collectible_id: string;
   until?: number;
 }
 
 export interface $SavedStarGift {
   _: "savedStarGift";
-  flags?: Number;
+  flags?: number;
   name_hidden?: boolean;
   unsaved?: boolean;
   refunded?: boolean;
@@ -10757,11 +10879,14 @@ export interface $SavedStarGift {
   can_resell_at?: number;
   collection_id?: number[];
   prepaid_upgrade_hash?: string;
+  drop_original_details_stars?: string;
+  gift_num?: number;
+  can_craft_at?: number;
 }
 
 export interface $Payments$SavedStarGifts {
   _: "payments.savedStarGifts";
-  flags?: Number;
+  flags?: number;
   count: number;
   chat_notifications_enabled?: boolean;
   gifts: SavedStarGift[];
@@ -10827,7 +10952,7 @@ export interface $RequirementToContactPaidMessages {
 
 export interface $InputInvoicePremiumGiftStars {
   _: "inputInvoicePremiumGiftStars";
-  flags?: Number;
+  flags?: number;
   user_id: InputUser;
   months: number;
   message?: TextWithEntities;
@@ -10839,11 +10964,13 @@ export interface $Auth$SentCodePaymentRequired {
   phone_code_hash: string;
   support_email_address: string;
   support_email_subject: string;
+  currency: string;
+  amount: string;
 }
 
 export interface $InputStorePaymentAuthCode {
   _: "inputStorePaymentAuthCode";
-  flags?: Number;
+  flags?: number;
   restore?: boolean;
   phone_number: string;
   phone_code_hash: string;
@@ -10858,7 +10985,7 @@ export interface $UpdateSentPhoneCode {
 
 export interface $BusinessBotRights {
   _: "businessBotRights";
-  flags?: Number;
+  flags?: number;
   reply?: boolean;
   read_messages?: boolean;
   delete_sent_messages?: boolean;
@@ -10883,23 +11010,24 @@ export interface $MessageActionPaidMessagesRefunded {
 
 export interface $MessageActionPaidMessagesPrice {
   _: "messageActionPaidMessagesPrice";
-  flags?: Number;
+  flags?: number;
   broadcast_messages_allowed?: boolean;
   stars: string;
 }
 
 export interface $DisallowedGiftsSettings {
   _: "disallowedGiftsSettings";
-  flags?: Number;
+  flags?: number;
   disallow_unlimited_stargifts?: boolean;
   disallow_limited_stargifts?: boolean;
   disallow_unique_stargifts?: boolean;
   disallow_premium_gifts?: boolean;
+  disallow_stargifts_from_channels?: boolean;
 }
 
 export interface $SponsoredPeer {
   _: "sponsoredPeer";
-  flags?: Number;
+  flags?: number;
   random_id: Uint8Array;
   peer: Peer;
   sponsor_info?: string;
@@ -10943,7 +11071,7 @@ export interface $UpdateGroupCallChainBlocks {
 
 export interface $MessageActionConferenceCall {
   _: "messageActionConferenceCall";
-  flags?: Number;
+  flags?: number;
   missed?: boolean;
   active?: boolean;
   video?: boolean;
@@ -10985,7 +11113,7 @@ export interface $StarGiftAttributeCounter {
 
 export interface $Payments$ResaleStarGifts {
   _: "payments.resaleStarGifts";
-  flags?: Number;
+  flags?: number;
   count: number;
   gifts: StarGift[];
   next_offset?: string;
@@ -10998,7 +11126,7 @@ export interface $Payments$ResaleStarGifts {
 
 export interface $InputInvoiceStarGiftResale {
   _: "inputInvoiceStarGiftResale";
-  flags?: Number;
+  flags?: number;
   ton?: boolean;
   slug: string;
   to_id: InputPeer;
@@ -11029,7 +11157,7 @@ export interface $InputReplyToMonoForum {
 
 export interface $MonoForumDialog {
   _: "monoForumDialog";
-  flags?: Number;
+  flags?: number;
   unread_mark?: boolean;
   nopaid_messages_exception?: boolean;
   peer: Peer;
@@ -11063,7 +11191,7 @@ export interface $TodoItem {
 
 export interface $TodoList {
   _: "todoList";
-  flags?: Number;
+  flags?: number;
   others_can_append?: boolean;
   others_can_complete?: boolean;
   title: TextWithEntities;
@@ -11073,7 +11201,7 @@ export interface $TodoList {
 export interface $TodoCompletion {
   _: "todoCompletion";
   id: number;
-  completed_by: string;
+  completed_by: Peer;
   date: number;
 }
 
@@ -11084,7 +11212,7 @@ export interface $InputMediaTodo {
 
 export interface $MessageMediaToDo {
   _: "messageMediaToDo";
-  flags?: Number;
+  flags?: number;
   todo: TodoList;
   completions?: TodoCompletion[];
 }
@@ -11102,7 +11230,7 @@ export interface $MessageActionTodoAppendTasks {
 
 export interface $UpdateMonoForumNoPaidException {
   _: "updateMonoForumNoPaidException";
-  flags?: Number;
+  flags?: number;
   exception?: boolean;
   channel_id: string;
   saved_peer_id: Peer;
@@ -11110,7 +11238,7 @@ export interface $UpdateMonoForumNoPaidException {
 
 export interface $SuggestedPost {
   _: "suggestedPost";
-  flags?: Number;
+  flags?: number;
   accepted?: boolean;
   rejected?: boolean;
   price?: StarsAmount;
@@ -11119,7 +11247,7 @@ export interface $SuggestedPost {
 
 export interface $MessageActionSuggestedPostApproval {
   _: "messageActionSuggestedPostApproval";
-  flags?: Number;
+  flags?: number;
   rejected?: boolean;
   balance_too_low?: boolean;
   reject_comment?: string;
@@ -11134,7 +11262,7 @@ export interface $MessageActionSuggestedPostSuccess {
 
 export interface $MessageActionSuggestedPostRefund {
   _: "messageActionSuggestedPostRefund";
-  flags?: Number;
+  flags?: number;
   payer_initiated?: boolean;
 }
 
@@ -11145,7 +11273,7 @@ export interface $StarsTonAmount {
 
 export interface $MessageActionGiftTon {
   _: "messageActionGiftTon";
-  flags?: Number;
+  flags?: number;
   currency: string;
   amount: string;
   crypto_currency: string;
@@ -11159,7 +11287,7 @@ export interface $InputStickerSetTonGifts {
 
 export interface $StarsRating {
   _: "starsRating";
-  flags?: Number;
+  flags?: number;
   level: number;
   current_level_stars: string;
   stars: string;
@@ -11168,7 +11296,7 @@ export interface $StarsRating {
 
 export interface $StarGiftCollection {
   _: "starGiftCollection";
-  flags?: Number;
+  flags?: number;
   collection_id: number;
   title: string;
   icon?: Document;
@@ -11187,7 +11315,7 @@ export interface $Payments$StarGiftCollections {
 
 export interface $StoryAlbum {
   _: "storyAlbum";
-  flags?: Number;
+  flags?: number;
   album_id: number;
   title: string;
   icon_photo?: Photo;
@@ -11206,7 +11334,7 @@ export interface $Stories$Albums {
 
 export interface $SearchPostsFlood {
   _: "searchPostsFlood";
-  flags?: Number;
+  flags?: number;
   query_is_free?: boolean;
   total_daily: number;
   remains: number;
@@ -11227,7 +11355,7 @@ export interface $InputInvoiceStarGiftPrepaidUpgrade {
 
 export interface $Payments$UniqueStarGiftValueInfo {
   _: "payments.uniqueStarGiftValueInfo";
-  flags?: Number;
+  flags?: number;
   last_sale_on_fragment?: boolean;
   value_is_average?: boolean;
   currency: string;
@@ -11325,6 +11453,480 @@ export interface $InputChatThemeUniqueGift {
   slug: string;
 }
 
+export interface $InputInvoicePremiumAuthCode {
+  _: "inputInvoicePremiumAuthCode";
+  purpose: InputStorePaymentPurpose;
+}
+
+export interface $InputInvoiceStarGiftDropOriginalDetails {
+  _: "inputInvoiceStarGiftDropOriginalDetails";
+  stargift: InputSavedStarGift;
+}
+
+export interface $StarGiftUpgradePrice {
+  _: "starGiftUpgradePrice";
+  date: number;
+  upgrade_stars: string;
+}
+
+export interface $SendMessageTextDraftAction {
+  _: "sendMessageTextDraftAction";
+  random_id: string;
+  text: TextWithEntities;
+}
+
+export interface $UpdateGroupCallMessage {
+  _: "updateGroupCallMessage";
+  call: InputGroupCall;
+  message: GroupCallMessage;
+}
+
+export interface $UpdateGroupCallEncryptedMessage {
+  _: "updateGroupCallEncryptedMessage";
+  call: InputGroupCall;
+  from_id: Peer;
+  encrypted_message: Uint8Array;
+}
+
+export interface $UpdatePinnedForumTopic {
+  _: "updatePinnedForumTopic";
+  flags?: number;
+  pinned?: boolean;
+  peer: Peer;
+  topic_id: number;
+}
+
+export interface $UpdatePinnedForumTopics {
+  _: "updatePinnedForumTopics";
+  flags?: number;
+  peer: Peer;
+  order?: number[];
+}
+
+export interface $PeerColorCollectible {
+  _: "peerColorCollectible";
+  flags?: number;
+  collectible_id: string;
+  gift_emoji_id: string;
+  background_emoji_id: string;
+  accent_color: number;
+  colors: number[];
+  dark_accent_color?: number;
+  dark_colors?: number[];
+}
+
+export interface $InputPeerColorCollectible {
+  _: "inputPeerColorCollectible";
+  collectible_id: string;
+}
+
+export interface $MessageActionSuggestBirthday {
+  _: "messageActionSuggestBirthday";
+  birthday: Birthday;
+}
+
+export interface $MessageMediaVideoStream {
+  _: "messageMediaVideoStream";
+  flags?: number;
+  rtmp_stream?: boolean;
+  call: InputGroupCall;
+}
+
+export interface $UpdateDeleteGroupCallMessages {
+  _: "updateDeleteGroupCallMessages";
+  call: InputGroupCall;
+  messages: number[];
+}
+
+export interface $GroupCallMessage {
+  _: "groupCallMessage";
+  flags?: number;
+  from_admin?: boolean;
+  id: number;
+  from_id: Peer;
+  date: number;
+  message: TextWithEntities;
+  paid_message_stars?: string;
+}
+
+export interface $InputPrivacyKeySavedMusic {
+  _: "inputPrivacyKeySavedMusic";
+}
+
+export interface $PrivacyKeySavedMusic {
+  _: "privacyKeySavedMusic";
+}
+
+export interface $GroupCallDonor {
+  _: "groupCallDonor";
+  flags?: number;
+  top?: boolean;
+  my?: boolean;
+  peer_id?: Peer;
+  stars: string;
+}
+
+export interface $Phone$GroupCallStars {
+  _: "phone.groupCallStars";
+  total_stars: string;
+  top_donors: GroupCallDonor[];
+  chats: Chat[];
+  users: User[];
+}
+
+export interface $RecentStory {
+  _: "recentStory";
+  flags?: number;
+  live?: boolean;
+  max_id?: number;
+}
+
+export interface $InputInvoiceStarGiftAuctionBid {
+  _: "inputInvoiceStarGiftAuctionBid";
+  flags?: number;
+  hide_name?: boolean;
+  update_bid?: boolean;
+  peer?: InputPeer;
+  gift_id: string;
+  bid_amount: string;
+  message?: TextWithEntities;
+}
+
+export interface $AuctionBidLevel {
+  _: "auctionBidLevel";
+  pos: number;
+  amount: string;
+  date: number;
+}
+
+export interface $StarGiftAuctionStateNotModified {
+  _: "starGiftAuctionStateNotModified";
+}
+
+export interface $StarGiftAuctionState {
+  _: "starGiftAuctionState";
+  version: number;
+  start_date: number;
+  end_date: number;
+  min_bid_amount: string;
+  bid_levels: AuctionBidLevel[];
+  top_bidders: string[];
+  next_round_at: number;
+  last_gift_num: number;
+  gifts_left: number;
+  current_round: number;
+  total_rounds: number;
+  rounds: StarGiftAuctionRound[];
+}
+
+export interface $StarGiftAuctionStateFinished {
+  _: "starGiftAuctionStateFinished";
+  flags?: number;
+  start_date: number;
+  end_date: number;
+  average_price: string;
+  listed_count?: number;
+  fragment_listed_count?: number;
+  fragment_listed_url?: string;
+}
+
+export interface $StarGiftAuctionUserState {
+  _: "starGiftAuctionUserState";
+  flags?: number;
+  returned?: boolean;
+  bid_amount?: string;
+  bid_date?: number;
+  min_bid_amount?: string;
+  bid_peer?: Peer;
+  acquired_count: number;
+}
+
+export interface $UpdateStarGiftAuctionState {
+  _: "updateStarGiftAuctionState";
+  gift_id: string;
+  state: StarGiftAuctionState;
+}
+
+export interface $UpdateStarGiftAuctionUserState {
+  _: "updateStarGiftAuctionUserState";
+  gift_id: string;
+  user_state: StarGiftAuctionUserState;
+}
+
+export interface $Payments$StarGiftAuctionState {
+  _: "payments.starGiftAuctionState";
+  gift: StarGift;
+  state: StarGiftAuctionState;
+  user_state: StarGiftAuctionUserState;
+  timeout: number;
+  users: User[];
+  chats: Chat[];
+}
+
+export interface $StarGiftAuctionAcquiredGift {
+  _: "starGiftAuctionAcquiredGift";
+  flags?: number;
+  name_hidden?: boolean;
+  peer: Peer;
+  date: number;
+  bid_amount: string;
+  round: number;
+  pos: number;
+  message?: TextWithEntities;
+  gift_num?: number;
+}
+
+export interface $Payments$StarGiftAuctionAcquiredGifts {
+  _: "payments.starGiftAuctionAcquiredGifts";
+  gifts: StarGiftAuctionAcquiredGift[];
+  users: User[];
+  chats: Chat[];
+}
+
+export interface $StarGiftActiveAuctionState {
+  _: "starGiftActiveAuctionState";
+  gift: StarGift;
+  state: StarGiftAuctionState;
+  user_state: StarGiftAuctionUserState;
+}
+
+export interface $Payments$StarGiftActiveAuctionsNotModified {
+  _: "payments.starGiftActiveAuctionsNotModified";
+}
+
+export interface $Payments$StarGiftActiveAuctions {
+  _: "payments.starGiftActiveAuctions";
+  auctions: StarGiftActiveAuctionState[];
+  users: User[];
+  chats: Chat[];
+}
+
+export interface $InputStarGiftAuction {
+  _: "inputStarGiftAuction";
+  gift_id: string;
+}
+
+export interface $InputStarGiftAuctionSlug {
+  _: "inputStarGiftAuctionSlug";
+  slug: string;
+}
+
+export interface $WebPageAttributeStarGiftAuction {
+  _: "webPageAttributeStarGiftAuction";
+  gift: StarGift;
+  end_date: number;
+}
+
+export interface $Passkey {
+  _: "passkey";
+  flags?: number;
+  id: string;
+  name: string;
+  date: number;
+  software_emoji_id?: string;
+  last_usage_date?: number;
+}
+
+export interface $Account$Passkeys {
+  _: "account.passkeys";
+  passkeys: Passkey[];
+}
+
+export interface $Account$PasskeyRegistrationOptions {
+  _: "account.passkeyRegistrationOptions";
+  options: DataJSON;
+}
+
+export interface $Auth$PasskeyLoginOptions {
+  _: "auth.passkeyLoginOptions";
+  options: DataJSON;
+}
+
+export interface $InputPasskeyResponseRegister {
+  _: "inputPasskeyResponseRegister";
+  client_data: DataJSON;
+  attestation_data: Uint8Array;
+}
+
+export interface $InputPasskeyResponseLogin {
+  _: "inputPasskeyResponseLogin";
+  client_data: DataJSON;
+  authenticator_data: Uint8Array;
+  signature: Uint8Array;
+  user_handle: string;
+}
+
+export interface $InputPasskeyCredentialPublicKey {
+  _: "inputPasskeyCredentialPublicKey";
+  id: string;
+  raw_id: string;
+  response: InputPasskeyResponse;
+}
+
+export interface $MessageActionStarGiftPurchaseOffer {
+  _: "messageActionStarGiftPurchaseOffer";
+  flags?: number;
+  accepted?: boolean;
+  declined?: boolean;
+  gift: StarGift;
+  price: StarsAmount;
+  expires_at: number;
+}
+
+export interface $MessageActionStarGiftPurchaseOfferDeclined {
+  _: "messageActionStarGiftPurchaseOfferDeclined";
+  flags?: number;
+  expired?: boolean;
+  gift: StarGift;
+  price: StarsAmount;
+}
+
+export interface $StarGiftBackground {
+  _: "starGiftBackground";
+  center_color: number;
+  edge_color: number;
+  text_color: number;
+}
+
+export interface $StarGiftAuctionRound {
+  _: "starGiftAuctionRound";
+  num: number;
+  duration: number;
+}
+
+export interface $StarGiftAuctionRoundExtendable {
+  _: "starGiftAuctionRoundExtendable";
+  num: number;
+  duration: number;
+  extend_top: number;
+  extend_window: number;
+}
+
+export interface $Payments$StarGiftUpgradeAttributes {
+  _: "payments.starGiftUpgradeAttributes";
+  attributes: StarGiftAttribute[];
+}
+
+export interface $Messages$EmojiGameOutcome {
+  _: "messages.emojiGameOutcome";
+  seed: Uint8Array;
+  stake_ton_amount: string;
+  ton_amount: string;
+}
+
+export interface $InputMediaStakeDice {
+  _: "inputMediaStakeDice";
+  game_hash: string;
+  ton_amount: string;
+  client_seed: Uint8Array;
+}
+
+export interface $Messages$EmojiGameUnavailable {
+  _: "messages.emojiGameUnavailable";
+}
+
+export interface $Messages$EmojiGameDiceInfo {
+  _: "messages.emojiGameDiceInfo";
+  flags?: number;
+  game_hash: string;
+  prev_stake: string;
+  current_streak: number;
+  params: number[];
+  plays_left?: number;
+}
+
+export interface $UpdateEmojiGameInfo {
+  _: "updateEmojiGameInfo";
+  info: Messages$EmojiGameInfo;
+}
+
+export interface $StarGiftAttributeRarity {
+  _: "starGiftAttributeRarity";
+  permille: number;
+}
+
+export interface $StarGiftAttributeRarityUncommon {
+  _: "starGiftAttributeRarityUncommon";
+}
+
+export interface $StarGiftAttributeRarityRare {
+  _: "starGiftAttributeRarityRare";
+}
+
+export interface $StarGiftAttributeRarityEpic {
+  _: "starGiftAttributeRarityEpic";
+}
+
+export interface $StarGiftAttributeRarityLegendary {
+  _: "starGiftAttributeRarityLegendary";
+}
+
+export interface $UpdateStarGiftCraftFail {
+  _: "updateStarGiftCraftFail";
+}
+
+export interface $KeyboardButtonStyle {
+  _: "keyboardButtonStyle";
+  flags?: number;
+  bg_primary?: boolean;
+  bg_danger?: boolean;
+  bg_success?: boolean;
+  icon?: string;
+}
+
+export interface $MessageActionNewCreatorPending {
+  _: "messageActionNewCreatorPending";
+  new_creator_id: string;
+}
+
+export interface $MessageActionChangeCreator {
+  _: "messageActionChangeCreator";
+  new_creator_id: string;
+}
+
+export interface $MessageEntityFormattedDate {
+  _: "messageEntityFormattedDate";
+  flags?: number;
+  relative?: boolean;
+  short_time?: boolean;
+  long_time?: boolean;
+  short_date?: boolean;
+  long_date?: boolean;
+  day_of_week?: boolean;
+  offset: number;
+  length: number;
+  date: number;
+}
+
+export interface $UpdateChatParticipantRank {
+  _: "updateChatParticipantRank";
+  chat_id: string;
+  user_id: string;
+  rank: string;
+  version: number;
+}
+
+export interface $MessageActionNoForwardsToggle {
+  _: "messageActionNoForwardsToggle";
+  prev_value: boolean;
+  new_value: boolean;
+}
+
+export interface $MessageActionNoForwardsRequest {
+  _: "messageActionNoForwardsRequest";
+  flags?: number;
+  expired?: boolean;
+  prev_value: boolean;
+  new_value: boolean;
+}
+
+export interface $ChannelAdminLogEventActionParticipantEditRank {
+  _: "channelAdminLogEventActionParticipantEditRank";
+  user_id: string;
+  prev_rank: string;
+  new_rank: string;
+}
+
 export interface Methods {
   'invokeAfterMsg': {
     params: {
@@ -11351,7 +11953,7 @@ export interface Methods {
   }
   'auth.signUp': {
     params: {
-      flags?: Number;
+      flags?: number;
       no_joined_notifications?: boolean;
       phone_number: string;
       phone_code_hash: string;
@@ -11362,7 +11964,7 @@ export interface Methods {
   }
   'auth.signIn': {
     params: {
-      flags?: Number;
+      flags?: number;
       phone_number: string;
       phone_code_hash: string;
       phone_code?: string;
@@ -11404,7 +12006,7 @@ export interface Methods {
   }
   'account.registerDevice': {
     params: {
-      flags?: Number;
+      flags?: number;
       no_muted?: boolean;
       token_type: number;
       token: string;
@@ -11442,7 +12044,7 @@ export interface Methods {
   }
   'account.updateProfile': {
     params: {
-      flags?: Number;
+      flags?: number;
       first_name?: string;
       last_name?: string;
       about?: string;
@@ -11485,7 +12087,7 @@ export interface Methods {
     params: {
       hash: string;
     }
-    response: Number[]
+    response: number[]
   }
   'contacts.getStatuses': {
     params: {
@@ -11518,7 +12120,7 @@ export interface Methods {
   }
   'contacts.block': {
     params: {
-      flags?: Number;
+      flags?: number;
       my_stories_from?: boolean;
       id: InputPeer;
     }
@@ -11526,7 +12128,7 @@ export interface Methods {
   }
   'contacts.unblock': {
     params: {
-      flags?: Number;
+      flags?: number;
       my_stories_from?: boolean;
       id: InputPeer;
     }
@@ -11534,7 +12136,7 @@ export interface Methods {
   }
   'contacts.getBlocked': {
     params: {
-      flags?: Number;
+      flags?: number;
       my_stories_from?: boolean;
       offset: number;
       limit: number;
@@ -11549,7 +12151,7 @@ export interface Methods {
   }
   'messages.getDialogs': {
     params: {
-      flags?: Number;
+      flags?: number;
       exclude_pinned?: boolean;
       folder_id?: number;
       offset_date: number;
@@ -11575,7 +12177,7 @@ export interface Methods {
   }
   'messages.search': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       q: string;
       from_id?: InputPeer;
@@ -11603,7 +12205,7 @@ export interface Methods {
   }
   'messages.deleteHistory': {
     params: {
-      flags?: Number;
+      flags?: number;
       just_clear?: boolean;
       revoke?: boolean;
       peer: InputPeer;
@@ -11615,7 +12217,7 @@ export interface Methods {
   }
   'messages.deleteMessages': {
     params: {
-      flags?: Number;
+      flags?: number;
       revoke?: boolean;
       id: number[];
     }
@@ -11629,7 +12231,7 @@ export interface Methods {
   }
   'messages.setTyping': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       top_msg_id?: number;
       action: SendMessageAction;
@@ -11638,7 +12240,7 @@ export interface Methods {
   }
   'messages.sendMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       no_webpage?: boolean;
       silent?: boolean;
       background?: boolean;
@@ -11654,6 +12256,7 @@ export interface Methods {
       reply_markup?: ReplyMarkup;
       entities?: MessageEntity[];
       schedule_date?: number;
+      schedule_repeat_period?: number;
       send_as?: InputPeer;
       quick_reply_shortcut?: InputQuickReplyShortcut;
       effect?: string;
@@ -11664,7 +12267,7 @@ export interface Methods {
   }
   'messages.sendMedia': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       background?: boolean;
       clear_draft?: boolean;
@@ -11680,6 +12283,7 @@ export interface Methods {
       reply_markup?: ReplyMarkup;
       entities?: MessageEntity[];
       schedule_date?: number;
+      schedule_repeat_period?: number;
       send_as?: InputPeer;
       quick_reply_shortcut?: InputQuickReplyShortcut;
       effect?: string;
@@ -11690,7 +12294,7 @@ export interface Methods {
   }
   'messages.forwardMessages': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       background?: boolean;
       with_my_score?: boolean;
@@ -11705,8 +12309,10 @@ export interface Methods {
       top_msg_id?: number;
       reply_to?: InputReplyTo;
       schedule_date?: number;
+      schedule_repeat_period?: number;
       send_as?: InputPeer;
       quick_reply_shortcut?: InputQuickReplyShortcut;
+      effect?: string;
       video_timestamp?: number;
       allow_paid_stars?: string;
       suggested_post?: SuggestedPost;
@@ -11770,7 +12376,7 @@ export interface Methods {
   }
   'messages.deleteChatUser': {
     params: {
-      flags?: Number;
+      flags?: number;
       revoke_history?: boolean;
       chat_id: string;
       user_id: InputUser;
@@ -11779,7 +12385,7 @@ export interface Methods {
   }
   'messages.createChat': {
     params: {
-      flags?: Number;
+      flags?: number;
       users: InputUser[];
       title: string;
       ttl_period?: number;
@@ -11793,7 +12399,7 @@ export interface Methods {
   }
   'updates.getDifference': {
     params: {
-      flags?: Number;
+      flags?: number;
       pts: number;
       pts_limit?: number;
       pts_total_limit?: number;
@@ -11805,7 +12411,7 @@ export interface Methods {
   }
   'photos.updateProfilePhoto': {
     params: {
-      flags?: Number;
+      flags?: number;
       fallback?: boolean;
       bot?: InputUser;
       id: InputPhoto;
@@ -11814,7 +12420,7 @@ export interface Methods {
   }
   'photos.uploadProfilePhoto': {
     params: {
-      flags?: Number;
+      flags?: number;
       fallback?: boolean;
       bot?: InputUser;
       file?: InputFile;
@@ -11828,7 +12434,7 @@ export interface Methods {
     params: {
       id: InputPhoto[];
     }
-    response: String[]
+    response: string[]
   }
   'upload.saveFilePart': {
     params: {
@@ -11840,7 +12446,7 @@ export interface Methods {
   }
   'upload.getFile': {
     params: {
-      flags?: Number;
+      flags?: number;
       precise?: boolean;
       cdn_supported?: boolean;
       location: InputFileLocation;
@@ -11904,7 +12510,7 @@ export interface Methods {
   }
   'messages.discardEncryption': {
     params: {
-      flags?: Number;
+      flags?: number;
       delete_history?: boolean;
       chat_id: number;
     }
@@ -11926,7 +12532,7 @@ export interface Methods {
   }
   'messages.sendEncrypted': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       peer: InputEncryptedChat;
       random_id: string;
@@ -11936,7 +12542,7 @@ export interface Methods {
   }
   'messages.sendEncryptedFile': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       peer: InputEncryptedChat;
       random_id: string;
@@ -11957,7 +12563,7 @@ export interface Methods {
     params: {
       max_qts: number;
     }
-    response: String[]
+    response: string[]
   }
   'messages.reportEncryptedSpam': {
     params: {
@@ -11976,7 +12582,7 @@ export interface Methods {
   }
   'initConnection': {
     params: {
-      flags?: Number;
+      flags?: number;
       api_id: number;
       device_model: string;
       system_version: string;
@@ -12035,7 +12641,7 @@ export interface Methods {
   }
   'account.deleteAccount': {
     params: {
-      flags?: Number;
+      flags?: number;
       reason: string;
       password?: InputCheckPasswordSRP;
     }
@@ -12061,7 +12667,7 @@ export interface Methods {
   }
   'contacts.resolveUsername': {
     params: {
-      flags?: Number;
+      flags?: number;
       username: string;
       referer?: string;
     }
@@ -12112,7 +12718,7 @@ export interface Methods {
   }
   'messages.getWebPagePreview': {
     params: {
-      flags?: Number;
+      flags?: number;
       message: string;
       entities?: MessageEntity[];
     }
@@ -12160,7 +12766,7 @@ export interface Methods {
   }
   'auth.recoverPassword': {
     params: {
-      flags?: Number;
+      flags?: number;
       code: string;
       new_settings?: Account$PasswordInputSettings;
     }
@@ -12174,7 +12780,7 @@ export interface Methods {
   }
   'messages.exportChatInvite': {
     params: {
-      flags?: Number;
+      flags?: number;
       legacy_revoke_permanent?: boolean;
       request_needed?: boolean;
       peer: InputPeer;
@@ -12294,7 +12900,7 @@ export interface Methods {
   }
   'channels.createChannel': {
     params: {
-      flags?: Number;
+      flags?: number;
       broadcast?: boolean;
       megagroup?: boolean;
       for_import?: boolean;
@@ -12309,10 +12915,11 @@ export interface Methods {
   }
   'channels.editAdmin': {
     params: {
+      flags?: number;
       channel: InputChannel;
       user_id: InputUser;
       admin_rights: ChatAdminRights;
-      rank: string;
+      rank?: string;
     }
     response: Updates
   }
@@ -12371,7 +12978,7 @@ export interface Methods {
   }
   'updates.getChannelDifference': {
     params: {
-      flags?: Number;
+      flags?: number;
       force?: boolean;
       channel: InputChannel;
       filter: ChannelMessagesFilter;
@@ -12396,7 +13003,7 @@ export interface Methods {
   }
   'messages.searchGlobal': {
     params: {
-      flags?: Number;
+      flags?: number;
       broadcasts_only?: boolean;
       groups_only?: boolean;
       users_only?: boolean;
@@ -12414,7 +13021,7 @@ export interface Methods {
   }
   'messages.reorderStickerSets': {
     params: {
-      flags?: Number;
+      flags?: number;
       masks?: boolean;
       emojis?: boolean;
       order: string[];
@@ -12444,7 +13051,7 @@ export interface Methods {
   }
   'messages.getInlineBotResults': {
     params: {
-      flags?: Number;
+      flags?: number;
       bot: InputUser;
       peer: InputPeer;
       geo_point?: InputGeoPoint;
@@ -12455,7 +13062,7 @@ export interface Methods {
   }
   'messages.setInlineBotResults': {
     params: {
-      flags?: Number;
+      flags?: number;
       gallery?: boolean;
       private?: boolean;
       query_id: string;
@@ -12469,7 +13076,7 @@ export interface Methods {
   }
   'messages.sendInlineBotResult': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       background?: boolean;
       clear_draft?: boolean;
@@ -12488,7 +13095,7 @@ export interface Methods {
   }
   'channels.exportMessageLink': {
     params: {
-      flags?: Number;
+      flags?: number;
       grouped?: boolean;
       thread?: boolean;
       channel: InputChannel;
@@ -12498,7 +13105,7 @@ export interface Methods {
   }
   'channels.toggleSignatures': {
     params: {
-      flags?: Number;
+      flags?: number;
       signatures_enabled?: boolean;
       profiles_enabled?: boolean;
       channel: InputChannel;
@@ -12507,7 +13114,7 @@ export interface Methods {
   }
   'auth.resendCode': {
     params: {
-      flags?: Number;
+      flags?: number;
       phone_number: string;
       phone_code_hash: string;
       reason?: string;
@@ -12530,7 +13137,7 @@ export interface Methods {
   }
   'messages.editMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       no_webpage?: boolean;
       invert_media?: boolean;
       peer: InputPeer;
@@ -12540,13 +13147,14 @@ export interface Methods {
       reply_markup?: ReplyMarkup;
       entities?: MessageEntity[];
       schedule_date?: number;
+      schedule_repeat_period?: number;
       quick_reply_shortcut_id?: number;
     }
     response: Updates
   }
   'messages.editInlineBotMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       no_webpage?: boolean;
       invert_media?: boolean;
       id: InputBotInlineMessageID;
@@ -12559,7 +13167,7 @@ export interface Methods {
   }
   'messages.getBotCallbackAnswer': {
     params: {
-      flags?: Number;
+      flags?: number;
       game?: boolean;
       peer: InputPeer;
       msg_id: number;
@@ -12570,7 +13178,7 @@ export interface Methods {
   }
   'messages.setBotCallbackAnswer': {
     params: {
-      flags?: Number;
+      flags?: number;
       alert?: boolean;
       query_id: string;
       message?: string;
@@ -12581,7 +13189,7 @@ export interface Methods {
   }
   'contacts.getTopPeers': {
     params: {
-      flags?: Number;
+      flags?: number;
       correspondents?: boolean;
       bots_pm?: boolean;
       bots_inline?: boolean;
@@ -12612,7 +13220,7 @@ export interface Methods {
   }
   'messages.saveDraft': {
     params: {
-      flags?: Number;
+      flags?: number;
       no_webpage?: boolean;
       invert_media?: boolean;
       reply_to?: InputReplyTo;
@@ -12644,7 +13252,7 @@ export interface Methods {
   }
   'messages.getRecentStickers': {
     params: {
-      flags?: Number;
+      flags?: number;
       attached?: boolean;
       hash: string;
     }
@@ -12652,7 +13260,7 @@ export interface Methods {
   }
   'messages.saveRecentSticker': {
     params: {
-      flags?: Number;
+      flags?: number;
       attached?: boolean;
       id: InputDocument;
       unsave: boolean;
@@ -12661,14 +13269,14 @@ export interface Methods {
   }
   'messages.clearRecentStickers': {
     params: {
-      flags?: Number;
+      flags?: number;
       attached?: boolean;
     }
     response: boolean
   }
   'messages.getArchivedStickers': {
     params: {
-      flags?: Number;
+      flags?: number;
       masks?: boolean;
       emojis?: boolean;
       offset_id: string;
@@ -12692,7 +13300,7 @@ export interface Methods {
   }
   'channels.getAdminedPublicChannels': {
     params: {
-      flags?: Number;
+      flags?: number;
       by_location?: boolean;
       check_limit?: boolean;
       for_personal?: boolean;
@@ -12719,7 +13327,7 @@ export interface Methods {
   }
   'messages.setGameScore': {
     params: {
-      flags?: Number;
+      flags?: number;
       edit_message?: boolean;
       force?: boolean;
       peer: InputPeer;
@@ -12731,7 +13339,7 @@ export interface Methods {
   }
   'messages.setInlineGameScore': {
     params: {
-      flags?: Number;
+      flags?: number;
       edit_message?: boolean;
       force?: boolean;
       id: InputBotInlineMessageID;
@@ -12779,7 +13387,7 @@ export interface Methods {
   }
   'messages.toggleDialogPin': {
     params: {
-      flags?: Number;
+      flags?: number;
       pinned?: boolean;
       peer: InputDialogPeer;
     }
@@ -12787,7 +13395,7 @@ export interface Methods {
   }
   'messages.reorderPinnedDialogs': {
     params: {
-      flags?: Number;
+      flags?: number;
       force?: boolean;
       folder_id: number;
       order: InputDialogPeer[];
@@ -12824,7 +13432,7 @@ export interface Methods {
   }
   'payments.getPaymentForm': {
     params: {
-      flags?: Number;
+      flags?: number;
       invoice: InputInvoice;
       theme_params?: DataJSON;
     }
@@ -12839,7 +13447,7 @@ export interface Methods {
   }
   'payments.validateRequestedInfo': {
     params: {
-      flags?: Number;
+      flags?: number;
       save?: boolean;
       invoice: InputInvoice;
       info: PaymentRequestedInfo;
@@ -12848,7 +13456,7 @@ export interface Methods {
   }
   'payments.sendPaymentForm': {
     params: {
-      flags?: Number;
+      flags?: number;
       form_id: string;
       invoice: InputInvoice;
       requested_info_id?: string;
@@ -12872,7 +13480,7 @@ export interface Methods {
   }
   'payments.clearSavedInfo': {
     params: {
-      flags?: Number;
+      flags?: number;
       credentials?: boolean;
       info?: boolean;
     }
@@ -12880,7 +13488,7 @@ export interface Methods {
   }
   'messages.setBotShippingResults': {
     params: {
-      flags?: Number;
+      flags?: number;
       query_id: string;
       error?: string;
       shipping_options?: ShippingOption[];
@@ -12889,7 +13497,7 @@ export interface Methods {
   }
   'messages.setBotPrecheckoutResults': {
     params: {
-      flags?: Number;
+      flags?: number;
       success?: boolean;
       query_id: string;
       error?: string;
@@ -12898,7 +13506,7 @@ export interface Methods {
   }
   'stickers.createStickerSet': {
     params: {
-      flags?: Number;
+      flags?: number;
       masks?: boolean;
       emojis?: boolean;
       text_color?: boolean;
@@ -12933,7 +13541,7 @@ export interface Methods {
   }
   'messages.uploadMedia': {
     params: {
-      flags?: Number;
+      flags?: number;
       business_connection_id?: string;
       peer: InputPeer;
       media: InputMedia;
@@ -12947,7 +13555,7 @@ export interface Methods {
   }
   'phone.requestCall': {
     params: {
-      flags?: Number;
+      flags?: number;
       video?: boolean;
       user_id: InputUser;
       random_id: number;
@@ -12981,7 +13589,7 @@ export interface Methods {
   }
   'phone.discardCall': {
     params: {
-      flags?: Number;
+      flags?: number;
       video?: boolean;
       peer: InputPhoneCall;
       duration: number;
@@ -12992,7 +13600,7 @@ export interface Methods {
   }
   'phone.setCallRating': {
     params: {
-      flags?: Number;
+      flags?: number;
       user_initiative?: boolean;
       peer: InputPhoneCall;
       rating: number;
@@ -13066,7 +13674,7 @@ export interface Methods {
   }
   'channels.getAdminLog': {
     params: {
-      flags?: Number;
+      flags?: number;
       channel: InputChannel;
       q: string;
       events_filter?: ChannelAdminLogEventsFilter;
@@ -13126,7 +13734,7 @@ export interface Methods {
   }
   'messages.getUnreadMentions': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       top_msg_id?: number;
       offset_id: number;
@@ -13139,7 +13747,7 @@ export interface Methods {
   }
   'channels.deleteHistory': {
     params: {
-      flags?: Number;
+      flags?: number;
       for_everyone?: boolean;
       channel: InputChannel;
       max_id: number;
@@ -13161,7 +13769,7 @@ export interface Methods {
   }
   'messages.readMentions': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       top_msg_id?: number;
     }
@@ -13177,7 +13785,7 @@ export interface Methods {
   }
   'messages.sendMultiMedia': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       background?: boolean;
       clear_draft?: boolean;
@@ -13221,7 +13829,7 @@ export interface Methods {
   }
   'messages.searchStickerSets': {
     params: {
-      flags?: Number;
+      flags?: number;
       exclude_featured?: boolean;
       q: string;
       hash: string;
@@ -13343,7 +13951,7 @@ export interface Methods {
   }
   'account.initTakeoutSession': {
     params: {
-      flags?: Number;
+      flags?: number;
       contacts?: boolean;
       message_users?: boolean;
       message_chats?: boolean;
@@ -13356,7 +13964,7 @@ export interface Methods {
   }
   'account.finishTakeoutSession': {
     params: {
-      flags?: Number;
+      flags?: number;
       success?: boolean;
     }
     response: boolean
@@ -13382,7 +13990,7 @@ export interface Methods {
   }
   'messages.markDialogUnread': {
     params: {
-      flags?: Number;
+      flags?: number;
       unread?: boolean;
       parent_peer?: InputPeer;
       peer: InputDialogPeer;
@@ -13391,7 +13999,7 @@ export interface Methods {
   }
   'messages.getDialogUnreadMarks': {
     params: {
-      flags?: Number;
+      flags?: number;
       parent_peer?: InputPeer;
     }
     response: DialogPeer[]
@@ -13434,7 +14042,7 @@ export interface Methods {
   }
   'messages.updatePinnedMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       unpin?: boolean;
       pm_oneside?: boolean;
@@ -13491,7 +14099,7 @@ export interface Methods {
   }
   'account.getNotifyExceptions': {
     params: {
-      flags?: Number;
+      flags?: number;
       compare_sound?: boolean;
       compare_stories?: boolean;
       peer?: InputNotifyPeer;
@@ -13541,7 +14149,7 @@ export interface Methods {
   }
   'account.uploadWallPaper': {
     params: {
-      flags?: Number;
+      flags?: number;
       for_chat?: boolean;
       file: InputFile;
       mime_type: string;
@@ -13576,7 +14184,7 @@ export interface Methods {
   }
   'account.saveAutoDownloadSettings': {
     params: {
-      flags?: Number;
+      flags?: number;
       low?: boolean;
       high?: boolean;
       settings: AutoDownloadSettings;
@@ -13616,7 +14224,7 @@ export interface Methods {
   }
   'messages.getSearchCounters': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       saved_peer_id?: InputPeer;
       top_msg_id?: number;
@@ -13638,22 +14246,25 @@ export interface Methods {
   }
   'messages.requestUrlAuth': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer?: InputPeer;
       msg_id?: number;
       button_id?: number;
       url?: string;
+      in_app_origin?: string;
     }
     response: UrlAuthResult
   }
   'messages.acceptUrlAuth': {
     params: {
-      flags?: Number;
+      flags?: number;
       write_allowed?: boolean;
+      share_phone_number?: boolean;
       peer?: InputPeer;
       msg_id?: number;
       button_id?: number;
       url?: string;
+      match_code?: string;
     }
     response: UrlAuthResult
   }
@@ -13665,12 +14276,13 @@ export interface Methods {
   }
   'contacts.addContact': {
     params: {
-      flags?: Number;
+      flags?: number;
       add_phone_privacy_exception?: boolean;
       id: InputUser;
       first_name: string;
       last_name: string;
       phone: string;
+      note?: TextWithEntities;
     }
     response: Updates
   }
@@ -13680,17 +14292,9 @@ export interface Methods {
     }
     response: Updates
   }
-  'channels.editCreator': {
-    params: {
-      channel: InputChannel;
-      user_id: InputUser;
-      password: InputCheckPasswordSRP;
-    }
-    response: Updates
-  }
   'contacts.getLocated': {
     params: {
-      flags?: Number;
+      flags?: number;
       background?: boolean;
       geo_point: InputGeoPoint;
       self_expires?: number;
@@ -13742,7 +14346,7 @@ export interface Methods {
   }
   'account.uploadTheme': {
     params: {
-      flags?: Number;
+      flags?: number;
       file: InputFile;
       thumb?: InputFile;
       file_name: string;
@@ -13752,7 +14356,7 @@ export interface Methods {
   }
   'account.createTheme': {
     params: {
-      flags?: Number;
+      flags?: number;
       slug: string;
       title: string;
       document?: InputDocument;
@@ -13762,7 +14366,7 @@ export interface Methods {
   }
   'account.updateTheme': {
     params: {
-      flags?: Number;
+      flags?: number;
       format: string;
       theme: InputTheme;
       slug?: string;
@@ -13781,7 +14385,7 @@ export interface Methods {
   }
   'account.installTheme': {
     params: {
-      flags?: Number;
+      flags?: number;
       dark?: boolean;
       theme?: InputTheme;
       format?: string;
@@ -13825,7 +14429,7 @@ export interface Methods {
   }
   'account.setContentSettings': {
     params: {
-      flags?: Number;
+      flags?: number;
       sensitive_enabled?: boolean;
     }
     response: boolean
@@ -13848,7 +14452,7 @@ export interface Methods {
   }
   'messages.getPollVotes': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       id: number;
       option?: Uint8Array;
@@ -13859,7 +14463,7 @@ export interface Methods {
   }
   'messages.toggleStickerSets': {
     params: {
-      flags?: Number;
+      flags?: number;
       uninstall?: boolean;
       archive?: boolean;
       unarchive?: boolean;
@@ -13885,7 +14489,7 @@ export interface Methods {
   }
   'messages.updateDialogFilter': {
     params: {
-      flags?: Number;
+      flags?: number;
       id: number;
       filter?: DialogFilter;
     }
@@ -13899,7 +14503,7 @@ export interface Methods {
   }
   'stats.getBroadcastStats': {
     params: {
-      flags?: Number;
+      flags?: number;
       dark?: boolean;
       channel: InputChannel;
     }
@@ -13907,7 +14511,7 @@ export interface Methods {
   }
   'stats.loadAsyncGraph': {
     params: {
-      flags?: Number;
+      flags?: number;
       token: string;
       x?: string;
     }
@@ -13915,7 +14519,7 @@ export interface Methods {
   }
   'stickers.setStickerSetThumb': {
     params: {
-      flags?: Number;
+      flags?: number;
       stickerset: InputStickerSet;
       thumb?: InputDocument;
       thumb_document_id?: string;
@@ -13958,7 +14562,7 @@ export interface Methods {
   }
   'stats.getMegagroupStats': {
     params: {
-      flags?: Number;
+      flags?: number;
       dark?: boolean;
       channel: InputChannel;
     }
@@ -14020,7 +14624,7 @@ export interface Methods {
   }
   'contacts.blockFromReplies': {
     params: {
-      flags?: Number;
+      flags?: number;
       delete_message?: boolean;
       delete_history?: boolean;
       report_spam?: boolean;
@@ -14039,7 +14643,7 @@ export interface Methods {
   }
   'stats.getMessageStats': {
     params: {
-      flags?: Number;
+      flags?: number;
       dark?: boolean;
       channel: InputChannel;
       msg_id: number;
@@ -14048,7 +14652,7 @@ export interface Methods {
   }
   'messages.unpinAllMessages': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       top_msg_id?: number;
       saved_peer_id?: InputPeer;
@@ -14057,7 +14661,7 @@ export interface Methods {
   }
   'phone.createGroupCall': {
     params: {
-      flags?: Number;
+      flags?: number;
       rtmp_stream?: boolean;
       peer: InputPeer;
       random_id: number;
@@ -14068,13 +14672,13 @@ export interface Methods {
   }
   'phone.joinGroupCall': {
     params: {
-      flags?: Number;
+      flags?: number;
       muted?: boolean;
       video_stopped?: boolean;
       call: InputGroupCall;
       join_as: InputPeer;
       invite_hash?: string;
-      public_key?: number;
+      public_key?: Uint8Array;
       block?: Uint8Array;
       params: DataJSON;
     }
@@ -14102,10 +14706,12 @@ export interface Methods {
   }
   'phone.toggleGroupCallSettings': {
     params: {
-      flags?: Number;
+      flags?: number;
       reset_invite_hash?: boolean;
       call: InputGroupCall;
       join_muted?: boolean;
+      messages_enabled?: boolean;
+      send_paid_messages_stars?: string;
     }
     response: Updates
   }
@@ -14131,7 +14737,7 @@ export interface Methods {
       call: InputGroupCall;
       sources: number[];
     }
-    response: Number[]
+    response: number[]
   }
   'messages.deleteChat': {
     params: {
@@ -14141,7 +14747,7 @@ export interface Methods {
   }
   'messages.deletePhoneCallHistory': {
     params: {
-      flags?: Number;
+      flags?: number;
       revoke?: boolean;
     }
     response: Messages$AffectedFoundMessages
@@ -14178,7 +14784,7 @@ export interface Methods {
   }
   'messages.getExportedChatInvites': {
     params: {
-      flags?: Number;
+      flags?: number;
       revoked?: boolean;
       peer: InputPeer;
       admin_id: InputUser;
@@ -14197,7 +14803,7 @@ export interface Methods {
   }
   'messages.editExportedChatInvite': {
     params: {
-      flags?: Number;
+      flags?: number;
       revoked?: boolean;
       peer: InputPeer;
       link: string;
@@ -14230,7 +14836,7 @@ export interface Methods {
   }
   'messages.getChatInviteImporters': {
     params: {
-      flags?: Number;
+      flags?: number;
       requested?: boolean;
       subscription_expired?: boolean;
       peer: InputPeer;
@@ -14272,7 +14878,7 @@ export interface Methods {
   }
   'phone.toggleGroupCallRecord': {
     params: {
-      flags?: Number;
+      flags?: number;
       start?: boolean;
       video?: boolean;
       call: InputGroupCall;
@@ -14283,7 +14889,7 @@ export interface Methods {
   }
   'phone.editGroupCallParticipant': {
     params: {
-      flags?: Number;
+      flags?: number;
       call: InputGroupCall;
       participant: InputPeer;
       muted?: boolean;
@@ -14310,7 +14916,7 @@ export interface Methods {
   }
   'phone.exportGroupCallInvite': {
     params: {
-      flags?: Number;
+      flags?: number;
       can_self_unmute?: boolean;
       call: InputGroupCall;
     }
@@ -14413,7 +15019,7 @@ export interface Methods {
   }
   'messages.getSearchResultsCalendar': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       saved_peer_id?: InputPeer;
       filter: MessagesFilter;
@@ -14424,7 +15030,7 @@ export interface Methods {
   }
   'messages.getSearchResultsPositions': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       saved_peer_id?: InputPeer;
       filter: MessagesFilter;
@@ -14435,7 +15041,7 @@ export interface Methods {
   }
   'messages.hideChatJoinRequest': {
     params: {
-      flags?: Number;
+      flags?: number;
       approved?: boolean;
       peer: InputPeer;
       user_id: InputUser;
@@ -14444,7 +15050,7 @@ export interface Methods {
   }
   'messages.hideAllChatJoinRequests': {
     params: {
-      flags?: Number;
+      flags?: number;
       approved?: boolean;
       peer: InputPeer;
       link?: string;
@@ -14453,8 +15059,10 @@ export interface Methods {
   }
   'messages.toggleNoForwards': {
     params: {
+      flags?: number;
       peer: InputPeer;
       enabled: boolean;
+      request_msg_id?: number;
     }
     response: Updates
   }
@@ -14467,8 +15075,9 @@ export interface Methods {
   }
   'channels.getSendAs': {
     params: {
-      flags?: Number;
+      flags?: number;
       for_paid_reactions?: boolean;
+      for_live_stories?: boolean;
       peer: InputPeer;
     }
     response: Channels$SendAsPeers
@@ -14481,7 +15090,7 @@ export interface Methods {
   }
   'account.changeAuthorizationSettings': {
     params: {
-      flags?: Number;
+      flags?: number;
       confirmed?: boolean;
       hash: string;
       encrypted_requests_disabled?: boolean;
@@ -14498,7 +15107,7 @@ export interface Methods {
   }
   'messages.sendReaction': {
     params: {
-      flags?: Number;
+      flags?: number;
       big?: boolean;
       add_to_recent?: boolean;
       peer: InputPeer;
@@ -14516,7 +15125,7 @@ export interface Methods {
   }
   'messages.getMessageReactionsList': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       id: number;
       reaction?: Reaction;
@@ -14527,7 +15136,7 @@ export interface Methods {
   }
   'messages.setChatAvailableReactions': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       available_reactions: ChatReactions;
       reactions_limit?: number;
@@ -14549,7 +15158,7 @@ export interface Methods {
   }
   'messages.translateText': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer?: InputPeer;
       id?: number[];
       text?: TextWithEntities[];
@@ -14559,7 +15168,7 @@ export interface Methods {
   }
   'messages.getUnreadReactions': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       top_msg_id?: number;
       saved_peer_id?: InputPeer;
@@ -14573,7 +15182,7 @@ export interface Methods {
   }
   'messages.readReactions': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       top_msg_id?: number;
       saved_peer_id?: InputPeer;
@@ -14594,6 +15203,8 @@ export interface Methods {
   }
   'phone.getGroupCallStreamRtmpUrl': {
     params: {
+      flags?: number;
+      live_story?: boolean;
       peer: InputPeer;
       revoke: boolean;
     }
@@ -14621,7 +15232,7 @@ export interface Methods {
   }
   'messages.toggleBotInAttachMenu': {
     params: {
-      flags?: Number;
+      flags?: number;
       write_allowed?: boolean;
       bot: InputUser;
       enabled: boolean;
@@ -14630,7 +15241,7 @@ export interface Methods {
   }
   'messages.requestWebView': {
     params: {
-      flags?: Number;
+      flags?: number;
       from_bot_menu?: boolean;
       silent?: boolean;
       compact?: boolean;
@@ -14648,7 +15259,7 @@ export interface Methods {
   }
   'messages.prolongWebView': {
     params: {
-      flags?: Number;
+      flags?: number;
       silent?: boolean;
       peer: InputPeer;
       bot: InputUser;
@@ -14660,7 +15271,7 @@ export interface Methods {
   }
   'messages.requestSimpleWebView': {
     params: {
-      flags?: Number;
+      flags?: number;
       from_switch_webview?: boolean;
       from_side_menu?: boolean;
       compact?: boolean;
@@ -14922,73 +15533,6 @@ export interface Methods {
     }
     response: Updates
   }
-  'channels.createForumTopic': {
-    params: {
-      flags?: Number;
-      channel: InputChannel;
-      title: string;
-      icon_color?: number;
-      icon_emoji_id?: string;
-      random_id: string;
-      send_as?: InputPeer;
-    }
-    response: Updates
-  }
-  'channels.getForumTopics': {
-    params: {
-      flags?: Number;
-      channel: InputChannel;
-      q?: string;
-      offset_date: number;
-      offset_id: number;
-      offset_topic: number;
-      limit: number;
-    }
-    response: Messages$ForumTopics
-  }
-  'channels.getForumTopicsByID': {
-    params: {
-      channel: InputChannel;
-      topics: number[];
-    }
-    response: Messages$ForumTopics
-  }
-  'channels.editForumTopic': {
-    params: {
-      flags?: Number;
-      channel: InputChannel;
-      topic_id: number;
-      title?: string;
-      icon_emoji_id?: string;
-      closed?: boolean;
-      hidden?: boolean;
-    }
-    response: Updates
-  }
-  'channels.updatePinnedForumTopic': {
-    params: {
-      channel: InputChannel;
-      topic_id: number;
-      pinned: boolean;
-    }
-    response: Updates
-  }
-  'channels.deleteTopicHistory': {
-    params: {
-      channel: InputChannel;
-      top_msg_id: number;
-    }
-    response: Messages$AffectedHistory
-  }
-  'channels.reorderPinnedForumTopics': {
-    params: {
-      flags?: Number;
-      force?: boolean;
-      channel: InputChannel;
-      order: number[];
-    }
-    response: Updates
-  }
   'channels.toggleAntiSpam': {
     params: {
       channel: InputChannel;
@@ -15027,7 +15571,7 @@ export interface Methods {
   }
   'photos.uploadContactProfilePhoto': {
     params: {
-      flags?: Number;
+      flags?: number;
       suggest?: boolean;
       save?: boolean;
       user_id: InputUser;
@@ -15068,7 +15612,7 @@ export interface Methods {
   }
   'auth.requestFirebaseSms': {
     params: {
-      flags?: Number;
+      flags?: number;
       phone_number: string;
       phone_code_hash: string;
       safety_net_token?: string;
@@ -15104,7 +15648,7 @@ export interface Methods {
   }
   'messages.togglePeerTranslations': {
     params: {
-      flags?: Number;
+      flags?: number;
       disabled?: boolean;
       peer: InputPeer;
     }
@@ -15117,7 +15661,7 @@ export interface Methods {
   }
   'account.saveAutoSaveSettings': {
     params: {
-      flags?: Number;
+      flags?: number;
       users?: boolean;
       chats?: boolean;
       broadcasts?: boolean;
@@ -15133,7 +15677,7 @@ export interface Methods {
   }
   'stickers.changeSticker': {
     params: {
-      flags?: Number;
+      flags?: number;
       sticker: InputDocument;
       emoji?: string;
       mask_coords?: MaskCoords;
@@ -15163,7 +15707,7 @@ export interface Methods {
   }
   'messages.requestAppWebView': {
     params: {
-      flags?: Number;
+      flags?: number;
       write_allowed?: boolean;
       compact?: boolean;
       fullscreen?: boolean;
@@ -15177,7 +15721,7 @@ export interface Methods {
   }
   'bots.setBotInfo': {
     params: {
-      flags?: Number;
+      flags?: number;
       bot?: InputUser;
       lang_code: string;
       name?: string;
@@ -15188,7 +15732,7 @@ export interface Methods {
   }
   'bots.getBotInfo': {
     params: {
-      flags?: Number;
+      flags?: number;
       bot?: InputUser;
       lang_code: string;
     }
@@ -15218,7 +15762,7 @@ export interface Methods {
   }
   'chatlists.editExportedInvite': {
     params: {
-      flags?: Number;
+      flags?: number;
       chatlist: InputChatlist;
       slug: string;
       title?: string;
@@ -15294,7 +15838,7 @@ export interface Methods {
   }
   'messages.setChatWallPaper': {
     params: {
-      flags?: Number;
+      flags?: number;
       for_both?: boolean;
       revert?: boolean;
       peer: InputPeer;
@@ -15324,7 +15868,7 @@ export interface Methods {
   }
   'stories.sendStory': {
     params: {
-      flags?: Number;
+      flags?: number;
       pinned?: boolean;
       noforwards?: boolean;
       fwd_modified?: boolean;
@@ -15344,7 +15888,7 @@ export interface Methods {
   }
   'stories.editStory': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       id: number;
       media?: InputMedia;
@@ -15360,7 +15904,7 @@ export interface Methods {
       peer: InputPeer;
       id: number[];
     }
-    response: Number[]
+    response: number[]
   }
   'stories.togglePinned': {
     params: {
@@ -15368,11 +15912,11 @@ export interface Methods {
       id: number[];
       pinned: boolean;
     }
-    response: Number[]
+    response: number[]
   }
   'stories.getAllStories': {
     params: {
-      flags?: Number;
+      flags?: number;
       next?: boolean;
       hidden?: boolean;
       state?: string;
@@ -15413,7 +15957,7 @@ export interface Methods {
       peer: InputPeer;
       max_id: number;
     }
-    response: Number[]
+    response: number[]
   }
   'stories.incrementStoryViews': {
     params: {
@@ -15424,7 +15968,7 @@ export interface Methods {
   }
   'stories.getStoryViewsList': {
     params: {
-      flags?: Number;
+      flags?: number;
       just_contacts?: boolean;
       reactions_first?: boolean;
       forwards_first?: boolean;
@@ -15461,7 +16005,7 @@ export interface Methods {
   }
   'stories.activateStealthMode': {
     params: {
-      flags?: Number;
+      flags?: number;
       past?: boolean;
       future?: boolean;
     }
@@ -15469,7 +16013,7 @@ export interface Methods {
   }
   'contacts.setBlocked': {
     params: {
-      flags?: Number;
+      flags?: number;
       my_stories_from?: boolean;
       id: InputPeer[];
       limit: number;
@@ -15478,7 +16022,7 @@ export interface Methods {
   }
   'stories.sendReaction': {
     params: {
-      flags?: Number;
+      flags?: number;
       add_to_recent?: boolean;
       peer: InputPeer;
       story_id: number;
@@ -15521,7 +16065,7 @@ export interface Methods {
     params: {
       id: InputPeer[];
     }
-    response: Number[]
+    response: RecentStory[]
   }
   'stories.getChatsToSend': {
     params: {
@@ -15537,7 +16081,7 @@ export interface Methods {
   }
   'payments.getPremiumGiftCodeOptions': {
     params: {
-      flags?: Number;
+      flags?: number;
       boost_peer?: InputPeer;
     }
     response: PremiumGiftCodeOption[]
@@ -15571,16 +16115,15 @@ export interface Methods {
   }
   'account.updateColor': {
     params: {
-      flags?: Number;
+      flags?: number;
       for_profile?: boolean;
-      color?: number;
-      background_emoji_id?: string;
+      color?: PeerColor;
     }
     response: boolean
   }
   'channels.updateColor': {
     params: {
-      flags?: Number;
+      flags?: number;
       for_profile?: boolean;
       channel: InputChannel;
       color?: number;
@@ -15596,7 +16139,7 @@ export interface Methods {
   }
   'premium.getBoostsList': {
     params: {
-      flags?: Number;
+      flags?: number;
       gifts?: boolean;
       peer: InputPeer;
       offset: string;
@@ -15611,7 +16154,7 @@ export interface Methods {
   }
   'premium.applyBoost': {
     params: {
-      flags?: Number;
+      flags?: number;
       slots?: number[];
       peer: InputPeer;
     }
@@ -15639,7 +16182,7 @@ export interface Methods {
   }
   'messages.searchEmojiStickerSets': {
     params: {
-      flags?: Number;
+      flags?: number;
       exclude_featured?: boolean;
       q: string;
       hash: string;
@@ -15648,14 +16191,14 @@ export interface Methods {
   }
   'channels.getChannelRecommendations': {
     params: {
-      flags?: Number;
+      flags?: number;
       channel?: InputChannel;
     }
     response: Messages$Chats
   }
   'stats.getStoryStats': {
     params: {
-      flags?: Number;
+      flags?: number;
       dark?: boolean;
       peer: InputPeer;
       id: number;
@@ -15685,7 +16228,7 @@ export interface Methods {
   }
   'stories.getStoryReactionsList': {
     params: {
-      flags?: Number;
+      flags?: number;
       forwards_first?: boolean;
       peer: InputPeer;
       id: number;
@@ -15716,7 +16259,7 @@ export interface Methods {
   }
   'messages.getSavedDialogs': {
     params: {
-      flags?: Number;
+      flags?: number;
       exclude_pinned?: boolean;
       parent_peer?: InputPeer;
       offset_date: number;
@@ -15729,7 +16272,7 @@ export interface Methods {
   }
   'messages.getSavedHistory': {
     params: {
-      flags?: Number;
+      flags?: number;
       parent_peer?: InputPeer;
       peer: InputPeer;
       offset_id: number;
@@ -15744,7 +16287,7 @@ export interface Methods {
   }
   'messages.deleteSavedHistory': {
     params: {
-      flags?: Number;
+      flags?: number;
       parent_peer?: InputPeer;
       peer: InputPeer;
       max_id: number;
@@ -15760,7 +16303,7 @@ export interface Methods {
   }
   'messages.toggleSavedDialogPin': {
     params: {
-      flags?: Number;
+      flags?: number;
       pinned?: boolean;
       peer: InputDialogPeer;
     }
@@ -15768,7 +16311,7 @@ export interface Methods {
   }
   'messages.reorderPinnedSavedDialogs': {
     params: {
-      flags?: Number;
+      flags?: number;
       force?: boolean;
       order: InputDialogPeer[];
     }
@@ -15776,7 +16319,7 @@ export interface Methods {
   }
   'messages.getSavedReactionTags': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer?: InputPeer;
       hash: string;
     }
@@ -15784,7 +16327,7 @@ export interface Methods {
   }
   'messages.updateSavedReactionTag': {
     params: {
-      flags?: Number;
+      flags?: number;
       reaction: Reaction;
       title?: string;
     }
@@ -15834,7 +16377,7 @@ export interface Methods {
   }
   'smsjobs.updateSettings': {
     params: {
-      flags?: Number;
+      flags?: number;
       allow_international?: boolean;
     }
     response: boolean
@@ -15852,7 +16395,7 @@ export interface Methods {
   }
   'smsjobs.finishJob': {
     params: {
-      flags?: Number;
+      flags?: number;
       job_id: string;
       error?: string;
     }
@@ -15866,14 +16409,14 @@ export interface Methods {
   }
   'account.updateBusinessWorkHours': {
     params: {
-      flags?: Number;
+      flags?: number;
       business_work_hours?: BusinessWorkHours;
     }
     response: boolean
   }
   'account.updateBusinessLocation': {
     params: {
-      flags?: Number;
+      flags?: number;
       geo_point?: InputGeoPoint;
       address?: string;
     }
@@ -15881,14 +16424,14 @@ export interface Methods {
   }
   'account.updateBusinessGreetingMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       message?: InputBusinessGreetingMessage;
     }
     response: boolean
   }
   'account.updateBusinessAwayMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       message?: InputBusinessAwayMessage;
     }
     response: boolean
@@ -15926,7 +16469,7 @@ export interface Methods {
   }
   'messages.getQuickReplyMessages': {
     params: {
-      flags?: Number;
+      flags?: number;
       shortcut_id: number;
       id?: number[];
       hash: string;
@@ -15951,7 +16494,7 @@ export interface Methods {
   }
   'account.updateConnectedBot': {
     params: {
-      flags?: Number;
+      flags?: number;
       deleted?: boolean;
       rights?: BusinessBotRights;
       bot: InputUser;
@@ -15985,7 +16528,7 @@ export interface Methods {
   }
   'account.updateBusinessIntro': {
     params: {
-      flags?: Number;
+      flags?: number;
       intro?: InputBusinessIntro;
     }
     response: boolean
@@ -16025,7 +16568,7 @@ export interface Methods {
   }
   'account.updateBirthday': {
     params: {
-      flags?: Number;
+      flags?: number;
       birthday?: Birthday;
     }
     response: boolean
@@ -16140,7 +16683,7 @@ export interface Methods {
   }
   'channels.searchPosts': {
     params: {
-      flags?: Number;
+      flags?: number;
       hashtag?: string;
       query?: string;
       offset_rate: number;
@@ -16180,7 +16723,7 @@ export interface Methods {
   }
   'payments.getStarsStatus': {
     params: {
-      flags?: Number;
+      flags?: number;
       ton?: boolean;
       peer: InputPeer;
     }
@@ -16188,7 +16731,7 @@ export interface Methods {
   }
   'payments.getStarsTransactions': {
     params: {
-      flags?: Number;
+      flags?: number;
       inbound?: boolean;
       outbound?: boolean;
       ascending?: boolean;
@@ -16216,7 +16759,7 @@ export interface Methods {
   }
   'stories.searchPosts': {
     params: {
-      flags?: Number;
+      flags?: number;
       hashtag?: string;
       area?: MediaArea;
       peer?: InputPeer;
@@ -16227,7 +16770,7 @@ export interface Methods {
   }
   'payments.getStarsRevenueStats': {
     params: {
-      flags?: Number;
+      flags?: number;
       dark?: boolean;
       ton?: boolean;
       peer: InputPeer;
@@ -16236,7 +16779,7 @@ export interface Methods {
   }
   'payments.getStarsRevenueWithdrawalUrl': {
     params: {
-      flags?: Number;
+      flags?: number;
       ton?: boolean;
       peer: InputPeer;
       amount?: string;
@@ -16252,7 +16795,7 @@ export interface Methods {
   }
   'payments.getStarsTransactionsByID': {
     params: {
-      flags?: Number;
+      flags?: number;
       ton?: boolean;
       peer: InputPeer;
       id: InputStarsTransaction[];
@@ -16261,7 +16804,7 @@ export interface Methods {
   }
   'payments.getStarsGiftOptions': {
     params: {
-      flags?: Number;
+      flags?: number;
       user_id?: InputUser;
     }
     response: StarsGiftOption[]
@@ -16321,7 +16864,7 @@ export interface Methods {
   }
   'messages.requestMainWebView': {
     params: {
-      flags?: Number;
+      flags?: number;
       compact?: boolean;
       fullscreen?: boolean;
       peer: InputPeer;
@@ -16334,7 +16877,7 @@ export interface Methods {
   }
   'payments.getStarsSubscriptions': {
     params: {
-      flags?: Number;
+      flags?: number;
       missing_balance?: boolean;
       peer: InputPeer;
       offset: string;
@@ -16343,7 +16886,7 @@ export interface Methods {
   }
   'payments.changeStarsSubscription': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       subscription_id: string;
       canceled?: boolean;
@@ -16359,7 +16902,7 @@ export interface Methods {
   }
   'messages.sendPaidReaction': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       msg_id: number;
       count: number;
@@ -16394,7 +16937,7 @@ export interface Methods {
   }
   'payments.saveStarGift': {
     params: {
-      flags?: Number;
+      flags?: number;
       unsave?: boolean;
       stargift: InputSavedStarGift;
     }
@@ -16414,7 +16957,7 @@ export interface Methods {
   }
   'messages.clickSponsoredMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       media?: boolean;
       fullscreen?: boolean;
       random_id: Uint8Array;
@@ -16430,7 +16973,7 @@ export interface Methods {
   }
   'messages.getSponsoredMessages': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       msg_id?: number;
     }
@@ -16438,7 +16981,7 @@ export interface Methods {
   }
   'messages.savePreparedInlineMessage': {
     params: {
-      flags?: Number;
+      flags?: number;
       result: InputBotInlineResult;
       user_id: InputUser;
       peer_types?: InlineQueryPeerType[];
@@ -16476,7 +17019,7 @@ export interface Methods {
   }
   'payments.botCancelStarsSubscription': {
     params: {
-      flags?: Number;
+      flags?: number;
       restore?: boolean;
       user_id: InputUser;
       charge_id: string;
@@ -16490,7 +17033,7 @@ export interface Methods {
   }
   'bots.updateStarRefProgram': {
     params: {
-      flags?: Number;
+      flags?: number;
       bot: InputUser;
       commission_permille: number;
       duration_months?: number;
@@ -16499,7 +17042,7 @@ export interface Methods {
   }
   'payments.getConnectedStarRefBots': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       offset_date?: number;
       offset_link?: string;
@@ -16516,7 +17059,7 @@ export interface Methods {
   }
   'payments.getSuggestedStarRefBots': {
     params: {
-      flags?: Number;
+      flags?: number;
       order_by_revenue?: boolean;
       order_by_date?: boolean;
       peer: InputPeer;
@@ -16534,7 +17077,7 @@ export interface Methods {
   }
   'payments.editConnectedStarRefBot': {
     params: {
-      flags?: Number;
+      flags?: number;
       revoked?: boolean;
       peer: InputPeer;
       link: string;
@@ -16543,7 +17086,7 @@ export interface Methods {
   }
   'messages.searchStickers': {
     params: {
-      flags?: Number;
+      flags?: number;
       emojis?: boolean;
       q: string;
       emoticon: string;
@@ -16556,12 +17099,12 @@ export interface Methods {
   }
   'phone.createConferenceCall': {
     params: {
-      flags?: Number;
+      flags?: number;
       muted?: boolean;
       video_stopped?: boolean;
       join?: boolean;
       random_id: number;
-      public_key?: number;
+      public_key?: Uint8Array;
       block?: Uint8Array;
       params?: DataJSON;
     }
@@ -16569,7 +17112,7 @@ export interface Methods {
   }
   'messages.reportMessagesDelivery': {
     params: {
-      flags?: Number;
+      flags?: number;
       push?: boolean;
       peer: InputPeer;
       id: number[];
@@ -16578,7 +17121,7 @@ export interface Methods {
   }
   'bots.setCustomVerification': {
     params: {
-      flags?: Number;
+      flags?: number;
       enabled?: boolean;
       bot?: InputUser;
       peer: InputPeer;
@@ -16594,7 +17137,7 @@ export interface Methods {
   }
   'payments.upgradeStarGift': {
     params: {
-      flags?: Number;
+      flags?: number;
       keep_original_details?: boolean;
       stargift: InputSavedStarGift;
     }
@@ -16627,7 +17170,7 @@ export interface Methods {
   }
   'payments.getSavedStarGifts': {
     params: {
-      flags?: Number;
+      flags?: number;
       exclude_unsaved?: boolean;
       exclude_saved?: boolean;
       exclude_unlimited?: boolean;
@@ -16635,6 +17178,8 @@ export interface Methods {
       sort_by_value?: boolean;
       exclude_upgradable?: boolean;
       exclude_unupgradable?: boolean;
+      peer_color_available?: boolean;
+      exclude_hosted?: boolean;
       peer: InputPeer;
       collection_id?: number;
       offset: string;
@@ -16657,7 +17202,7 @@ export interface Methods {
   }
   'payments.toggleChatStarGiftNotifications': {
     params: {
-      flags?: Number;
+      flags?: number;
       enabled?: boolean;
       peer: InputPeer;
     }
@@ -16672,7 +17217,7 @@ export interface Methods {
   }
   'account.getPaidMessagesRevenue': {
     params: {
-      flags?: Number;
+      flags?: number;
       parent_peer?: InputPeer;
       user_id: InputUser;
     }
@@ -16680,7 +17225,7 @@ export interface Methods {
   }
   'channels.updatePaidMessagesPrice': {
     params: {
-      flags?: Number;
+      flags?: number;
       broadcast_messages_allowed?: boolean;
       channel: InputChannel;
       send_paid_messages_stars: string;
@@ -16714,7 +17259,7 @@ export interface Methods {
   }
   'phone.deleteConferenceCallParticipants': {
     params: {
-      flags?: Number;
+      flags?: number;
       only_left?: boolean;
       kick?: boolean;
       call: InputGroupCall;
@@ -16732,7 +17277,7 @@ export interface Methods {
   }
   'phone.inviteConferenceCallParticipant': {
     params: {
-      flags?: Number;
+      flags?: number;
       video?: boolean;
       call: InputGroupCall;
       user_id: InputUser;
@@ -16756,9 +17301,11 @@ export interface Methods {
   }
   'payments.getResaleStarGifts': {
     params: {
-      flags?: Number;
+      flags?: number;
       sort_by_price?: boolean;
       sort_by_num?: boolean;
+      for_craft?: boolean;
+      stars_only?: boolean;
       attributes_hash?: string;
       gift_id: string;
       attributes?: StarGiftAttributeId[];
@@ -16783,7 +17330,7 @@ export interface Methods {
   }
   'messages.getSavedDialogsByID': {
     params: {
-      flags?: Number;
+      flags?: number;
       parent_peer?: InputPeer;
       ids: InputPeer[];
     }
@@ -16823,7 +17370,7 @@ export interface Methods {
   }
   'account.toggleNoPaidMessagesException': {
     params: {
-      flags?: Number;
+      flags?: number;
       refund_charged?: boolean;
       require_payment?: boolean;
       parent_peer?: InputPeer;
@@ -16833,7 +17380,7 @@ export interface Methods {
   }
   'messages.toggleSuggestedPostApproval': {
     params: {
-      flags?: Number;
+      flags?: number;
       reject?: boolean;
       peer: InputPeer;
       msg_id: number;
@@ -16852,7 +17399,7 @@ export interface Methods {
   }
   'payments.updateStarGiftCollection': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       collection_id: number;
       title?: string;
@@ -16893,7 +17440,7 @@ export interface Methods {
   }
   'stories.updateAlbum': {
     params: {
-      flags?: Number;
+      flags?: number;
       peer: InputPeer;
       album_id: number;
       title?: string;
@@ -16935,7 +17482,7 @@ export interface Methods {
   }
   'channels.checkSearchPostsFlood': {
     params: {
-      flags?: Number;
+      flags?: number;
       query?: string;
     }
     response: SearchPostsFlood
@@ -16967,7 +17514,7 @@ export interface Methods {
   }
   'account.saveMusic': {
     params: {
-      flags?: Number;
+      flags?: number;
       unsave?: boolean;
       id: InputDocument;
       after_id?: InputDocument;
@@ -16998,10 +17545,311 @@ export interface Methods {
   }
   'account.getUniqueGiftChatThemes': {
     params: {
-      offset: number;
+      offset: string;
       limit: number;
       hash: string;
     }
     response: Account$ChatThemes
+  }
+  'auth.checkPaidAuth': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+      form_id: string;
+    }
+    response: Auth$SentCode
+  }
+  'messages.getForumTopics': {
+    params: {
+      flags?: number;
+      peer: InputPeer;
+      q?: string;
+      offset_date: number;
+      offset_id: number;
+      offset_topic: number;
+      limit: number;
+    }
+    response: Messages$ForumTopics
+  }
+  'messages.getForumTopicsByID': {
+    params: {
+      peer: InputPeer;
+      topics: number[];
+    }
+    response: Messages$ForumTopics
+  }
+  'messages.editForumTopic': {
+    params: {
+      flags?: number;
+      peer: InputPeer;
+      topic_id: number;
+      title?: string;
+      icon_emoji_id?: string;
+      closed?: boolean;
+      hidden?: boolean;
+    }
+    response: Updates
+  }
+  'messages.updatePinnedForumTopic': {
+    params: {
+      peer: InputPeer;
+      topic_id: number;
+      pinned: boolean;
+    }
+    response: Updates
+  }
+  'messages.reorderPinnedForumTopics': {
+    params: {
+      flags?: number;
+      force?: boolean;
+      peer: InputPeer;
+      order: number[];
+    }
+    response: Updates
+  }
+  'messages.createForumTopic': {
+    params: {
+      flags?: number;
+      title_missing?: boolean;
+      peer: InputPeer;
+      title: string;
+      icon_color?: number;
+      icon_emoji_id?: string;
+      random_id: string;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'messages.deleteTopicHistory': {
+    params: {
+      peer: InputPeer;
+      top_msg_id: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'phone.sendGroupCallMessage': {
+    params: {
+      flags?: number;
+      call: InputGroupCall;
+      random_id: string;
+      message: TextWithEntities;
+      allow_paid_stars?: string;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'phone.sendGroupCallEncryptedMessage': {
+    params: {
+      call: InputGroupCall;
+      encrypted_message: Uint8Array;
+    }
+    response: boolean
+  }
+  'contacts.updateContactNote': {
+    params: {
+      id: InputUser;
+      note: TextWithEntities;
+    }
+    response: boolean
+  }
+  'users.suggestBirthday': {
+    params: {
+      id: InputUser;
+      birthday: Birthday;
+    }
+    response: Updates
+  }
+  'stories.startLive': {
+    params: {
+      flags?: number;
+      pinned?: boolean;
+      noforwards?: boolean;
+      rtmp_stream?: boolean;
+      peer: InputPeer;
+      caption?: string;
+      entities?: MessageEntity[];
+      privacy_rules: InputPrivacyRule[];
+      random_id: string;
+      messages_enabled?: boolean;
+      send_paid_messages_stars?: string;
+    }
+    response: Updates
+  }
+  'phone.deleteGroupCallMessages': {
+    params: {
+      flags?: number;
+      report_spam?: boolean;
+      call: InputGroupCall;
+      messages: number[];
+    }
+    response: Updates
+  }
+  'phone.deleteGroupCallParticipantMessages': {
+    params: {
+      flags?: number;
+      report_spam?: boolean;
+      call: InputGroupCall;
+      participant: InputPeer;
+    }
+    response: Updates
+  }
+  'phone.getGroupCallStars': {
+    params: {
+      call: InputGroupCall;
+    }
+    response: Phone$GroupCallStars
+  }
+  'phone.saveDefaultSendAs': {
+    params: {
+      call: InputGroupCall;
+      send_as: InputPeer;
+    }
+    response: boolean
+  }
+  'payments.getStarGiftAuctionState': {
+    params: {
+      auction: InputStarGiftAuction;
+      version: number;
+    }
+    response: Payments$StarGiftAuctionState
+  }
+  'payments.getStarGiftAuctionAcquiredGifts': {
+    params: {
+      gift_id: string;
+    }
+    response: Payments$StarGiftAuctionAcquiredGifts
+  }
+  'payments.getStarGiftActiveAuctions': {
+    params: {
+      hash: string;
+    }
+    response: Payments$StarGiftActiveAuctions
+  }
+  'account.initPasskeyRegistration': {
+    params: {
+    }
+    response: Account$PasskeyRegistrationOptions
+  }
+  'account.registerPasskey': {
+    params: {
+      credential: InputPasskeyCredential;
+    }
+    response: Passkey
+  }
+  'account.getPasskeys': {
+    params: {
+    }
+    response: Account$Passkeys
+  }
+  'account.deletePasskey': {
+    params: {
+      id: string;
+    }
+    response: boolean
+  }
+  'auth.initPasskeyLogin': {
+    params: {
+      api_id: number;
+      api_hash: string;
+    }
+    response: Auth$PasskeyLoginOptions
+  }
+  'auth.finishPasskeyLogin': {
+    params: {
+      flags?: number;
+      credential: InputPasskeyCredential;
+      from_dc_id?: number;
+      from_auth_key_id?: string;
+    }
+    response: Auth$Authorization
+  }
+  'payments.resolveStarGiftOffer': {
+    params: {
+      flags?: number;
+      decline?: boolean;
+      offer_msg_id: number;
+    }
+    response: Updates
+  }
+  'payments.sendStarGiftOffer': {
+    params: {
+      flags?: number;
+      peer: InputPeer;
+      slug: string;
+      price: StarsAmount;
+      duration: number;
+      random_id: string;
+      allow_paid_stars?: string;
+    }
+    response: Updates
+  }
+  'payments.getStarGiftUpgradeAttributes': {
+    params: {
+      gift_id: string;
+    }
+    response: Payments$StarGiftUpgradeAttributes
+  }
+  'messages.getEmojiGameInfo': {
+    params: {
+    }
+    response: Messages$EmojiGameInfo
+  }
+  'messages.summarizeText': {
+    params: {
+      flags?: number;
+      peer: InputPeer;
+      id: number;
+      to_lang?: string;
+    }
+    response: TextWithEntities
+  }
+  'payments.getCraftStarGifts': {
+    params: {
+      gift_id: string;
+      offset: string;
+      limit: number;
+    }
+    response: Payments$SavedStarGifts
+  }
+  'payments.craftStarGift': {
+    params: {
+      stargift: InputSavedStarGift[];
+    }
+    response: Updates
+  }
+  'messages.editChatCreator': {
+    params: {
+      peer: InputPeer;
+      user_id: InputUser;
+      password: InputCheckPasswordSRP;
+    }
+    response: Updates
+  }
+  'messages.getFutureChatCreatorAfterLeave': {
+    params: {
+      peer: InputPeer;
+    }
+    response: User
+  }
+  'messages.editChatParticipantRank': {
+    params: {
+      peer: InputPeer;
+      participant: InputPeer;
+      rank: string;
+    }
+    response: Updates
+  }
+  'messages.declineUrlAuth': {
+    params: {
+      url: string;
+    }
+    response: boolean
+  }
+  'messages.checkUrlAuthMatchCode': {
+    params: {
+      url: string;
+      match_code: string;
+    }
+    response: boolean
   }
 }
