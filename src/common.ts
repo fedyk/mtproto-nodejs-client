@@ -95,7 +95,7 @@ export function bytesToBytesRaw(bytes: Uint8Array) {
   return result;
 }
 
-export function longToBytesRaw(value: number) {
+export function longToBytesRaw(value: string) {
   return hexToBytesRaw(bigInt(value).toString(16), 8).reverse();
 }
 

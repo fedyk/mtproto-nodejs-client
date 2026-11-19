@@ -129,12 +129,19 @@ function paramsToInterfaceLines(params: any[]) {
       type = "number"
     }
 
-    if (type.startsWith("Vector")) {
+    if (type.toLowerCase().startsWith("vector")) {
       const vectorType = type.substring(7, type.length - 1);
       const primitiveType = primitiveTypes.get(vectorType)
+      const isBare = vectorType.charAt(0) === '%';
 
       if (primitiveType) {
         type = `${primitiveType}[]`
+      }
+      else if (isBare) {
+        type = "mt_message[]"
+      }
+      else if (vectorType === "future_salt") {
+        return "mt_future_salt[]"
       }
       else {
         type = `${getTypeName(vectorType)}[]`
@@ -166,7 +173,7 @@ function paramsToInterfaceLines(params: any[]) {
 const builderMapLines: string[] = [];
 
 mtprotoSchema.constructors.forEach(function (constructor: any) {
-  const { id, predicate, params } = constructor;
+  const { id, predicate, params, type } = constructor;
 
   const body = [
     `    this.int32(${id});`,
@@ -180,6 +187,18 @@ mtprotoSchema.constructors.forEach(function (constructor: any) {
   builderInterfaceLines.push(
     `  'mt_${predicate}': (this: any, params: any) => void`
   )
+
+  if (predicate !== "vector") {
+    const interfaceName = `mt_${predicate}`
+
+    typingInterfacesLines.push(`export interface ${interfaceName
+      } {\n  _: "mt_${predicate}"\n${paramsToInterfaceLines(params).join("\n")
+      }\n}\n`)
+
+    if (type) {
+      typingTypes.append("DecryptedMessage", interfaceName)
+    }
+  }
 })
 
 mtprotoSchema.methods.forEach(function (method: any) {
@@ -285,7 +304,7 @@ fs.writeFileSync('src/builder.ts', builder.join('\n'));
 
 const mtprotoTypesLines = new Array<string>()
 
-for(const [typeName, interfaces] of typingTypes) {
+for (const [typeName, interfaces] of typingTypes) {
   mtprotoTypesLines.push(
     `export type ${typeName} = ${interfaces.join(" | ")};`
   )
@@ -328,6 +347,7 @@ const aviableTypes = [
   'bytes',
   'double',
   'mt_message',
+  'mt_future_salt',
   'vector',
   'predicate',
 ];
@@ -516,14 +536,14 @@ function createGroupMap() {
   return new class extends Map<string, string[]> {
     append(key: string, value: string) {
       const group = this.get(key)
-  
+
       if (group) {
         group.push(value)
       }
       else {
         this.set(key, [value])
       }
-  
+
       return this
     }
   }

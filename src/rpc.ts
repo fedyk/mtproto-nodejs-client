@@ -11,7 +11,7 @@ import { Transport } from "./transport.js";
 import { Deserializer } from "./deserializer.js";
 import { ModeOfOperationIGE } from "./aes.js";
 import { pqPrimeFactorization } from "./pg.js";
-import { Methods, Updates } from "./mtptoto-types.js";
+import { DecryptedMessage, Methods, mt_pong, Updates } from "./mtptoto-types.js";
 import { RPCError } from "./errors.js";
 import { Storage } from "./storage.js";
 import { LAYER } from "./config.js";
@@ -54,8 +54,8 @@ export class RPC {
   protected transport: Transport;
   protected debug: Debugger;
   protected destroyed = false;
-  protected pingTimeout = 60_000
-  protected pongTimeout = 15_000
+  protected pingTimeout = 5_000
+  protected pongTimeout = 5_000
   protected pingTimer: NodeJS.Timeout | null = null;
   protected pongTimer: NodeJS.Timeout | null = null;
   protected pingNo: number
@@ -66,26 +66,32 @@ export class RPC {
   protected messagesWaitAuth = new Array<Message>()
   protected messagesWaitResponse = new Map<string, Message>()
 
-  sendAcks: Function & {
+  protected sendAcks: Function & {
     cancel(): void;
   };
 
-  tmpAesKey?: Uint8Array
-  tmpAesIV?: Uint8Array
-  sessionId?: Uint8Array
-  nonce: Uint8Array
-  newNonce: Uint8Array
-  serverNonce: Uint8Array
+  protected tmpAesKey?: Uint8Array
+  protected tmpAesIV?: Uint8Array
+  protected sessionId?: Uint8Array
+  protected nonce: Uint8Array
+  protected newNonce: Uint8Array
+  protected serverNonce: Uint8Array
 
-  dhPrime?: bigInt.BigInteger
-  g?: bigInt.BigInteger
-  gA?: bigInt.BigInteger
-  authKeyAuxHash?: any
-  lastMessageId?: any
-  seqNo: number
+  protected dhPrime?: bigInt.BigInteger
+  protected g?: bigInt.BigInteger
+  protected gA?: bigInt.BigInteger
+  protected authKeyAuxHash?: any
+  protected lastMessageId?: any
+  protected seqNo: number
 
-
-  constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates }: {
+  constructor({
+    api_id,
+    api_hash,
+    initConnectionParams,
+    dc,
+    storage,
+    updates
+  }: {
     api_id: number
     api_hash: string
     initConnectionParams: InitConnectionParams
@@ -622,32 +628,10 @@ export class RPC {
     this.handleDecryptedMessage(result, { messageId, seqNo });
   }
 
-  async handleDecryptedMessage(message: {
-    _: "mt_msg_container"
-    messages: T[]
-  } | {
-    _: "mt_bad_server_salt"
-    bad_msg_id: string
-    error_code: number
-    new_server_salt: number
-  } | {
-    _: "mt_bad_msg_notification"
-    bad_msg_id: string
-    error_code: number
-    new_server_salt: number
-  } | {
-    _: "mt_new_session_created"
-    server_salt: number
-  } | {
-    _: "mt_msgs_ack"
-    msg_ids: string[]
-  } | {
-    _: "mt_pong"
-    msg_id: string;
-    ping_id: string;
-  } | {
-    _: "mt_rpc_result"
-  }, params: { messageId: string, seqNo?: number }) {
+  async handleDecryptedMessage(message: DecryptedMessage, params: {
+    messageId: string
+    seqNo?: number
+  }) {
     const { messageId } = params;
 
     if (bigInt(messageId).isEven()) {
@@ -677,7 +661,7 @@ export class RPC {
     if (message._ === 'mt_bad_server_salt' || message._ === 'mt_bad_msg_notification') {
       this.debug(`handling ${message._} for message ${message.bad_msg_id}`);
 
-      if (message.error_code === 48) {
+      if (message._ === 'mt_bad_server_salt' && message.error_code === 48) {
         await this.setStorageItem('serverSalt', longToBytesRaw(message.new_server_salt));
       }
 
@@ -751,8 +735,11 @@ export class RPC {
         return
       }
 
+      // @ts-ignore
       if (message.result._ === 'mt_rpc_error') {
+        // @ts-ignore
         const errorCode = Number(message.result.error_code)
+        // @ts-ignore
         const errorMessage = String(message.result.error_message || JSON.stringify(message.result))
 
         waitMessage.reject(new RPCError(errorMessage, errorCode));
@@ -768,6 +755,7 @@ export class RPC {
 
     this.debug('handling update %o', message);
     this.ackMessage(messageId);
+    // @ts-ignore
     this.updates.emit(message._, message);
   }
 
@@ -812,6 +800,8 @@ export class RPC {
       const messageId = await this.sendEncryptedMessage(bytes);
       const messageIdAsKey = intsToLong(messageId[0], messageId[1]);
 
+      this.debug("sent encrypted message messageId", messageIdAsKey)
+
       this.messagesWaitResponse.set(messageIdAsKey, {
         method,
         params,
@@ -838,7 +828,6 @@ export class RPC {
   // 10. padding 12..1024
   async sendEncryptedMessage(data: Uint8Array, options: {
     isContentRelated?: boolean
-    shouldSend?: () => boolean
   } = {}) {
     const { isContentRelated = true } = options;
 
@@ -886,9 +875,7 @@ export class RPC {
       this.bytesRaw(encryptedData);
     });
 
-    if (!options.shouldSend || options.shouldSend()) {
       this.transport.send(serializer.getBytes());
-    }
 
     return messageId;
   }
@@ -1028,7 +1015,7 @@ export class RPC {
 
   async ping() {
     if (!this.isReady || this.pendingPingId) {
-      return;
+      return this.debug("skip ping")
     }
 
     if (this.pingTimer) {
@@ -1050,9 +1037,9 @@ export class RPC {
     try {
       const serializer = new Serializer(builderMap.mt_ping, { ping_id: pendingPingNo });
       const messageId = await this.sendEncryptedMessage(serializer.getBytes(), {
-        isContentRelated: false,
-        shouldSend: () => this.isReady && this.pendingPingId === pendingPingNo,
-      });
+        isContentRelated: false
+      })
+
       if (this.pendingPingId === pendingPingNo) {
         this.pendingPindMessageId = intsToLong(messageId[0], messageId[1]);
       }
@@ -1066,11 +1053,8 @@ export class RPC {
     }
   }
 
-  pong(message: { msg_id: string; ping_id: string }) {
-    if (!this.pendingPingId
-      || message.msg_id !== this.pendingPindMessageId
-      || message.ping_id !== this.pendingPingId
-    ) {
+  pong(message: mt_pong) {
+    if (!this.pendingPingId || message.msg_id !== this.pendingPindMessageId || message.ping_id !== this.pendingPingId) {
       return
     }
 
@@ -1079,14 +1063,18 @@ export class RPC {
   }
 
   reconnect() {
-    if (!this.destroyed && this.transport.socket) {
-      this.transport.socket.destroy();
+    if (!this.destroyed) {
+      this.transport.socket?.destroy();
     }
   }
 
   schedulePing() {
-    if (!this.isReady || this.pendingPingId) {
-      return;
+    if (!this.isReady) {
+      return
+    }
+
+    if (this.pendingPingId) {
+      return
     }
 
     if (this.pingTimer) {
