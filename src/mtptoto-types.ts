@@ -34,7 +34,7 @@ export type InputPeer = $InputPeerEmpty | $InputPeerSelf | $InputPeerChat | $Inp
 export type InputUser = $InputUserEmpty | $InputUserSelf | $InputUser | $InputUserFromMessage;
 export type InputContact = $InputPhoneContact;
 export type InputFile = $InputFile | $InputFileBig | $InputFileStoryDocument;
-export type InputMedia = $InputMediaEmpty | $InputMediaUploadedPhoto | $InputMediaPhoto | $InputMediaGeoPoint | $InputMediaContact | $InputMediaUploadedDocument | $InputMediaDocument | $InputMediaVenue | $InputMediaPhotoExternal | $InputMediaDocumentExternal | $InputMediaGame | $InputMediaInvoice | $InputMediaGeoLive | $InputMediaPoll | $InputMediaDice | $InputMediaStory | $InputMediaWebPage | $InputMediaPaidMedia | $InputMediaTodo;
+export type InputMedia = $InputMediaEmpty | $InputMediaUploadedPhoto | $InputMediaPhoto | $InputMediaGeoPoint | $InputMediaContact | $InputMediaUploadedDocument | $InputMediaDocument | $InputMediaVenue | $InputMediaPhotoExternal | $InputMediaDocumentExternal | $InputMediaGame | $InputMediaInvoice | $InputMediaGeoLive | $InputMediaPoll | $InputMediaDice | $InputMediaStory | $InputMediaWebPage | $InputMediaPaidMedia | $InputMediaTodo | $InputMediaStakeDice;
 export type InputChatPhoto = $InputChatPhotoEmpty | $InputChatUploadedPhoto | $InputChatPhoto;
 export type InputGeoPoint = $InputGeoPointEmpty | $InputGeoPoint;
 export type InputPhoto = $InputPhotoEmpty | $InputPhoto;
@@ -50,8 +50,8 @@ export type ChatParticipant = $ChatParticipant | $ChatParticipantCreator | $Chat
 export type ChatParticipants = $ChatParticipantsForbidden | $ChatParticipants;
 export type ChatPhoto = $ChatPhotoEmpty | $ChatPhoto;
 export type Message = $MessageEmpty | $Message | $MessageService;
-export type MessageMedia = $MessageMediaEmpty | $MessageMediaPhoto | $MessageMediaGeo | $MessageMediaContact | $MessageMediaUnsupported | $MessageMediaDocument | $MessageMediaWebPage | $MessageMediaVenue | $MessageMediaGame | $MessageMediaInvoice | $MessageMediaGeoLive | $MessageMediaPoll | $MessageMediaDice | $MessageMediaStory | $MessageMediaGiveaway | $MessageMediaGiveawayResults | $MessageMediaPaidMedia | $MessageMediaToDo;
-export type MessageAction = $MessageActionEmpty | $MessageActionChatCreate | $MessageActionChatEditTitle | $MessageActionChatEditPhoto | $MessageActionChatDeletePhoto | $MessageActionChatAddUser | $MessageActionChatDeleteUser | $MessageActionChatJoinedByLink | $MessageActionChannelCreate | $MessageActionChatMigrateTo | $MessageActionChannelMigrateFrom | $MessageActionPinMessage | $MessageActionHistoryClear | $MessageActionGameScore | $MessageActionPaymentSentMe | $MessageActionPaymentSent | $MessageActionPhoneCall | $MessageActionScreenshotTaken | $MessageActionCustomAction | $MessageActionBotAllowed | $MessageActionSecureValuesSentMe | $MessageActionSecureValuesSent | $MessageActionContactSignUp | $MessageActionGeoProximityReached | $MessageActionGroupCall | $MessageActionInviteToGroupCall | $MessageActionSetMessagesTTL | $MessageActionGroupCallScheduled | $MessageActionSetChatTheme | $MessageActionChatJoinedByRequest | $MessageActionWebViewDataSentMe | $MessageActionWebViewDataSent | $MessageActionGiftPremium | $MessageActionTopicCreate | $MessageActionTopicEdit | $MessageActionSuggestProfilePhoto | $MessageActionRequestedPeer | $MessageActionSetChatWallPaper | $MessageActionGiftCode | $MessageActionGiveawayLaunch | $MessageActionGiveawayResults | $MessageActionBoostApply | $MessageActionRequestedPeerSentMe | $MessageActionPaymentRefunded | $MessageActionGiftStars | $MessageActionPrizeStars | $MessageActionStarGift | $MessageActionStarGiftUnique | $MessageActionPaidMessagesRefunded | $MessageActionPaidMessagesPrice | $MessageActionConferenceCall | $MessageActionTodoCompletions | $MessageActionTodoAppendTasks | $MessageActionSuggestedPostApproval | $MessageActionSuggestedPostSuccess | $MessageActionSuggestedPostRefund | $MessageActionGiftTon;
+export type MessageMedia = $MessageMediaEmpty | $MessageMediaPhoto | $MessageMediaGeo | $MessageMediaContact | $MessageMediaUnsupported | $MessageMediaDocument | $MessageMediaWebPage | $MessageMediaVenue | $MessageMediaGame | $MessageMediaInvoice | $MessageMediaGeoLive | $MessageMediaPoll | $MessageMediaDice | $MessageMediaStory | $MessageMediaGiveaway | $MessageMediaGiveawayResults | $MessageMediaPaidMedia | $MessageMediaToDo | $MessageMediaVideoStream;
+export type MessageAction = $MessageActionEmpty | $MessageActionChatCreate | $MessageActionChatEditTitle | $MessageActionChatEditPhoto | $MessageActionChatDeletePhoto | $MessageActionChatAddUser | $MessageActionChatDeleteUser | $MessageActionChatJoinedByLink | $MessageActionChannelCreate | $MessageActionChatMigrateTo | $MessageActionChannelMigrateFrom | $MessageActionPinMessage | $MessageActionHistoryClear | $MessageActionGameScore | $MessageActionPaymentSentMe | $MessageActionPaymentSent | $MessageActionPhoneCall | $MessageActionScreenshotTaken | $MessageActionCustomAction | $MessageActionBotAllowed | $MessageActionSecureValuesSentMe | $MessageActionSecureValuesSent | $MessageActionContactSignUp | $MessageActionGeoProximityReached | $MessageActionGroupCall | $MessageActionInviteToGroupCall | $MessageActionSetMessagesTTL | $MessageActionGroupCallScheduled | $MessageActionSetChatTheme | $MessageActionChatJoinedByRequest | $MessageActionWebViewDataSentMe | $MessageActionWebViewDataSent | $MessageActionGiftPremium | $MessageActionTopicCreate | $MessageActionTopicEdit | $MessageActionSuggestProfilePhoto | $MessageActionRequestedPeer | $MessageActionSetChatWallPaper | $MessageActionGiftCode | $MessageActionGiveawayLaunch | $MessageActionGiveawayResults | $MessageActionBoostApply | $MessageActionRequestedPeerSentMe | $MessageActionPaymentRefunded | $MessageActionGiftStars | $MessageActionPrizeStars | $MessageActionStarGift | $MessageActionStarGiftUnique | $MessageActionPaidMessagesRefunded | $MessageActionPaidMessagesPrice | $MessageActionConferenceCall | $MessageActionTodoCompletions | $MessageActionTodoAppendTasks | $MessageActionSuggestedPostApproval | $MessageActionSuggestedPostSuccess | $MessageActionSuggestedPostRefund | $MessageActionGiftTon | $MessageActionSuggestBirthday | $MessageActionStarGiftPurchaseOffer | $MessageActionStarGiftPurchaseOfferDeclined | $MessageActionNewCreatorPending | $MessageActionChangeCreator | $MessageActionNoForwardsToggle | $MessageActionNoForwardsRequest | $MessageActionPollAppendAnswer | $MessageActionPollDeleteAnswer | $MessageActionManagedBotCreated;
 export type Dialog = $Dialog | $DialogFolder;
 export type Photo = $PhotoEmpty | $Photo;
 export type PhotoSize = $PhotoSizeEmpty | $PhotoSize | $PhotoCachedSize | $PhotoStrippedSize | $PhotoSizeProgressive | $PhotoPathSize;
@@ -77,8 +77,8 @@ export type Messages$Messages = $Messages$Messages | $Messages$MessagesSlice | $
 export type Messages$Chats = $Messages$Chats | $Messages$ChatsSlice;
 export type Messages$ChatFull = $Messages$ChatFull;
 export type Messages$AffectedHistory = $Messages$AffectedHistory;
-export type MessagesFilter = $InputMessagesFilterEmpty | $InputMessagesFilterPhotos | $InputMessagesFilterVideo | $InputMessagesFilterPhotoVideo | $InputMessagesFilterDocument | $InputMessagesFilterUrl | $InputMessagesFilterGif | $InputMessagesFilterVoice | $InputMessagesFilterMusic | $InputMessagesFilterChatPhotos | $InputMessagesFilterPhoneCalls | $InputMessagesFilterRoundVoice | $InputMessagesFilterRoundVideo | $InputMessagesFilterMyMentions | $InputMessagesFilterGeo | $InputMessagesFilterContacts | $InputMessagesFilterPinned;
-export type Update = $UpdateNewMessage | $UpdateMessageID | $UpdateDeleteMessages | $UpdateUserTyping | $UpdateChatUserTyping | $UpdateChatParticipants | $UpdateUserStatus | $UpdateUserName | $UpdateNewAuthorization | $UpdateNewEncryptedMessage | $UpdateEncryptedChatTyping | $UpdateEncryption | $UpdateEncryptedMessagesRead | $UpdateChatParticipantAdd | $UpdateChatParticipantDelete | $UpdateDcOptions | $UpdateNotifySettings | $UpdateServiceNotification | $UpdatePrivacy | $UpdateUserPhone | $UpdateReadHistoryInbox | $UpdateReadHistoryOutbox | $UpdateWebPage | $UpdateReadMessagesContents | $UpdateChannelTooLong | $UpdateChannel | $UpdateNewChannelMessage | $UpdateReadChannelInbox | $UpdateDeleteChannelMessages | $UpdateChannelMessageViews | $UpdateChatParticipantAdmin | $UpdateNewStickerSet | $UpdateStickerSetsOrder | $UpdateStickerSets | $UpdateSavedGifs | $UpdateBotInlineQuery | $UpdateBotInlineSend | $UpdateEditChannelMessage | $UpdateBotCallbackQuery | $UpdateEditMessage | $UpdateInlineBotCallbackQuery | $UpdateReadChannelOutbox | $UpdateDraftMessage | $UpdateReadFeaturedStickers | $UpdateRecentStickers | $UpdateConfig | $UpdatePtsChanged | $UpdateChannelWebPage | $UpdateDialogPinned | $UpdatePinnedDialogs | $UpdateBotWebhookJSON | $UpdateBotWebhookJSONQuery | $UpdateBotShippingQuery | $UpdateBotPrecheckoutQuery | $UpdatePhoneCall | $UpdateLangPackTooLong | $UpdateLangPack | $UpdateFavedStickers | $UpdateChannelReadMessagesContents | $UpdateContactsReset | $UpdateChannelAvailableMessages | $UpdateDialogUnreadMark | $UpdateMessagePoll | $UpdateChatDefaultBannedRights | $UpdateFolderPeers | $UpdatePeerSettings | $UpdatePeerLocated | $UpdateNewScheduledMessage | $UpdateDeleteScheduledMessages | $UpdateTheme | $UpdateGeoLiveViewed | $UpdateLoginToken | $UpdateMessagePollVote | $UpdateDialogFilter | $UpdateDialogFilterOrder | $UpdateDialogFilters | $UpdatePhoneCallSignalingData | $UpdateChannelMessageForwards | $UpdateReadChannelDiscussionInbox | $UpdateReadChannelDiscussionOutbox | $UpdatePeerBlocked | $UpdateChannelUserTyping | $UpdatePinnedMessages | $UpdatePinnedChannelMessages | $UpdateChat | $UpdateGroupCallParticipants | $UpdateGroupCall | $UpdatePeerHistoryTTL | $UpdateChatParticipant | $UpdateChannelParticipant | $UpdateBotStopped | $UpdateGroupCallConnection | $UpdateBotCommands | $UpdatePendingJoinRequests | $UpdateBotChatInviteRequester | $UpdateMessageReactions | $UpdateAttachMenuBots | $UpdateWebViewResultSent | $UpdateBotMenuButton | $UpdateSavedRingtones | $UpdateTranscribedAudio | $UpdateReadFeaturedEmojiStickers | $UpdateUserEmojiStatus | $UpdateRecentEmojiStatuses | $UpdateRecentReactions | $UpdateMoveStickerSetToTop | $UpdateMessageExtendedMedia | $UpdateChannelPinnedTopic | $UpdateChannelPinnedTopics | $UpdateUser | $UpdateAutoSaveSettings | $UpdateStory | $UpdateReadStories | $UpdateStoryID | $UpdateStoriesStealthMode | $UpdateSentStoryReaction | $UpdateBotChatBoost | $UpdateChannelViewForumAsMessages | $UpdatePeerWallpaper | $UpdateBotMessageReaction | $UpdateBotMessageReactions | $UpdateSavedDialogPinned | $UpdatePinnedSavedDialogs | $UpdateSavedReactionTags | $UpdateSmsJob | $UpdateQuickReplies | $UpdateNewQuickReply | $UpdateDeleteQuickReply | $UpdateQuickReplyMessage | $UpdateDeleteQuickReplyMessages | $UpdateBotBusinessConnect | $UpdateBotNewBusinessMessage | $UpdateBotEditBusinessMessage | $UpdateBotDeleteBusinessMessage | $UpdateNewStoryReaction | $UpdateStarsBalance | $UpdateBusinessBotCallbackQuery | $UpdateStarsRevenueStatus | $UpdateBotPurchasedPaidMedia | $UpdatePaidReactionPrivacy | $UpdateSentPhoneCode | $UpdateGroupCallChainBlocks | $UpdateReadMonoForumInbox | $UpdateReadMonoForumOutbox | $UpdateMonoForumNoPaidException;
+export type MessagesFilter = $InputMessagesFilterEmpty | $InputMessagesFilterPhotos | $InputMessagesFilterVideo | $InputMessagesFilterPhotoVideo | $InputMessagesFilterDocument | $InputMessagesFilterUrl | $InputMessagesFilterGif | $InputMessagesFilterVoice | $InputMessagesFilterMusic | $InputMessagesFilterChatPhotos | $InputMessagesFilterPhoneCalls | $InputMessagesFilterRoundVoice | $InputMessagesFilterRoundVideo | $InputMessagesFilterMyMentions | $InputMessagesFilterGeo | $InputMessagesFilterContacts | $InputMessagesFilterPinned | $InputMessagesFilterPoll;
+export type Update = $UpdateNewMessage | $UpdateMessageID | $UpdateDeleteMessages | $UpdateUserTyping | $UpdateChatUserTyping | $UpdateChatParticipants | $UpdateUserStatus | $UpdateUserName | $UpdateNewAuthorization | $UpdateNewEncryptedMessage | $UpdateEncryptedChatTyping | $UpdateEncryption | $UpdateEncryptedMessagesRead | $UpdateChatParticipantAdd | $UpdateChatParticipantDelete | $UpdateDcOptions | $UpdateNotifySettings | $UpdateServiceNotification | $UpdatePrivacy | $UpdateUserPhone | $UpdateReadHistoryInbox | $UpdateReadHistoryOutbox | $UpdateWebPage | $UpdateReadMessagesContents | $UpdateChannelTooLong | $UpdateChannel | $UpdateNewChannelMessage | $UpdateReadChannelInbox | $UpdateDeleteChannelMessages | $UpdateChannelMessageViews | $UpdateChatParticipantAdmin | $UpdateNewStickerSet | $UpdateStickerSetsOrder | $UpdateStickerSets | $UpdateSavedGifs | $UpdateBotInlineQuery | $UpdateBotInlineSend | $UpdateEditChannelMessage | $UpdateBotCallbackQuery | $UpdateEditMessage | $UpdateInlineBotCallbackQuery | $UpdateReadChannelOutbox | $UpdateDraftMessage | $UpdateReadFeaturedStickers | $UpdateRecentStickers | $UpdateConfig | $UpdatePtsChanged | $UpdateChannelWebPage | $UpdateDialogPinned | $UpdatePinnedDialogs | $UpdateBotWebhookJSON | $UpdateBotWebhookJSONQuery | $UpdateBotShippingQuery | $UpdateBotPrecheckoutQuery | $UpdatePhoneCall | $UpdateLangPackTooLong | $UpdateLangPack | $UpdateFavedStickers | $UpdateChannelReadMessagesContents | $UpdateContactsReset | $UpdateChannelAvailableMessages | $UpdateDialogUnreadMark | $UpdateMessagePoll | $UpdateChatDefaultBannedRights | $UpdateFolderPeers | $UpdatePeerSettings | $UpdatePeerLocated | $UpdateNewScheduledMessage | $UpdateDeleteScheduledMessages | $UpdateTheme | $UpdateGeoLiveViewed | $UpdateLoginToken | $UpdateMessagePollVote | $UpdateDialogFilter | $UpdateDialogFilterOrder | $UpdateDialogFilters | $UpdatePhoneCallSignalingData | $UpdateChannelMessageForwards | $UpdateReadChannelDiscussionInbox | $UpdateReadChannelDiscussionOutbox | $UpdatePeerBlocked | $UpdateChannelUserTyping | $UpdatePinnedMessages | $UpdatePinnedChannelMessages | $UpdateChat | $UpdateGroupCallParticipants | $UpdateGroupCall | $UpdatePeerHistoryTTL | $UpdateChatParticipant | $UpdateChannelParticipant | $UpdateBotStopped | $UpdateGroupCallConnection | $UpdateBotCommands | $UpdatePendingJoinRequests | $UpdateBotChatInviteRequester | $UpdateMessageReactions | $UpdateAttachMenuBots | $UpdateWebViewResultSent | $UpdateBotMenuButton | $UpdateSavedRingtones | $UpdateTranscribedAudio | $UpdateReadFeaturedEmojiStickers | $UpdateUserEmojiStatus | $UpdateRecentEmojiStatuses | $UpdateRecentReactions | $UpdateMoveStickerSetToTop | $UpdateMessageExtendedMedia | $UpdateUser | $UpdateAutoSaveSettings | $UpdateStory | $UpdateReadStories | $UpdateStoryID | $UpdateStoriesStealthMode | $UpdateSentStoryReaction | $UpdateBotChatBoost | $UpdateChannelViewForumAsMessages | $UpdatePeerWallpaper | $UpdateBotMessageReaction | $UpdateBotMessageReactions | $UpdateSavedDialogPinned | $UpdatePinnedSavedDialogs | $UpdateSavedReactionTags | $UpdateSmsJob | $UpdateQuickReplies | $UpdateNewQuickReply | $UpdateDeleteQuickReply | $UpdateQuickReplyMessage | $UpdateDeleteQuickReplyMessages | $UpdateBotBusinessConnect | $UpdateBotNewBusinessMessage | $UpdateBotEditBusinessMessage | $UpdateBotDeleteBusinessMessage | $UpdateNewStoryReaction | $UpdateStarsBalance | $UpdateBusinessBotCallbackQuery | $UpdateStarsRevenueStatus | $UpdateBotPurchasedPaidMedia | $UpdatePaidReactionPrivacy | $UpdateSentPhoneCode | $UpdateGroupCallChainBlocks | $UpdateReadMonoForumInbox | $UpdateReadMonoForumOutbox | $UpdateMonoForumNoPaidException | $UpdateGroupCallMessage | $UpdateGroupCallEncryptedMessage | $UpdatePinnedForumTopic | $UpdatePinnedForumTopics | $UpdateDeleteGroupCallMessages | $UpdateStarGiftAuctionState | $UpdateStarGiftAuctionUserState | $UpdateEmojiGameInfo | $UpdateStarGiftCraftFail | $UpdateChatParticipantRank | $UpdateManagedBot | $UpdateBotGuestChatQuery | $UpdateAiComposeTones;
 export type Updates$State = $Updates$State;
 export type Updates$Difference = $Updates$DifferenceEmpty | $Updates$Difference | $Updates$DifferenceSlice | $Updates$DifferenceTooLong;
 export type Updates = $UpdatesTooLong | $UpdateShortMessage | $UpdateShortChatMessage | $UpdateShort | $UpdatesCombined | $Updates | $UpdateShortSentMessage;
@@ -101,10 +101,10 @@ export type InputDocument = $InputDocumentEmpty | $InputDocument;
 export type Document = $DocumentEmpty | $Document;
 export type Help$Support = $Help$Support;
 export type NotifyPeer = $NotifyPeer | $NotifyUsers | $NotifyChats | $NotifyBroadcasts | $NotifyForumTopic;
-export type SendMessageAction = $SendMessageTypingAction | $SendMessageCancelAction | $SendMessageRecordVideoAction | $SendMessageUploadVideoAction | $SendMessageRecordAudioAction | $SendMessageUploadAudioAction | $SendMessageUploadPhotoAction | $SendMessageUploadDocumentAction | $SendMessageGeoLocationAction | $SendMessageChooseContactAction | $SendMessageGamePlayAction | $SendMessageRecordRoundAction | $SendMessageUploadRoundAction | $SpeakingInGroupCallAction | $SendMessageHistoryImportAction | $SendMessageChooseStickerAction | $SendMessageEmojiInteraction | $SendMessageEmojiInteractionSeen;
+export type SendMessageAction = $SendMessageTypingAction | $SendMessageCancelAction | $SendMessageRecordVideoAction | $SendMessageUploadVideoAction | $SendMessageRecordAudioAction | $SendMessageUploadAudioAction | $SendMessageUploadPhotoAction | $SendMessageUploadDocumentAction | $SendMessageGeoLocationAction | $SendMessageChooseContactAction | $SendMessageGamePlayAction | $SendMessageRecordRoundAction | $SendMessageUploadRoundAction | $SpeakingInGroupCallAction | $SendMessageHistoryImportAction | $SendMessageChooseStickerAction | $SendMessageEmojiInteraction | $SendMessageEmojiInteractionSeen | $SendMessageTextDraftAction;
 export type Contacts$Found = $Contacts$Found;
-export type InputPrivacyKey = $InputPrivacyKeyStatusTimestamp | $InputPrivacyKeyChatInvite | $InputPrivacyKeyPhoneCall | $InputPrivacyKeyPhoneP2P | $InputPrivacyKeyForwards | $InputPrivacyKeyProfilePhoto | $InputPrivacyKeyPhoneNumber | $InputPrivacyKeyAddedByPhone | $InputPrivacyKeyVoiceMessages | $InputPrivacyKeyAbout | $InputPrivacyKeyBirthday | $InputPrivacyKeyStarGiftsAutoSave | $InputPrivacyKeyNoPaidMessages;
-export type PrivacyKey = $PrivacyKeyStatusTimestamp | $PrivacyKeyChatInvite | $PrivacyKeyPhoneCall | $PrivacyKeyPhoneP2P | $PrivacyKeyForwards | $PrivacyKeyProfilePhoto | $PrivacyKeyPhoneNumber | $PrivacyKeyAddedByPhone | $PrivacyKeyVoiceMessages | $PrivacyKeyAbout | $PrivacyKeyBirthday | $PrivacyKeyStarGiftsAutoSave | $PrivacyKeyNoPaidMessages;
+export type InputPrivacyKey = $InputPrivacyKeyStatusTimestamp | $InputPrivacyKeyChatInvite | $InputPrivacyKeyPhoneCall | $InputPrivacyKeyPhoneP2P | $InputPrivacyKeyForwards | $InputPrivacyKeyProfilePhoto | $InputPrivacyKeyPhoneNumber | $InputPrivacyKeyAddedByPhone | $InputPrivacyKeyVoiceMessages | $InputPrivacyKeyAbout | $InputPrivacyKeyBirthday | $InputPrivacyKeyStarGiftsAutoSave | $InputPrivacyKeyNoPaidMessages | $InputPrivacyKeySavedMusic;
+export type PrivacyKey = $PrivacyKeyStatusTimestamp | $PrivacyKeyChatInvite | $PrivacyKeyPhoneCall | $PrivacyKeyPhoneP2P | $PrivacyKeyForwards | $PrivacyKeyProfilePhoto | $PrivacyKeyPhoneNumber | $PrivacyKeyAddedByPhone | $PrivacyKeyVoiceMessages | $PrivacyKeyAbout | $PrivacyKeyBirthday | $PrivacyKeyStarGiftsAutoSave | $PrivacyKeyNoPaidMessages | $PrivacyKeySavedMusic;
 export type InputPrivacyRule = $InputPrivacyValueAllowContacts | $InputPrivacyValueAllowAll | $InputPrivacyValueAllowUsers | $InputPrivacyValueDisallowContacts | $InputPrivacyValueDisallowAll | $InputPrivacyValueDisallowUsers | $InputPrivacyValueAllowChatParticipants | $InputPrivacyValueDisallowChatParticipants | $InputPrivacyValueAllowCloseFriends | $InputPrivacyValueAllowPremium | $InputPrivacyValueAllowBots | $InputPrivacyValueDisallowBots;
 export type PrivacyRule = $PrivacyValueAllowContacts | $PrivacyValueAllowAll | $PrivacyValueAllowUsers | $PrivacyValueDisallowContacts | $PrivacyValueDisallowAll | $PrivacyValueDisallowUsers | $PrivacyValueAllowChatParticipants | $PrivacyValueDisallowChatParticipants | $PrivacyValueAllowCloseFriends | $PrivacyValueAllowPremium | $PrivacyValueAllowBots | $PrivacyValueDisallowBots;
 export type Account$PrivacyRules = $Account$PrivacyRules;
@@ -132,7 +132,7 @@ export type BotInfo = $BotInfo;
 export type KeyboardButton = $KeyboardButton | $KeyboardButtonUrl | $KeyboardButtonCallback | $KeyboardButtonRequestPhone | $KeyboardButtonRequestGeoLocation | $KeyboardButtonSwitchInline | $KeyboardButtonGame | $KeyboardButtonBuy | $KeyboardButtonUrlAuth | $InputKeyboardButtonUrlAuth | $KeyboardButtonRequestPoll | $InputKeyboardButtonUserProfile | $KeyboardButtonUserProfile | $KeyboardButtonWebView | $KeyboardButtonSimpleWebView | $KeyboardButtonRequestPeer | $InputKeyboardButtonRequestPeer | $KeyboardButtonCopy;
 export type KeyboardButtonRow = $KeyboardButtonRow;
 export type ReplyMarkup = $ReplyKeyboardHide | $ReplyKeyboardForceReply | $ReplyKeyboardMarkup | $ReplyInlineMarkup;
-export type MessageEntity = $MessageEntityUnknown | $MessageEntityMention | $MessageEntityHashtag | $MessageEntityBotCommand | $MessageEntityUrl | $MessageEntityEmail | $MessageEntityBold | $MessageEntityItalic | $MessageEntityCode | $MessageEntityPre | $MessageEntityTextUrl | $MessageEntityMentionName | $InputMessageEntityMentionName | $MessageEntityPhone | $MessageEntityCashtag | $MessageEntityUnderline | $MessageEntityStrike | $MessageEntityBankCard | $MessageEntitySpoiler | $MessageEntityCustomEmoji | $MessageEntityBlockquote;
+export type MessageEntity = $MessageEntityUnknown | $MessageEntityMention | $MessageEntityHashtag | $MessageEntityBotCommand | $MessageEntityUrl | $MessageEntityEmail | $MessageEntityBold | $MessageEntityItalic | $MessageEntityCode | $MessageEntityPre | $MessageEntityTextUrl | $MessageEntityMentionName | $InputMessageEntityMentionName | $MessageEntityPhone | $MessageEntityCashtag | $MessageEntityUnderline | $MessageEntityStrike | $MessageEntityBankCard | $MessageEntitySpoiler | $MessageEntityCustomEmoji | $MessageEntityBlockquote | $MessageEntityFormattedDate | $MessageEntityDiffInsert | $MessageEntityDiffReplace | $MessageEntityDiffDelete;
 export type InputChannel = $InputChannelEmpty | $InputChannel | $InputChannelFromMessage;
 export type Contacts$ResolvedPeer = $Contacts$ResolvedPeer;
 export type MessageRange = $MessageRange;
@@ -159,7 +159,7 @@ export type InputBotInlineMessageID = $InputBotInlineMessageID | $InputBotInline
 export type InlineBotSwitchPM = $InlineBotSwitchPM;
 export type Messages$PeerDialogs = $Messages$PeerDialogs;
 export type TopPeer = $TopPeer;
-export type TopPeerCategory = $TopPeerCategoryBotsPM | $TopPeerCategoryBotsInline | $TopPeerCategoryCorrespondents | $TopPeerCategoryGroups | $TopPeerCategoryChannels | $TopPeerCategoryPhoneCalls | $TopPeerCategoryForwardUsers | $TopPeerCategoryForwardChats | $TopPeerCategoryBotsApp;
+export type TopPeerCategory = $TopPeerCategoryBotsPM | $TopPeerCategoryBotsInline | $TopPeerCategoryCorrespondents | $TopPeerCategoryGroups | $TopPeerCategoryChannels | $TopPeerCategoryPhoneCalls | $TopPeerCategoryForwardUsers | $TopPeerCategoryForwardChats | $TopPeerCategoryBotsApp | $TopPeerCategoryBotsGuestChat;
 export type TopPeerCategoryPeers = $TopPeerCategoryPeers;
 export type Contacts$TopPeers = $Contacts$TopPeersNotModified | $Contacts$TopPeers | $Contacts$TopPeersDisabled;
 export type DraftMessage = $DraftMessageEmpty | $DraftMessage;
@@ -208,7 +208,7 @@ export type CdnConfig = $CdnConfig;
 export type LangPackString = $LangPackString | $LangPackStringPluralized | $LangPackStringDeleted;
 export type LangPackDifference = $LangPackDifference;
 export type LangPackLanguage = $LangPackLanguage;
-export type ChannelAdminLogEventAction = $ChannelAdminLogEventActionChangeTitle | $ChannelAdminLogEventActionChangeAbout | $ChannelAdminLogEventActionChangeUsername | $ChannelAdminLogEventActionChangePhoto | $ChannelAdminLogEventActionToggleInvites | $ChannelAdminLogEventActionToggleSignatures | $ChannelAdminLogEventActionUpdatePinned | $ChannelAdminLogEventActionEditMessage | $ChannelAdminLogEventActionDeleteMessage | $ChannelAdminLogEventActionParticipantJoin | $ChannelAdminLogEventActionParticipantLeave | $ChannelAdminLogEventActionParticipantInvite | $ChannelAdminLogEventActionParticipantToggleBan | $ChannelAdminLogEventActionParticipantToggleAdmin | $ChannelAdminLogEventActionChangeStickerSet | $ChannelAdminLogEventActionTogglePreHistoryHidden | $ChannelAdminLogEventActionDefaultBannedRights | $ChannelAdminLogEventActionStopPoll | $ChannelAdminLogEventActionChangeLinkedChat | $ChannelAdminLogEventActionChangeLocation | $ChannelAdminLogEventActionToggleSlowMode | $ChannelAdminLogEventActionStartGroupCall | $ChannelAdminLogEventActionDiscardGroupCall | $ChannelAdminLogEventActionParticipantMute | $ChannelAdminLogEventActionParticipantUnmute | $ChannelAdminLogEventActionToggleGroupCallSetting | $ChannelAdminLogEventActionParticipantJoinByInvite | $ChannelAdminLogEventActionExportedInviteDelete | $ChannelAdminLogEventActionExportedInviteRevoke | $ChannelAdminLogEventActionExportedInviteEdit | $ChannelAdminLogEventActionParticipantVolume | $ChannelAdminLogEventActionChangeHistoryTTL | $ChannelAdminLogEventActionParticipantJoinByRequest | $ChannelAdminLogEventActionToggleNoForwards | $ChannelAdminLogEventActionSendMessage | $ChannelAdminLogEventActionChangeAvailableReactions | $ChannelAdminLogEventActionChangeUsernames | $ChannelAdminLogEventActionToggleForum | $ChannelAdminLogEventActionCreateTopic | $ChannelAdminLogEventActionEditTopic | $ChannelAdminLogEventActionDeleteTopic | $ChannelAdminLogEventActionPinTopic | $ChannelAdminLogEventActionToggleAntiSpam | $ChannelAdminLogEventActionChangePeerColor | $ChannelAdminLogEventActionChangeProfilePeerColor | $ChannelAdminLogEventActionChangeWallpaper | $ChannelAdminLogEventActionChangeEmojiStatus | $ChannelAdminLogEventActionChangeEmojiStickerSet | $ChannelAdminLogEventActionToggleSignatureProfiles | $ChannelAdminLogEventActionParticipantSubExtend | $ChannelAdminLogEventActionToggleAutotranslation;
+export type ChannelAdminLogEventAction = $ChannelAdminLogEventActionChangeTitle | $ChannelAdminLogEventActionChangeAbout | $ChannelAdminLogEventActionChangeUsername | $ChannelAdminLogEventActionChangePhoto | $ChannelAdminLogEventActionToggleInvites | $ChannelAdminLogEventActionToggleSignatures | $ChannelAdminLogEventActionUpdatePinned | $ChannelAdminLogEventActionEditMessage | $ChannelAdminLogEventActionDeleteMessage | $ChannelAdminLogEventActionParticipantJoin | $ChannelAdminLogEventActionParticipantLeave | $ChannelAdminLogEventActionParticipantInvite | $ChannelAdminLogEventActionParticipantToggleBan | $ChannelAdminLogEventActionParticipantToggleAdmin | $ChannelAdminLogEventActionChangeStickerSet | $ChannelAdminLogEventActionTogglePreHistoryHidden | $ChannelAdminLogEventActionDefaultBannedRights | $ChannelAdminLogEventActionStopPoll | $ChannelAdminLogEventActionChangeLinkedChat | $ChannelAdminLogEventActionChangeLocation | $ChannelAdminLogEventActionToggleSlowMode | $ChannelAdminLogEventActionStartGroupCall | $ChannelAdminLogEventActionDiscardGroupCall | $ChannelAdminLogEventActionParticipantMute | $ChannelAdminLogEventActionParticipantUnmute | $ChannelAdminLogEventActionToggleGroupCallSetting | $ChannelAdminLogEventActionParticipantJoinByInvite | $ChannelAdminLogEventActionExportedInviteDelete | $ChannelAdminLogEventActionExportedInviteRevoke | $ChannelAdminLogEventActionExportedInviteEdit | $ChannelAdminLogEventActionParticipantVolume | $ChannelAdminLogEventActionChangeHistoryTTL | $ChannelAdminLogEventActionParticipantJoinByRequest | $ChannelAdminLogEventActionToggleNoForwards | $ChannelAdminLogEventActionSendMessage | $ChannelAdminLogEventActionChangeAvailableReactions | $ChannelAdminLogEventActionChangeUsernames | $ChannelAdminLogEventActionToggleForum | $ChannelAdminLogEventActionCreateTopic | $ChannelAdminLogEventActionEditTopic | $ChannelAdminLogEventActionDeleteTopic | $ChannelAdminLogEventActionPinTopic | $ChannelAdminLogEventActionToggleAntiSpam | $ChannelAdminLogEventActionChangePeerColor | $ChannelAdminLogEventActionChangeProfilePeerColor | $ChannelAdminLogEventActionChangeWallpaper | $ChannelAdminLogEventActionChangeEmojiStatus | $ChannelAdminLogEventActionChangeEmojiStickerSet | $ChannelAdminLogEventActionToggleSignatureProfiles | $ChannelAdminLogEventActionParticipantSubExtend | $ChannelAdminLogEventActionToggleAutotranslation | $ChannelAdminLogEventActionParticipantEditRank;
 export type ChannelAdminLogEvent = $ChannelAdminLogEvent;
 export type Channels$AdminLogResults = $Channels$AdminLogResults;
 export type ChannelAdminLogEventsFilter = $ChannelAdminLogEventsFilter;
@@ -259,7 +259,7 @@ export type PageRelatedArticle = $PageRelatedArticle;
 export type Page = $Page;
 export type Help$SupportName = $Help$SupportName;
 export type Help$UserInfo = $Help$UserInfoEmpty | $Help$UserInfo;
-export type PollAnswer = $PollAnswer;
+export type PollAnswer = $PollAnswer | $InputPollAnswer;
 export type Poll = $Poll;
 export type PollAnswerVoters = $PollAnswerVoters;
 export type PollResults = $PollResults;
@@ -294,7 +294,7 @@ export type Messages$InactiveChats = $Messages$InactiveChats;
 export type BaseTheme = $BaseThemeClassic | $BaseThemeDay | $BaseThemeNight | $BaseThemeTinted | $BaseThemeArctic;
 export type InputThemeSettings = $InputThemeSettings;
 export type ThemeSettings = $ThemeSettings;
-export type WebPageAttribute = $WebPageAttributeTheme | $WebPageAttributeStory | $WebPageAttributeStickerSet | $WebPageAttributeUniqueStarGift | $WebPageAttributeStarGiftCollection;
+export type WebPageAttribute = $WebPageAttributeTheme | $WebPageAttributeStory | $WebPageAttributeStickerSet | $WebPageAttributeUniqueStarGift | $WebPageAttributeStarGiftCollection | $WebPageAttributeStarGiftAuction | $WebPageAttributeAiComposeTone;
 export type Messages$VotesList = $Messages$VotesList;
 export type BankCardOpenUrl = $BankCardOpenUrl;
 export type Payments$BankCardData = $Payments$BankCardData;
@@ -378,7 +378,7 @@ export type Account$SavedRingtones = $Account$SavedRingtonesNotModified | $Accou
 export type NotificationSound = $NotificationSoundDefault | $NotificationSoundNone | $NotificationSoundLocal | $NotificationSoundRingtone;
 export type Account$SavedRingtone = $Account$SavedRingtone | $Account$SavedRingtoneConverted;
 export type AttachMenuPeerType = $AttachMenuPeerTypeSameBotPM | $AttachMenuPeerTypeBotPM | $AttachMenuPeerTypePM | $AttachMenuPeerTypeChat | $AttachMenuPeerTypeBroadcast;
-export type InputInvoice = $InputInvoiceMessage | $InputInvoiceSlug | $InputInvoicePremiumGiftCode | $InputInvoiceStars | $InputInvoiceChatInviteSubscription | $InputInvoiceStarGift | $InputInvoiceStarGiftUpgrade | $InputInvoiceStarGiftTransfer | $InputInvoicePremiumGiftStars | $InputInvoiceBusinessBotTransferStars | $InputInvoiceStarGiftResale | $InputInvoiceStarGiftPrepaidUpgrade;
+export type InputInvoice = $InputInvoiceMessage | $InputInvoiceSlug | $InputInvoicePremiumGiftCode | $InputInvoiceStars | $InputInvoiceChatInviteSubscription | $InputInvoiceStarGift | $InputInvoiceStarGiftUpgrade | $InputInvoiceStarGiftTransfer | $InputInvoicePremiumGiftStars | $InputInvoiceBusinessBotTransferStars | $InputInvoiceStarGiftResale | $InputInvoiceStarGiftPrepaidUpgrade | $InputInvoicePremiumAuthCode | $InputInvoiceStarGiftDropOriginalDetails | $InputInvoiceStarGiftAuctionBid;
 export type Payments$ExportedInvoice = $Payments$ExportedInvoice;
 export type Messages$TranscribedAudio = $Messages$TranscribedAudio;
 export type Help$PremiumPromo = $Help$PremiumPromo;
@@ -401,7 +401,7 @@ export type ForumTopic = $ForumTopicDeleted | $ForumTopic;
 export type Messages$ForumTopics = $Messages$ForumTopics;
 export type DefaultHistoryTTL = $DefaultHistoryTTL;
 export type ExportedContactToken = $ExportedContactToken;
-export type RequestPeerType = $RequestPeerTypeUser | $RequestPeerTypeChat | $RequestPeerTypeBroadcast;
+export type RequestPeerType = $RequestPeerTypeUser | $RequestPeerTypeChat | $RequestPeerTypeBroadcast | $RequestPeerTypeCreateBot;
 export type EmojiList = $EmojiListNotModified | $EmojiList;
 export type EmojiGroup = $EmojiGroup | $EmojiGroupGreeting | $EmojiGroupPremium;
 export type Messages$EmojiGroups = $Messages$EmojiGroupsNotModified | $Messages$EmojiGroups;
@@ -453,7 +453,7 @@ export type PostInteractionCounters = $PostInteractionCountersMessage | $PostInt
 export type Stats$StoryStats = $Stats$StoryStats;
 export type PublicForward = $PublicForwardMessage | $PublicForwardStory;
 export type Stats$PublicForwards = $Stats$PublicForwards;
-export type PeerColor = $PeerColor;
+export type PeerColor = $PeerColor | $PeerColorCollectible | $InputPeerColorCollectible;
 export type Help$PeerColorSet = $Help$PeerColorSet | $Help$PeerColorProfileSet;
 export type Help$PeerColorOption = $Help$PeerColorOption;
 export type Help$PeerColors = $Help$PeerColorsNotModified | $Help$PeerColors;
@@ -583,6 +583,43 @@ export type Users$SavedMusic = $Users$SavedMusicNotModified | $Users$SavedMusic;
 export type Account$SavedMusicIds = $Account$SavedMusicIdsNotModified | $Account$SavedMusicIds;
 export type Payments$CheckCanSendGiftResult = $Payments$CheckCanSendGiftResultOk | $Payments$CheckCanSendGiftResultFail;
 export type InputChatTheme = $InputChatThemeEmpty | $InputChatTheme | $InputChatThemeUniqueGift;
+export type StarGiftUpgradePrice = $StarGiftUpgradePrice;
+export type GroupCallMessage = $GroupCallMessage;
+export type GroupCallDonor = $GroupCallDonor;
+export type Phone$GroupCallStars = $Phone$GroupCallStars;
+export type RecentStory = $RecentStory;
+export type AuctionBidLevel = $AuctionBidLevel;
+export type StarGiftAuctionState = $StarGiftAuctionStateNotModified | $StarGiftAuctionState | $StarGiftAuctionStateFinished;
+export type StarGiftAuctionUserState = $StarGiftAuctionUserState;
+export type Payments$StarGiftAuctionState = $Payments$StarGiftAuctionState;
+export type StarGiftAuctionAcquiredGift = $StarGiftAuctionAcquiredGift;
+export type Payments$StarGiftAuctionAcquiredGifts = $Payments$StarGiftAuctionAcquiredGifts;
+export type StarGiftActiveAuctionState = $StarGiftActiveAuctionState;
+export type Payments$StarGiftActiveAuctions = $Payments$StarGiftActiveAuctionsNotModified | $Payments$StarGiftActiveAuctions;
+export type InputStarGiftAuction = $InputStarGiftAuction | $InputStarGiftAuctionSlug;
+export type Passkey = $Passkey;
+export type Account$Passkeys = $Account$Passkeys;
+export type Account$PasskeyRegistrationOptions = $Account$PasskeyRegistrationOptions;
+export type Auth$PasskeyLoginOptions = $Auth$PasskeyLoginOptions;
+export type InputPasskeyResponse = $InputPasskeyResponseRegister | $InputPasskeyResponseLogin;
+export type InputPasskeyCredential = $InputPasskeyCredentialPublicKey;
+export type StarGiftBackground = $StarGiftBackground;
+export type StarGiftAuctionRound = $StarGiftAuctionRound | $StarGiftAuctionRoundExtendable;
+export type Payments$StarGiftUpgradeAttributes = $Payments$StarGiftUpgradeAttributes;
+export type Messages$EmojiGameOutcome = $Messages$EmojiGameOutcome;
+export type Messages$EmojiGameInfo = $Messages$EmojiGameUnavailable | $Messages$EmojiGameDiceInfo;
+export type StarGiftAttributeRarity = $StarGiftAttributeRarity | $StarGiftAttributeRarityUncommon | $StarGiftAttributeRarityRare | $StarGiftAttributeRarityEpic | $StarGiftAttributeRarityLegendary;
+export type KeyboardButtonStyle = $KeyboardButtonStyle;
+export type InputMessageReadMetric = $InputMessageReadMetric;
+export type Bots$ExportedBotToken = $Bots$ExportedBotToken;
+export type Bots$RequestedButton = $Bots$RequestedButton;
+export type Messages$ComposedMessageWithAI = $Messages$ComposedMessageWithAI;
+export type Stats$PollStats = $Stats$PollStats;
+export type InputAiComposeTone = $InputAiComposeToneDefault | $InputAiComposeToneID | $InputAiComposeToneSlug;
+export type AiComposeTone = $AiComposeTone | $AiComposeToneDefault;
+export type Aicompose$Tones = $Aicompose$TonesNotModified | $Aicompose$Tones;
+export type AiComposeToneExample = $AiComposeToneExample;
+export type Bots$AccessSettings = $Bots$AccessSettings;
 export interface mt_resPQ {
   _: "mt_resPQ"
   nonce: Uint8Array;
@@ -875,10 +912,12 @@ export interface $InputUserSelf {
 
 export interface $InputPhoneContact {
   _: "inputPhoneContact";
+  flags?: Number;
   client_id: string;
   phone: string;
   first_name: string;
   last_name: string;
+  note?: TextWithEntities;
 }
 
 export interface $InputFile {
@@ -897,17 +936,21 @@ export interface $InputMediaUploadedPhoto {
   _: "inputMediaUploadedPhoto";
   flags?: Number;
   spoiler?: boolean;
+  live_photo?: boolean;
   file: InputFile;
   stickers?: InputDocument[];
   ttl_seconds?: number;
+  video?: InputDocument;
 }
 
 export interface $InputMediaPhoto {
   _: "inputMediaPhoto";
   flags?: Number;
   spoiler?: boolean;
+  live_photo?: boolean;
   id: InputPhoto;
   ttl_seconds?: number;
+  video?: InputDocument;
 }
 
 export interface $InputMediaGeoPoint {
@@ -1113,9 +1156,11 @@ export interface $ChatFull {
 
 export interface $ChatParticipant {
   _: "chatParticipant";
+  flags?: Number;
   user_id: string;
   inviter_id: string;
   date: number;
+  rank?: string;
 }
 
 export interface $ChatParticipantsForbidden {
@@ -1174,11 +1219,13 @@ export interface $Message {
   id: number;
   from_id?: Peer;
   from_boosts_applied?: number;
+  from_rank?: string;
   peer_id: Peer;
   saved_peer_id?: Peer;
   fwd_from?: MessageFwdHeader;
   via_bot_id?: string;
   via_business_bot_id?: string;
+  guestchat_via_from?: Peer;
   reply_to?: MessageReplyHeader;
   date: number;
   message: string;
@@ -1200,6 +1247,8 @@ export interface $Message {
   report_delivery_until_date?: number;
   paid_message_stars?: string;
   suggested_post?: SuggestedPost;
+  schedule_repeat_period?: number;
+  summary_from_language?: string;
 }
 
 export interface $MessageService {
@@ -1231,8 +1280,10 @@ export interface $MessageMediaPhoto {
   _: "messageMediaPhoto";
   flags?: Number;
   spoiler?: boolean;
+  live_photo?: boolean;
   photo?: Photo;
   ttl_seconds?: number;
+  video?: Document;
 }
 
 export interface $MessageMediaGeo {
@@ -1300,6 +1351,7 @@ export interface $Dialog {
   unread_count: number;
   unread_mentions_count: number;
   unread_reactions_count: number;
+  unread_poll_votes_count: number;
   notify_settings: PeerNotifySettings;
   pts?: number;
   draft?: DraftMessage;
@@ -1506,6 +1558,9 @@ export interface $UserFull {
   can_view_revenue?: boolean;
   bot_can_manage_emoji_status?: boolean;
   display_gifts_button?: boolean;
+  noforwards_my_enabled?: boolean;
+  noforwards_peer_enabled?: boolean;
+  unofficial_security_risk?: boolean;
   id: string;
   about?: string;
   settings: PeerSettings;
@@ -1542,6 +1597,8 @@ export interface $UserFull {
   stars_my_pending_rating_date?: number;
   main_tab?: ProfileTab;
   saved_music?: Document;
+  note?: TextWithEntities;
+  bot_manager_id?: string;
 }
 
 export interface $Contact {
@@ -1616,6 +1673,7 @@ export interface $Messages$DialogsSlice {
 export interface $Messages$Messages {
   _: "messages.messages";
   messages: Message[];
+  topics: ForumTopic[];
   chats: Chat[];
   users: User[];
 }
@@ -1629,6 +1687,7 @@ export interface $Messages$MessagesSlice {
   offset_id_offset?: number;
   search_flood?: SearchPostsFlood;
   messages: Message[];
+  topics: ForumTopic[];
   chats: Chat[];
   users: User[];
 }
@@ -1702,7 +1761,9 @@ export interface $UpdateDeleteMessages {
 
 export interface $UpdateUserTyping {
   _: "updateUserTyping";
+  flags?: Number;
   user_id: string;
+  top_msg_id?: number;
   action: SendMessageAction;
 }
 
@@ -2507,6 +2568,7 @@ export interface $UpdateReadHistoryInbox {
   flags?: Number;
   folder_id?: number;
   peer: Peer;
+  top_msg_id?: number;
   max_id: number;
   still_unread_count: number;
   pts: number;
@@ -2815,6 +2877,10 @@ export interface $User {
   contact_require_premium?: boolean;
   bot_business?: boolean;
   bot_has_main_app?: boolean;
+  bot_forum_view?: boolean;
+  bot_forum_can_manage_topics?: boolean;
+  bot_can_manage_bots?: boolean;
+  bot_guestchat?: boolean;
   id: string;
   access_hash?: string;
   first_name?: string;
@@ -2829,7 +2895,7 @@ export interface $User {
   lang_code?: string;
   emoji_status?: EmojiStatus;
   usernames?: Username[];
-  stories_max_id?: number;
+  stories_max_id?: RecentStory;
   color?: PeerColor;
   profile_color?: PeerColor;
   bot_active_users?: number;
@@ -2860,6 +2926,8 @@ export interface $BotInfo {
 
 export interface $KeyboardButton {
   _: "keyboardButton";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
@@ -3051,7 +3119,7 @@ export interface $Channel {
   default_banned_rights?: ChatBannedRights;
   participants_count?: number;
   usernames?: Username[];
-  stories_max_id?: number;
+  stories_max_id?: RecentStory;
   color?: PeerColor;
   profile_color?: PeerColor;
   emoji_status?: EmojiStatus;
@@ -3067,6 +3135,7 @@ export interface $ChannelForbidden {
   flags?: Number;
   broadcast?: boolean;
   megagroup?: boolean;
+  monoforum?: boolean;
   id: string;
   access_hash: string;
   title: string;
@@ -3268,6 +3337,7 @@ export interface $ChannelParticipant {
   user_id: string;
   date: number;
   subscription_until_date?: number;
+  rank?: string;
 }
 
 export interface $ChannelParticipantSelf {
@@ -3278,6 +3348,7 @@ export interface $ChannelParticipantSelf {
   inviter_id: string;
   date: number;
   subscription_until_date?: number;
+  rank?: string;
 }
 
 export interface $ChannelParticipantCreator {
@@ -3318,14 +3389,18 @@ export interface $Channels$ChannelParticipant {
 
 export interface $ChatParticipantCreator {
   _: "chatParticipantCreator";
+  flags?: Number;
   user_id: string;
+  rank?: string;
 }
 
 export interface $ChatParticipantAdmin {
   _: "chatParticipantAdmin";
+  flags?: Number;
   user_id: string;
   inviter_id: string;
   date: number;
+  rank?: string;
 }
 
 export interface $UpdateChatParticipantAdmin {
@@ -3578,6 +3653,8 @@ export interface $Auth$SentCodeTypeFlashCall {
 
 export interface $KeyboardButtonUrl {
   _: "keyboardButtonUrl";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   url: string;
 }
@@ -3586,17 +3663,22 @@ export interface $KeyboardButtonCallback {
   _: "keyboardButtonCallback";
   flags?: Number;
   requires_password?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   data: Uint8Array;
 }
 
 export interface $KeyboardButtonRequestPhone {
   _: "keyboardButtonRequestPhone";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
 export interface $KeyboardButtonRequestGeoLocation {
   _: "keyboardButtonRequestGeoLocation";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
@@ -3604,6 +3686,7 @@ export interface $KeyboardButtonSwitchInline {
   _: "keyboardButtonSwitchInline";
   flags?: Number;
   same_peer?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   query: string;
   peer_types?: InlineQueryPeerType[];
@@ -4038,6 +4121,8 @@ export interface $InputGameShortName {
 
 export interface $KeyboardButtonGame {
   _: "keyboardButtonGame";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
@@ -4424,6 +4509,8 @@ export interface $PaymentRequestedInfo {
 
 export interface $KeyboardButtonBuy {
   _: "keyboardButtonBuy";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
 }
 
@@ -4847,6 +4934,7 @@ export interface $ChannelParticipantBanned {
   kicked_by: string;
   date: number;
   banned_rights: ChatBannedRights;
+  rank?: string;
 }
 
 export interface $ChannelParticipantsBanned {
@@ -4971,6 +5059,7 @@ export interface $ChannelAdminLogEventsFilter {
   send?: boolean;
   forums?: boolean;
   sub_extend?: boolean;
+  edit_rank?: boolean;
 }
 
 export interface $TopPeerCategoryPhoneCalls {
@@ -5833,6 +5922,9 @@ export interface $MessageActionContactSignUp {
 export interface $UpdateMessagePoll {
   _: "updateMessagePoll";
   flags?: Number;
+  peer?: Peer;
+  msg_id?: number;
+  top_msg_id?: number;
   poll_id: string;
   poll?: Poll;
   results: PollResults;
@@ -5840,8 +5932,12 @@ export interface $UpdateMessagePoll {
 
 export interface $PollAnswer {
   _: "pollAnswer";
+  flags?: Number;
   text: TextWithEntities;
   option: Uint8Array;
+  media?: MessageMedia;
+  added_by?: Peer;
+  date?: number;
 }
 
 export interface $Poll {
@@ -5852,10 +5948,18 @@ export interface $Poll {
   public_voters?: boolean;
   multiple_choice?: boolean;
   quiz?: boolean;
+  open_answers?: boolean;
+  revoting_disabled?: boolean;
+  shuffle_answers?: boolean;
+  hide_results_until_close?: boolean;
+  creator?: boolean;
+  subscribers_only?: boolean;
   question: TextWithEntities;
   answers: PollAnswer[];
   close_period?: number;
   close_date?: number;
+  countries_iso2?: string[];
+  hash: string;
 }
 
 export interface $PollAnswerVoters {
@@ -5864,33 +5968,41 @@ export interface $PollAnswerVoters {
   chosen?: boolean;
   correct?: boolean;
   option: Uint8Array;
-  voters: number;
+  voters?: number;
+  recent_voters?: Peer[];
 }
 
 export interface $PollResults {
   _: "pollResults";
   flags?: Number;
   min?: boolean;
+  has_unread_votes?: boolean;
+  can_view_stats?: boolean;
   results?: PollAnswerVoters[];
   total_voters?: number;
   recent_voters?: Peer[];
   solution?: string;
   solution_entities?: MessageEntity[];
+  solution_media?: MessageMedia;
 }
 
 export interface $InputMediaPoll {
   _: "inputMediaPoll";
   flags?: Number;
   poll: Poll;
-  correct_answers?: Uint8Array[];
+  correct_answers?: number[];
+  attached_media?: InputMedia;
   solution?: string;
   solution_entities?: MessageEntity[];
+  solution_media?: InputMedia;
 }
 
 export interface $MessageMediaPoll {
   _: "messageMediaPoll";
+  flags?: Number;
   poll: Poll;
   results: PollResults;
+  attached_media?: MessageMedia;
 }
 
 export interface $ChatOnlines {
@@ -5928,6 +6040,7 @@ export interface $ChatAdminRights {
   edit_stories?: boolean;
   delete_stories?: boolean;
   manage_direct_messages?: boolean;
+  manage_ranks?: boolean;
 }
 
 export interface $ChatBannedRights {
@@ -5953,6 +6066,8 @@ export interface $ChatBannedRights {
   send_voices?: boolean;
   send_docs?: boolean;
   send_plain?: boolean;
+  edit_rank?: boolean;
+  send_reactions?: boolean;
   until_date: number;
 }
 
@@ -6243,6 +6358,7 @@ export interface $Messages$SearchCounter {
 export interface $KeyboardButtonUrlAuth {
   _: "keyboardButtonUrlAuth";
   flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   fwd_text?: string;
   url: string;
@@ -6253,6 +6369,7 @@ export interface $InputKeyboardButtonUrlAuth {
   _: "inputKeyboardButtonUrlAuth";
   flags?: Number;
   request_write_access?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   fwd_text?: string;
   url: string;
@@ -6263,13 +6380,24 @@ export interface $UrlAuthResultRequest {
   _: "urlAuthResultRequest";
   flags?: Number;
   request_write_access?: boolean;
+  request_phone_number?: boolean;
+  match_codes_first?: boolean;
+  is_app?: boolean;
   bot: User;
   domain: string;
+  browser?: string;
+  platform?: string;
+  ip?: string;
+  region?: string;
+  match_codes?: string[];
+  user_id_hint?: string;
+  verified_app_name?: string;
 }
 
 export interface $UrlAuthResultAccepted {
   _: "urlAuthResultAccepted";
-  url: string;
+  flags?: Number;
+  url?: string;
 }
 
 export interface $UrlAuthResultDefault {
@@ -6547,6 +6675,7 @@ export interface $UpdateMessagePollVote {
   poll_id: string;
   peer: Peer;
   options: Uint8Array[];
+  positions: number[];
   qts: number;
 }
 
@@ -6563,6 +6692,7 @@ export interface $Messages$VotesList {
 export interface $KeyboardButtonRequestPoll {
   _: "keyboardButtonRequestPoll";
   flags?: Number;
+  style?: KeyboardButtonStyle;
   quiz?: boolean;
   text: string;
 }
@@ -6701,8 +6831,10 @@ export interface $InputMediaDice {
 
 export interface $MessageMediaDice {
   _: "messageMediaDice";
+  flags?: Number;
   value: number;
   emoticon: string;
+  game_outcome?: Messages$EmojiGameOutcome;
 }
 
 export interface $InputStickerSetDice {
@@ -6913,6 +7045,7 @@ export interface $MessageReplyHeader {
   reply_to_scheduled?: boolean;
   forum_topic?: boolean;
   quote?: boolean;
+  reply_to_ephemeral?: boolean;
   reply_to_msg_id?: number;
   reply_to_peer_id?: Peer;
   reply_from?: MessageFwdHeader;
@@ -6922,6 +7055,7 @@ export interface $MessageReplyHeader {
   quote_entities?: MessageEntity[];
   quote_offset?: number;
   todo_item_id?: number;
+  poll_option?: Uint8Array;
 }
 
 export interface $MessageReplies {
@@ -7044,6 +7178,9 @@ export interface $GroupCall {
   listeners_hidden?: boolean;
   conference?: boolean;
   creator?: boolean;
+  messages_enabled?: boolean;
+  can_change_messages_enabled?: boolean;
+  min?: boolean;
   id: string;
   access_hash: string;
   participants_count: number;
@@ -7055,6 +7192,8 @@ export interface $GroupCall {
   unmuted_video_limit: number;
   version: number;
   invite_link?: string;
+  send_paid_messages_stars?: string;
+  default_send_as?: Peer;
 }
 
 export interface $InputGroupCall {
@@ -7098,6 +7237,7 @@ export interface $GroupCallParticipant {
   raise_hand_rating?: string;
   video?: GroupCallParticipantVideo;
   presentation?: GroupCallParticipantVideo;
+  paid_stars_total?: string;
 }
 
 export interface $UpdateChat {
@@ -7115,7 +7255,8 @@ export interface $UpdateGroupCallParticipants {
 export interface $UpdateGroupCall {
   _: "updateGroupCall";
   flags?: Number;
-  chat_id?: string;
+  live_story?: boolean;
+  peer?: Peer;
   call: GroupCall;
 }
 
@@ -7507,7 +7648,7 @@ export interface $Account$ChatThemes {
   themes: ChatTheme[];
   chats: Chat[];
   users: User[];
-  next_offset?: number;
+  next_offset?: string;
 }
 
 export interface $MessageActionSetChatTheme {
@@ -7638,12 +7779,16 @@ export interface $ChannelAdminLogEventActionParticipantJoinByRequest {
 
 export interface $InputKeyboardButtonUserProfile {
   _: "inputKeyboardButtonUserProfile";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   user_id: InputUser;
 }
 
 export interface $KeyboardButtonUserProfile {
   _: "keyboardButtonUserProfile";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   user_id: string;
 }
@@ -7885,12 +8030,16 @@ export interface $UpdateWebViewResultSent {
 
 export interface $KeyboardButtonWebView {
   _: "keyboardButtonWebView";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   url: string;
 }
 
 export interface $KeyboardButtonSimpleWebView {
   _: "keyboardButtonSimpleWebView";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   url: string;
 }
@@ -8085,7 +8234,7 @@ export interface $MessageActionGiftPremium {
   flags?: Number;
   currency: string;
   amount: string;
-  months: number;
+  days: number;
   crypto_currency?: string;
   crypto_amount?: string;
   message?: TextWithEntities;
@@ -8372,8 +8521,10 @@ export interface $ForumTopic {
   pinned?: boolean;
   short?: boolean;
   hidden?: boolean;
+  title_missing?: boolean;
   id: number;
   date: number;
+  peer: Peer;
   title: string;
   icon_color: number;
   icon_emoji_id?: string;
@@ -8383,6 +8534,7 @@ export interface $ForumTopic {
   unread_count: number;
   unread_mentions_count: number;
   unread_reactions_count: number;
+  unread_poll_votes_count: number;
   from_id: Peer;
   notify_settings: PeerNotifySettings;
   draft?: DraftMessage;
@@ -8403,6 +8555,7 @@ export interface $Messages$ForumTopics {
 export interface $MessageActionTopicCreate {
   _: "messageActionTopicCreate";
   flags?: Number;
+  title_missing?: boolean;
   title: string;
   icon_color: number;
   icon_emoji_id?: string;
@@ -8415,14 +8568,6 @@ export interface $MessageActionTopicEdit {
   icon_emoji_id?: string;
   closed?: boolean;
   hidden?: boolean;
-}
-
-export interface $UpdateChannelPinnedTopic {
-  _: "updateChannelPinnedTopic";
-  flags?: Number;
-  pinned?: boolean;
-  channel_id: string;
-  topic_id: number;
 }
 
 export interface $InputNotifyForumTopic {
@@ -8443,13 +8588,6 @@ export interface $InputStickerSetEmojiDefaultTopicIcons {
 
 export interface $Messages$SponsoredMessagesEmpty {
   _: "messages.sponsoredMessagesEmpty";
-}
-
-export interface $UpdateChannelPinnedTopics {
-  _: "updateChannelPinnedTopics";
-  flags?: Number;
-  channel_id: string;
-  order?: number[];
 }
 
 export interface $DefaultHistoryTTL {
@@ -8533,6 +8671,8 @@ export interface $RequestPeerTypeBroadcast {
 
 export interface $KeyboardButtonRequestPeer {
   _: "keyboardButtonRequestPeer";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   button_id: number;
   peer_type: RequestPeerType;
@@ -8822,6 +8962,7 @@ export interface $StoryItemSkipped {
   _: "storyItemSkipped";
   flags?: Number;
   close_friends?: boolean;
+  live?: boolean;
   id: number;
   date: number;
   expire_date: number;
@@ -8852,6 +8993,7 @@ export interface $StoryItem {
   views?: StoryViews;
   sent_reaction?: Reaction;
   albums?: number[];
+  music?: Document;
 }
 
 export interface $UpdateStory {
@@ -8943,6 +9085,7 @@ export interface $InputReplyToMessage {
   quote_offset?: number;
   monoforum_peer_id?: InputPeer;
   todo_item_id?: number;
+  poll_option?: Uint8Array;
 }
 
 export interface $InputReplyToStory {
@@ -9128,7 +9271,7 @@ export interface $Payments$CheckedGiftCode {
   giveaway_msg_id?: number;
   to_id?: string;
   date: number;
-  months: number;
+  days: number;
   used_date?: number;
   chats: Chat[];
   users: User[];
@@ -9154,7 +9297,7 @@ export interface $MessageActionGiftCode {
   via_giveaway?: boolean;
   unclaimed?: boolean;
   boost_peer?: Peer;
-  months: number;
+  days: number;
   slug: string;
   currency?: string;
   amount?: string;
@@ -10075,6 +10218,7 @@ export interface $InputKeyboardButtonRequestPeer {
   name_requested?: boolean;
   username_requested?: boolean;
   photo_requested?: boolean;
+  style?: KeyboardButtonStyle;
   text: string;
   button_id: number;
   peer_type: RequestPeerType;
@@ -10122,6 +10266,7 @@ export interface $ReactionsNotifySettings {
   flags?: Number;
   messages_notify_from?: ReactionNotificationsFrom;
   stories_notify_from?: ReactionNotificationsFrom;
+  poll_votes_notify_from?: ReactionNotificationsFrom;
   sound: NotificationSound;
   show_previews: boolean;
 }
@@ -10242,6 +10387,10 @@ export interface $StarsTransaction {
   stargift_resale?: boolean;
   posts_search?: boolean;
   stargift_prepaid_upgrade?: boolean;
+  stargift_drop_original_details?: boolean;
+  phonegroup_message?: boolean;
+  stargift_auction_bid?: boolean;
+  offer?: boolean;
   id: string;
   amount: StarsAmount;
   date: number;
@@ -10623,6 +10772,8 @@ export interface $PrepaidStarsGiveaway {
 
 export interface $KeyboardButtonCopy {
   _: "keyboardButtonCopy";
+  flags?: Number;
+  style?: KeyboardButtonStyle;
   text: string;
   copy_text: string;
 }
@@ -10635,6 +10786,8 @@ export interface $StarGift {
   birthday?: boolean;
   require_premium?: boolean;
   limited_per_user?: boolean;
+  peer_color_available?: boolean;
+  auction?: boolean;
   id: string;
   sticker: Document;
   stars: string;
@@ -10651,6 +10804,11 @@ export interface $StarGift {
   per_user_total?: number;
   per_user_remains?: number;
   locked_until_date?: number;
+  auction_slug?: string;
+  gifts_per_round?: number;
+  auction_start_date?: number;
+  upgrade_variants?: number;
+  background?: StarGiftBackground;
 }
 
 export interface $Payments$StarGiftsNotModified {
@@ -10692,6 +10850,7 @@ export interface $MessageActionStarGift {
   can_upgrade?: boolean;
   prepaid_upgrade?: boolean;
   upgrade_separate?: boolean;
+  auction_acquired?: boolean;
   gift: StarGift;
   message?: TextWithEntities;
   convert_stars?: string;
@@ -10702,6 +10861,8 @@ export interface $MessageActionStarGift {
   saved_id?: string;
   prepaid_upgrade_hash?: string;
   gift_msg_id?: number;
+  to_id?: Peer;
+  gift_num?: number;
 }
 
 export interface $MessageReportOption {
@@ -10857,16 +11018,18 @@ export interface $BotVerification {
 
 export interface $StarGiftAttributeModel {
   _: "starGiftAttributeModel";
+  flags?: Number;
+  crafted?: boolean;
   name: string;
   document: Document;
-  rarity_permille: number;
+  rarity: StarGiftAttributeRarity;
 }
 
 export interface $StarGiftAttributePattern {
   _: "starGiftAttributePattern";
   name: string;
   document: Document;
-  rarity_permille: number;
+  rarity: StarGiftAttributeRarity;
 }
 
 export interface $StarGiftAttributeBackdrop {
@@ -10877,7 +11040,7 @@ export interface $StarGiftAttributeBackdrop {
   edge_color: number;
   pattern_color: number;
   text_color: number;
-  rarity_permille: number;
+  rarity: StarGiftAttributeRarity;
 }
 
 export interface $StarGiftAttributeOriginalDetails {
@@ -10895,6 +11058,8 @@ export interface $StarGiftUnique {
   require_premium?: boolean;
   resale_ton_only?: boolean;
   theme_available?: boolean;
+  burned?: boolean;
+  crafted?: boolean;
   id: string;
   gift_id: string;
   title: string;
@@ -10911,7 +11076,12 @@ export interface $StarGiftUnique {
   released_by?: Peer;
   value_amount?: string;
   value_currency?: string;
+  value_usd_amount?: string;
   theme_peer?: Peer;
+  peer_color?: PeerColor;
+  host_id?: Peer;
+  offer_min_stars?: number;
+  craft_chance_permille?: number;
 }
 
 export interface $MessageActionStarGiftUnique {
@@ -10922,6 +11092,9 @@ export interface $MessageActionStarGiftUnique {
   saved?: boolean;
   refunded?: boolean;
   prepaid_upgrade?: boolean;
+  assigned?: boolean;
+  from_offer?: boolean;
+  craft?: boolean;
   gift: StarGift;
   can_export_at?: number;
   transfer_stars?: string;
@@ -10931,6 +11104,8 @@ export interface $MessageActionStarGiftUnique {
   resale_amount?: StarsAmount;
   can_transfer_at?: number;
   can_resell_at?: number;
+  drop_original_details_stars?: string;
+  can_craft_at?: number;
 }
 
 export interface $InputInvoiceStarGiftUpgrade {
@@ -10949,6 +11124,8 @@ export interface $InputInvoiceStarGiftTransfer {
 export interface $Payments$StarGiftUpgradePreview {
   _: "payments.starGiftUpgradePreview";
   sample_attributes: StarGiftAttribute[];
+  prices: StarGiftUpgradePrice[];
+  next_prices: StarGiftUpgradePrice[];
 }
 
 export interface $Users$Users {
@@ -11032,6 +11209,9 @@ export interface $SavedStarGift {
   can_resell_at?: number;
   collection_id?: number[];
   prepaid_upgrade_hash?: string;
+  drop_original_details_stars?: string;
+  gift_num?: number;
+  can_craft_at?: number;
 }
 
 export interface $Payments$SavedStarGifts {
@@ -11114,6 +11294,9 @@ export interface $Auth$SentCodePaymentRequired {
   phone_code_hash: string;
   support_email_address: string;
   support_email_subject: string;
+  premium_days: number;
+  currency: string;
+  amount: string;
 }
 
 export interface $InputStorePaymentAuthCode {
@@ -11122,6 +11305,7 @@ export interface $InputStorePaymentAuthCode {
   restore?: boolean;
   phone_number: string;
   phone_code_hash: string;
+  premium_days: number;
   currency: string;
   amount: string;
 }
@@ -11170,6 +11354,7 @@ export interface $DisallowedGiftsSettings {
   disallow_limited_stargifts?: boolean;
   disallow_unique_stargifts?: boolean;
   disallow_premium_gifts?: boolean;
+  disallow_stargifts_from_channels?: boolean;
 }
 
 export interface $SponsoredPeer {
@@ -11348,7 +11533,7 @@ export interface $TodoList {
 export interface $TodoCompletion {
   _: "todoCompletion";
   id: number;
-  completed_by: string;
+  completed_by: Peer;
   date: number;
 }
 
@@ -11598,6 +11783,656 @@ export interface $InputChatTheme {
 export interface $InputChatThemeUniqueGift {
   _: "inputChatThemeUniqueGift";
   slug: string;
+}
+
+export interface $InputInvoicePremiumAuthCode {
+  _: "inputInvoicePremiumAuthCode";
+  purpose: InputStorePaymentPurpose;
+}
+
+export interface $InputInvoiceStarGiftDropOriginalDetails {
+  _: "inputInvoiceStarGiftDropOriginalDetails";
+  stargift: InputSavedStarGift;
+}
+
+export interface $StarGiftUpgradePrice {
+  _: "starGiftUpgradePrice";
+  date: number;
+  upgrade_stars: string;
+}
+
+export interface $SendMessageTextDraftAction {
+  _: "sendMessageTextDraftAction";
+  random_id: string;
+  text: TextWithEntities;
+}
+
+export interface $UpdateGroupCallMessage {
+  _: "updateGroupCallMessage";
+  call: InputGroupCall;
+  message: GroupCallMessage;
+}
+
+export interface $UpdateGroupCallEncryptedMessage {
+  _: "updateGroupCallEncryptedMessage";
+  call: InputGroupCall;
+  from_id: Peer;
+  encrypted_message: Uint8Array;
+}
+
+export interface $UpdatePinnedForumTopic {
+  _: "updatePinnedForumTopic";
+  flags?: Number;
+  pinned?: boolean;
+  peer: Peer;
+  topic_id: number;
+}
+
+export interface $UpdatePinnedForumTopics {
+  _: "updatePinnedForumTopics";
+  flags?: Number;
+  peer: Peer;
+  order?: number[];
+}
+
+export interface $PeerColorCollectible {
+  _: "peerColorCollectible";
+  flags?: Number;
+  collectible_id: string;
+  gift_emoji_id: string;
+  background_emoji_id: string;
+  accent_color: number;
+  colors: number[];
+  dark_accent_color?: number;
+  dark_colors?: number[];
+}
+
+export interface $InputPeerColorCollectible {
+  _: "inputPeerColorCollectible";
+  collectible_id: string;
+}
+
+export interface $MessageActionSuggestBirthday {
+  _: "messageActionSuggestBirthday";
+  birthday: Birthday;
+}
+
+export interface $MessageMediaVideoStream {
+  _: "messageMediaVideoStream";
+  flags?: Number;
+  rtmp_stream?: boolean;
+  call: InputGroupCall;
+}
+
+export interface $UpdateDeleteGroupCallMessages {
+  _: "updateDeleteGroupCallMessages";
+  call: InputGroupCall;
+  messages: number[];
+}
+
+export interface $GroupCallMessage {
+  _: "groupCallMessage";
+  flags?: Number;
+  from_admin?: boolean;
+  id: number;
+  from_id: Peer;
+  date: number;
+  message: TextWithEntities;
+  paid_message_stars?: string;
+}
+
+export interface $InputPrivacyKeySavedMusic {
+  _: "inputPrivacyKeySavedMusic";
+}
+
+export interface $PrivacyKeySavedMusic {
+  _: "privacyKeySavedMusic";
+}
+
+export interface $GroupCallDonor {
+  _: "groupCallDonor";
+  flags?: Number;
+  top?: boolean;
+  my?: boolean;
+  peer_id?: Peer;
+  stars: string;
+}
+
+export interface $Phone$GroupCallStars {
+  _: "phone.groupCallStars";
+  total_stars: string;
+  top_donors: GroupCallDonor[];
+  chats: Chat[];
+  users: User[];
+}
+
+export interface $RecentStory {
+  _: "recentStory";
+  flags?: Number;
+  live?: boolean;
+  max_id?: number;
+}
+
+export interface $InputInvoiceStarGiftAuctionBid {
+  _: "inputInvoiceStarGiftAuctionBid";
+  flags?: Number;
+  hide_name?: boolean;
+  update_bid?: boolean;
+  peer?: InputPeer;
+  gift_id: string;
+  bid_amount: string;
+  message?: TextWithEntities;
+}
+
+export interface $AuctionBidLevel {
+  _: "auctionBidLevel";
+  pos: number;
+  amount: string;
+  date: number;
+}
+
+export interface $StarGiftAuctionStateNotModified {
+  _: "starGiftAuctionStateNotModified";
+}
+
+export interface $StarGiftAuctionState {
+  _: "starGiftAuctionState";
+  version: number;
+  start_date: number;
+  end_date: number;
+  min_bid_amount: string;
+  bid_levels: AuctionBidLevel[];
+  top_bidders: string[];
+  next_round_at: number;
+  last_gift_num: number;
+  gifts_left: number;
+  current_round: number;
+  total_rounds: number;
+  rounds: StarGiftAuctionRound[];
+}
+
+export interface $StarGiftAuctionStateFinished {
+  _: "starGiftAuctionStateFinished";
+  flags?: Number;
+  start_date: number;
+  end_date: number;
+  average_price: string;
+  listed_count?: number;
+  fragment_listed_count?: number;
+  fragment_listed_url?: string;
+}
+
+export interface $StarGiftAuctionUserState {
+  _: "starGiftAuctionUserState";
+  flags?: Number;
+  returned?: boolean;
+  bid_amount?: string;
+  bid_date?: number;
+  min_bid_amount?: string;
+  bid_peer?: Peer;
+  acquired_count: number;
+}
+
+export interface $UpdateStarGiftAuctionState {
+  _: "updateStarGiftAuctionState";
+  gift_id: string;
+  state: StarGiftAuctionState;
+}
+
+export interface $UpdateStarGiftAuctionUserState {
+  _: "updateStarGiftAuctionUserState";
+  gift_id: string;
+  user_state: StarGiftAuctionUserState;
+}
+
+export interface $Payments$StarGiftAuctionState {
+  _: "payments.starGiftAuctionState";
+  gift: StarGift;
+  state: StarGiftAuctionState;
+  user_state: StarGiftAuctionUserState;
+  timeout: number;
+  users: User[];
+  chats: Chat[];
+}
+
+export interface $StarGiftAuctionAcquiredGift {
+  _: "starGiftAuctionAcquiredGift";
+  flags?: Number;
+  name_hidden?: boolean;
+  peer: Peer;
+  date: number;
+  bid_amount: string;
+  round: number;
+  pos: number;
+  message?: TextWithEntities;
+  gift_num?: number;
+}
+
+export interface $Payments$StarGiftAuctionAcquiredGifts {
+  _: "payments.starGiftAuctionAcquiredGifts";
+  gifts: StarGiftAuctionAcquiredGift[];
+  users: User[];
+  chats: Chat[];
+}
+
+export interface $StarGiftActiveAuctionState {
+  _: "starGiftActiveAuctionState";
+  gift: StarGift;
+  state: StarGiftAuctionState;
+  user_state: StarGiftAuctionUserState;
+}
+
+export interface $Payments$StarGiftActiveAuctionsNotModified {
+  _: "payments.starGiftActiveAuctionsNotModified";
+}
+
+export interface $Payments$StarGiftActiveAuctions {
+  _: "payments.starGiftActiveAuctions";
+  auctions: StarGiftActiveAuctionState[];
+  users: User[];
+  chats: Chat[];
+}
+
+export interface $InputStarGiftAuction {
+  _: "inputStarGiftAuction";
+  gift_id: string;
+}
+
+export interface $InputStarGiftAuctionSlug {
+  _: "inputStarGiftAuctionSlug";
+  slug: string;
+}
+
+export interface $WebPageAttributeStarGiftAuction {
+  _: "webPageAttributeStarGiftAuction";
+  gift: StarGift;
+  end_date: number;
+}
+
+export interface $Passkey {
+  _: "passkey";
+  flags?: Number;
+  id: string;
+  name: string;
+  date: number;
+  software_emoji_id?: string;
+  last_usage_date?: number;
+}
+
+export interface $Account$Passkeys {
+  _: "account.passkeys";
+  passkeys: Passkey[];
+}
+
+export interface $Account$PasskeyRegistrationOptions {
+  _: "account.passkeyRegistrationOptions";
+  options: DataJSON;
+}
+
+export interface $Auth$PasskeyLoginOptions {
+  _: "auth.passkeyLoginOptions";
+  options: DataJSON;
+}
+
+export interface $InputPasskeyResponseRegister {
+  _: "inputPasskeyResponseRegister";
+  client_data: DataJSON;
+  attestation_data: Uint8Array;
+}
+
+export interface $InputPasskeyResponseLogin {
+  _: "inputPasskeyResponseLogin";
+  client_data: DataJSON;
+  authenticator_data: Uint8Array;
+  signature: Uint8Array;
+  user_handle: string;
+}
+
+export interface $InputPasskeyCredentialPublicKey {
+  _: "inputPasskeyCredentialPublicKey";
+  id: string;
+  raw_id: string;
+  response: InputPasskeyResponse;
+}
+
+export interface $MessageActionStarGiftPurchaseOffer {
+  _: "messageActionStarGiftPurchaseOffer";
+  flags?: Number;
+  accepted?: boolean;
+  declined?: boolean;
+  gift: StarGift;
+  price: StarsAmount;
+  expires_at: number;
+}
+
+export interface $MessageActionStarGiftPurchaseOfferDeclined {
+  _: "messageActionStarGiftPurchaseOfferDeclined";
+  flags?: Number;
+  expired?: boolean;
+  gift: StarGift;
+  price: StarsAmount;
+}
+
+export interface $StarGiftBackground {
+  _: "starGiftBackground";
+  center_color: number;
+  edge_color: number;
+  text_color: number;
+}
+
+export interface $StarGiftAuctionRound {
+  _: "starGiftAuctionRound";
+  num: number;
+  duration: number;
+}
+
+export interface $StarGiftAuctionRoundExtendable {
+  _: "starGiftAuctionRoundExtendable";
+  num: number;
+  duration: number;
+  extend_top: number;
+  extend_window: number;
+}
+
+export interface $Payments$StarGiftUpgradeAttributes {
+  _: "payments.starGiftUpgradeAttributes";
+  attributes: StarGiftAttribute[];
+}
+
+export interface $Messages$EmojiGameOutcome {
+  _: "messages.emojiGameOutcome";
+  seed: Uint8Array;
+  stake_ton_amount: string;
+  ton_amount: string;
+}
+
+export interface $InputMediaStakeDice {
+  _: "inputMediaStakeDice";
+  game_hash: string;
+  ton_amount: string;
+  client_seed: Uint8Array;
+}
+
+export interface $Messages$EmojiGameUnavailable {
+  _: "messages.emojiGameUnavailable";
+}
+
+export interface $Messages$EmojiGameDiceInfo {
+  _: "messages.emojiGameDiceInfo";
+  flags?: Number;
+  game_hash: string;
+  prev_stake: string;
+  current_streak: number;
+  params: number[];
+  plays_left?: number;
+}
+
+export interface $UpdateEmojiGameInfo {
+  _: "updateEmojiGameInfo";
+  info: Messages$EmojiGameInfo;
+}
+
+export interface $StarGiftAttributeRarity {
+  _: "starGiftAttributeRarity";
+  permille: number;
+}
+
+export interface $StarGiftAttributeRarityUncommon {
+  _: "starGiftAttributeRarityUncommon";
+}
+
+export interface $StarGiftAttributeRarityRare {
+  _: "starGiftAttributeRarityRare";
+}
+
+export interface $StarGiftAttributeRarityEpic {
+  _: "starGiftAttributeRarityEpic";
+}
+
+export interface $StarGiftAttributeRarityLegendary {
+  _: "starGiftAttributeRarityLegendary";
+}
+
+export interface $UpdateStarGiftCraftFail {
+  _: "updateStarGiftCraftFail";
+}
+
+export interface $KeyboardButtonStyle {
+  _: "keyboardButtonStyle";
+  flags?: Number;
+  bg_primary?: boolean;
+  bg_danger?: boolean;
+  bg_success?: boolean;
+  icon?: string;
+}
+
+export interface $MessageActionNewCreatorPending {
+  _: "messageActionNewCreatorPending";
+  new_creator_id: string;
+}
+
+export interface $MessageActionChangeCreator {
+  _: "messageActionChangeCreator";
+  new_creator_id: string;
+}
+
+export interface $MessageEntityFormattedDate {
+  _: "messageEntityFormattedDate";
+  flags?: Number;
+  relative?: boolean;
+  short_time?: boolean;
+  long_time?: boolean;
+  short_date?: boolean;
+  long_date?: boolean;
+  day_of_week?: boolean;
+  offset: number;
+  length: number;
+  date: number;
+}
+
+export interface $UpdateChatParticipantRank {
+  _: "updateChatParticipantRank";
+  chat_id: string;
+  user_id: string;
+  rank: string;
+  version: number;
+}
+
+export interface $MessageActionNoForwardsToggle {
+  _: "messageActionNoForwardsToggle";
+  prev_value: boolean;
+  new_value: boolean;
+}
+
+export interface $MessageActionNoForwardsRequest {
+  _: "messageActionNoForwardsRequest";
+  flags?: Number;
+  expired?: boolean;
+  prev_value: boolean;
+  new_value: boolean;
+}
+
+export interface $ChannelAdminLogEventActionParticipantEditRank {
+  _: "channelAdminLogEventActionParticipantEditRank";
+  user_id: string;
+  prev_rank: string;
+  new_rank: string;
+}
+
+export interface $InputMessageReadMetric {
+  _: "inputMessageReadMetric";
+  msg_id: number;
+  view_id: string;
+  time_in_view_ms: number;
+  active_time_in_view_ms: number;
+  height_to_viewport_ratio_permille: number;
+  seen_range_ratio_permille: number;
+}
+
+export interface $InputPollAnswer {
+  _: "inputPollAnswer";
+  flags?: Number;
+  text: TextWithEntities;
+  media?: InputMedia;
+}
+
+export interface $InputMessagesFilterPoll {
+  _: "inputMessagesFilterPoll";
+}
+
+export interface $MessageActionPollAppendAnswer {
+  _: "messageActionPollAppendAnswer";
+  answer: PollAnswer;
+}
+
+export interface $MessageActionPollDeleteAnswer {
+  _: "messageActionPollDeleteAnswer";
+  answer: PollAnswer;
+}
+
+export interface $RequestPeerTypeCreateBot {
+  _: "requestPeerTypeCreateBot";
+  flags?: Number;
+  bot_managed?: boolean;
+  suggested_name?: string;
+  suggested_username?: string;
+}
+
+export interface $UpdateManagedBot {
+  _: "updateManagedBot";
+  user_id: string;
+  bot_id: string;
+  qts: number;
+}
+
+export interface $Bots$ExportedBotToken {
+  _: "bots.exportedBotToken";
+  token: string;
+}
+
+export interface $Bots$RequestedButton {
+  _: "bots.requestedButton";
+  webapp_req_id: string;
+}
+
+export interface $MessageActionManagedBotCreated {
+  _: "messageActionManagedBotCreated";
+  bot_id: string;
+}
+
+export interface $MessageEntityDiffInsert {
+  _: "messageEntityDiffInsert";
+  offset: number;
+  length: number;
+}
+
+export interface $MessageEntityDiffReplace {
+  _: "messageEntityDiffReplace";
+  offset: number;
+  length: number;
+  old_text: string;
+}
+
+export interface $MessageEntityDiffDelete {
+  _: "messageEntityDiffDelete";
+  offset: number;
+  length: number;
+}
+
+export interface $Messages$ComposedMessageWithAI {
+  _: "messages.composedMessageWithAI";
+  flags?: Number;
+  result_text: TextWithEntities;
+  diff_text?: TextWithEntities;
+}
+
+export interface $Stats$PollStats {
+  _: "stats.pollStats";
+  votes_graph: StatsGraph;
+}
+
+export interface $UpdateBotGuestChatQuery {
+  _: "updateBotGuestChatQuery";
+  flags?: Number;
+  query_id: string;
+  message: Message;
+  reference_messages?: Message[];
+  qts: number;
+}
+
+export interface $TopPeerCategoryBotsGuestChat {
+  _: "topPeerCategoryBotsGuestChat";
+}
+
+export interface $InputAiComposeToneDefault {
+  _: "inputAiComposeToneDefault";
+  tone: string;
+}
+
+export interface $InputAiComposeToneID {
+  _: "inputAiComposeToneID";
+  id: string;
+  access_hash: string;
+}
+
+export interface $InputAiComposeToneSlug {
+  _: "inputAiComposeToneSlug";
+  slug: string;
+}
+
+export interface $AiComposeTone {
+  _: "aiComposeTone";
+  flags?: Number;
+  creator?: boolean;
+  id: string;
+  access_hash: string;
+  slug: string;
+  title: string;
+  emoji_id?: string;
+  prompt?: string;
+  installs_count?: number;
+  author_id?: string;
+  example_english?: AiComposeToneExample;
+}
+
+export interface $AiComposeToneDefault {
+  _: "aiComposeToneDefault";
+  tone: string;
+  emoji_id: string;
+  title: string;
+}
+
+export interface $Aicompose$TonesNotModified {
+  _: "aicompose.tonesNotModified";
+}
+
+export interface $Aicompose$Tones {
+  _: "aicompose.tones";
+  hash: string;
+  tones: AiComposeTone[];
+  users: User[];
+}
+
+export interface $AiComposeToneExample {
+  _: "aiComposeToneExample";
+  from: TextWithEntities;
+  to: TextWithEntities;
+}
+
+export interface $UpdateAiComposeTones {
+  _: "updateAiComposeTones";
+}
+
+export interface $WebPageAttributeAiComposeTone {
+  _: "webPageAttributeAiComposeTone";
+  emoji_id: string;
+}
+
+export interface $Bots$AccessSettings {
+  _: "bots.accessSettings";
+  flags?: Number;
+  restricted?: boolean;
+  add_users?: User[];
 }
 
 export interface Methods {
@@ -11929,6 +12764,7 @@ export interface Methods {
       reply_markup?: ReplyMarkup;
       entities?: MessageEntity[];
       schedule_date?: number;
+      schedule_repeat_period?: number;
       send_as?: InputPeer;
       quick_reply_shortcut?: InputQuickReplyShortcut;
       effect?: string;
@@ -11955,6 +12791,7 @@ export interface Methods {
       reply_markup?: ReplyMarkup;
       entities?: MessageEntity[];
       schedule_date?: number;
+      schedule_repeat_period?: number;
       send_as?: InputPeer;
       quick_reply_shortcut?: InputQuickReplyShortcut;
       effect?: string;
@@ -11980,8 +12817,10 @@ export interface Methods {
       top_msg_id?: number;
       reply_to?: InputReplyTo;
       schedule_date?: number;
+      schedule_repeat_period?: number;
       send_as?: InputPeer;
       quick_reply_shortcut?: InputQuickReplyShortcut;
+      effect?: string;
       video_timestamp?: number;
       allow_paid_stars?: string;
       suggested_post?: SuggestedPost;
@@ -12584,10 +13423,11 @@ export interface Methods {
   }
   'channels.editAdmin': {
     params: {
+      flags?: Number;
       channel: InputChannel;
       user_id: InputUser;
       admin_rights: ChatAdminRights;
-      rank: string;
+      rank?: string;
     }
     response: Updates
   }
@@ -12815,6 +13655,7 @@ export interface Methods {
       reply_markup?: ReplyMarkup;
       entities?: MessageEntity[];
       schedule_date?: number;
+      schedule_repeat_period?: number;
       quick_reply_shortcut_id?: number;
     }
     response: Updates
@@ -12866,6 +13707,7 @@ export interface Methods {
       groups?: boolean;
       channels?: boolean;
       bots_app?: boolean;
+      bots_guestchat?: boolean;
       offset: number;
       limit: number;
       hash: string;
@@ -13785,6 +14627,7 @@ export interface Methods {
     params: {
       peer: InputPeer;
       msg_id: number;
+      poll_hash: string;
     }
     response: Updates
   }
@@ -13918,6 +14761,7 @@ export interface Methods {
       msg_id?: number;
       button_id?: number;
       url?: string;
+      in_app_origin?: string;
     }
     response: UrlAuthResult
   }
@@ -13925,10 +14769,12 @@ export interface Methods {
     params: {
       flags?: Number;
       write_allowed?: boolean;
+      share_phone_number?: boolean;
       peer?: InputPeer;
       msg_id?: number;
       button_id?: number;
       url?: string;
+      match_code?: string;
     }
     response: UrlAuthResult
   }
@@ -13946,20 +14792,13 @@ export interface Methods {
       first_name: string;
       last_name: string;
       phone: string;
+      note?: TextWithEntities;
     }
     response: Updates
   }
   'contacts.acceptContact': {
     params: {
       id: InputUser;
-    }
-    response: Updates
-  }
-  'channels.editCreator': {
-    params: {
-      channel: InputChannel;
-      user_id: InputUser;
-      password: InputCheckPasswordSRP;
     }
     response: Updates
   }
@@ -14381,6 +15220,8 @@ export interface Methods {
       reset_invite_hash?: boolean;
       call: InputGroupCall;
       join_muted?: boolean;
+      messages_enabled?: boolean;
+      send_paid_messages_stars?: string;
     }
     response: Updates
   }
@@ -14728,8 +15569,10 @@ export interface Methods {
   }
   'messages.toggleNoForwards': {
     params: {
+      flags?: Number;
       peer: InputPeer;
       enabled: boolean;
+      request_msg_id?: number;
     }
     response: Updates
   }
@@ -14744,6 +15587,7 @@ export interface Methods {
     params: {
       flags?: Number;
       for_paid_reactions?: boolean;
+      for_live_stories?: boolean;
       peer: InputPeer;
     }
     response: Channels$SendAsPeers
@@ -14829,6 +15673,7 @@ export interface Methods {
       id?: number[];
       text?: TextWithEntities[];
       to_lang: string;
+      tone?: string;
     }
     response: Messages$TranslatedText
   }
@@ -14869,6 +15714,8 @@ export interface Methods {
   }
   'phone.getGroupCallStreamRtmpUrl': {
     params: {
+      flags?: Number;
+      live_story?: boolean;
       peer: InputPeer;
       revoke: boolean;
     }
@@ -15197,73 +16044,6 @@ export interface Methods {
     }
     response: Updates
   }
-  'channels.createForumTopic': {
-    params: {
-      flags?: Number;
-      channel: InputChannel;
-      title: string;
-      icon_color?: number;
-      icon_emoji_id?: string;
-      random_id: string;
-      send_as?: InputPeer;
-    }
-    response: Updates
-  }
-  'channels.getForumTopics': {
-    params: {
-      flags?: Number;
-      channel: InputChannel;
-      q?: string;
-      offset_date: number;
-      offset_id: number;
-      offset_topic: number;
-      limit: number;
-    }
-    response: Messages$ForumTopics
-  }
-  'channels.getForumTopicsByID': {
-    params: {
-      channel: InputChannel;
-      topics: number[];
-    }
-    response: Messages$ForumTopics
-  }
-  'channels.editForumTopic': {
-    params: {
-      flags?: Number;
-      channel: InputChannel;
-      topic_id: number;
-      title?: string;
-      icon_emoji_id?: string;
-      closed?: boolean;
-      hidden?: boolean;
-    }
-    response: Updates
-  }
-  'channels.updatePinnedForumTopic': {
-    params: {
-      channel: InputChannel;
-      topic_id: number;
-      pinned: boolean;
-    }
-    response: Updates
-  }
-  'channels.deleteTopicHistory': {
-    params: {
-      channel: InputChannel;
-      top_msg_id: number;
-    }
-    response: Messages$AffectedHistory
-  }
-  'channels.reorderPinnedForumTopics': {
-    params: {
-      flags?: Number;
-      force?: boolean;
-      channel: InputChannel;
-      order: number[];
-    }
-    response: Updates
-  }
   'channels.toggleAntiSpam': {
     params: {
       channel: InputChannel;
@@ -15322,8 +16102,10 @@ export interface Methods {
   }
   'messages.sendBotRequestedPeer': {
     params: {
+      flags?: Number;
       peer: InputPeer;
-      msg_id: number;
+      msg_id?: number;
+      webapp_req_id?: string;
       button_id: number;
       requested_peers: InputPeer[];
     }
@@ -15614,6 +16396,7 @@ export interface Methods {
       fwd_from_id?: InputPeer;
       fwd_from_story?: number;
       albums?: number[];
+      music?: InputDocument;
     }
     response: Updates
   }
@@ -15627,6 +16410,7 @@ export interface Methods {
       caption?: string;
       entities?: MessageEntity[];
       privacy_rules?: InputPrivacyRule[];
+      music?: InputDocument;
     }
     response: Updates
   }
@@ -15796,7 +16580,7 @@ export interface Methods {
     params: {
       id: InputPeer[];
     }
-    response: Number[]
+    response: RecentStory[]
   }
   'stories.getChatsToSend': {
     params: {
@@ -15848,8 +16632,7 @@ export interface Methods {
     params: {
       flags?: Number;
       for_profile?: boolean;
-      color?: number;
-      background_emoji_id?: string;
+      color?: PeerColor;
     }
     response: boolean
   }
@@ -16910,6 +17693,8 @@ export interface Methods {
       sort_by_value?: boolean;
       exclude_upgradable?: boolean;
       exclude_unupgradable?: boolean;
+      peer_color_available?: boolean;
+      exclude_hosted?: boolean;
       peer: InputPeer;
       collection_id?: number;
       offset: string;
@@ -17034,6 +17819,8 @@ export interface Methods {
       flags?: Number;
       sort_by_price?: boolean;
       sort_by_num?: boolean;
+      for_craft?: boolean;
+      stars_only?: boolean;
       attributes_hash?: string;
       gift_id: string;
       attributes?: StarGiftAttributeId[];
@@ -17273,10 +18060,520 @@ export interface Methods {
   }
   'account.getUniqueGiftChatThemes': {
     params: {
-      offset: number;
+      offset: string;
       limit: number;
       hash: string;
     }
     response: Account$ChatThemes
+  }
+  'auth.checkPaidAuth': {
+    params: {
+      phone_number: string;
+      phone_code_hash: string;
+      form_id: string;
+    }
+    response: Auth$SentCode
+  }
+  'messages.getForumTopics': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      q?: string;
+      offset_date: number;
+      offset_id: number;
+      offset_topic: number;
+      limit: number;
+    }
+    response: Messages$ForumTopics
+  }
+  'messages.getForumTopicsByID': {
+    params: {
+      peer: InputPeer;
+      topics: number[];
+    }
+    response: Messages$ForumTopics
+  }
+  'messages.editForumTopic': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      topic_id: number;
+      title?: string;
+      icon_emoji_id?: string;
+      closed?: boolean;
+      hidden?: boolean;
+    }
+    response: Updates
+  }
+  'messages.updatePinnedForumTopic': {
+    params: {
+      peer: InputPeer;
+      topic_id: number;
+      pinned: boolean;
+    }
+    response: Updates
+  }
+  'messages.reorderPinnedForumTopics': {
+    params: {
+      flags?: Number;
+      force?: boolean;
+      peer: InputPeer;
+      order: number[];
+    }
+    response: Updates
+  }
+  'messages.createForumTopic': {
+    params: {
+      flags?: Number;
+      title_missing?: boolean;
+      peer: InputPeer;
+      title: string;
+      icon_color?: number;
+      icon_emoji_id?: string;
+      random_id: string;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'messages.deleteTopicHistory': {
+    params: {
+      peer: InputPeer;
+      top_msg_id: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'phone.sendGroupCallMessage': {
+    params: {
+      flags?: Number;
+      call: InputGroupCall;
+      random_id: string;
+      message: TextWithEntities;
+      allow_paid_stars?: string;
+      send_as?: InputPeer;
+    }
+    response: Updates
+  }
+  'phone.sendGroupCallEncryptedMessage': {
+    params: {
+      call: InputGroupCall;
+      encrypted_message: Uint8Array;
+    }
+    response: boolean
+  }
+  'contacts.updateContactNote': {
+    params: {
+      id: InputUser;
+      note: TextWithEntities;
+    }
+    response: boolean
+  }
+  'users.suggestBirthday': {
+    params: {
+      id: InputUser;
+      birthday: Birthday;
+    }
+    response: Updates
+  }
+  'stories.startLive': {
+    params: {
+      flags?: Number;
+      pinned?: boolean;
+      noforwards?: boolean;
+      rtmp_stream?: boolean;
+      peer: InputPeer;
+      caption?: string;
+      entities?: MessageEntity[];
+      privacy_rules: InputPrivacyRule[];
+      random_id: string;
+      messages_enabled?: boolean;
+      send_paid_messages_stars?: string;
+    }
+    response: Updates
+  }
+  'phone.deleteGroupCallMessages': {
+    params: {
+      flags?: Number;
+      report_spam?: boolean;
+      call: InputGroupCall;
+      messages: number[];
+    }
+    response: Updates
+  }
+  'phone.deleteGroupCallParticipantMessages': {
+    params: {
+      flags?: Number;
+      report_spam?: boolean;
+      call: InputGroupCall;
+      participant: InputPeer;
+    }
+    response: Updates
+  }
+  'phone.getGroupCallStars': {
+    params: {
+      call: InputGroupCall;
+    }
+    response: Phone$GroupCallStars
+  }
+  'phone.saveDefaultSendAs': {
+    params: {
+      call: InputGroupCall;
+      send_as: InputPeer;
+    }
+    response: boolean
+  }
+  'payments.getStarGiftAuctionState': {
+    params: {
+      auction: InputStarGiftAuction;
+      version: number;
+    }
+    response: Payments$StarGiftAuctionState
+  }
+  'payments.getStarGiftAuctionAcquiredGifts': {
+    params: {
+      gift_id: string;
+    }
+    response: Payments$StarGiftAuctionAcquiredGifts
+  }
+  'payments.getStarGiftActiveAuctions': {
+    params: {
+      hash: string;
+    }
+    response: Payments$StarGiftActiveAuctions
+  }
+  'account.initPasskeyRegistration': {
+    params: {
+    }
+    response: Account$PasskeyRegistrationOptions
+  }
+  'account.registerPasskey': {
+    params: {
+      credential: InputPasskeyCredential;
+    }
+    response: Passkey
+  }
+  'account.getPasskeys': {
+    params: {
+    }
+    response: Account$Passkeys
+  }
+  'account.deletePasskey': {
+    params: {
+      id: string;
+    }
+    response: boolean
+  }
+  'auth.initPasskeyLogin': {
+    params: {
+      api_id: number;
+      api_hash: string;
+    }
+    response: Auth$PasskeyLoginOptions
+  }
+  'auth.finishPasskeyLogin': {
+    params: {
+      flags?: Number;
+      credential: InputPasskeyCredential;
+      from_dc_id?: number;
+      from_auth_key_id?: string;
+    }
+    response: Auth$Authorization
+  }
+  'payments.resolveStarGiftOffer': {
+    params: {
+      flags?: Number;
+      decline?: boolean;
+      offer_msg_id: number;
+    }
+    response: Updates
+  }
+  'payments.sendStarGiftOffer': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      slug: string;
+      price: StarsAmount;
+      duration: number;
+      random_id: string;
+      allow_paid_stars?: string;
+    }
+    response: Updates
+  }
+  'payments.getStarGiftUpgradeAttributes': {
+    params: {
+      gift_id: string;
+    }
+    response: Payments$StarGiftUpgradeAttributes
+  }
+  'messages.getEmojiGameInfo': {
+    params: {
+    }
+    response: Messages$EmojiGameInfo
+  }
+  'messages.summarizeText': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      id: number;
+      to_lang?: string;
+      tone?: string;
+    }
+    response: TextWithEntities
+  }
+  'payments.getCraftStarGifts': {
+    params: {
+      gift_id: string;
+      offset: string;
+      limit: number;
+    }
+    response: Payments$SavedStarGifts
+  }
+  'payments.craftStarGift': {
+    params: {
+      stargift: InputSavedStarGift[];
+    }
+    response: Updates
+  }
+  'messages.editChatCreator': {
+    params: {
+      peer: InputPeer;
+      user_id: InputUser;
+      password: InputCheckPasswordSRP;
+    }
+    response: Updates
+  }
+  'messages.getFutureChatCreatorAfterLeave': {
+    params: {
+      peer: InputPeer;
+    }
+    response: User
+  }
+  'messages.editChatParticipantRank': {
+    params: {
+      peer: InputPeer;
+      participant: InputPeer;
+      rank: string;
+    }
+    response: Updates
+  }
+  'messages.declineUrlAuth': {
+    params: {
+      url: string;
+    }
+    response: boolean
+  }
+  'messages.checkUrlAuthMatchCode': {
+    params: {
+      url: string;
+      match_code: string;
+    }
+    response: boolean
+  }
+  'messages.composeMessageWithAI': {
+    params: {
+      flags?: Number;
+      proofread?: boolean;
+      emojify?: boolean;
+      text: TextWithEntities;
+      translate_to_lang?: string;
+      tone?: InputAiComposeTone;
+    }
+    response: Messages$ComposedMessageWithAI
+  }
+  'messages.reportReadMetrics': {
+    params: {
+      peer: InputPeer;
+      metrics: InputMessageReadMetric[];
+    }
+    response: boolean
+  }
+  'messages.reportMusicListen': {
+    params: {
+      id: InputDocument;
+      listened_duration: number;
+    }
+    response: boolean
+  }
+  'bots.checkUsername': {
+    params: {
+      username: string;
+    }
+    response: boolean
+  }
+  'bots.createBot': {
+    params: {
+      flags?: Number;
+      via_deeplink?: boolean;
+      name: string;
+      username: string;
+      manager_id: InputUser;
+    }
+    response: User
+  }
+  'bots.exportBotToken': {
+    params: {
+      bot: InputUser;
+      revoke: boolean;
+    }
+    response: Bots$ExportedBotToken
+  }
+  'messages.addPollAnswer': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      answer: PollAnswer;
+    }
+    response: Updates
+  }
+  'messages.deletePollAnswer': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      option: Uint8Array;
+    }
+    response: Updates
+  }
+  'messages.getUnreadPollVotes': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+      offset_id: number;
+      add_offset: number;
+      limit: number;
+      max_id: number;
+      min_id: number;
+    }
+    response: Messages$Messages
+  }
+  'messages.readPollVotes': {
+    params: {
+      flags?: Number;
+      peer: InputPeer;
+      top_msg_id?: number;
+    }
+    response: Messages$AffectedHistory
+  }
+  'bots.requestWebViewButton': {
+    params: {
+      user_id: InputUser;
+      button: KeyboardButton;
+    }
+    response: Bots$RequestedButton
+  }
+  'bots.getRequestedWebViewButton': {
+    params: {
+      bot: InputUser;
+      webapp_req_id: string;
+    }
+    response: KeyboardButton
+  }
+  'stats.getPollStats': {
+    params: {
+      flags?: Number;
+      dark?: boolean;
+      peer: InputPeer;
+      msg_id: number;
+    }
+    response: Stats$PollStats
+  }
+  'messages.setBotGuestChatResult': {
+    params: {
+      query_id: string;
+      result: InputBotInlineResult;
+    }
+    response: InputBotInlineMessageID
+  }
+  'aicompose.createTone': {
+    params: {
+      flags?: Number;
+      display_author?: boolean;
+      emoji_id: string;
+      title: string;
+      prompt: string;
+    }
+    response: AiComposeTone
+  }
+  'aicompose.updateTone': {
+    params: {
+      flags?: Number;
+      tone: InputAiComposeTone;
+      display_author?: boolean;
+      emoji_id?: string;
+      title?: string;
+      prompt?: string;
+    }
+    response: AiComposeTone
+  }
+  'aicompose.saveTone': {
+    params: {
+      tone: InputAiComposeTone;
+      unsave: boolean;
+    }
+    response: boolean
+  }
+  'aicompose.deleteTone': {
+    params: {
+      tone: InputAiComposeTone;
+    }
+    response: boolean
+  }
+  'aicompose.getTone': {
+    params: {
+      tone: InputAiComposeTone;
+    }
+    response: Aicompose$Tones
+  }
+  'aicompose.getTones': {
+    params: {
+      hash: string;
+    }
+    response: Aicompose$Tones
+  }
+  'aicompose.getToneExample': {
+    params: {
+      tone: InputAiComposeTone;
+      num: number;
+    }
+    response: AiComposeToneExample
+  }
+  'bots.getAccessSettings': {
+    params: {
+      bot: InputUser;
+    }
+    response: Bots$AccessSettings
+  }
+  'bots.editAccessSettings': {
+    params: {
+      flags?: Number;
+      restricted?: boolean;
+      bot: InputUser;
+      add_users?: InputUser[];
+    }
+    response: boolean
+  }
+  'messages.deleteParticipantReactions': {
+    params: {
+      peer: InputPeer;
+      participant: InputPeer;
+    }
+    response: boolean
+  }
+  'messages.deleteParticipantReaction': {
+    params: {
+      peer: InputPeer;
+      msg_id: number;
+      participant: InputPeer;
+    }
+    response: Updates
+  }
+  'messages.getPersonalChannelHistory': {
+    params: {
+      user_id: InputUser;
+      limit: number;
+      max_id: number;
+      min_id: number;
+      hash: string;
+    }
+    response: Messages$Messages
   }
 }

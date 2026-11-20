@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "tsgo",
+    "prepare": "rm -rf lib",
     "prepublishOnly": "tsgo",
     "watch": "tsgo --watch",
     "test": "node --test lib/**/*.test.js",

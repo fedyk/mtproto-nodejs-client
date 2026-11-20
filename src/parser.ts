@@ -288,12 +288,14 @@ return result;
 const result: any = { _: 'inputUserSelf' };
 return result;
   }],
-  [4086478836, function() {
+  [1780335806, function() {
 const result: any = { _: 'inputPhoneContact' };
+result.flags = this.int();
 result.client_id = this.long();
 result.phone = this.string();
 result.first_name = this.string();
 result.last_name = this.string();
+if (result.flags & 1) result.note = this.predicate();
 return result;
   }],
   [4113560191, function() {
@@ -308,21 +310,25 @@ return result;
 const result: any = { _: 'inputMediaEmpty' };
 return result;
   }],
-  [505969924, function() {
+  [2105767386, function() {
 const result: any = { _: 'inputMediaUploadedPhoto' };
 result.flags = this.int();
 result.spoiler = !!(result.flags & 4);
+result.live_photo = !!(result.flags & 8);
 result.file = this.predicate();
 if (result.flags & 1) result.stickers = this.vector(this.predicate);
 if (result.flags & 2) result.ttl_seconds = this.int();
+if (result.flags & 8) result.video = this.predicate();
 return result;
   }],
-  [3015312949, function() {
+  [3819914292, function() {
 const result: any = { _: 'inputMediaPhoto' };
 result.flags = this.int();
 result.spoiler = !!(result.flags & 2);
+result.live_photo = !!(result.flags & 4);
 result.id = this.predicate();
 if (result.flags & 1) result.ttl_seconds = this.int();
+if (result.flags & 4) result.video = this.predicate();
 return result;
   }],
   [4190388548, function() {
@@ -526,11 +532,13 @@ if (result.flags & 262144) result.available_reactions = this.predicate();
 if (result.flags & 1048576) result.reactions_limit = this.int();
 return result;
   }],
-  [3224190983, function() {
+  [954703838, function() {
 const result: any = { _: 'chatParticipant' };
+result.flags = this.int();
 result.user_id = this.long();
 result.inviter_id = this.long();
 result.date = this.int();
+if (result.flags & 1) result.rank = this.string();
 return result;
   }],
   [2271466465, function() {
@@ -567,7 +575,7 @@ result.id = this.int();
 if (result.flags & 1) result.peer_id = this.predicate();
 return result;
   }],
-  [2551566024, function() {
+  [2515496747, function() {
 const result: any = { _: 'message' };
 result.flags = this.int();
 result.out = !!(result.flags & 2);
@@ -589,11 +597,13 @@ result.paid_suggested_post_ton = !!(result.flags2 & 512);
 result.id = this.int();
 if (result.flags & 256) result.from_id = this.predicate();
 if (result.flags & 536870912) result.from_boosts_applied = this.int();
+if (result.flags2 & 4096) result.from_rank = this.string();
 result.peer_id = this.predicate();
 if (result.flags & 268435456) result.saved_peer_id = this.predicate();
 if (result.flags & 4) result.fwd_from = this.predicate();
 if (result.flags & 2048) result.via_bot_id = this.long();
 if (result.flags2 & 1) result.via_business_bot_id = this.long();
+if (result.flags2 & 524288) result.guestchat_via_from = this.predicate();
 if (result.flags & 8) result.reply_to = this.predicate();
 result.date = this.int();
 result.message = this.string();
@@ -615,6 +625,8 @@ if (result.flags2 & 8) result.factcheck = this.predicate();
 if (result.flags2 & 32) result.report_delivery_until_date = this.int();
 if (result.flags2 & 64) result.paid_message_stars = this.long();
 if (result.flags2 & 128) result.suggested_post = this.predicate();
+if (result.flags2 & 1024) result.schedule_repeat_period = this.int();
+if (result.flags2 & 2048) result.summary_from_language = this.string();
 return result;
   }],
   [2055212554, function() {
@@ -642,12 +654,14 @@ return result;
 const result: any = { _: 'messageMediaEmpty' };
 return result;
   }],
-  [1766936791, function() {
+  [3793152867, function() {
 const result: any = { _: 'messageMediaPhoto' };
 result.flags = this.int();
 result.spoiler = !!(result.flags & 8);
+result.live_photo = !!(result.flags & 16);
 if (result.flags & 1) result.photo = this.predicate();
 if (result.flags & 4) result.ttl_seconds = this.int();
+if (result.flags & 16) result.video = this.predicate();
 return result;
   }],
   [1457575028, function() {
@@ -702,7 +716,7 @@ const result: any = { _: 'messageActionChatDeleteUser' };
 result.user_id = this.long();
 return result;
   }],
-  [3582593222, function() {
+  [4236900339, function() {
 const result: any = { _: 'dialog' };
 result.flags = this.int();
 result.pinned = !!(result.flags & 4);
@@ -715,6 +729,7 @@ result.read_outbox_max_id = this.int();
 result.unread_count = this.int();
 result.unread_mentions_count = this.int();
 result.unread_reactions_count = this.int();
+result.unread_poll_votes_count = this.int();
 result.notify_settings = this.predicate();
 if (result.flags & 1) result.pts = this.int();
 if (result.flags & 2) result.draft = this.predicate();
@@ -900,7 +915,7 @@ return result;
 const result: any = { _: 'inputReportReasonOther' };
 return result;
   }],
-  [3312956845, function() {
+  [114026053, function() {
 const result: any = { _: 'userFull' };
 result.flags = this.int();
 result.blocked = !!(result.flags & 1);
@@ -921,6 +936,9 @@ result.sponsored_enabled = !!(result.flags2 & 128);
 result.can_view_revenue = !!(result.flags2 & 512);
 result.bot_can_manage_emoji_status = !!(result.flags2 & 1024);
 result.display_gifts_button = !!(result.flags2 & 65536);
+result.noforwards_my_enabled = !!(result.flags2 & 8388608);
+result.noforwards_peer_enabled = !!(result.flags2 & 16777216);
+result.unofficial_security_risk = !!(result.flags2 & 67108864);
 result.id = this.long();
 if (result.flags & 2) result.about = this.string();
 result.settings = this.predicate();
@@ -957,6 +975,8 @@ if (result.flags2 & 262144) result.stars_my_pending_rating = this.predicate();
 if (result.flags2 & 262144) result.stars_my_pending_rating_date = this.int();
 if (result.flags2 & 1048576) result.main_tab = this.predicate();
 if (result.flags2 & 2097152) result.saved_music = this.predicate();
+if (result.flags2 & 4194304) result.note = this.predicate();
+if (result.flags2 & 33554432) result.bot_manager_id = this.long();
 return result;
   }],
   [341499403, function() {
@@ -1028,14 +1048,15 @@ result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
   }],
-  [2356252295, function() {
+  [494135274, function() {
 const result: any = { _: 'messages.messages' };
 result.messages = this.vector(this.predicate, false);
+result.topics = this.vector(this.predicate, false);
 result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
   }],
-  [1982539325, function() {
+  [1595959062, function() {
 const result: any = { _: 'messages.messagesSlice' };
 result.flags = this.int();
 result.inexact = !!(result.flags & 2);
@@ -1044,6 +1065,7 @@ if (result.flags & 1) result.next_rate = this.int();
 if (result.flags & 4) result.offset_id_offset = this.int();
 if (result.flags & 8) result.search_flood = this.predicate();
 result.messages = this.vector(this.predicate, false);
+result.topics = this.vector(this.predicate, false);
 result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
@@ -1115,9 +1137,11 @@ result.pts = this.int();
 result.pts_count = this.int();
 return result;
   }],
-  [3223225727, function() {
+  [706199388, function() {
 const result: any = { _: 'updateUserTyping' };
+result.flags = this.int();
 result.user_id = this.long();
+if (result.flags & 1) result.top_msg_id = this.int();
 result.action = this.predicate();
 return result;
   }],
@@ -1917,11 +1941,12 @@ result.hash = this.long();
 result.sets = this.vector(this.predicate, false);
 return result;
   }],
-  [2627162079, function() {
+  [2659499161, function() {
 const result: any = { _: 'updateReadHistoryInbox' };
 result.flags = this.int();
 if (result.flags & 1) result.folder_id = this.int();
 result.peer = this.predicate();
+if (result.flags & 2) result.top_msg_id = this.int();
 result.max_id = this.int();
 result.still_unread_count = this.int();
 result.pts = this.int();
@@ -2201,7 +2226,7 @@ result.keywords = this.vector(this.predicate, false);
 result.documents = this.vector(this.predicate, false);
 return result;
   }],
-  [34280482, function() {
+  [829899656, function() {
 const result: any = { _: 'user' };
 result.flags = this.int();
 result.self = !!(result.flags & 1024);
@@ -2230,6 +2255,10 @@ result.stories_unavailable = !!(result.flags2 & 16);
 result.contact_require_premium = !!(result.flags2 & 1024);
 result.bot_business = !!(result.flags2 & 2048);
 result.bot_has_main_app = !!(result.flags2 & 8192);
+result.bot_forum_view = !!(result.flags2 & 65536);
+result.bot_forum_can_manage_topics = !!(result.flags2 & 131072);
+result.bot_can_manage_bots = !!(result.flags2 & 262144);
+result.bot_guestchat = !!(result.flags2 & 524288);
 result.id = this.long();
 if (result.flags & 1) result.access_hash = this.long();
 if (result.flags & 2) result.first_name = this.string();
@@ -2244,7 +2273,7 @@ if (result.flags & 524288) result.bot_inline_placeholder = this.string();
 if (result.flags & 4194304) result.lang_code = this.string();
 if (result.flags & 1073741824) result.emoji_status = this.predicate();
 if (result.flags2 & 1) result.usernames = this.vector(this.predicate);
-if (result.flags2 & 32) result.stories_max_id = this.int();
+if (result.flags2 & 32) result.stories_max_id = this.predicate();
 if (result.flags2 & 256) result.color = this.predicate();
 if (result.flags2 & 512) result.profile_color = this.predicate();
 if (result.flags2 & 4096) result.bot_active_users = this.int();
@@ -2273,8 +2302,10 @@ if (result.flags & 256) result.app_settings = this.predicate();
 if (result.flags & 512) result.verifier_settings = this.predicate();
 return result;
   }],
-  [2734311552, function() {
+  [2098662655, function() {
 const result: any = { _: 'keyboardButton' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 return result;
   }],
@@ -2422,7 +2453,7 @@ result.channel_id = this.long();
 result.access_hash = this.long();
 return result;
   }],
-  [4268249941, function() {
+  [473084188, function() {
 const result: any = { _: 'channel' };
 result.flags = this.int();
 result.creator = !!(result.flags & 1);
@@ -2466,7 +2497,7 @@ if (result.flags & 32768) result.banned_rights = this.predicate();
 if (result.flags & 262144) result.default_banned_rights = this.predicate();
 if (result.flags & 131072) result.participants_count = this.int();
 if (result.flags2 & 1) result.usernames = this.vector(this.predicate);
-if (result.flags2 & 16) result.stories_max_id = this.int();
+if (result.flags2 & 16) result.stories_max_id = this.predicate();
 if (result.flags2 & 128) result.color = this.predicate();
 if (result.flags2 & 256) result.profile_color = this.predicate();
 if (result.flags2 & 512) result.emoji_status = this.predicate();
@@ -2482,6 +2513,7 @@ const result: any = { _: 'channelForbidden' };
 result.flags = this.int();
 result.broadcast = !!(result.flags & 32);
 result.megagroup = !!(result.flags & 256);
+result.monoforum = !!(result.flags & 1024);
 result.id = this.long();
 result.access_hash = this.long();
 result.title = this.string();
@@ -2677,15 +2709,16 @@ result.exclude_new_messages = !!(result.flags & 2);
 result.ranges = this.vector(this.predicate, false);
 return result;
   }],
-  [3409540633, function() {
+  [466961494, function() {
 const result: any = { _: 'channelParticipant' };
 result.flags = this.int();
 result.user_id = this.long();
 result.date = this.int();
 if (result.flags & 1) result.subscription_until_date = this.int();
+if (result.flags & 4) result.rank = this.string();
 return result;
   }],
-  [1331723247, function() {
+  [2840037914, function() {
 const result: any = { _: 'channelParticipantSelf' };
 result.flags = this.int();
 result.via_request = !!(result.flags & 1);
@@ -2693,6 +2726,7 @@ result.user_id = this.long();
 result.inviter_id = this.long();
 result.date = this.int();
 if (result.flags & 2) result.subscription_until_date = this.int();
+if (result.flags & 4) result.rank = this.string();
 return result;
   }],
   [803602899, function() {
@@ -2731,16 +2765,20 @@ result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
   }],
-  [3832270564, function() {
+  [3791153080, function() {
 const result: any = { _: 'chatParticipantCreator' };
+result.flags = this.int();
 result.user_id = this.long();
+if (result.flags & 1) result.rank = this.string();
 return result;
   }],
-  [2694004571, function() {
+  [56677842, function() {
 const result: any = { _: 'chatParticipantAdmin' };
+result.flags = this.int();
 result.user_id = this.long();
 result.inviter_id = this.long();
 result.date = this.int();
+if (result.flags & 1) result.rank = this.string();
 return result;
   }],
   [3620364706, function() {
@@ -2991,34 +3029,42 @@ const result: any = { _: 'auth.sentCodeTypeFlashCall' };
 result.pattern = this.string();
 return result;
   }],
-  [629866245, function() {
+  [3624674796, function() {
 const result: any = { _: 'keyboardButtonUrl' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.url = this.string();
 return result;
   }],
-  [901503851, function() {
+  [3861629280, function() {
 const result: any = { _: 'keyboardButtonCallback' };
 result.flags = this.int();
 result.requires_password = !!(result.flags & 1);
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.data = this.bytes();
 return result;
   }],
-  [2976541737, function() {
+  [1098841487, function() {
 const result: any = { _: 'keyboardButtonRequestPhone' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 return result;
   }],
-  [4235815743, function() {
+  [2856384845, function() {
 const result: any = { _: 'keyboardButtonRequestGeoLocation' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 return result;
   }],
-  [2478439349, function() {
+  [2568198652, function() {
 const result: any = { _: 'keyboardButtonSwitchInline' };
 result.flags = this.int();
 result.same_peer = !!(result.flags & 1);
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.query = this.string();
 if (result.flags & 2) result.peer_types = this.vector(this.predicate);
@@ -3451,8 +3497,10 @@ result.bot_id = this.predicate();
 result.short_name = this.string();
 return result;
   }],
-  [1358175439, function() {
+  [2311426297, function() {
 const result: any = { _: 'keyboardButtonGame' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 return result;
   }],
@@ -3837,8 +3885,10 @@ if (result.flags & 4) result.email = this.string();
 if (result.flags & 8) result.shipping_address = this.predicate();
 return result;
   }],
-  [2950250427, function() {
+  [1067792645, function() {
 const result: any = { _: 'keyboardButtonBuy' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 return result;
   }],
@@ -4254,7 +4304,7 @@ result.admin_rights = this.predicate();
 if (result.flags & 4) result.rank = this.string();
 return result;
   }],
-  [1844969806, function() {
+  [3589320081, function() {
 const result: any = { _: 'channelParticipantBanned' };
 result.flags = this.int();
 result.left = !!(result.flags & 1);
@@ -4262,6 +4312,7 @@ result.peer = this.predicate();
 result.kicked_by = this.long();
 result.date = this.int();
 result.banned_rights = this.predicate();
+if (result.flags & 4) result.rank = this.string();
 return result;
   }],
   [338142689, function() {
@@ -4386,6 +4437,7 @@ result.invites = !!(result.flags & 32768);
 result.send = !!(result.flags & 65536);
 result.forums = !!(result.flags & 131072);
 result.sub_extend = !!(result.flags & 262144);
+result.edit_rank = !!(result.flags & 524288);
 return result;
   }],
   [511092620, function() {
@@ -5245,21 +5297,28 @@ return result;
 const result: any = { _: 'messageActionContactSignUp' };
 return result;
   }],
-  [2896258427, function() {
+  [3595325995, function() {
 const result: any = { _: 'updateMessagePoll' };
 result.flags = this.int();
+if (result.flags & 2) result.peer = this.predicate();
+if (result.flags & 2) result.msg_id = this.int();
+if (result.flags & 4) result.top_msg_id = this.int();
 result.poll_id = this.long();
 if (result.flags & 1) result.poll = this.predicate();
 result.results = this.predicate();
 return result;
   }],
-  [4279689930, function() {
+  [1266514026, function() {
 const result: any = { _: 'pollAnswer' };
+result.flags = this.int();
 result.text = this.predicate();
 result.option = this.bytes();
+if (result.flags & 1) result.media = this.predicate();
+if (result.flags & 2) result.added_by = this.predicate();
+if (result.flags & 2) result.date = this.int();
 return result;
   }],
-  [1484026161, function() {
+  [2523803071, function() {
 const result: any = { _: 'poll' };
 result.id = this.long();
 result.flags = this.int();
@@ -5267,45 +5326,61 @@ result.closed = !!(result.flags & 1);
 result.public_voters = !!(result.flags & 2);
 result.multiple_choice = !!(result.flags & 4);
 result.quiz = !!(result.flags & 8);
+result.open_answers = !!(result.flags & 64);
+result.revoting_disabled = !!(result.flags & 128);
+result.shuffle_answers = !!(result.flags & 256);
+result.hide_results_until_close = !!(result.flags & 512);
+result.creator = !!(result.flags & 1024);
+result.subscribers_only = !!(result.flags & 2048);
 result.question = this.predicate();
 result.answers = this.vector(this.predicate, false);
 if (result.flags & 16) result.close_period = this.int();
 if (result.flags & 32) result.close_date = this.int();
+if (result.flags & 4096) result.countries_iso2 = this.vector(this.string);
+result.hash = this.long();
 return result;
   }],
-  [997055186, function() {
+  [910500618, function() {
 const result: any = { _: 'pollAnswerVoters' };
 result.flags = this.int();
 result.chosen = !!(result.flags & 1);
 result.correct = !!(result.flags & 2);
 result.option = this.bytes();
-result.voters = this.int();
+if (result.flags & 4) result.voters = this.int();
+if (result.flags & 4) result.recent_voters = this.vector(this.predicate);
 return result;
   }],
-  [2061444128, function() {
+  [3128668510, function() {
 const result: any = { _: 'pollResults' };
 result.flags = this.int();
 result.min = !!(result.flags & 1);
+result.has_unread_votes = !!(result.flags & 64);
+result.can_view_stats = !!(result.flags & 128);
 if (result.flags & 2) result.results = this.vector(this.predicate);
 if (result.flags & 4) result.total_voters = this.int();
 if (result.flags & 8) result.recent_voters = this.vector(this.predicate);
 if (result.flags & 16) result.solution = this.string();
 if (result.flags & 16) result.solution_entities = this.vector(this.predicate);
+if (result.flags & 32) result.solution_media = this.predicate();
 return result;
   }],
-  [261416433, function() {
+  [2285519112, function() {
 const result: any = { _: 'inputMediaPoll' };
 result.flags = this.int();
 result.poll = this.predicate();
-if (result.flags & 1) result.correct_answers = this.vector(this.bytes);
+if (result.flags & 1) result.correct_answers = this.vector(this.int);
+if (result.flags & 8) result.attached_media = this.predicate();
 if (result.flags & 2) result.solution = this.string();
 if (result.flags & 2) result.solution_entities = this.vector(this.predicate);
+if (result.flags & 4) result.solution_media = this.predicate();
 return result;
   }],
-  [1272375192, function() {
+  [2000637542, function() {
 const result: any = { _: 'messageMediaPoll' };
+result.flags = this.int();
 result.poll = this.predicate();
 result.results = this.predicate();
+if (result.flags & 1) result.attached_media = this.predicate();
 return result;
   }],
   [4030849616, function() {
@@ -5343,6 +5418,7 @@ result.post_stories = !!(result.flags & 16384);
 result.edit_stories = !!(result.flags & 32768);
 result.delete_stories = !!(result.flags & 65536);
 result.manage_direct_messages = !!(result.flags & 131072);
+result.manage_ranks = !!(result.flags & 262144);
 return result;
   }],
   [2668758040, function() {
@@ -5368,6 +5444,8 @@ result.send_audios = !!(result.flags & 4194304);
 result.send_voices = !!(result.flags & 8388608);
 result.send_docs = !!(result.flags & 16777216);
 result.send_plain = !!(result.flags & 33554432);
+result.edit_rank = !!(result.flags & 67108864);
+result.send_reactions = !!(result.flags & 134217728);
 result.until_date = this.int();
 return result;
   }],
@@ -5655,36 +5733,49 @@ result.filter = this.predicate();
 result.count = this.int();
 return result;
   }],
-  [280464681, function() {
+  [4111468281, function() {
 const result: any = { _: 'keyboardButtonUrlAuth' };
 result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 if (result.flags & 1) result.fwd_text = this.string();
 result.url = this.string();
 result.button_id = this.int();
 return result;
   }],
-  [3492708308, function() {
+  [1744911986, function() {
 const result: any = { _: 'inputKeyboardButtonUrlAuth' };
 result.flags = this.int();
 result.request_write_access = !!(result.flags & 1);
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 if (result.flags & 2) result.fwd_text = this.string();
 result.url = this.string();
 result.bot = this.predicate();
 return result;
   }],
-  [2463316494, function() {
+  [1020666860, function() {
 const result: any = { _: 'urlAuthResultRequest' };
 result.flags = this.int();
 result.request_write_access = !!(result.flags & 1);
+result.request_phone_number = !!(result.flags & 2);
+result.match_codes_first = !!(result.flags & 32);
+result.is_app = !!(result.flags & 64);
 result.bot = this.predicate();
 result.domain = this.string();
+if (result.flags & 4) result.browser = this.string();
+if (result.flags & 4) result.platform = this.string();
+if (result.flags & 4) result.ip = this.string();
+if (result.flags & 4) result.region = this.string();
+if (result.flags & 8) result.match_codes = this.vector(this.string);
+if (result.flags & 16) result.user_id_hint = this.long();
+if (result.flags & 128) result.verified_app_name = this.string();
 return result;
   }],
-  [2408320590, function() {
+  [1648005024, function() {
 const result: any = { _: 'urlAuthResultAccepted' };
-result.url = this.string();
+result.flags = this.int();
+if (result.flags & 1) result.url = this.string();
 return result;
   }],
   [2849430303, function() {
@@ -5957,11 +6048,12 @@ if (result.flags & 1) result.documents = this.vector(this.predicate);
 if (result.flags & 2) result.settings = this.predicate();
 return result;
   }],
-  [619974263, function() {
+  [1989799956, function() {
 const result: any = { _: 'updateMessagePollVote' };
 result.poll_id = this.long();
 result.peer = this.predicate();
 result.options = this.vector(this.bytes, false);
+result.positions = this.vector(this.int, false);
 result.qts = this.int();
 return result;
   }],
@@ -5975,9 +6067,10 @@ result.users = this.vector(this.predicate, false);
 if (result.flags & 1) result.next_offset = this.string();
 return result;
   }],
-  [3150401885, function() {
+  [2047989634, function() {
 const result: any = { _: 'keyboardButtonRequestPoll' };
 result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 if (result.flags & 1) result.quiz = this.predicate();
 result.text = this.string();
 return result;
@@ -6114,10 +6207,12 @@ const result: any = { _: 'inputMediaDice' };
 result.emoticon = this.string();
 return result;
   }],
-  [1065280907, function() {
+  [147581959, function() {
 const result: any = { _: 'messageMediaDice' };
+result.flags = this.int();
 result.value = this.int();
 result.emoticon = this.string();
+if (result.flags & 1) result.game_outcome = this.predicate();
 return result;
   }],
   [3867103758, function() {
@@ -6322,12 +6417,13 @@ result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
   }],
-  [1763137035, function() {
+  [462937446, function() {
 const result: any = { _: 'messageReplyHeader' };
 result.flags = this.int();
 result.reply_to_scheduled = !!(result.flags & 4);
 result.forum_topic = !!(result.flags & 8);
 result.quote = !!(result.flags & 512);
+result.reply_to_ephemeral = !!(result.flags & 8192);
 if (result.flags & 16) result.reply_to_msg_id = this.int();
 if (result.flags & 1) result.reply_to_peer_id = this.predicate();
 if (result.flags & 32) result.reply_from = this.predicate();
@@ -6337,6 +6433,7 @@ if (result.flags & 64) result.quote_text = this.string();
 if (result.flags & 128) result.quote_entities = this.vector(this.predicate);
 if (result.flags & 1024) result.quote_offset = this.int();
 if (result.flags & 2048) result.todo_item_id = this.int();
+if (result.flags & 4096) result.poll_option = this.bytes();
 return result;
   }],
   [2211844034, function() {
@@ -6446,7 +6543,7 @@ result.access_hash = this.long();
 result.duration = this.int();
 return result;
   }],
-  [1429932961, function() {
+  [4021466647, function() {
 const result: any = { _: 'groupCall' };
 result.flags = this.int();
 result.join_muted = !!(result.flags & 2);
@@ -6459,6 +6556,9 @@ result.rtmp_stream = !!(result.flags & 4096);
 result.listeners_hidden = !!(result.flags & 8192);
 result.conference = !!(result.flags & 16384);
 result.creator = !!(result.flags & 32768);
+result.messages_enabled = !!(result.flags & 131072);
+result.can_change_messages_enabled = !!(result.flags & 262144);
+result.min = !!(result.flags & 524288);
 result.id = this.long();
 result.access_hash = this.long();
 result.participants_count = this.int();
@@ -6470,6 +6570,8 @@ if (result.flags & 1024) result.unmuted_video_count = this.int();
 result.unmuted_video_limit = this.int();
 result.version = this.int();
 if (result.flags & 65536) result.invite_link = this.string();
+if (result.flags & 1048576) result.send_paid_messages_stars = this.long();
+if (result.flags & 2097152) result.default_send_as = this.predicate();
 return result;
   }],
   [3635053583, function() {
@@ -6491,7 +6593,7 @@ result.call = this.predicate();
 result.users = this.vector(this.long, false);
 return result;
   }],
-  [3953538814, function() {
+  [708691884, function() {
 const result: any = { _: 'groupCallParticipant' };
 result.flags = this.int();
 result.muted = !!(result.flags & 1);
@@ -6513,6 +6615,7 @@ if (result.flags & 2048) result.about = this.string();
 if (result.flags & 8192) result.raise_hand_rating = this.long();
 if (result.flags & 64) result.video = this.predicate();
 if (result.flags & 16384) result.presentation = this.predicate();
+if (result.flags & 65536) result.paid_stars_total = this.long();
 return result;
   }],
   [4170869326, function() {
@@ -6527,10 +6630,11 @@ result.participants = this.vector(this.predicate, false);
 result.version = this.int();
 return result;
   }],
-  [2547401537, function() {
+  [2636256992, function() {
 const result: any = { _: 'updateGroupCall' };
 result.flags = this.int();
-if (result.flags & 1) result.chat_id = this.long();
+result.live_story = !!(result.flags & 4);
+if (result.flags & 2) result.peer = this.predicate();
 result.call = this.predicate();
 return result;
   }],
@@ -6915,14 +7019,14 @@ return result;
 const result: any = { _: 'account.chatThemesNotModified' };
 return result;
   }],
-  [373835863, function() {
+  [3188294003, function() {
 const result: any = { _: 'account.chatThemes' };
 result.flags = this.int();
 result.hash = this.long();
 result.themes = this.vector(this.predicate, false);
 result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
-if (result.flags & 1) result.next_offset = this.int();
+if (result.flags & 1) result.next_offset = this.string();
 return result;
   }],
   [3105602874, function() {
@@ -7051,14 +7155,18 @@ result.invite = this.predicate();
 result.approved_by = this.long();
 return result;
   }],
-  [3918005115, function() {
+  [2103314375, function() {
 const result: any = { _: 'inputKeyboardButtonUserProfile' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.user_id = this.predicate();
 return result;
   }],
-  [814112961, function() {
+  [3237829897, function() {
 const result: any = { _: 'keyboardButtonUserProfile' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.user_id = this.long();
 return result;
@@ -7298,14 +7406,18 @@ const result: any = { _: 'updateWebViewResultSent' };
 result.query_id = this.long();
 return result;
   }],
-  [326529584, function() {
+  [3896947104, function() {
 const result: any = { _: 'keyboardButtonWebView' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.url = this.string();
 return result;
   }],
-  [2696958044, function() {
+  [3780920176, function() {
 const result: any = { _: 'keyboardButtonSimpleWebView' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.url = this.string();
 return result;
@@ -7495,12 +7607,12 @@ result.currency = this.string();
 result.amount = this.long();
 return result;
   }],
-  [1818391802, function() {
+  [1223234306, function() {
 const result: any = { _: 'messageActionGiftPremium' };
 result.flags = this.int();
 result.currency = this.string();
 result.amount = this.long();
-result.months = this.int();
+result.days = this.int();
 if (result.flags & 1) result.crypto_currency = this.string();
 if (result.flags & 1) result.crypto_amount = this.long();
 if (result.flags & 2) result.message = this.predicate();
@@ -7779,7 +7891,7 @@ const result: any = { _: 'forumTopicDeleted' };
 result.id = this.int();
 return result;
   }],
-  [1903173033, function() {
+  [4242200597, function() {
 const result: any = { _: 'forumTopic' };
 result.flags = this.int();
 result.my = !!(result.flags & 2);
@@ -7787,8 +7899,10 @@ result.closed = !!(result.flags & 4);
 result.pinned = !!(result.flags & 8);
 result.short = !!(result.flags & 32);
 result.hidden = !!(result.flags & 64);
+result.title_missing = !!(result.flags & 128);
 result.id = this.int();
 result.date = this.int();
+result.peer = this.predicate();
 result.title = this.string();
 result.icon_color = this.int();
 if (result.flags & 1) result.icon_emoji_id = this.long();
@@ -7798,6 +7912,7 @@ result.read_outbox_max_id = this.int();
 result.unread_count = this.int();
 result.unread_mentions_count = this.int();
 result.unread_reactions_count = this.int();
+result.unread_poll_votes_count = this.int();
 result.from_id = this.predicate();
 result.notify_settings = this.predicate();
 if (result.flags & 16) result.draft = this.predicate();
@@ -7818,6 +7933,7 @@ return result;
   [228168278, function() {
 const result: any = { _: 'messageActionTopicCreate' };
 result.flags = this.int();
+result.title_missing = !!(result.flags & 2);
 result.title = this.string();
 result.icon_color = this.int();
 if (result.flags & 1) result.icon_emoji_id = this.long();
@@ -7830,14 +7946,6 @@ if (result.flags & 1) result.title = this.string();
 if (result.flags & 2) result.icon_emoji_id = this.long();
 if (result.flags & 4) result.closed = this.predicate();
 if (result.flags & 8) result.hidden = this.predicate();
-return result;
-  }],
-  [422509539, function() {
-const result: any = { _: 'updateChannelPinnedTopic' };
-result.flags = this.int();
-result.pinned = !!(result.flags & 1);
-result.channel_id = this.long();
-result.topic_id = this.int();
 return result;
   }],
   [1548122514, function() {
@@ -7858,13 +7966,6 @@ return result;
   }],
   [406407439, function() {
 const result: any = { _: 'messages.sponsoredMessagesEmpty' };
-return result;
-  }],
-  [4263085570, function() {
-const result: any = { _: 'updateChannelPinnedTopics' };
-result.flags = this.int();
-result.channel_id = this.long();
-if (result.flags & 1) result.order = this.vector(this.int);
 return result;
   }],
   [1135897376, function() {
@@ -7946,8 +8047,10 @@ if (result.flags & 2) result.user_admin_rights = this.predicate();
 if (result.flags & 4) result.bot_admin_rights = this.predicate();
 return result;
   }],
-  [1406648280, function() {
+  [1527715317, function() {
 const result: any = { _: 'keyboardButtonRequestPeer' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.button_id = this.int();
 result.peer_type = this.predicate();
@@ -8237,12 +8340,13 @@ return result;
 const result: any = { _: 'storyItemSkipped' };
 result.flags = this.int();
 result.close_friends = !!(result.flags & 256);
+result.live = !!(result.flags & 512);
 result.id = this.int();
 result.date = this.int();
 result.expire_date = this.int();
 return result;
   }],
-  [3992020209, function() {
+  [379894076, function() {
 const result: any = { _: 'storyItem' };
 result.flags = this.int();
 result.pinned = !!(result.flags & 32);
@@ -8267,6 +8371,7 @@ if (result.flags & 4) result.privacy = this.vector(this.predicate);
 if (result.flags & 8) result.views = this.predicate();
 if (result.flags & 32768) result.sent_reaction = this.predicate();
 if (result.flags & 524288) result.albums = this.vector(this.int);
+if (result.flags & 1048576) result.music = this.predicate();
 return result;
   }],
   [1974712216, function() {
@@ -8347,7 +8452,7 @@ result.views = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
   }],
-  [2258615824, function() {
+  [1003796418, function() {
 const result: any = { _: 'inputReplyToMessage' };
 result.flags = this.int();
 result.reply_to_msg_id = this.int();
@@ -8358,6 +8463,7 @@ if (result.flags & 8) result.quote_entities = this.vector(this.predicate);
 if (result.flags & 16) result.quote_offset = this.int();
 if (result.flags & 32) result.monoforum_peer_id = this.predicate();
 if (result.flags & 64) result.todo_item_id = this.int();
+if (result.flags & 128) result.poll_option = this.bytes();
 return result;
   }],
   [1484862010, function() {
@@ -8535,7 +8641,7 @@ result.currency = this.string();
 result.amount = this.long();
 return result;
   }],
-  [675942550, function() {
+  [3952623503, function() {
 const result: any = { _: 'payments.checkedGiftCode' };
 result.flags = this.int();
 result.via_giveaway = !!(result.flags & 4);
@@ -8543,7 +8649,7 @@ if (result.flags & 16) result.from_id = this.predicate();
 if (result.flags & 8) result.giveaway_msg_id = this.int();
 if (result.flags & 1) result.to_id = this.long();
 result.date = this.int();
-result.months = this.int();
+result.days = this.int();
 if (result.flags & 2) result.used_date = this.int();
 result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
@@ -8563,13 +8669,13 @@ if (result.flags & 32) result.stars = this.long();
 result.until_date = this.int();
 return result;
   }],
-  [1456486804, function() {
+  [834962247, function() {
 const result: any = { _: 'messageActionGiftCode' };
 result.flags = this.int();
 result.via_giveaway = !!(result.flags & 1);
 result.unclaimed = !!(result.flags & 32);
 if (result.flags & 2) result.boost_peer = this.predicate();
-result.months = this.int();
+result.days = this.int();
 result.slug = this.string();
 if (result.flags & 4) result.currency = this.string();
 if (result.flags & 4) result.amount = this.long();
@@ -9484,12 +9590,13 @@ result.button_id = this.int();
 result.peers = this.vector(this.predicate, false);
 return result;
   }],
-  [3378916613, function() {
+  [45580630, function() {
 const result: any = { _: 'inputKeyboardButtonRequestPeer' };
 result.flags = this.int();
 result.name_requested = !!(result.flags & 1);
 result.username_requested = !!(result.flags & 2);
 result.photo_requested = !!(result.flags & 4);
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.button_id = this.int();
 result.peer_type = this.predicate();
@@ -9532,11 +9639,12 @@ return result;
 const result: any = { _: 'reactionNotificationsFromAll' };
 return result;
   }],
-  [1457736048, function() {
+  [1910827608, function() {
 const result: any = { _: 'reactionsNotifySettings' };
 result.flags = this.int();
 if (result.flags & 1) result.messages_notify_from = this.predicate();
 if (result.flags & 2) result.stories_notify_from = this.predicate();
+if (result.flags & 4) result.poll_votes_notify_from = this.predicate();
 result.sound = this.predicate();
 result.show_previews = this.predicate();
 return result;
@@ -9657,6 +9765,10 @@ result.business_transfer = !!(result.flags & 2097152);
 result.stargift_resale = !!(result.flags & 4194304);
 result.posts_search = !!(result.flags & 16777216);
 result.stargift_prepaid_upgrade = !!(result.flags & 33554432);
+result.stargift_drop_original_details = !!(result.flags & 67108864);
+result.phonegroup_message = !!(result.flags & 134217728);
+result.stargift_auction_bid = !!(result.flags & 268435456);
+result.offer = !!(result.flags & 536870912);
 result.id = this.string();
 result.amount = this.predicate();
 result.date = this.int();
@@ -10036,13 +10148,15 @@ result.boosts = this.int();
 result.date = this.int();
 return result;
   }],
-  [1976723854, function() {
+  [3167006480, function() {
 const result: any = { _: 'keyboardButtonCopy' };
+result.flags = this.int();
+if (result.flags & 1024) result.style = this.predicate();
 result.text = this.string();
 result.copy_text = this.string();
 return result;
   }],
-  [2158777283, function() {
+  [825922887, function() {
 const result: any = { _: 'starGift' };
 result.flags = this.int();
 result.limited = !!(result.flags & 1);
@@ -10050,6 +10164,8 @@ result.sold_out = !!(result.flags & 2);
 result.birthday = !!(result.flags & 4);
 result.require_premium = !!(result.flags & 128);
 result.limited_per_user = !!(result.flags & 256);
+result.peer_color_available = !!(result.flags & 1024);
+result.auction = !!(result.flags & 2048);
 result.id = this.long();
 result.sticker = this.predicate();
 result.stars = this.long();
@@ -10066,6 +10182,11 @@ if (result.flags & 64) result.released_by = this.predicate();
 if (result.flags & 256) result.per_user_total = this.int();
 if (result.flags & 256) result.per_user_remains = this.int();
 if (result.flags & 512) result.locked_until_date = this.int();
+if (result.flags & 2048) result.auction_slug = this.string();
+if (result.flags & 2048) result.gifts_per_round = this.int();
+if (result.flags & 2048) result.auction_start_date = this.int();
+if (result.flags & 4096) result.upgrade_variants = this.int();
+if (result.flags & 8192) result.background = this.predicate();
 return result;
   }],
   [2743640936, function() {
@@ -10096,7 +10217,7 @@ result.form_id = this.long();
 result.invoice = this.predicate();
 return result;
   }],
-  [4065191930, function() {
+  [3928764883, function() {
 const result: any = { _: 'messageActionStarGift' };
 result.flags = this.int();
 result.name_hidden = !!(result.flags & 1);
@@ -10107,6 +10228,7 @@ result.refunded = !!(result.flags & 512);
 result.can_upgrade = !!(result.flags & 1024);
 result.prepaid_upgrade = !!(result.flags & 8192);
 result.upgrade_separate = !!(result.flags & 65536);
+result.auction_acquired = !!(result.flags & 131072);
 result.gift = this.predicate();
 if (result.flags & 2) result.message = this.predicate();
 if (result.flags & 16) result.convert_stars = this.long();
@@ -10117,6 +10239,8 @@ if (result.flags & 4096) result.peer = this.predicate();
 if (result.flags & 4096) result.saved_id = this.long();
 if (result.flags & 16384) result.prepaid_upgrade_hash = this.string();
 if (result.flags & 32768) result.gift_msg_id = this.int();
+if (result.flags & 262144) result.to_id = this.predicate();
+if (result.flags & 524288) result.gift_num = this.int();
 return result;
   }],
   [2030298073, function() {
@@ -10270,21 +10394,23 @@ result.icon = this.long();
 result.description = this.string();
 return result;
   }],
-  [970559507, function() {
+  [1448235490, function() {
 const result: any = { _: 'starGiftAttributeModel' };
+result.flags = this.int();
+result.crafted = !!(result.flags & 1);
 result.name = this.string();
 result.document = this.predicate();
-result.rarity_permille = this.int();
+result.rarity = this.predicate();
 return result;
   }],
-  [330104601, function() {
+  [1315997162, function() {
 const result: any = { _: 'starGiftAttributePattern' };
 result.name = this.string();
 result.document = this.predicate();
-result.rarity_permille = this.int();
+result.rarity = this.predicate();
 return result;
   }],
-  [3644687772, function() {
+  [2670003428, function() {
 const result: any = { _: 'starGiftAttributeBackdrop' };
 result.name = this.string();
 result.backdrop_id = this.int();
@@ -10292,7 +10418,7 @@ result.center_color = this.int();
 result.edge_color = this.int();
 result.pattern_color = this.int();
 result.text_color = this.int();
-result.rarity_permille = this.int();
+result.rarity = this.predicate();
 return result;
   }],
   [3770675820, function() {
@@ -10304,12 +10430,14 @@ result.date = this.int();
 if (result.flags & 2) result.message = this.predicate();
 return result;
   }],
-  [468707429, function() {
+  [2247141837, function() {
 const result: any = { _: 'starGiftUnique' };
 result.flags = this.int();
 result.require_premium = !!(result.flags & 64);
 result.resale_ton_only = !!(result.flags & 128);
 result.theme_available = !!(result.flags & 512);
+result.burned = !!(result.flags & 16384);
+result.crafted = !!(result.flags & 32768);
 result.id = this.long();
 result.gift_id = this.long();
 result.title = this.string();
@@ -10326,10 +10454,15 @@ if (result.flags & 16) result.resell_amount = this.vector(this.predicate);
 if (result.flags & 32) result.released_by = this.predicate();
 if (result.flags & 256) result.value_amount = this.long();
 if (result.flags & 256) result.value_currency = this.string();
+if (result.flags & 256) result.value_usd_amount = this.long();
 if (result.flags & 1024) result.theme_peer = this.predicate();
+if (result.flags & 2048) result.peer_color = this.predicate();
+if (result.flags & 4096) result.host_id = this.predicate();
+if (result.flags & 8192) result.offer_min_stars = this.int();
+if (result.flags & 65536) result.craft_chance_permille = this.int();
 return result;
   }],
-  [888627955, function() {
+  [3871544610, function() {
 const result: any = { _: 'messageActionStarGiftUnique' };
 result.flags = this.int();
 result.upgrade = !!(result.flags & 1);
@@ -10337,6 +10470,9 @@ result.transferred = !!(result.flags & 2);
 result.saved = !!(result.flags & 4);
 result.refunded = !!(result.flags & 32);
 result.prepaid_upgrade = !!(result.flags & 2048);
+result.assigned = !!(result.flags & 8192);
+result.from_offer = !!(result.flags & 16384);
+result.craft = !!(result.flags & 65536);
 result.gift = this.predicate();
 if (result.flags & 8) result.can_export_at = this.int();
 if (result.flags & 16) result.transfer_stars = this.long();
@@ -10346,6 +10482,8 @@ if (result.flags & 128) result.saved_id = this.long();
 if (result.flags & 256) result.resale_amount = this.predicate();
 if (result.flags & 512) result.can_transfer_at = this.int();
 if (result.flags & 1024) result.can_resell_at = this.int();
+if (result.flags & 4096) result.drop_original_details_stars = this.long();
+if (result.flags & 32768) result.can_craft_at = this.int();
 return result;
   }],
   [1300335965, function() {
@@ -10361,9 +10499,11 @@ result.stargift = this.predicate();
 result.to_id = this.predicate();
 return result;
   }],
-  [377215243, function() {
+  [1038213101, function() {
 const result: any = { _: 'payments.starGiftUpgradePreview' };
 result.sample_attributes = this.vector(this.predicate, false);
+result.prices = this.vector(this.predicate, false);
+result.next_prices = this.vector(this.predicate, false);
 return result;
   }],
   [1658259128, function() {
@@ -10424,7 +10564,7 @@ result.collectible_id = this.long();
 if (result.flags & 1) result.until = this.int();
 return result;
   }],
-  [430552434, function() {
+  [1105150972, function() {
 const result: any = { _: 'savedStarGift' };
 result.flags = this.int();
 result.name_hidden = !!(result.flags & 1);
@@ -10447,6 +10587,9 @@ if (result.flags & 8192) result.can_transfer_at = this.int();
 if (result.flags & 16384) result.can_resell_at = this.int();
 if (result.flags & 32768) result.collection_id = this.vector(this.int);
 if (result.flags & 65536) result.prepaid_upgrade_hash = this.string();
+if (result.flags & 262144) result.drop_original_details_stars = this.long();
+if (result.flags & 524288) result.gift_num = this.int();
+if (result.flags & 1048576) result.can_craft_at = this.int();
 return result;
   }],
   [2515765681, function() {
@@ -10523,20 +10666,24 @@ result.months = this.int();
 if (result.flags & 1) result.message = this.predicate();
 return result;
   }],
-  [3617783033, function() {
+  [4169301695, function() {
 const result: any = { _: 'auth.sentCodePaymentRequired' };
 result.store_product = this.string();
 result.phone_code_hash = this.string();
 result.support_email_address = this.string();
 result.support_email_subject = this.string();
+result.premium_days = this.int();
+result.currency = this.string();
+result.amount = this.long();
 return result;
   }],
-  [2612159341, function() {
+  [1069645911, function() {
 const result: any = { _: 'inputStorePaymentAuthCode' };
 result.flags = this.int();
 result.restore = !!(result.flags & 1);
 result.phone_number = this.string();
 result.phone_code_hash = this.string();
+result.premium_days = this.int();
 result.currency = this.string();
 result.amount = this.long();
 return result;
@@ -10585,6 +10732,7 @@ result.disallow_unlimited_stargifts = !!(result.flags & 1);
 result.disallow_limited_stargifts = !!(result.flags & 2);
 result.disallow_unique_stargifts = !!(result.flags & 4);
 result.disallow_premium_gifts = !!(result.flags & 8);
+result.disallow_stargifts_from_channels = !!(result.flags & 16);
 return result;
   }],
   [3331786963, function() {
@@ -10760,10 +10908,10 @@ result.title = this.predicate();
 result.list = this.vector(this.predicate, false);
 return result;
   }],
-  [1287725239, function() {
+  [572241380, function() {
 const result: any = { _: 'todoCompletion' };
 result.id = this.int();
-result.completed_by = this.long();
+result.completed_by = this.predicate();
 result.date = this.int();
 return result;
   }],
@@ -11013,6 +11161,656 @@ return result;
   [2279989220, function() {
 const result: any = { _: 'inputChatThemeUniqueGift' };
 result.slug = this.string();
+return result;
+  }],
+  [1048049172, function() {
+const result: any = { _: 'inputInvoicePremiumAuthCode' };
+result.purpose = this.predicate();
+return result;
+  }],
+  [153344209, function() {
+const result: any = { _: 'inputInvoiceStarGiftDropOriginalDetails' };
+result.stargift = this.predicate();
+return result;
+  }],
+  [2582262557, function() {
+const result: any = { _: 'starGiftUpgradePrice' };
+result.date = this.int();
+result.upgrade_stars = this.long();
+return result;
+  }],
+  [929929052, function() {
+const result: any = { _: 'sendMessageTextDraftAction' };
+result.random_id = this.long();
+result.text = this.predicate();
+return result;
+  }],
+  [3627183885, function() {
+const result: any = { _: 'updateGroupCallMessage' };
+result.call = this.predicate();
+result.message = this.predicate();
+return result;
+  }],
+  [3377964902, function() {
+const result: any = { _: 'updateGroupCallEncryptedMessage' };
+result.call = this.predicate();
+result.from_id = this.predicate();
+result.encrypted_message = this.bytes();
+return result;
+  }],
+  [1748708434, function() {
+const result: any = { _: 'updatePinnedForumTopic' };
+result.flags = this.int();
+result.pinned = !!(result.flags & 1);
+result.peer = this.predicate();
+result.topic_id = this.int();
+return result;
+  }],
+  [3740353488, function() {
+const result: any = { _: 'updatePinnedForumTopics' };
+result.flags = this.int();
+result.peer = this.predicate();
+if (result.flags & 1) result.order = this.vector(this.int);
+return result;
+  }],
+  [3116393370, function() {
+const result: any = { _: 'peerColorCollectible' };
+result.flags = this.int();
+result.collectible_id = this.long();
+result.gift_emoji_id = this.long();
+result.background_emoji_id = this.long();
+result.accent_color = this.int();
+result.colors = this.vector(this.int, false);
+if (result.flags & 1) result.dark_accent_color = this.int();
+if (result.flags & 2) result.dark_colors = this.vector(this.int);
+return result;
+  }],
+  [3102377641, function() {
+const result: any = { _: 'inputPeerColorCollectible' };
+result.collectible_id = this.long();
+return result;
+  }],
+  [747579941, function() {
+const result: any = { _: 'messageActionSuggestBirthday' };
+result.birthday = this.predicate();
+return result;
+  }],
+  [3395070857, function() {
+const result: any = { _: 'messageMediaVideoStream' };
+result.flags = this.int();
+result.rtmp_stream = !!(result.flags & 1);
+result.call = this.predicate();
+return result;
+  }],
+  [1048963372, function() {
+const result: any = { _: 'updateDeleteGroupCallMessages' };
+result.call = this.predicate();
+result.messages = this.vector(this.int, false);
+return result;
+  }],
+  [445316222, function() {
+const result: any = { _: 'groupCallMessage' };
+result.flags = this.int();
+result.from_admin = !!(result.flags & 2);
+result.id = this.int();
+result.from_id = this.predicate();
+result.date = this.int();
+result.message = this.predicate();
+if (result.flags & 1) result.paid_message_stars = this.long();
+return result;
+  }],
+  [1304334886, function() {
+const result: any = { _: 'inputPrivacyKeySavedMusic' };
+return result;
+  }],
+  [4286207771, function() {
+const result: any = { _: 'privacyKeySavedMusic' };
+return result;
+  }],
+  [3997371525, function() {
+const result: any = { _: 'groupCallDonor' };
+result.flags = this.int();
+result.top = !!(result.flags & 1);
+result.my = !!(result.flags & 2);
+if (result.flags & 8) result.peer_id = this.predicate();
+result.stars = this.long();
+return result;
+  }],
+  [2635971878, function() {
+const result: any = { _: 'phone.groupCallStars' };
+result.total_stars = this.long();
+result.top_donors = this.vector(this.predicate, false);
+result.chats = this.vector(this.predicate, false);
+result.users = this.vector(this.predicate, false);
+return result;
+  }],
+  [1897752877, function() {
+const result: any = { _: 'recentStory' };
+result.flags = this.int();
+result.live = !!(result.flags & 1);
+if (result.flags & 2) result.max_id = this.int();
+return result;
+  }],
+  [516618768, function() {
+const result: any = { _: 'inputInvoiceStarGiftAuctionBid' };
+result.flags = this.int();
+result.hide_name = !!(result.flags & 1);
+result.update_bid = !!(result.flags & 4);
+if (result.flags & 8) result.peer = this.predicate();
+result.gift_id = this.long();
+result.bid_amount = this.long();
+if (result.flags & 2) result.message = this.predicate();
+return result;
+  }],
+  [822231244, function() {
+const result: any = { _: 'auctionBidLevel' };
+result.pos = this.int();
+result.amount = this.long();
+result.date = this.int();
+return result;
+  }],
+  [4264769874, function() {
+const result: any = { _: 'starGiftAuctionStateNotModified' };
+return result;
+  }],
+  [1998212710, function() {
+const result: any = { _: 'starGiftAuctionState' };
+result.version = this.int();
+result.start_date = this.int();
+result.end_date = this.int();
+result.min_bid_amount = this.long();
+result.bid_levels = this.vector(this.predicate, false);
+result.top_bidders = this.vector(this.long, false);
+result.next_round_at = this.int();
+result.last_gift_num = this.int();
+result.gifts_left = this.int();
+result.current_round = this.int();
+result.total_rounds = this.int();
+result.rounds = this.vector(this.predicate, false);
+return result;
+  }],
+  [2536352703, function() {
+const result: any = { _: 'starGiftAuctionStateFinished' };
+result.flags = this.int();
+result.start_date = this.int();
+result.end_date = this.int();
+result.average_price = this.long();
+if (result.flags & 1) result.listed_count = this.int();
+if (result.flags & 2) result.fragment_listed_count = this.int();
+if (result.flags & 2) result.fragment_listed_url = this.string();
+return result;
+  }],
+  [787403204, function() {
+const result: any = { _: 'starGiftAuctionUserState' };
+result.flags = this.int();
+result.returned = !!(result.flags & 2);
+if (result.flags & 1) result.bid_amount = this.long();
+if (result.flags & 1) result.bid_date = this.int();
+if (result.flags & 1) result.min_bid_amount = this.long();
+if (result.flags & 1) result.bid_peer = this.predicate();
+result.acquired_count = this.int();
+return result;
+  }],
+  [1222788802, function() {
+const result: any = { _: 'updateStarGiftAuctionState' };
+result.gift_id = this.long();
+result.state = this.predicate();
+return result;
+  }],
+  [3696816926, function() {
+const result: any = { _: 'updateStarGiftAuctionUserState' };
+result.gift_id = this.long();
+result.user_state = this.predicate();
+return result;
+  }],
+  [1798960364, function() {
+const result: any = { _: 'payments.starGiftAuctionState' };
+result.gift = this.predicate();
+result.state = this.predicate();
+result.user_state = this.predicate();
+result.timeout = this.int();
+result.users = this.vector(this.predicate, false);
+result.chats = this.vector(this.predicate, false);
+return result;
+  }],
+  [1118831432, function() {
+const result: any = { _: 'starGiftAuctionAcquiredGift' };
+result.flags = this.int();
+result.name_hidden = !!(result.flags & 1);
+result.peer = this.predicate();
+result.date = this.int();
+result.bid_amount = this.long();
+result.round = this.int();
+result.pos = this.int();
+if (result.flags & 2) result.message = this.predicate();
+if (result.flags & 4) result.gift_num = this.int();
+return result;
+  }],
+  [2103169520, function() {
+const result: any = { _: 'payments.starGiftAuctionAcquiredGifts' };
+result.gifts = this.vector(this.predicate, false);
+result.users = this.vector(this.predicate, false);
+result.chats = this.vector(this.predicate, false);
+return result;
+  }],
+  [3541812317, function() {
+const result: any = { _: 'starGiftActiveAuctionState' };
+result.gift = this.predicate();
+result.state = this.predicate();
+result.user_state = this.predicate();
+return result;
+  }],
+  [3677608656, function() {
+const result: any = { _: 'payments.starGiftActiveAuctionsNotModified' };
+return result;
+  }],
+  [2935401404, function() {
+const result: any = { _: 'payments.starGiftActiveAuctions' };
+result.auctions = this.vector(this.predicate, false);
+result.users = this.vector(this.predicate, false);
+result.chats = this.vector(this.predicate, false);
+return result;
+  }],
+  [48327832, function() {
+const result: any = { _: 'inputStarGiftAuction' };
+result.gift_id = this.long();
+return result;
+  }],
+  [2058715912, function() {
+const result: any = { _: 'inputStarGiftAuctionSlug' };
+result.slug = this.string();
+return result;
+  }],
+  [29770178, function() {
+const result: any = { _: 'webPageAttributeStarGiftAuction' };
+result.gift = this.predicate();
+result.end_date = this.int();
+return result;
+  }],
+  [2556509887, function() {
+const result: any = { _: 'passkey' };
+result.flags = this.int();
+result.id = this.string();
+result.name = this.string();
+result.date = this.int();
+if (result.flags & 1) result.software_emoji_id = this.long();
+if (result.flags & 2) result.last_usage_date = this.int();
+return result;
+  }],
+  [4175473180, function() {
+const result: any = { _: 'account.passkeys' };
+result.passkeys = this.vector(this.predicate, false);
+return result;
+  }],
+  [3781909729, function() {
+const result: any = { _: 'account.passkeyRegistrationOptions' };
+result.options = this.predicate();
+return result;
+  }],
+  [3791878025, function() {
+const result: any = { _: 'auth.passkeyLoginOptions' };
+result.options = this.predicate();
+return result;
+  }],
+  [1046713180, function() {
+const result: any = { _: 'inputPasskeyResponseRegister' };
+result.client_data = this.predicate();
+result.attestation_data = this.bytes();
+return result;
+  }],
+  [3273638218, function() {
+const result: any = { _: 'inputPasskeyResponseLogin' };
+result.client_data = this.predicate();
+result.authenticator_data = this.bytes();
+result.signature = this.bytes();
+result.user_handle = this.string();
+return result;
+  }],
+  [1009235855, function() {
+const result: any = { _: 'inputPasskeyCredentialPublicKey' };
+result.id = this.string();
+result.raw_id = this.string();
+result.response = this.predicate();
+return result;
+  }],
+  [2000845012, function() {
+const result: any = { _: 'messageActionStarGiftPurchaseOffer' };
+result.flags = this.int();
+result.accepted = !!(result.flags & 1);
+result.declined = !!(result.flags & 2);
+result.gift = this.predicate();
+result.price = this.predicate();
+result.expires_at = this.int();
+return result;
+  }],
+  [1940760427, function() {
+const result: any = { _: 'messageActionStarGiftPurchaseOfferDeclined' };
+result.flags = this.int();
+result.expired = !!(result.flags & 1);
+result.gift = this.predicate();
+result.price = this.predicate();
+return result;
+  }],
+  [2952094616, function() {
+const result: any = { _: 'starGiftBackground' };
+result.center_color = this.int();
+result.edge_color = this.int();
+result.text_color = this.int();
+return result;
+  }],
+  [984483112, function() {
+const result: any = { _: 'starGiftAuctionRound' };
+result.num = this.int();
+result.duration = this.int();
+return result;
+  }],
+  [178266597, function() {
+const result: any = { _: 'starGiftAuctionRoundExtendable' };
+result.num = this.int();
+result.duration = this.int();
+result.extend_top = this.int();
+result.extend_window = this.int();
+return result;
+  }],
+  [1187439471, function() {
+const result: any = { _: 'payments.starGiftUpgradeAttributes' };
+result.attributes = this.vector(this.predicate, false);
+return result;
+  }],
+  [3660240455, function() {
+const result: any = { _: 'messages.emojiGameOutcome' };
+result.seed = this.bytes();
+result.stake_ton_amount = this.long();
+result.ton_amount = this.long();
+return result;
+  }],
+  [4087948362, function() {
+const result: any = { _: 'inputMediaStakeDice' };
+result.game_hash = this.string();
+result.ton_amount = this.long();
+result.client_seed = this.bytes();
+return result;
+  }],
+  [1508266805, function() {
+const result: any = { _: 'messages.emojiGameUnavailable' };
+return result;
+  }],
+  [1155883043, function() {
+const result: any = { _: 'messages.emojiGameDiceInfo' };
+result.flags = this.int();
+result.game_hash = this.string();
+result.prev_stake = this.long();
+result.current_streak = this.int();
+result.params = this.vector(this.int, false);
+if (result.flags & 1) result.plays_left = this.int();
+return result;
+  }],
+  [4221326458, function() {
+const result: any = { _: 'updateEmojiGameInfo' };
+result.info = this.predicate();
+return result;
+  }],
+  [910391095, function() {
+const result: any = { _: 'starGiftAttributeRarity' };
+result.permille = this.int();
+return result;
+  }],
+  [3687736201, function() {
+const result: any = { _: 'starGiftAttributeRarityUncommon' };
+return result;
+  }],
+  [4035793259, function() {
+const result: any = { _: 'starGiftAttributeRarityRare' };
+return result;
+  }],
+  [2029777832, function() {
+const result: any = { _: 'starGiftAttributeRarityEpic' };
+return result;
+  }],
+  [3472353192, function() {
+const result: any = { _: 'starGiftAttributeRarityLegendary' };
+return result;
+  }],
+  [2886149188, function() {
+const result: any = { _: 'updateStarGiftCraftFail' };
+return result;
+  }],
+  [1339896880, function() {
+const result: any = { _: 'keyboardButtonStyle' };
+result.flags = this.int();
+result.bg_primary = !!(result.flags & 1);
+result.bg_danger = !!(result.flags & 2);
+result.bg_success = !!(result.flags & 4);
+if (result.flags & 8) result.icon = this.long();
+return result;
+  }],
+  [2961100933, function() {
+const result: any = { _: 'messageActionNewCreatorPending' };
+result.new_creator_id = this.long();
+return result;
+  }],
+  [3783807035, function() {
+const result: any = { _: 'messageActionChangeCreator' };
+result.new_creator_id = this.long();
+return result;
+  }],
+  [2420819911, function() {
+const result: any = { _: 'messageEntityFormattedDate' };
+result.flags = this.int();
+result.relative = !!(result.flags & 1);
+result.short_time = !!(result.flags & 2);
+result.long_time = !!(result.flags & 4);
+result.short_date = !!(result.flags & 8);
+result.long_date = !!(result.flags & 16);
+result.day_of_week = !!(result.flags & 32);
+result.offset = this.int();
+result.length = this.int();
+result.date = this.int();
+return result;
+  }],
+  [3179505593, function() {
+const result: any = { _: 'updateChatParticipantRank' };
+result.chat_id = this.long();
+result.user_id = this.long();
+result.rank = this.string();
+result.version = this.int();
+return result;
+  }],
+  [3212666226, function() {
+const result: any = { _: 'messageActionNoForwardsToggle' };
+result.prev_value = this.predicate();
+result.new_value = this.predicate();
+return result;
+  }],
+  [1042781114, function() {
+const result: any = { _: 'messageActionNoForwardsRequest' };
+result.flags = this.int();
+result.expired = !!(result.flags & 1);
+result.prev_value = this.predicate();
+result.new_value = this.predicate();
+return result;
+  }],
+  [1476834540, function() {
+const result: any = { _: 'channelAdminLogEventActionParticipantEditRank' };
+result.user_id = this.long();
+result.prev_rank = this.string();
+result.new_rank = this.string();
+return result;
+  }],
+  [1076577429, function() {
+const result: any = { _: 'inputMessageReadMetric' };
+result.msg_id = this.int();
+result.view_id = this.long();
+result.time_in_view_ms = this.int();
+result.active_time_in_view_ms = this.int();
+result.height_to_viewport_ratio_permille = this.int();
+result.seen_range_ratio_permille = this.int();
+return result;
+  }],
+  [429911446, function() {
+const result: any = { _: 'inputPollAnswer' };
+result.flags = this.int();
+result.text = this.predicate();
+if (result.flags & 1) result.media = this.predicate();
+return result;
+  }],
+  [4197173514, function() {
+const result: any = { _: 'inputMessagesFilterPoll' };
+return result;
+  }],
+  [2644626796, function() {
+const result: any = { _: 'messageActionPollAppendAnswer' };
+result.answer = this.predicate();
+return result;
+  }],
+  [966161628, function() {
+const result: any = { _: 'messageActionPollDeleteAnswer' };
+result.answer = this.predicate();
+return result;
+  }],
+  [1048699000, function() {
+const result: any = { _: 'requestPeerTypeCreateBot' };
+result.flags = this.int();
+result.bot_managed = !!(result.flags & 1);
+if (result.flags & 2) result.suggested_name = this.string();
+if (result.flags & 4) result.suggested_username = this.string();
+return result;
+  }],
+  [1216408986, function() {
+const result: any = { _: 'updateManagedBot' };
+result.user_id = this.long();
+result.bot_id = this.long();
+result.qts = this.int();
+return result;
+  }],
+  [1012971041, function() {
+const result: any = { _: 'bots.exportedBotToken' };
+result.token = this.string();
+return result;
+  }],
+  [4047224023, function() {
+const result: any = { _: 'bots.requestedButton' };
+result.webapp_req_id = this.string();
+return result;
+  }],
+  [375414334, function() {
+const result: any = { _: 'messageActionManagedBotCreated' };
+result.bot_id = this.long();
+return result;
+  }],
+  [1903653142, function() {
+const result: any = { _: 'messageEntityDiffInsert' };
+result.offset = this.int();
+result.length = this.int();
+return result;
+  }],
+  [3334596007, function() {
+const result: any = { _: 'messageEntityDiffReplace' };
+result.offset = this.int();
+result.length = this.int();
+result.old_text = this.string();
+return result;
+  }],
+  [106086853, function() {
+const result: any = { _: 'messageEntityDiffDelete' };
+result.offset = this.int();
+result.length = this.int();
+return result;
+  }],
+  [2430053882, function() {
+const result: any = { _: 'messages.composedMessageWithAI' };
+result.flags = this.int();
+result.result_text = this.predicate();
+if (result.flags & 1) result.diff_text = this.predicate();
+return result;
+  }],
+  [697941741, function() {
+const result: any = { _: 'stats.pollStats' };
+result.votes_graph = this.predicate();
+return result;
+  }],
+  [3453225277, function() {
+const result: any = { _: 'updateBotGuestChatQuery' };
+result.flags = this.int();
+result.query_id = this.long();
+result.message = this.predicate();
+if (result.flags & 1) result.reference_messages = this.vector(this.predicate);
+result.qts = this.int();
+return result;
+  }],
+  [1814361053, function() {
+const result: any = { _: 'topPeerCategoryBotsGuestChat' };
+return result;
+  }],
+  [535407039, function() {
+const result: any = { _: 'inputAiComposeToneDefault' };
+result.tone = this.string();
+return result;
+  }],
+  [125026432, function() {
+const result: any = { _: 'inputAiComposeToneID' };
+result.id = this.long();
+result.access_hash = this.long();
+return result;
+  }],
+  [530584407, function() {
+const result: any = { _: 'inputAiComposeToneSlug' };
+result.slug = this.string();
+return result;
+  }],
+  [3489021609, function() {
+const result: any = { _: 'aiComposeTone' };
+result.flags = this.int();
+result.creator = !!(result.flags & 1);
+result.id = this.long();
+result.access_hash = this.long();
+result.slug = this.string();
+result.title = this.string();
+if (result.flags & 2) result.emoji_id = this.long();
+if (result.flags & 16) result.prompt = this.string();
+if (result.flags & 4) result.installs_count = this.int();
+if (result.flags & 8) result.author_id = this.long();
+if (result.flags & 32) result.example_english = this.predicate();
+return result;
+  }],
+  [2611831828, function() {
+const result: any = { _: 'aiComposeToneDefault' };
+result.tone = this.string();
+result.emoji_id = this.long();
+result.title = this.string();
+return result;
+  }],
+  [3254018307, function() {
+const result: any = { _: 'aicompose.tonesNotModified' };
+return result;
+  }],
+  [1822232318, function() {
+const result: any = { _: 'aicompose.tones' };
+result.hash = this.long();
+result.tones = this.vector(this.predicate, false);
+result.users = this.vector(this.predicate, false);
+return result;
+  }],
+  [4057344236, function() {
+const result: any = { _: 'aiComposeToneExample' };
+result.from = this.predicate();
+result.to = this.predicate();
+return result;
+  }],
+  [2349830651, function() {
+const result: any = { _: 'updateAiComposeTones' };
+return result;
+  }],
+  [2005007896, function() {
+const result: any = { _: 'webPageAttributeAiComposeTone' };
+result.emoji_id = this.long();
+return result;
+  }],
+  [3709845395, function() {
+const result: any = { _: 'bots.accessSettings' };
+result.flags = this.int();
+result.restricted = !!(result.flags & 1);
+if (result.flags & 2) result.add_users = this.vector(this.predicate);
 return result;
   }],
 ]);
