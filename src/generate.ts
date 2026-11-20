@@ -29,8 +29,8 @@ const aviableTypesBuilder = new Set([
 const primitiveTypes = new Map([
   ["int", "number"],
   ["long", "string"],
-  ["int128", "number"],
-  ["int256", "number"],
+  ["int128", "Uint8Array"],
+  ["int256", "Uint8Array"],
   ["string", "string"],
   ["bytes", "Uint8Array"],
   ["double", "number"],
@@ -107,7 +107,7 @@ function builderParamsToLines(params: any) {
   return paramsLines;
 }
 
-function paramsToInterfaceLines(params: any[]) {
+function paramsToInterfaceLines(params: any[], prefix = "") {
   const interfaceLines: string[] = [];
 
   params.forEach(function (param: any) {
@@ -129,15 +129,22 @@ function paramsToInterfaceLines(params: any[]) {
       type = "number"
     }
 
-    if (type.startsWith("Vector")) {
+    if (type.toLowerCase().startsWith("vector")) {
       const vectorType = type.substring(7, type.length - 1);
       const primitiveType = primitiveTypes.get(vectorType)
+      const isBare = vectorType.charAt(0) === '%';
 
       if (primitiveType) {
         type = `${primitiveType}[]`
       }
+      else if (isBare) {
+        type = `${prefix}${vectorType.substring(1)}[]`
+      }
+      else if (vectorType === "future_salt") {
+        type = "mt_future_salt[]"
+      }
       else {
-        type = `${getTypeName(vectorType)}[]`
+        type = `${getTypeName(vectorType, prefix)}[]`
       }
     }
     else if ('!X' === type) {
@@ -146,6 +153,9 @@ function paramsToInterfaceLines(params: any[]) {
     else if ('X' === type) {
       type = "unknown"
     }
+    else if (type === 'Object') {
+      type = 'unknown';
+    }
     else {
       const primitiveType = primitiveTypes.get(type)
 
@@ -153,7 +163,7 @@ function paramsToInterfaceLines(params: any[]) {
         type = `${primitiveType}`
       }
       else {
-        type = `${getTypeName(type)}`
+        type = `${getTypeName(type, prefix)}`
       }
     }
 
@@ -166,7 +176,7 @@ function paramsToInterfaceLines(params: any[]) {
 const builderMapLines: string[] = [];
 
 mtprotoSchema.constructors.forEach(function (constructor: any) {
-  const { id, predicate, params } = constructor;
+  const { id, predicate, params, type } = constructor;
 
   const body = [
     `    this.int32(${id});`,
@@ -180,6 +190,19 @@ mtprotoSchema.constructors.forEach(function (constructor: any) {
   builderInterfaceLines.push(
     `  'mt_${predicate}': (this: any, params: any) => void`
   )
+
+  if (predicate !== "vector") {
+    const interfaceName = `mt_${predicate}`
+
+    typingInterfacesLines.push(`export interface ${interfaceName
+      } {\n  _: "mt_${predicate}"\n${paramsToInterfaceLines(params, "mt_").join("\n")
+      }\n}\n`)
+
+    if (type) {
+      typingTypes.append(`mt_${type}`, interfaceName)
+      typingTypes.append("DecryptedMessage", interfaceName)
+    }
+  }
 })
 
 mtprotoSchema.methods.forEach(function (method: any) {
@@ -285,7 +308,7 @@ fs.writeFileSync('src/builder.ts', builder.join('\n'));
 
 const mtprotoTypesLines = new Array<string>()
 
-for(const [typeName, interfaces] of typingTypes) {
+for (const [typeName, interfaces] of typingTypes) {
   mtprotoTypesLines.push(
     `export type ${typeName} = ${interfaces.join(" | ")};`
   )
@@ -328,6 +351,7 @@ const aviableTypes = [
   'bytes',
   'double',
   'mt_message',
+  'mt_future_salt',
   'vector',
   'predicate',
 ];
@@ -502,8 +526,8 @@ function getInterfaceName(key: string) {
 /**
  * @example getTypeName("auth.SendCode") -> "Auth$SendCode"
  */
-function getTypeName(key: string) {
-  return key.split(".")
+function getTypeName(key: string, prefix = "") {
+  return prefix + key.split(".")
     .map(capitalizeFirstLetter)
     .join("$")
 }
@@ -516,14 +540,14 @@ function createGroupMap() {
   return new class extends Map<string, string[]> {
     append(key: string, value: string) {
       const group = this.get(key)
-  
+
       if (group) {
         group.push(value)
       }
       else {
         this.set(key, [value])
       }
-  
+
       return this
     }
   }

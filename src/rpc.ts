@@ -11,7 +11,7 @@ import { Transport } from "./transport.js";
 import { Deserializer } from "./deserializer.js";
 import { ModeOfOperationIGE } from "./aes.js";
 import { pqPrimeFactorization } from "./pg.js";
-import { Methods, Updates } from "./mtptoto-types.js";
+import { DecryptedMessage, Methods, mt_pong, Updates } from "./mtptoto-types.js";
 import { RPCError } from "./errors.js";
 import { Storage } from "./storage.js";
 import { LAYER } from "./config.js";
@@ -54,34 +54,44 @@ export class RPC {
   protected transport: Transport;
   protected debug: Debugger;
   protected destroyed = false;
-  protected pingTimeout = 60 * 1000
-  protected pongTimeout = 15 * 1000
+  protected pingTimeout = 5_000
+  protected pongTimeout = 5_000
   protected pingTimer: NodeJS.Timeout | null = null;
   protected pongTimer: NodeJS.Timeout | null = null;
+  protected pingNo: number
+  protected pendingPingId: string | null = null
+  protected pendingPindMessageId: string | null = null
   protected isAuth = false
   protected pendingAcks = new Array<string>()
   protected messagesWaitAuth = new Array<Message>()
   protected messagesWaitResponse = new Map<string, Message>()
 
-  sendAcks: Function & {
+  protected sendAcks: Function & {
     cancel(): void;
   };
 
-  tmpAesKey?: Uint8Array
-  tmpAesIV?: Uint8Array
-  sessionId?: Uint8Array
-  nonce: Uint8Array
-  newNonce: Uint8Array
-  serverNonce: Uint8Array
+  protected tmpAesKey?: Uint8Array
+  protected tmpAesIV?: Uint8Array
+  protected sessionId?: Uint8Array
+  protected nonce: Uint8Array
+  protected newNonce: Uint8Array
+  protected serverNonce: Uint8Array
 
-  dhPrime?: bigInt.BigInteger
-  g?: bigInt.BigInteger
-  gA?: bigInt.BigInteger
-  authKeyAuxHash?: any
-  lastMessageId?: any
-  seqNo: number
+  protected dhPrime?: bigInt.BigInteger
+  protected g?: bigInt.BigInteger
+  protected gA?: bigInt.BigInteger
+  protected authKeyAuxHash?: any
+  protected lastMessageId?: any
+  protected seqNo: number
 
-  constructor({ api_id, api_hash, initConnectionParams, dc, storage, updates }: {
+  constructor({
+    api_id,
+    api_hash,
+    initConnectionParams,
+    dc,
+    storage,
+    updates
+  }: {
     api_id: number
     api_hash: string
     initConnectionParams: InitConnectionParams
@@ -107,6 +117,7 @@ export class RPC {
     this.newNonce = new Uint8Array()
     this.serverNonce = new Uint8Array()
     this.seqNo = 0
+    this.pingNo = 0
 
     this.handleTransportOpen = this.handleTransportOpen.bind(this);
     this.handleTransportError = this.handleTransportError.bind(this);
@@ -114,7 +125,6 @@ export class RPC {
     this.handleTransportClose = this.handleTransportClose.bind(this);
     this.ping = this.ping.bind(this)
     this.pong = this.pong.bind(this)
-    this.pongError = this.pongError.bind(this)
     this.reconnect = this.reconnect.bind(this)
     this.schedulePing = this.schedulePing.bind(this)
 
@@ -165,17 +175,11 @@ export class RPC {
 
     this.messagesWaitAuth = []
 
-    if (this.pingTimer) {
-      clearTimeout(this.pingTimer)
-    }
-
-    if (this.pongTimer) {
-      clearTimeout(this.pongTimer)
-    }
+    this.stopHeartbeat();
   }
 
   get isReady() {
-    return this.isAuth && this.transport.isAvailable;
+    return !this.destroyed && this.isAuth && this.transport.isAvailable;
   }
 
   async handleTransportError(payload: {
@@ -212,8 +216,7 @@ export class RPC {
       this.isAuth = true;
       this.sendWaitMessages();
 
-      // This request is necessary to ensure that you start interacting with the server. If we have not made any request, the server will not send us updates.
-      this.ping()
+      this.startHeartbeat()
     }
     else {
       this.nonce = getRandomBytes(16);
@@ -229,6 +232,8 @@ export class RPC {
   }
 
   handleTransportClose() {
+    this.isAuth = false;
+    this.stopHeartbeat();
     for (const [id, message] of this.messagesWaitResponse) {
       const duration = Date.now() - message.createAt
 
@@ -513,6 +518,7 @@ export class RPC {
       this.handleMessage = this.handleEncryptedMessage;
       this.isAuth = true;
       this.sendWaitMessages();
+      this.startHeartbeat();
 
       return;
     }
@@ -622,9 +628,10 @@ export class RPC {
     this.handleDecryptedMessage(result, { messageId, seqNo });
   }
 
-  // @ts-ignore
-  async handleDecryptedMessage(message: any, params = {}) {
-    // @ts-ignore
+  async handleDecryptedMessage(message: DecryptedMessage, params: {
+    messageId: string
+    seqNo?: number
+  }) {
     const { messageId } = params;
 
     if (bigInt(messageId).isEven()) {
@@ -642,9 +649,8 @@ export class RPC {
     if (message._ === 'mt_msg_container') {
       this.debug('handling container');
 
-      // @ts-ignore
       message.messages.forEach((message) => {
-        this.handleDecryptedMessage(message.body, {
+        this.handleDecryptedMessage(message.body as DecryptedMessage, {
           messageId: message.msg_id,
         });
       });
@@ -652,10 +658,10 @@ export class RPC {
       return;
     }
 
-    if (['mt_bad_server_salt', 'mt_bad_msg_notification'].includes(message._)) {
+    if (message._ === 'mt_bad_server_salt' || message._ === 'mt_bad_msg_notification') {
       this.debug(`handling ${message._} for message ${message.bad_msg_id}`);
 
-      if (message.error_code === 48) {
+      if (message._ === 'mt_bad_server_salt' && message.error_code === 48) {
         await this.setStorageItem('serverSalt', longToBytesRaw(message.new_server_salt));
       }
 
@@ -665,6 +671,12 @@ export class RPC {
 
         await this.storage.set('timeOffset', timeOffset);
         this.lastMessageId = [0, 0];
+      }
+
+      if (this.pendingPindMessageId === message.bad_msg_id) {
+        this.stopHeartbeat();
+        void this.ping();
+        return;
       }
 
       const waitMessage = this.messagesWaitResponse.get(message.bad_msg_id);
@@ -694,7 +706,6 @@ export class RPC {
     if (message._ === 'mt_msgs_ack') {
       this.debug('handling acknowledge for %o', message.msg_ids);
 
-      // @ts-ignore
       message.msg_ids.forEach((msgId) => {
         const waitMessage = this.messagesWaitResponse.get(msgId);
 
@@ -705,6 +716,11 @@ export class RPC {
         waitMessage.isAck = true
       });
 
+      return;
+    }
+
+    if (message._ === "mt_pong") {
+      this.pong(message);
       return;
     }
 
@@ -719,8 +735,11 @@ export class RPC {
         return
       }
 
+      // @ts-ignore
       if (message.result._ === 'mt_rpc_error') {
+        // @ts-ignore
         const errorCode = Number(message.result.error_code)
+        // @ts-ignore
         const errorMessage = String(message.result.error_message || JSON.stringify(message.result))
 
         waitMessage.reject(new RPCError(errorMessage, errorCode));
@@ -736,6 +755,7 @@ export class RPC {
 
     this.debug('handling update %o', message);
     this.ackMessage(messageId);
+    // @ts-ignore
     this.updates.emit(message._, message);
   }
 
@@ -853,7 +873,7 @@ export class RPC {
       this.bytesRaw(encryptedData);
     });
 
-    this.transport.send(serializer.getBytes());
+      this.transport.send(serializer.getBytes());
 
     return messageId;
   }
@@ -915,7 +935,6 @@ export class RPC {
 
     if (isContentRelated) {
       seqNo += 1;
-      // @ts-ignore
       this.seqNo += 1;
     }
 
@@ -961,39 +980,39 @@ export class RPC {
     return this.storage.get(`${this.dc.id}${key}`);
   }
 
-  ping() {
-    this.pongTimer = setTimeout(this.reconnect, this.pongTimeout).unref()
+  startHeartbeat() {
+    this.stopHeartbeat()
 
-    this.call("help.getConfig")
-      .then(this.pong)
-      .catch(this.pongError)
-      .finally(this.schedulePing)
-  }
-
-  pong() {
-    if (this.pongTimer) {
-      clearTimeout(this.pongTimer)
-    }
-  }
-
-  pongError(err: unknown) {
-    if (err instanceof Error) {
-      console.warn("ping failed due to %s", err.message)
-    }
-  }
-
-  reconnect() {
-    if (this.transport.socket) {
-      this.transport.socket.destroy()
-    }
-  }
-
-  schedulePing() {
-    if (this.destroyed) {
+    if (!this.isReady) {
       return
     }
 
-    if (!this.transport.isAvailable) {
+    // Initialize API interaction so the server starts delivering updates.
+    // Heartbeat monitoring must not wait for this request to complete.
+    void this.call("help.getConfig").catch(err => {
+      this.debug("failed to get config after opening connection %o", err)
+    })
+
+    void this.ping()
+  }
+
+  stopHeartbeat() {
+    if (this.pingTimer) {
+      clearTimeout(this.pingTimer);
+    }
+
+    if (this.pongTimer) {
+      clearTimeout(this.pongTimer);
+    }
+
+    this.pingTimer = null;
+    this.pongTimer = null;
+    this.pendingPingId = null;
+    this.pendingPindMessageId = null;
+  }
+
+  async ping() {
+    if (!this.isReady || this.pendingPingId) {
       return
     }
 
@@ -1001,10 +1020,65 @@ export class RPC {
       clearTimeout(this.pingTimer)
     }
 
-    if (this.pongTimer) {
-      clearTimeout(this.pongTimer)
+    this.pingTimer = null
+
+    const pendingPingNo = String(this.pingNo++)
+
+    this.pendingPingId = pendingPingNo
+    this.pendingPindMessageId = null
+
+    this.pongTimer = setTimeout(() => {
+      this.stopHeartbeat();
+      this.reconnect();
+    }, this.pongTimeout).unref();
+
+    try {
+      const serializer = new Serializer(builderMap.mt_ping, { ping_id: pendingPingNo });
+      const messageId = await this.sendEncryptedMessage(serializer.getBytes(), {
+        isContentRelated: false
+      })
+
+      if (this.pendingPingId === pendingPingNo) {
+        this.pendingPindMessageId = intsToLong(messageId[0], messageId[1]);
+      }
+    } catch (err) {
+      if (this.pendingPingId !== pendingPingNo) {
+        return;
+      }
+
+      this.stopHeartbeat();
+      this.reconnect();
+    }
+  }
+
+  pong(message: mt_pong) {
+    if (!this.pendingPingId || message.msg_id !== this.pendingPindMessageId || message.ping_id !== this.pendingPingId) {
+      return
     }
 
-    this.pingTimer = setTimeout(this.ping, this.pingTimeout).unref()
+    this.stopHeartbeat();
+    this.schedulePing();
+  }
+
+  reconnect() {
+    if (!this.destroyed) {
+      this.transport.socket?.destroy();
+    }
+  }
+
+  schedulePing() {
+    if (!this.isReady) {
+      return
+    }
+
+    if (this.pendingPingId) {
+      return
+    }
+
+    if (this.pingTimer) {
+      clearTimeout(this.pingTimer);
+    }
+
+    this.pingTimer = setTimeout(this.ping, this.pingTimeout).unref();
   }
 }
