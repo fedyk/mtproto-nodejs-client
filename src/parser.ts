@@ -310,21 +310,25 @@ return result;
 const result: any = { _: 'inputMediaEmpty' };
 return result;
   }],
-  [505969924, function() {
+  [2105767386, function() {
 const result: any = { _: 'inputMediaUploadedPhoto' };
 result.flags = this.int();
 result.spoiler = !!(result.flags & 4);
+result.live_photo = !!(result.flags & 8);
 result.file = this.predicate();
 if (result.flags & 1) result.stickers = this.vector(this.predicate);
 if (result.flags & 2) result.ttl_seconds = this.int();
+if (result.flags & 8) result.video = this.predicate();
 return result;
   }],
-  [3015312949, function() {
+  [3819914292, function() {
 const result: any = { _: 'inputMediaPhoto' };
 result.flags = this.int();
 result.spoiler = !!(result.flags & 2);
+result.live_photo = !!(result.flags & 4);
 result.id = this.predicate();
 if (result.flags & 1) result.ttl_seconds = this.int();
+if (result.flags & 4) result.video = this.predicate();
 return result;
   }],
   [4190388548, function() {
@@ -571,7 +575,7 @@ result.id = this.int();
 if (result.flags & 1) result.peer_id = this.predicate();
 return result;
   }],
-  [988112002, function() {
+  [2515496747, function() {
 const result: any = { _: 'message' };
 result.flags = this.int();
 result.out = !!(result.flags & 2);
@@ -599,6 +603,7 @@ if (result.flags & 268435456) result.saved_peer_id = this.predicate();
 if (result.flags & 4) result.fwd_from = this.predicate();
 if (result.flags & 2048) result.via_bot_id = this.long();
 if (result.flags2 & 1) result.via_business_bot_id = this.long();
+if (result.flags2 & 524288) result.guestchat_via_from = this.predicate();
 if (result.flags & 8) result.reply_to = this.predicate();
 result.date = this.int();
 result.message = this.string();
@@ -649,12 +654,14 @@ return result;
 const result: any = { _: 'messageMediaEmpty' };
 return result;
   }],
-  [1766936791, function() {
+  [3793152867, function() {
 const result: any = { _: 'messageMediaPhoto' };
 result.flags = this.int();
 result.spoiler = !!(result.flags & 8);
+result.live_photo = !!(result.flags & 16);
 if (result.flags & 1) result.photo = this.predicate();
 if (result.flags & 4) result.ttl_seconds = this.int();
+if (result.flags & 16) result.video = this.predicate();
 return result;
   }],
   [1457575028, function() {
@@ -709,7 +716,7 @@ const result: any = { _: 'messageActionChatDeleteUser' };
 result.user_id = this.long();
 return result;
   }],
-  [3582593222, function() {
+  [4236900339, function() {
 const result: any = { _: 'dialog' };
 result.flags = this.int();
 result.pinned = !!(result.flags & 4);
@@ -722,6 +729,7 @@ result.read_outbox_max_id = this.int();
 result.unread_count = this.int();
 result.unread_mentions_count = this.int();
 result.unread_reactions_count = this.int();
+result.unread_poll_votes_count = this.int();
 result.notify_settings = this.predicate();
 if (result.flags & 1) result.pts = this.int();
 if (result.flags & 2) result.draft = this.predicate();
@@ -907,7 +915,7 @@ return result;
 const result: any = { _: 'inputReportReasonOther' };
 return result;
   }],
-  [2687222078, function() {
+  [114026053, function() {
 const result: any = { _: 'userFull' };
 result.flags = this.int();
 result.blocked = !!(result.flags & 1);
@@ -930,6 +938,7 @@ result.bot_can_manage_emoji_status = !!(result.flags2 & 1024);
 result.display_gifts_button = !!(result.flags2 & 65536);
 result.noforwards_my_enabled = !!(result.flags2 & 8388608);
 result.noforwards_peer_enabled = !!(result.flags2 & 16777216);
+result.unofficial_security_risk = !!(result.flags2 & 67108864);
 result.id = this.long();
 if (result.flags & 2) result.about = this.string();
 result.settings = this.predicate();
@@ -967,6 +976,7 @@ if (result.flags2 & 262144) result.stars_my_pending_rating_date = this.int();
 if (result.flags2 & 1048576) result.main_tab = this.predicate();
 if (result.flags2 & 2097152) result.saved_music = this.predicate();
 if (result.flags2 & 4194304) result.note = this.predicate();
+if (result.flags2 & 33554432) result.bot_manager_id = this.long();
 return result;
   }],
   [341499403, function() {
@@ -2247,6 +2257,8 @@ result.bot_business = !!(result.flags2 & 2048);
 result.bot_has_main_app = !!(result.flags2 & 8192);
 result.bot_forum_view = !!(result.flags2 & 65536);
 result.bot_forum_can_manage_topics = !!(result.flags2 & 131072);
+result.bot_can_manage_bots = !!(result.flags2 & 262144);
+result.bot_guestchat = !!(result.flags2 & 524288);
 result.id = this.long();
 if (result.flags & 1) result.access_hash = this.long();
 if (result.flags & 2) result.first_name = this.string();
@@ -5285,21 +5297,28 @@ return result;
 const result: any = { _: 'messageActionContactSignUp' };
 return result;
   }],
-  [2896258427, function() {
+  [3595325995, function() {
 const result: any = { _: 'updateMessagePoll' };
 result.flags = this.int();
+if (result.flags & 2) result.peer = this.predicate();
+if (result.flags & 2) result.msg_id = this.int();
+if (result.flags & 4) result.top_msg_id = this.int();
 result.poll_id = this.long();
 if (result.flags & 1) result.poll = this.predicate();
 result.results = this.predicate();
 return result;
   }],
-  [4279689930, function() {
+  [1266514026, function() {
 const result: any = { _: 'pollAnswer' };
+result.flags = this.int();
 result.text = this.predicate();
 result.option = this.bytes();
+if (result.flags & 1) result.media = this.predicate();
+if (result.flags & 2) result.added_by = this.predicate();
+if (result.flags & 2) result.date = this.int();
 return result;
   }],
-  [1484026161, function() {
+  [2523803071, function() {
 const result: any = { _: 'poll' };
 result.id = this.long();
 result.flags = this.int();
@@ -5307,45 +5326,61 @@ result.closed = !!(result.flags & 1);
 result.public_voters = !!(result.flags & 2);
 result.multiple_choice = !!(result.flags & 4);
 result.quiz = !!(result.flags & 8);
+result.open_answers = !!(result.flags & 64);
+result.revoting_disabled = !!(result.flags & 128);
+result.shuffle_answers = !!(result.flags & 256);
+result.hide_results_until_close = !!(result.flags & 512);
+result.creator = !!(result.flags & 1024);
+result.subscribers_only = !!(result.flags & 2048);
 result.question = this.predicate();
 result.answers = this.vector(this.predicate, false);
 if (result.flags & 16) result.close_period = this.int();
 if (result.flags & 32) result.close_date = this.int();
+if (result.flags & 4096) result.countries_iso2 = this.vector(this.string);
+result.hash = this.long();
 return result;
   }],
-  [997055186, function() {
+  [910500618, function() {
 const result: any = { _: 'pollAnswerVoters' };
 result.flags = this.int();
 result.chosen = !!(result.flags & 1);
 result.correct = !!(result.flags & 2);
 result.option = this.bytes();
-result.voters = this.int();
+if (result.flags & 4) result.voters = this.int();
+if (result.flags & 4) result.recent_voters = this.vector(this.predicate);
 return result;
   }],
-  [2061444128, function() {
+  [3128668510, function() {
 const result: any = { _: 'pollResults' };
 result.flags = this.int();
 result.min = !!(result.flags & 1);
+result.has_unread_votes = !!(result.flags & 64);
+result.can_view_stats = !!(result.flags & 128);
 if (result.flags & 2) result.results = this.vector(this.predicate);
 if (result.flags & 4) result.total_voters = this.int();
 if (result.flags & 8) result.recent_voters = this.vector(this.predicate);
 if (result.flags & 16) result.solution = this.string();
 if (result.flags & 16) result.solution_entities = this.vector(this.predicate);
+if (result.flags & 32) result.solution_media = this.predicate();
 return result;
   }],
-  [261416433, function() {
+  [2285519112, function() {
 const result: any = { _: 'inputMediaPoll' };
 result.flags = this.int();
 result.poll = this.predicate();
-if (result.flags & 1) result.correct_answers = this.vector(this.bytes);
+if (result.flags & 1) result.correct_answers = this.vector(this.int);
+if (result.flags & 8) result.attached_media = this.predicate();
 if (result.flags & 2) result.solution = this.string();
 if (result.flags & 2) result.solution_entities = this.vector(this.predicate);
+if (result.flags & 4) result.solution_media = this.predicate();
 return result;
   }],
-  [1272375192, function() {
+  [2000637542, function() {
 const result: any = { _: 'messageMediaPoll' };
+result.flags = this.int();
 result.poll = this.predicate();
 result.results = this.predicate();
+if (result.flags & 1) result.attached_media = this.predicate();
 return result;
   }],
   [4030849616, function() {
@@ -5410,6 +5445,7 @@ result.send_voices = !!(result.flags & 8388608);
 result.send_docs = !!(result.flags & 16777216);
 result.send_plain = !!(result.flags & 33554432);
 result.edit_rank = !!(result.flags & 67108864);
+result.send_reactions = !!(result.flags & 134217728);
 result.until_date = this.int();
 return result;
   }],
@@ -5718,12 +5754,13 @@ result.url = this.string();
 result.bot = this.predicate();
 return result;
   }],
-  [4177062686, function() {
+  [1020666860, function() {
 const result: any = { _: 'urlAuthResultRequest' };
 result.flags = this.int();
 result.request_write_access = !!(result.flags & 1);
 result.request_phone_number = !!(result.flags & 2);
 result.match_codes_first = !!(result.flags & 32);
+result.is_app = !!(result.flags & 64);
 result.bot = this.predicate();
 result.domain = this.string();
 if (result.flags & 4) result.browser = this.string();
@@ -5732,6 +5769,7 @@ if (result.flags & 4) result.ip = this.string();
 if (result.flags & 4) result.region = this.string();
 if (result.flags & 8) result.match_codes = this.vector(this.string);
 if (result.flags & 16) result.user_id_hint = this.long();
+if (result.flags & 128) result.verified_app_name = this.string();
 return result;
   }],
   [1648005024, function() {
@@ -6010,11 +6048,12 @@ if (result.flags & 1) result.documents = this.vector(this.predicate);
 if (result.flags & 2) result.settings = this.predicate();
 return result;
   }],
-  [619974263, function() {
+  [1989799956, function() {
 const result: any = { _: 'updateMessagePollVote' };
 result.poll_id = this.long();
 result.peer = this.predicate();
 result.options = this.vector(this.bytes, false);
+result.positions = this.vector(this.int, false);
 result.qts = this.int();
 return result;
   }],
@@ -6378,12 +6417,13 @@ result.chats = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
   }],
-  [1763137035, function() {
+  [462937446, function() {
 const result: any = { _: 'messageReplyHeader' };
 result.flags = this.int();
 result.reply_to_scheduled = !!(result.flags & 4);
 result.forum_topic = !!(result.flags & 8);
 result.quote = !!(result.flags & 512);
+result.reply_to_ephemeral = !!(result.flags & 8192);
 if (result.flags & 16) result.reply_to_msg_id = this.int();
 if (result.flags & 1) result.reply_to_peer_id = this.predicate();
 if (result.flags & 32) result.reply_from = this.predicate();
@@ -6393,6 +6433,7 @@ if (result.flags & 64) result.quote_text = this.string();
 if (result.flags & 128) result.quote_entities = this.vector(this.predicate);
 if (result.flags & 1024) result.quote_offset = this.int();
 if (result.flags & 2048) result.todo_item_id = this.int();
+if (result.flags & 4096) result.poll_option = this.bytes();
 return result;
   }],
   [2211844034, function() {
@@ -7850,7 +7891,7 @@ const result: any = { _: 'forumTopicDeleted' };
 result.id = this.int();
 return result;
   }],
-  [3456044746, function() {
+  [4242200597, function() {
 const result: any = { _: 'forumTopic' };
 result.flags = this.int();
 result.my = !!(result.flags & 2);
@@ -7871,6 +7912,7 @@ result.read_outbox_max_id = this.int();
 result.unread_count = this.int();
 result.unread_mentions_count = this.int();
 result.unread_reactions_count = this.int();
+result.unread_poll_votes_count = this.int();
 result.from_id = this.predicate();
 result.notify_settings = this.predicate();
 if (result.flags & 16) result.draft = this.predicate();
@@ -8304,7 +8346,7 @@ result.date = this.int();
 result.expire_date = this.int();
 return result;
   }],
-  [3992020209, function() {
+  [379894076, function() {
 const result: any = { _: 'storyItem' };
 result.flags = this.int();
 result.pinned = !!(result.flags & 32);
@@ -8329,6 +8371,7 @@ if (result.flags & 4) result.privacy = this.vector(this.predicate);
 if (result.flags & 8) result.views = this.predicate();
 if (result.flags & 32768) result.sent_reaction = this.predicate();
 if (result.flags & 524288) result.albums = this.vector(this.int);
+if (result.flags & 1048576) result.music = this.predicate();
 return result;
   }],
   [1974712216, function() {
@@ -8409,7 +8452,7 @@ result.views = this.vector(this.predicate, false);
 result.users = this.vector(this.predicate, false);
 return result;
   }],
-  [2258615824, function() {
+  [1003796418, function() {
 const result: any = { _: 'inputReplyToMessage' };
 result.flags = this.int();
 result.reply_to_msg_id = this.int();
@@ -8420,6 +8463,7 @@ if (result.flags & 8) result.quote_entities = this.vector(this.predicate);
 if (result.flags & 16) result.quote_offset = this.int();
 if (result.flags & 32) result.monoforum_peer_id = this.predicate();
 if (result.flags & 64) result.todo_item_id = this.int();
+if (result.flags & 128) result.poll_option = this.bytes();
 return result;
   }],
   [1484862010, function() {
@@ -9595,11 +9639,12 @@ return result;
 const result: any = { _: 'reactionNotificationsFromAll' };
 return result;
   }],
-  [1457736048, function() {
+  [1910827608, function() {
 const result: any = { _: 'reactionsNotifySettings' };
 result.flags = this.int();
 if (result.flags & 1) result.messages_notify_from = this.predicate();
 if (result.flags & 2) result.stories_notify_from = this.predicate();
+if (result.flags & 4) result.poll_votes_notify_from = this.predicate();
 result.sound = this.predicate();
 result.show_previews = this.predicate();
 return result;
@@ -10621,22 +10666,24 @@ result.months = this.int();
 if (result.flags & 1) result.message = this.predicate();
 return result;
   }],
-  [3767884348, function() {
+  [4169301695, function() {
 const result: any = { _: 'auth.sentCodePaymentRequired' };
 result.store_product = this.string();
 result.phone_code_hash = this.string();
 result.support_email_address = this.string();
 result.support_email_subject = this.string();
+result.premium_days = this.int();
 result.currency = this.string();
 result.amount = this.long();
 return result;
   }],
-  [2612159341, function() {
+  [1069645911, function() {
 const result: any = { _: 'inputStorePaymentAuthCode' };
 result.flags = this.int();
 result.restore = !!(result.flags & 1);
 result.phone_number = this.string();
 result.phone_code_hash = this.string();
+result.premium_days = this.int();
 result.currency = this.string();
 result.amount = this.long();
 return result;
@@ -11588,6 +11635,182 @@ const result: any = { _: 'channelAdminLogEventActionParticipantEditRank' };
 result.user_id = this.long();
 result.prev_rank = this.string();
 result.new_rank = this.string();
+return result;
+  }],
+  [1076577429, function() {
+const result: any = { _: 'inputMessageReadMetric' };
+result.msg_id = this.int();
+result.view_id = this.long();
+result.time_in_view_ms = this.int();
+result.active_time_in_view_ms = this.int();
+result.height_to_viewport_ratio_permille = this.int();
+result.seen_range_ratio_permille = this.int();
+return result;
+  }],
+  [429911446, function() {
+const result: any = { _: 'inputPollAnswer' };
+result.flags = this.int();
+result.text = this.predicate();
+if (result.flags & 1) result.media = this.predicate();
+return result;
+  }],
+  [4197173514, function() {
+const result: any = { _: 'inputMessagesFilterPoll' };
+return result;
+  }],
+  [2644626796, function() {
+const result: any = { _: 'messageActionPollAppendAnswer' };
+result.answer = this.predicate();
+return result;
+  }],
+  [966161628, function() {
+const result: any = { _: 'messageActionPollDeleteAnswer' };
+result.answer = this.predicate();
+return result;
+  }],
+  [1048699000, function() {
+const result: any = { _: 'requestPeerTypeCreateBot' };
+result.flags = this.int();
+result.bot_managed = !!(result.flags & 1);
+if (result.flags & 2) result.suggested_name = this.string();
+if (result.flags & 4) result.suggested_username = this.string();
+return result;
+  }],
+  [1216408986, function() {
+const result: any = { _: 'updateManagedBot' };
+result.user_id = this.long();
+result.bot_id = this.long();
+result.qts = this.int();
+return result;
+  }],
+  [1012971041, function() {
+const result: any = { _: 'bots.exportedBotToken' };
+result.token = this.string();
+return result;
+  }],
+  [4047224023, function() {
+const result: any = { _: 'bots.requestedButton' };
+result.webapp_req_id = this.string();
+return result;
+  }],
+  [375414334, function() {
+const result: any = { _: 'messageActionManagedBotCreated' };
+result.bot_id = this.long();
+return result;
+  }],
+  [1903653142, function() {
+const result: any = { _: 'messageEntityDiffInsert' };
+result.offset = this.int();
+result.length = this.int();
+return result;
+  }],
+  [3334596007, function() {
+const result: any = { _: 'messageEntityDiffReplace' };
+result.offset = this.int();
+result.length = this.int();
+result.old_text = this.string();
+return result;
+  }],
+  [106086853, function() {
+const result: any = { _: 'messageEntityDiffDelete' };
+result.offset = this.int();
+result.length = this.int();
+return result;
+  }],
+  [2430053882, function() {
+const result: any = { _: 'messages.composedMessageWithAI' };
+result.flags = this.int();
+result.result_text = this.predicate();
+if (result.flags & 1) result.diff_text = this.predicate();
+return result;
+  }],
+  [697941741, function() {
+const result: any = { _: 'stats.pollStats' };
+result.votes_graph = this.predicate();
+return result;
+  }],
+  [3453225277, function() {
+const result: any = { _: 'updateBotGuestChatQuery' };
+result.flags = this.int();
+result.query_id = this.long();
+result.message = this.predicate();
+if (result.flags & 1) result.reference_messages = this.vector(this.predicate);
+result.qts = this.int();
+return result;
+  }],
+  [1814361053, function() {
+const result: any = { _: 'topPeerCategoryBotsGuestChat' };
+return result;
+  }],
+  [535407039, function() {
+const result: any = { _: 'inputAiComposeToneDefault' };
+result.tone = this.string();
+return result;
+  }],
+  [125026432, function() {
+const result: any = { _: 'inputAiComposeToneID' };
+result.id = this.long();
+result.access_hash = this.long();
+return result;
+  }],
+  [530584407, function() {
+const result: any = { _: 'inputAiComposeToneSlug' };
+result.slug = this.string();
+return result;
+  }],
+  [3489021609, function() {
+const result: any = { _: 'aiComposeTone' };
+result.flags = this.int();
+result.creator = !!(result.flags & 1);
+result.id = this.long();
+result.access_hash = this.long();
+result.slug = this.string();
+result.title = this.string();
+if (result.flags & 2) result.emoji_id = this.long();
+if (result.flags & 16) result.prompt = this.string();
+if (result.flags & 4) result.installs_count = this.int();
+if (result.flags & 8) result.author_id = this.long();
+if (result.flags & 32) result.example_english = this.predicate();
+return result;
+  }],
+  [2611831828, function() {
+const result: any = { _: 'aiComposeToneDefault' };
+result.tone = this.string();
+result.emoji_id = this.long();
+result.title = this.string();
+return result;
+  }],
+  [3254018307, function() {
+const result: any = { _: 'aicompose.tonesNotModified' };
+return result;
+  }],
+  [1822232318, function() {
+const result: any = { _: 'aicompose.tones' };
+result.hash = this.long();
+result.tones = this.vector(this.predicate, false);
+result.users = this.vector(this.predicate, false);
+return result;
+  }],
+  [4057344236, function() {
+const result: any = { _: 'aiComposeToneExample' };
+result.from = this.predicate();
+result.to = this.predicate();
+return result;
+  }],
+  [2349830651, function() {
+const result: any = { _: 'updateAiComposeTones' };
+return result;
+  }],
+  [2005007896, function() {
+const result: any = { _: 'webPageAttributeAiComposeTone' };
+result.emoji_id = this.long();
+return result;
+  }],
+  [3709845395, function() {
+const result: any = { _: 'bots.accessSettings' };
+result.flags = this.int();
+result.restricted = !!(result.flags & 1);
+if (result.flags & 2) result.add_users = this.vector(this.predicate);
 return result;
   }],
 ]);

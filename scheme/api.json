@@ -141,7 +141,7 @@
       "type": "InputMedia"
     },
     {
-      "id": "505969924",
+      "id": "2105767386",
       "predicate": "inputMediaUploadedPhoto",
       "params": [
         {
@@ -151,6 +151,10 @@
         {
           "name": "spoiler",
           "type": "flags.2?true"
+        },
+        {
+          "name": "live_photo",
+          "type": "flags.3?true"
         },
         {
           "name": "file",
@@ -163,12 +167,16 @@
         {
           "name": "ttl_seconds",
           "type": "flags.1?int"
+        },
+        {
+          "name": "video",
+          "type": "flags.3?InputDocument"
         }
       ],
       "type": "InputMedia"
     },
     {
-      "id": "-1279654347",
+      "id": "-475053004",
       "predicate": "inputMediaPhoto",
       "params": [
         {
@@ -180,12 +188,20 @@
           "type": "flags.1?true"
         },
         {
+          "name": "live_photo",
+          "type": "flags.2?true"
+        },
+        {
           "name": "id",
           "type": "InputPhoto"
         },
         {
           "name": "ttl_seconds",
           "type": "flags.0?int"
+        },
+        {
+          "name": "video",
+          "type": "flags.2?InputDocument"
         }
       ],
       "type": "InputMedia"
@@ -809,7 +825,7 @@
       "type": "Message"
     },
     {
-      "id": "988112002",
+      "id": "-1779470549",
       "predicate": "message",
       "params": [
         {
@@ -915,6 +931,10 @@
         {
           "name": "via_business_bot_id",
           "type": "flags2.0?long"
+        },
+        {
+          "name": "guestchat_via_from",
+          "type": "flags2.19?Peer"
         },
         {
           "name": "reply_to",
@@ -1093,7 +1113,7 @@
       "type": "MessageMedia"
     },
     {
-      "id": "1766936791",
+      "id": "-501814429",
       "predicate": "messageMediaPhoto",
       "params": [
         {
@@ -1105,12 +1125,20 @@
           "type": "flags.3?true"
         },
         {
+          "name": "live_photo",
+          "type": "flags.4?true"
+        },
+        {
           "name": "photo",
           "type": "flags.0?Photo"
         },
         {
           "name": "ttl_seconds",
           "type": "flags.2?int"
+        },
+        {
+          "name": "video",
+          "type": "flags.4?Document"
         }
       ],
       "type": "MessageMedia"
@@ -1231,7 +1259,7 @@
       "type": "MessageAction"
     },
     {
-      "id": "-712374074",
+      "id": "-58066957",
       "predicate": "dialog",
       "params": [
         {
@@ -1276,6 +1304,10 @@
         },
         {
           "name": "unread_reactions_count",
+          "type": "int"
+        },
+        {
+          "name": "unread_poll_votes_count",
           "type": "int"
         },
         {
@@ -1808,7 +1840,7 @@
       "type": "ReportReason"
     },
     {
-      "id": "-1607745218",
+      "id": "114026053",
       "predicate": "userFull",
       "params": [
         {
@@ -1894,6 +1926,10 @@
         {
           "name": "noforwards_peer_enabled",
           "type": "flags2.24?true"
+        },
+        {
+          "name": "unofficial_security_risk",
+          "type": "flags2.26?true"
         },
         {
           "name": "id",
@@ -2042,6 +2078,10 @@
         {
           "name": "note",
           "type": "flags2.22?TextWithEntities"
+        },
+        {
+          "name": "bot_manager_id",
+          "type": "flags2.25?long"
         }
       ],
       "type": "UserFull"
@@ -5660,6 +5700,14 @@
         {
           "name": "bot_forum_can_manage_topics",
           "type": "flags2.17?true"
+        },
+        {
+          "name": "bot_can_manage_bots",
+          "type": "flags2.18?true"
+        },
+        {
+          "name": "bot_guestchat",
+          "type": "flags2.19?true"
         },
         {
           "name": "id",
@@ -13899,12 +13947,24 @@
       "type": "MessageAction"
     },
     {
-      "id": "-1398708869",
+      "id": "-699641301",
       "predicate": "updateMessagePoll",
       "params": [
         {
           "name": "flags",
           "type": "#"
+        },
+        {
+          "name": "peer",
+          "type": "flags.1?Peer"
+        },
+        {
+          "name": "msg_id",
+          "type": "flags.1?int"
+        },
+        {
+          "name": "top_msg_id",
+          "type": "flags.2?int"
         },
         {
           "name": "poll_id",
@@ -13922,9 +13982,13 @@
       "type": "Update"
     },
     {
-      "id": "-15277366",
+      "id": "1266514026",
       "predicate": "pollAnswer",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
         {
           "name": "text",
           "type": "TextWithEntities"
@@ -13932,12 +13996,24 @@
         {
           "name": "option",
           "type": "bytes"
+        },
+        {
+          "name": "media",
+          "type": "flags.0?MessageMedia"
+        },
+        {
+          "name": "added_by",
+          "type": "flags.1?Peer"
+        },
+        {
+          "name": "date",
+          "type": "flags.1?int"
         }
       ],
       "type": "PollAnswer"
     },
     {
-      "id": "1484026161",
+      "id": "-1771164225",
       "predicate": "poll",
       "params": [
         {
@@ -13965,6 +14041,30 @@
           "type": "flags.3?true"
         },
         {
+          "name": "open_answers",
+          "type": "flags.6?true"
+        },
+        {
+          "name": "revoting_disabled",
+          "type": "flags.7?true"
+        },
+        {
+          "name": "shuffle_answers",
+          "type": "flags.8?true"
+        },
+        {
+          "name": "hide_results_until_close",
+          "type": "flags.9?true"
+        },
+        {
+          "name": "creator",
+          "type": "flags.10?true"
+        },
+        {
+          "name": "subscribers_only",
+          "type": "flags.11?true"
+        },
+        {
           "name": "question",
           "type": "TextWithEntities"
         },
@@ -13979,12 +14079,20 @@
         {
           "name": "close_date",
           "type": "flags.5?int"
+        },
+        {
+          "name": "countries_iso2",
+          "type": "flags.12?Vector<string>"
+        },
+        {
+          "name": "hash",
+          "type": "long"
         }
       ],
       "type": "Poll"
     },
     {
-      "id": "997055186",
+      "id": "910500618",
       "predicate": "pollAnswerVoters",
       "params": [
         {
@@ -14005,13 +14113,17 @@
         },
         {
           "name": "voters",
-          "type": "int"
+          "type": "flags.2?int"
+        },
+        {
+          "name": "recent_voters",
+          "type": "flags.2?Vector<Peer>"
         }
       ],
       "type": "PollAnswerVoters"
     },
     {
-      "id": "2061444128",
+      "id": "-1166298786",
       "predicate": "pollResults",
       "params": [
         {
@@ -14021,6 +14133,14 @@
         {
           "name": "min",
           "type": "flags.0?true"
+        },
+        {
+          "name": "has_unread_votes",
+          "type": "flags.6?true"
+        },
+        {
+          "name": "can_view_stats",
+          "type": "flags.7?true"
         },
         {
           "name": "results",
@@ -14041,12 +14161,16 @@
         {
           "name": "solution_entities",
           "type": "flags.4?Vector<MessageEntity>"
+        },
+        {
+          "name": "solution_media",
+          "type": "flags.5?MessageMedia"
         }
       ],
       "type": "PollResults"
     },
     {
-      "id": "261416433",
+      "id": "-2009448184",
       "predicate": "inputMediaPoll",
       "params": [
         {
@@ -14059,7 +14183,11 @@
         },
         {
           "name": "correct_answers",
-          "type": "flags.0?Vector<bytes>"
+          "type": "flags.0?Vector<int>"
+        },
+        {
+          "name": "attached_media",
+          "type": "flags.3?InputMedia"
         },
         {
           "name": "solution",
@@ -14068,14 +14196,22 @@
         {
           "name": "solution_entities",
           "type": "flags.1?Vector<MessageEntity>"
+        },
+        {
+          "name": "solution_media",
+          "type": "flags.2?InputMedia"
         }
       ],
       "type": "InputMedia"
     },
     {
-      "id": "1272375192",
+      "id": "2000637542",
       "predicate": "messageMediaPoll",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
         {
           "name": "poll",
           "type": "Poll"
@@ -14083,6 +14219,10 @@
         {
           "name": "results",
           "type": "PollResults"
+        },
+        {
+          "name": "attached_media",
+          "type": "flags.0?MessageMedia"
         }
       ],
       "type": "MessageMedia"
@@ -14294,6 +14434,10 @@
         {
           "name": "edit_rank",
           "type": "flags.26?true"
+        },
+        {
+          "name": "send_reactions",
+          "type": "flags.27?true"
         },
         {
           "name": "until_date",
@@ -15118,7 +15262,7 @@
       "type": "KeyboardButton"
     },
     {
-      "id": "-117904610",
+      "id": "1020666860",
       "predicate": "urlAuthResultRequest",
       "params": [
         {
@@ -15136,6 +15280,10 @@
         {
           "name": "match_codes_first",
           "type": "flags.5?true"
+        },
+        {
+          "name": "is_app",
+          "type": "flags.6?true"
         },
         {
           "name": "bot",
@@ -15168,6 +15316,10 @@
         {
           "name": "user_id_hint",
           "type": "flags.4?long"
+        },
+        {
+          "name": "verified_app_name",
+          "type": "flags.7?string"
         }
       ],
       "type": "UrlAuthResult"
@@ -15841,7 +15993,7 @@
       "type": "WebPageAttribute"
     },
     {
-      "id": "619974263",
+      "id": "1989799956",
       "predicate": "updateMessagePollVote",
       "params": [
         {
@@ -15855,6 +16007,10 @@
         {
           "name": "options",
           "type": "Vector<bytes>"
+        },
+        {
+          "name": "positions",
+          "type": "Vector<int>"
         },
         {
           "name": "qts",
@@ -16915,7 +17071,7 @@
       "type": "messages.DiscussionMessage"
     },
     {
-      "id": "1763137035",
+      "id": "462937446",
       "predicate": "messageReplyHeader",
       "params": [
         {
@@ -16933,6 +17089,10 @@
         {
           "name": "quote",
           "type": "flags.9?true"
+        },
+        {
+          "name": "reply_to_ephemeral",
+          "type": "flags.13?true"
         },
         {
           "name": "reply_to_msg_id",
@@ -16969,6 +17129,10 @@
         {
           "name": "todo_item_id",
           "type": "flags.11?int"
+        },
+        {
+          "name": "poll_option",
+          "type": "flags.12?bytes"
         }
       ],
       "type": "MessageReplyHeader"
@@ -20761,7 +20925,7 @@
       "type": "ForumTopic"
     },
     {
-      "id": "-838922550",
+      "id": "-52766699",
       "predicate": "forumTopic",
       "params": [
         {
@@ -20838,6 +21002,10 @@
         },
         {
           "name": "unread_reactions_count",
+          "type": "int"
+        },
+        {
+          "name": "unread_poll_votes_count",
           "type": "int"
         },
         {
@@ -21990,7 +22158,7 @@
       "type": "StoryItem"
     },
     {
-      "id": "-302947087",
+      "id": "379894076",
       "predicate": "storyItem",
       "params": [
         {
@@ -22084,6 +22252,10 @@
         {
           "name": "albums",
           "type": "flags.19?Vector<int>"
+        },
+        {
+          "name": "music",
+          "type": "flags.20?Document"
         }
       ],
       "type": "StoryItem"
@@ -22309,7 +22481,7 @@
       "type": "stories.StoryViews"
     },
     {
-      "id": "-2036351472",
+      "id": "1003796418",
       "predicate": "inputReplyToMessage",
       "params": [
         {
@@ -22347,6 +22519,10 @@
         {
           "name": "todo_item_id",
           "type": "flags.6?int"
+        },
+        {
+          "name": "poll_option",
+          "type": "flags.7?bytes"
         }
       ],
       "type": "InputReplyTo"
@@ -25642,7 +25818,7 @@
       "type": "ReactionNotificationsFrom"
     },
     {
-      "id": "1457736048",
+      "id": "1910827608",
       "predicate": "reactionsNotifySettings",
       "params": [
         {
@@ -25656,6 +25832,10 @@
         {
           "name": "stories_notify_from",
           "type": "flags.1?ReactionNotificationsFrom"
+        },
+        {
+          "name": "poll_votes_notify_from",
+          "type": "flags.2?ReactionNotificationsFrom"
         },
         {
           "name": "sound",
@@ -28606,7 +28786,7 @@
       "type": "InputInvoice"
     },
     {
-      "id": "-527082948",
+      "id": "-125665601",
       "predicate": "auth.sentCodePaymentRequired",
       "params": [
         {
@@ -28626,6 +28806,10 @@
           "type": "string"
         },
         {
+          "name": "premium_days",
+          "type": "int"
+        },
+        {
           "name": "currency",
           "type": "string"
         },
@@ -28637,7 +28821,7 @@
       "type": "auth.SentCode"
     },
     {
-      "id": "-1682807955",
+      "id": "1069645911",
       "predicate": "inputStorePaymentAuthCode",
       "params": [
         {
@@ -28655,6 +28839,10 @@
         {
           "name": "phone_code_hash",
           "type": "string"
+        },
+        {
+          "name": "premium_days",
+          "type": "int"
         },
         {
           "name": "currency",
@@ -31177,6 +31365,454 @@
         }
       ],
       "type": "ChannelAdminLogEventAction"
+    },
+    {
+      "id": "1076577429",
+      "predicate": "inputMessageReadMetric",
+      "params": [
+        {
+          "name": "msg_id",
+          "type": "int"
+        },
+        {
+          "name": "view_id",
+          "type": "long"
+        },
+        {
+          "name": "time_in_view_ms",
+          "type": "int"
+        },
+        {
+          "name": "active_time_in_view_ms",
+          "type": "int"
+        },
+        {
+          "name": "height_to_viewport_ratio_permille",
+          "type": "int"
+        },
+        {
+          "name": "seen_range_ratio_permille",
+          "type": "int"
+        }
+      ],
+      "type": "InputMessageReadMetric"
+    },
+    {
+      "id": "429911446",
+      "predicate": "inputPollAnswer",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "text",
+          "type": "TextWithEntities"
+        },
+        {
+          "name": "media",
+          "type": "flags.0?InputMedia"
+        }
+      ],
+      "type": "PollAnswer"
+    },
+    {
+      "id": "-97793782",
+      "predicate": "inputMessagesFilterPoll",
+      "params": [],
+      "type": "MessagesFilter"
+    },
+    {
+      "id": "-1650340500",
+      "predicate": "messageActionPollAppendAnswer",
+      "params": [
+        {
+          "name": "answer",
+          "type": "PollAnswer"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
+      "id": "966161628",
+      "predicate": "messageActionPollDeleteAnswer",
+      "params": [
+        {
+          "name": "answer",
+          "type": "PollAnswer"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
+      "id": "1048699000",
+      "predicate": "requestPeerTypeCreateBot",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "bot_managed",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "suggested_name",
+          "type": "flags.1?string"
+        },
+        {
+          "name": "suggested_username",
+          "type": "flags.2?string"
+        }
+      ],
+      "type": "RequestPeerType"
+    },
+    {
+      "id": "1216408986",
+      "predicate": "updateManagedBot",
+      "params": [
+        {
+          "name": "user_id",
+          "type": "long"
+        },
+        {
+          "name": "bot_id",
+          "type": "long"
+        },
+        {
+          "name": "qts",
+          "type": "int"
+        }
+      ],
+      "type": "Update"
+    },
+    {
+      "id": "1012971041",
+      "predicate": "bots.exportedBotToken",
+      "params": [
+        {
+          "name": "token",
+          "type": "string"
+        }
+      ],
+      "type": "bots.ExportedBotToken"
+    },
+    {
+      "id": "-247743273",
+      "predicate": "bots.requestedButton",
+      "params": [
+        {
+          "name": "webapp_req_id",
+          "type": "string"
+        }
+      ],
+      "type": "bots.RequestedButton"
+    },
+    {
+      "id": "375414334",
+      "predicate": "messageActionManagedBotCreated",
+      "params": [
+        {
+          "name": "bot_id",
+          "type": "long"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
+      "id": "1903653142",
+      "predicate": "messageEntityDiffInsert",
+      "params": [
+        {
+          "name": "offset",
+          "type": "int"
+        },
+        {
+          "name": "length",
+          "type": "int"
+        }
+      ],
+      "type": "MessageEntity"
+    },
+    {
+      "id": "-960371289",
+      "predicate": "messageEntityDiffReplace",
+      "params": [
+        {
+          "name": "offset",
+          "type": "int"
+        },
+        {
+          "name": "length",
+          "type": "int"
+        },
+        {
+          "name": "old_text",
+          "type": "string"
+        }
+      ],
+      "type": "MessageEntity"
+    },
+    {
+      "id": "106086853",
+      "predicate": "messageEntityDiffDelete",
+      "params": [
+        {
+          "name": "offset",
+          "type": "int"
+        },
+        {
+          "name": "length",
+          "type": "int"
+        }
+      ],
+      "type": "MessageEntity"
+    },
+    {
+      "id": "-1864913414",
+      "predicate": "messages.composedMessageWithAI",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "result_text",
+          "type": "TextWithEntities"
+        },
+        {
+          "name": "diff_text",
+          "type": "flags.0?TextWithEntities"
+        }
+      ],
+      "type": "messages.ComposedMessageWithAI"
+    },
+    {
+      "id": "697941741",
+      "predicate": "stats.pollStats",
+      "params": [
+        {
+          "name": "votes_graph",
+          "type": "StatsGraph"
+        }
+      ],
+      "type": "stats.PollStats"
+    },
+    {
+      "id": "-841742019",
+      "predicate": "updateBotGuestChatQuery",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "query_id",
+          "type": "long"
+        },
+        {
+          "name": "message",
+          "type": "Message"
+        },
+        {
+          "name": "reference_messages",
+          "type": "flags.0?Vector<Message>"
+        },
+        {
+          "name": "qts",
+          "type": "int"
+        }
+      ],
+      "type": "Update"
+    },
+    {
+      "id": "1814361053",
+      "predicate": "topPeerCategoryBotsGuestChat",
+      "params": [],
+      "type": "TopPeerCategory"
+    },
+    {
+      "id": "535407039",
+      "predicate": "inputAiComposeToneDefault",
+      "params": [
+        {
+          "name": "tone",
+          "type": "string"
+        }
+      ],
+      "type": "InputAiComposeTone"
+    },
+    {
+      "id": "125026432",
+      "predicate": "inputAiComposeToneID",
+      "params": [
+        {
+          "name": "id",
+          "type": "long"
+        },
+        {
+          "name": "access_hash",
+          "type": "long"
+        }
+      ],
+      "type": "InputAiComposeTone"
+    },
+    {
+      "id": "530584407",
+      "predicate": "inputAiComposeToneSlug",
+      "params": [
+        {
+          "name": "slug",
+          "type": "string"
+        }
+      ],
+      "type": "InputAiComposeTone"
+    },
+    {
+      "id": "-805945687",
+      "predicate": "aiComposeTone",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "creator",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "id",
+          "type": "long"
+        },
+        {
+          "name": "access_hash",
+          "type": "long"
+        },
+        {
+          "name": "slug",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "emoji_id",
+          "type": "flags.1?long"
+        },
+        {
+          "name": "prompt",
+          "type": "flags.4?string"
+        },
+        {
+          "name": "installs_count",
+          "type": "flags.2?int"
+        },
+        {
+          "name": "author_id",
+          "type": "flags.3?long"
+        },
+        {
+          "name": "example_english",
+          "type": "flags.5?AiComposeToneExample"
+        }
+      ],
+      "type": "AiComposeTone"
+    },
+    {
+      "id": "-1683135468",
+      "predicate": "aiComposeToneDefault",
+      "params": [
+        {
+          "name": "tone",
+          "type": "string"
+        },
+        {
+          "name": "emoji_id",
+          "type": "long"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "type": "AiComposeTone"
+    },
+    {
+      "id": "-1040948989",
+      "predicate": "aicompose.tonesNotModified",
+      "params": [],
+      "type": "aicompose.Tones"
+    },
+    {
+      "id": "1822232318",
+      "predicate": "aicompose.tones",
+      "params": [
+        {
+          "name": "hash",
+          "type": "long"
+        },
+        {
+          "name": "tones",
+          "type": "Vector<AiComposeTone>"
+        },
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        }
+      ],
+      "type": "aicompose.Tones"
+    },
+    {
+      "id": "-237623060",
+      "predicate": "aiComposeToneExample",
+      "params": [
+        {
+          "name": "from",
+          "type": "TextWithEntities"
+        },
+        {
+          "name": "to",
+          "type": "TextWithEntities"
+        }
+      ],
+      "type": "AiComposeToneExample"
+    },
+    {
+      "id": "-1945136645",
+      "predicate": "updateAiComposeTones",
+      "params": [],
+      "type": "Update"
+    },
+    {
+      "id": "2005007896",
+      "predicate": "webPageAttributeAiComposeTone",
+      "params": [
+        {
+          "name": "emoji_id",
+          "type": "long"
+        }
+      ],
+      "type": "WebPageAttribute"
+    },
+    {
+      "id": "-585121901",
+      "predicate": "bots.accessSettings",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "restricted",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "add_users",
+          "type": "flags.1?Vector<User>"
+        }
+      ],
+      "type": "bots.AccessSettings"
     }
   ],
   "methods": [
@@ -34285,6 +34921,10 @@
           "type": "flags.16?true"
         },
         {
+          "name": "bots_guestchat",
+          "type": "flags.17?true"
+        },
+        {
           "name": "offset",
           "type": "int"
         },
@@ -36360,7 +37000,7 @@
       "type": "Updates"
     },
     {
-      "id": "1941660731",
+      "id": "-308026565",
       "method": "messages.getPollResults",
       "params": [
         {
@@ -36370,6 +37010,10 @@
         {
           "name": "msg_id",
           "type": "int"
+        },
+        {
+          "name": "poll_hash",
+          "type": "long"
         }
       ],
       "type": "Updates"
@@ -38775,7 +39419,7 @@
       "type": "Bool"
     },
     {
-      "id": "1662529584",
+      "id": "-1511079099",
       "method": "messages.translateText",
       "params": [
         {
@@ -38797,6 +39441,10 @@
         {
           "name": "to_lang",
           "type": "string"
+        },
+        {
+          "name": "tone",
+          "type": "flags.2?string"
         }
       ],
       "type": "messages.TranslatedText"
@@ -39748,16 +40396,24 @@
       "type": "Updates"
     },
     {
-      "id": "-1850552224",
+      "id": "1818030759",
       "method": "messages.sendBotRequestedPeer",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
         {
           "name": "peer",
           "type": "InputPeer"
         },
         {
           "name": "msg_id",
-          "type": "int"
+          "type": "flags.0?int"
+        },
+        {
+          "name": "webapp_req_id",
+          "type": "flags.1?string"
         },
         {
           "name": "button_id",
@@ -40373,7 +41029,7 @@
       "type": "stories.CanSendStoryCount"
     },
     {
-      "id": "1937752812",
+      "id": "-1885443944",
       "method": "stories.sendStory",
       "params": [
         {
@@ -40435,12 +41091,16 @@
         {
           "name": "albums",
           "type": "flags.8?Vector<int>"
+        },
+        {
+          "name": "music",
+          "type": "flags.9?InputDocument"
         }
       ],
       "type": "Updates"
     },
     {
-      "id": "-1249658298",
+      "id": "744728363",
       "method": "stories.editStory",
       "params": [
         {
@@ -40474,6 +41134,10 @@
         {
           "name": "privacy_rules",
           "type": "flags.2?Vector<InputPrivacyRule>"
+        },
+        {
+          "name": "music",
+          "type": "flags.4?InputDocument"
         }
       ],
       "type": "Updates"
@@ -44842,7 +45506,7 @@
       "type": "messages.EmojiGameInfo"
     },
     {
-      "id": "-1656683294",
+      "id": "-1413754042",
       "method": "messages.summarizeText",
       "params": [
         {
@@ -44860,6 +45524,10 @@
         {
           "name": "to_lang",
           "type": "flags.0?string"
+        },
+        {
+          "name": "tone",
+          "type": "flags.2?string"
         }
       ],
       "type": "TextWithEntities"
@@ -44968,6 +45636,500 @@
         }
       ],
       "type": "Bool"
+    },
+    {
+      "id": "-622017143",
+      "method": "messages.composeMessageWithAI",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "proofread",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "emojify",
+          "type": "flags.3?true"
+        },
+        {
+          "name": "text",
+          "type": "TextWithEntities"
+        },
+        {
+          "name": "translate_to_lang",
+          "type": "flags.1?string"
+        },
+        {
+          "name": "tone",
+          "type": "flags.2?InputAiComposeTone"
+        }
+      ],
+      "type": "messages.ComposedMessageWithAI"
+    },
+    {
+      "id": "1080542694",
+      "method": "messages.reportReadMetrics",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "metrics",
+          "type": "Vector<InputMessageReadMetric>"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": "-574826471",
+      "method": "messages.reportMusicListen",
+      "params": [
+        {
+          "name": "id",
+          "type": "InputDocument"
+        },
+        {
+          "name": "listened_duration",
+          "type": "int"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": "-2014174821",
+      "method": "bots.checkUsername",
+      "params": [
+        {
+          "name": "username",
+          "type": "string"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": "-441352405",
+      "method": "bots.createBot",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "via_deeplink",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "username",
+          "type": "string"
+        },
+        {
+          "name": "manager_id",
+          "type": "InputUser"
+        }
+      ],
+      "type": "User"
+    },
+    {
+      "id": "-1123182101",
+      "method": "bots.exportBotToken",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "revoke",
+          "type": "Bool"
+        }
+      ],
+      "type": "bots.ExportedBotToken"
+    },
+    {
+      "id": "431770477",
+      "method": "messages.addPollAnswer",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        },
+        {
+          "name": "answer",
+          "type": "PollAnswer"
+        }
+      ],
+      "type": "Updates"
+    },
+    {
+      "id": "-1400568411",
+      "method": "messages.deletePollAnswer",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        },
+        {
+          "name": "option",
+          "type": "bytes"
+        }
+      ],
+      "type": "Updates"
+    },
+    {
+      "id": "1126722802",
+      "method": "messages.getUnreadPollVotes",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "top_msg_id",
+          "type": "flags.0?int"
+        },
+        {
+          "name": "offset_id",
+          "type": "int"
+        },
+        {
+          "name": "add_offset",
+          "type": "int"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        },
+        {
+          "name": "max_id",
+          "type": "int"
+        },
+        {
+          "name": "min_id",
+          "type": "int"
+        }
+      ],
+      "type": "messages.Messages"
+    },
+    {
+      "id": "388019416",
+      "method": "messages.readPollVotes",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "top_msg_id",
+          "type": "flags.0?int"
+        }
+      ],
+      "type": "messages.AffectedHistory"
+    },
+    {
+      "id": "832742238",
+      "method": "bots.requestWebViewButton",
+      "params": [
+        {
+          "name": "user_id",
+          "type": "InputUser"
+        },
+        {
+          "name": "button",
+          "type": "KeyboardButton"
+        }
+      ],
+      "type": "bots.RequestedButton"
+    },
+    {
+      "id": "-1088047117",
+      "method": "bots.getRequestedWebViewButton",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "webapp_req_id",
+          "type": "string"
+        }
+      ],
+      "type": "KeyboardButton"
+    },
+    {
+      "id": "-1031931288",
+      "method": "stats.getPollStats",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "dark",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        }
+      ],
+      "type": "stats.PollStats"
+    },
+    {
+      "id": "-1192163613",
+      "method": "messages.setBotGuestChatResult",
+      "params": [
+        {
+          "name": "query_id",
+          "type": "long"
+        },
+        {
+          "name": "result",
+          "type": "InputBotInlineResult"
+        }
+      ],
+      "type": "InputBotInlineMessageID"
+    },
+    {
+      "id": "1252538643",
+      "method": "aicompose.createTone",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "display_author",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "emoji_id",
+          "type": "long"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "prompt",
+          "type": "string"
+        }
+      ],
+      "type": "AiComposeTone"
+    },
+    {
+      "id": "-1875128487",
+      "method": "aicompose.updateTone",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "tone",
+          "type": "InputAiComposeTone"
+        },
+        {
+          "name": "display_author",
+          "type": "flags.0?Bool"
+        },
+        {
+          "name": "emoji_id",
+          "type": "flags.1?long"
+        },
+        {
+          "name": "title",
+          "type": "flags.2?string"
+        },
+        {
+          "name": "prompt",
+          "type": "flags.3?string"
+        }
+      ],
+      "type": "AiComposeTone"
+    },
+    {
+      "id": "394447793",
+      "method": "aicompose.saveTone",
+      "params": [
+        {
+          "name": "tone",
+          "type": "InputAiComposeTone"
+        },
+        {
+          "name": "unsave",
+          "type": "Bool"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": "-583454358",
+      "method": "aicompose.deleteTone",
+      "params": [
+        {
+          "name": "tone",
+          "type": "InputAiComposeTone"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": "-1293370877",
+      "method": "aicompose.getTone",
+      "params": [
+        {
+          "name": "tone",
+          "type": "InputAiComposeTone"
+        }
+      ],
+      "type": "aicompose.Tones"
+    },
+    {
+      "id": "-1412066815",
+      "method": "aicompose.getTones",
+      "params": [
+        {
+          "name": "hash",
+          "type": "long"
+        }
+      ],
+      "type": "aicompose.Tones"
+    },
+    {
+      "id": "-776688876",
+      "method": "aicompose.getToneExample",
+      "params": [
+        {
+          "name": "tone",
+          "type": "InputAiComposeTone"
+        },
+        {
+          "name": "num",
+          "type": "int"
+        }
+      ],
+      "type": "AiComposeToneExample"
+    },
+    {
+      "id": "557339555",
+      "method": "bots.getAccessSettings",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        }
+      ],
+      "type": "bots.AccessSettings"
+    },
+    {
+      "id": "830553304",
+      "method": "bots.editAccessSettings",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "restricted",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "add_users",
+          "type": "flags.1?Vector<InputUser>"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": "-1598550792",
+      "method": "messages.deleteParticipantReactions",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "participant",
+          "type": "InputPeer"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": "-474482644",
+      "method": "messages.deleteParticipantReaction",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        },
+        {
+          "name": "participant",
+          "type": "InputPeer"
+        }
+      ],
+      "type": "Updates"
+    },
+    {
+      "id": "1442515350",
+      "method": "messages.getPersonalChannelHistory",
+      "params": [
+        {
+          "name": "user_id",
+          "type": "InputUser"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        },
+        {
+          "name": "max_id",
+          "type": "int"
+        },
+        {
+          "name": "min_id",
+          "type": "int"
+        },
+        {
+          "name": "hash",
+          "type": "long"
+        }
+      ],
+      "type": "messages.Messages"
     }
   ]
 }
