@@ -800,8 +800,6 @@ export class RPC {
       const messageId = await this.sendEncryptedMessage(bytes);
       const messageIdAsKey = intsToLong(messageId[0], messageId[1]);
 
-      this.debug("sent encrypted message messageId", messageIdAsKey)
-
       this.messagesWaitResponse.set(messageIdAsKey, {
         method,
         params,
@@ -1015,7 +1013,7 @@ export class RPC {
 
   async ping() {
     if (!this.isReady || this.pendingPingId) {
-      return this.debug("skip ping")
+      return
     }
 
     if (this.pingTimer) {
@@ -1047,7 +1045,7 @@ export class RPC {
       if (this.pendingPingId !== pendingPingNo) {
         return;
       }
-      this.debug("ping failed %o", err);
+
       this.stopHeartbeat();
       this.reconnect();
     }
