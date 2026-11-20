@@ -2462,12 +2462,7 @@ export const builderMap: BuilderMap = {
     this.int32(-1370486635);
     this.long(params.req_msg_id);
     this.int(params.now);
-    this.int32(params.salts.length);
-    for (const item of params.salts) { (function(this: any, params: any) {
-    this.int(params.valid_since);
-    this.int(params.valid_until);
-    this.long(params.salt);
-    }).call(this, item); }
+    this.vector(this.predicate, params.salts);
   },
   'mt_pong': function(params) {
     this.int32(880243653);
@@ -2490,13 +2485,7 @@ export const builderMap: BuilderMap = {
   },
   'mt_msg_container': function(params) {
     this.int32(1945237724);
-    this.int32(params.messages.length);
-    for (const item of params.messages) { (function(this: any, params: any) {
-    this.long(params.msg_id);
-    this.int(params.seqno);
-    this.int(params.bytes);
-    this.predicate(params.body);
-    }).call(this, item); }
+    this.vector(this.predicate, params.messages);
   },
   'mt_message': function(params) {
     this.int32(1538843921);
