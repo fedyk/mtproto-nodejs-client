@@ -29,8 +29,8 @@ const aviableTypesBuilder = new Set([
 const primitiveTypes = new Map([
   ["int", "number"],
   ["long", "string"],
-  ["int128", "number"],
-  ["int256", "number"],
+  ["int128", "Uint8Array"],
+  ["int256", "Uint8Array"],
   ["string", "string"],
   ["bytes", "Uint8Array"],
   ["double", "number"],
@@ -152,6 +152,9 @@ function paramsToInterfaceLines(params: any[], prefix = "") {
     }
     else if ('X' === type) {
       type = "unknown"
+    }
+    else if (type === 'Object') {
+      type = 'unknown';
     }
     else {
       const primitiveType = primitiveTypes.get(type)
@@ -416,6 +419,10 @@ function paramsToLines(params: any[]) {
       let vectorType = param.type.substr(7, param.type.length - 8);
 
       const isBare = vectorType.charAt(0) === '%';
+
+      if (isBare) {
+        vectorType = 'mt_message';
+      }
 
       if (!aviableTypes.includes(vectorType)) {
         vectorType = 'predicate';

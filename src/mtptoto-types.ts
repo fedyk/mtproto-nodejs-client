@@ -585,8 +585,8 @@ export type Payments$CheckCanSendGiftResult = $Payments$CheckCanSendGiftResultOk
 export type InputChatTheme = $InputChatThemeEmpty | $InputChatTheme | $InputChatThemeUniqueGift;
 export interface mt_resPQ {
   _: "mt_resPQ"
-  nonce: number;
-  server_nonce: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
   pq: Uint8Array;
   server_public_key_fingerprints: string[];
 }
@@ -596,9 +596,9 @@ export interface mt_p_q_inner_data_dc {
   pq: Uint8Array;
   p: Uint8Array;
   q: Uint8Array;
-  nonce: number;
-  server_nonce: number;
-  new_nonce: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce: Uint8Array;
   dc: number;
 }
 
@@ -607,24 +607,24 @@ export interface mt_p_q_inner_data_temp_dc {
   pq: Uint8Array;
   p: Uint8Array;
   q: Uint8Array;
-  nonce: number;
-  server_nonce: number;
-  new_nonce: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce: Uint8Array;
   dc: number;
   expires_in: number;
 }
 
 export interface mt_server_DH_params_ok {
   _: "mt_server_DH_params_ok"
-  nonce: number;
-  server_nonce: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
   encrypted_answer: Uint8Array;
 }
 
 export interface mt_server_DH_inner_data {
   _: "mt_server_DH_inner_data"
-  nonce: number;
-  server_nonce: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
   g: number;
   dh_prime: Uint8Array;
   g_a: Uint8Array;
@@ -633,31 +633,31 @@ export interface mt_server_DH_inner_data {
 
 export interface mt_client_DH_inner_data {
   _: "mt_client_DH_inner_data"
-  nonce: number;
-  server_nonce: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
   retry_id: string;
   g_b: Uint8Array;
 }
 
 export interface mt_dh_gen_ok {
   _: "mt_dh_gen_ok"
-  nonce: number;
-  server_nonce: number;
-  new_nonce_hash1: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce_hash1: Uint8Array;
 }
 
 export interface mt_dh_gen_retry {
   _: "mt_dh_gen_retry"
-  nonce: number;
-  server_nonce: number;
-  new_nonce_hash2: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce_hash2: Uint8Array;
 }
 
 export interface mt_dh_gen_fail {
   _: "mt_dh_gen_fail"
-  nonce: number;
-  server_nonce: number;
-  new_nonce_hash3: number;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce_hash3: Uint8Array;
 }
 
 export interface mt_bind_auth_key_inner {
@@ -672,7 +672,7 @@ export interface mt_bind_auth_key_inner {
 export interface mt_rpc_result {
   _: "mt_rpc_result"
   req_msg_id: string;
-  result: mt_Object;
+  result: unknown;
 }
 
 export interface mt_rpc_error {
@@ -745,7 +745,7 @@ export interface mt_message {
   msg_id: string;
   seqno: number;
   bytes: number;
-  body: mt_Object;
+  body: unknown;
 }
 
 export interface mt_msg_copy {
@@ -14349,7 +14349,7 @@ export interface Methods {
       call: InputGroupCall;
       join_as: InputPeer;
       invite_hash?: string;
-      public_key?: number;
+      public_key?: Uint8Array;
       block?: Uint8Array;
       params: DataJSON;
     }
@@ -16836,7 +16836,7 @@ export interface Methods {
       video_stopped?: boolean;
       join?: boolean;
       random_id: number;
-      public_key?: number;
+      public_key?: Uint8Array;
       block?: Uint8Array;
       params?: DataJSON;
     }

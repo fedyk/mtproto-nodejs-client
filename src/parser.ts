@@ -158,7 +158,7 @@ return result;
   }],
   [1945237724, function() {
 const result: any = { _: 'mt_msg_container' };
-result.messages = this.vector(this.predicate, true);
+result.messages = this.vector(this.mt_message, true);
 return result;
   }],
   [1538843921, function() {
