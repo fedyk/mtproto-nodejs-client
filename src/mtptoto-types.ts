@@ -1,3 +1,31 @@
+export type mt_ResPQ = mt_resPQ;
+export type DecryptedMessage = mt_resPQ | mt_p_q_inner_data_dc | mt_p_q_inner_data_temp_dc | mt_server_DH_params_ok | mt_server_DH_inner_data | mt_client_DH_inner_data | mt_dh_gen_ok | mt_dh_gen_retry | mt_dh_gen_fail | mt_bind_auth_key_inner | mt_rpc_result | mt_rpc_error | mt_rpc_answer_unknown | mt_rpc_answer_dropped_running | mt_rpc_answer_dropped | mt_future_salt | mt_future_salts | mt_pong | mt_destroy_session_ok | mt_destroy_session_none | mt_new_session_created | mt_msg_container | mt_message | mt_msg_copy | mt_gzip_packed | mt_msgs_ack | mt_bad_msg_notification | mt_bad_server_salt | mt_msg_resend_req | mt_msgs_state_req | mt_msgs_state_info | mt_msgs_all_info | mt_msg_detailed_info | mt_msg_new_detailed_info | mt_destroy_auth_key_ok | mt_destroy_auth_key_none | mt_destroy_auth_key_fail;
+export type mt_P_Q_inner_data = mt_p_q_inner_data_dc | mt_p_q_inner_data_temp_dc;
+export type mt_Server_DH_Params = mt_server_DH_params_ok;
+export type mt_Server_DH_inner_data = mt_server_DH_inner_data;
+export type mt_Client_DH_Inner_Data = mt_client_DH_inner_data;
+export type mt_Set_client_DH_params_answer = mt_dh_gen_ok | mt_dh_gen_retry | mt_dh_gen_fail;
+export type mt_BindAuthKeyInner = mt_bind_auth_key_inner;
+export type mt_RpcResult = mt_rpc_result;
+export type mt_RpcError = mt_rpc_error;
+export type mt_RpcDropAnswer = mt_rpc_answer_unknown | mt_rpc_answer_dropped_running | mt_rpc_answer_dropped;
+export type mt_FutureSalt = mt_future_salt;
+export type mt_FutureSalts = mt_future_salts;
+export type mt_Pong = mt_pong;
+export type mt_DestroySessionRes = mt_destroy_session_ok | mt_destroy_session_none;
+export type mt_NewSession = mt_new_session_created;
+export type mt_MessageContainer = mt_msg_container;
+export type mt_Message = mt_message;
+export type mt_MessageCopy = mt_msg_copy;
+export type mt_Object = mt_gzip_packed;
+export type mt_MsgsAck = mt_msgs_ack;
+export type mt_BadMsgNotification = mt_bad_msg_notification | mt_bad_server_salt;
+export type mt_MsgResendReq = mt_msg_resend_req;
+export type mt_MsgsStateReq = mt_msgs_state_req;
+export type mt_MsgsStateInfo = mt_msgs_state_info;
+export type mt_MsgsAllInfo = mt_msgs_all_info;
+export type mt_MsgDetailedInfo = mt_msg_detailed_info | mt_msg_new_detailed_info;
+export type mt_DestroyAuthKeyRes = mt_destroy_auth_key_ok | mt_destroy_auth_key_none | mt_destroy_auth_key_fail;
 export type Bool = $BoolFalse | $BoolTrue;
 export type True = $True;
 export type Error = $Error;
@@ -555,6 +583,7 @@ export type Users$SavedMusic = $Users$SavedMusicNotModified | $Users$SavedMusic;
 export type Account$SavedMusicIds = $Account$SavedMusicIdsNotModified | $Account$SavedMusicIds;
 export type Payments$CheckCanSendGiftResult = $Payments$CheckCanSendGiftResultOk | $Payments$CheckCanSendGiftResultFail;
 export type InputChatTheme = $InputChatThemeEmpty | $InputChatTheme | $InputChatThemeUniqueGift;
+<<<<<<< HEAD
 export type StarGiftUpgradePrice = $StarGiftUpgradePrice;
 export type GroupCallMessage = $GroupCallMessage;
 export type GroupCallDonor = $GroupCallDonor;
@@ -582,6 +611,255 @@ export type Messages$EmojiGameOutcome = $Messages$EmojiGameOutcome;
 export type Messages$EmojiGameInfo = $Messages$EmojiGameUnavailable | $Messages$EmojiGameDiceInfo;
 export type StarGiftAttributeRarity = $StarGiftAttributeRarity | $StarGiftAttributeRarityUncommon | $StarGiftAttributeRarityRare | $StarGiftAttributeRarityEpic | $StarGiftAttributeRarityLegendary;
 export type KeyboardButtonStyle = $KeyboardButtonStyle;
+=======
+export interface mt_resPQ {
+  _: "mt_resPQ"
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  pq: Uint8Array;
+  server_public_key_fingerprints: string[];
+}
+
+export interface mt_p_q_inner_data_dc {
+  _: "mt_p_q_inner_data_dc"
+  pq: Uint8Array;
+  p: Uint8Array;
+  q: Uint8Array;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce: Uint8Array;
+  dc: number;
+}
+
+export interface mt_p_q_inner_data_temp_dc {
+  _: "mt_p_q_inner_data_temp_dc"
+  pq: Uint8Array;
+  p: Uint8Array;
+  q: Uint8Array;
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce: Uint8Array;
+  dc: number;
+  expires_in: number;
+}
+
+export interface mt_server_DH_params_ok {
+  _: "mt_server_DH_params_ok"
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  encrypted_answer: Uint8Array;
+}
+
+export interface mt_server_DH_inner_data {
+  _: "mt_server_DH_inner_data"
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  g: number;
+  dh_prime: Uint8Array;
+  g_a: Uint8Array;
+  server_time: number;
+}
+
+export interface mt_client_DH_inner_data {
+  _: "mt_client_DH_inner_data"
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  retry_id: string;
+  g_b: Uint8Array;
+}
+
+export interface mt_dh_gen_ok {
+  _: "mt_dh_gen_ok"
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce_hash1: Uint8Array;
+}
+
+export interface mt_dh_gen_retry {
+  _: "mt_dh_gen_retry"
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce_hash2: Uint8Array;
+}
+
+export interface mt_dh_gen_fail {
+  _: "mt_dh_gen_fail"
+  nonce: Uint8Array;
+  server_nonce: Uint8Array;
+  new_nonce_hash3: Uint8Array;
+}
+
+export interface mt_bind_auth_key_inner {
+  _: "mt_bind_auth_key_inner"
+  nonce: string;
+  temp_auth_key_id: string;
+  perm_auth_key_id: string;
+  temp_session_id: string;
+  expires_at: number;
+}
+
+export interface mt_rpc_result {
+  _: "mt_rpc_result"
+  req_msg_id: string;
+  result: unknown;
+}
+
+export interface mt_rpc_error {
+  _: "mt_rpc_error"
+  error_code: number;
+  error_message: string;
+}
+
+export interface mt_rpc_answer_unknown {
+  _: "mt_rpc_answer_unknown"
+
+}
+
+export interface mt_rpc_answer_dropped_running {
+  _: "mt_rpc_answer_dropped_running"
+
+}
+
+export interface mt_rpc_answer_dropped {
+  _: "mt_rpc_answer_dropped"
+  msg_id: string;
+  seq_no: number;
+  bytes: number;
+}
+
+export interface mt_future_salt {
+  _: "mt_future_salt"
+  valid_since: number;
+  valid_until: number;
+  salt: string;
+}
+
+export interface mt_future_salts {
+  _: "mt_future_salts"
+  req_msg_id: string;
+  now: number;
+  salts: mt_future_salt[];
+}
+
+export interface mt_pong {
+  _: "mt_pong"
+  msg_id: string;
+  ping_id: string;
+}
+
+export interface mt_destroy_session_ok {
+  _: "mt_destroy_session_ok"
+  session_id: string;
+}
+
+export interface mt_destroy_session_none {
+  _: "mt_destroy_session_none"
+  session_id: string;
+}
+
+export interface mt_new_session_created {
+  _: "mt_new_session_created"
+  first_msg_id: string;
+  unique_id: string;
+  server_salt: string;
+}
+
+export interface mt_msg_container {
+  _: "mt_msg_container"
+  messages: mt_Message[];
+}
+
+export interface mt_message {
+  _: "mt_message"
+  msg_id: string;
+  seqno: number;
+  bytes: number;
+  body: unknown;
+}
+
+export interface mt_msg_copy {
+  _: "mt_msg_copy"
+  orig_message: mt_Message;
+}
+
+export interface mt_gzip_packed {
+  _: "mt_gzip_packed"
+  packed_data: Uint8Array;
+}
+
+export interface mt_msgs_ack {
+  _: "mt_msgs_ack"
+  msg_ids: string[];
+}
+
+export interface mt_bad_msg_notification {
+  _: "mt_bad_msg_notification"
+  bad_msg_id: string;
+  bad_msg_seqno: number;
+  error_code: number;
+}
+
+export interface mt_bad_server_salt {
+  _: "mt_bad_server_salt"
+  bad_msg_id: string;
+  bad_msg_seqno: number;
+  error_code: number;
+  new_server_salt: string;
+}
+
+export interface mt_msg_resend_req {
+  _: "mt_msg_resend_req"
+  msg_ids: string[];
+}
+
+export interface mt_msgs_state_req {
+  _: "mt_msgs_state_req"
+  msg_ids: string[];
+}
+
+export interface mt_msgs_state_info {
+  _: "mt_msgs_state_info"
+  req_msg_id: string;
+  info: Uint8Array;
+}
+
+export interface mt_msgs_all_info {
+  _: "mt_msgs_all_info"
+  msg_ids: string[];
+  info: Uint8Array;
+}
+
+export interface mt_msg_detailed_info {
+  _: "mt_msg_detailed_info"
+  msg_id: string;
+  answer_msg_id: string;
+  bytes: number;
+  status: number;
+}
+
+export interface mt_msg_new_detailed_info {
+  _: "mt_msg_new_detailed_info"
+  answer_msg_id: string;
+  bytes: number;
+  status: number;
+}
+
+export interface mt_destroy_auth_key_ok {
+  _: "mt_destroy_auth_key_ok"
+
+}
+
+export interface mt_destroy_auth_key_none {
+  _: "mt_destroy_auth_key_none"
+
+}
+
+export interface mt_destroy_auth_key_fail {
+  _: "mt_destroy_auth_key_fail"
+
+}
+
+>>>>>>> main
 export interface $BoolFalse {
   _: "boolFalse";
 }
