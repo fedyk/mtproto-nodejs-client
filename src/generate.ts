@@ -107,7 +107,7 @@ function builderParamsToLines(params: any) {
   return paramsLines;
 }
 
-function paramsToInterfaceLines(params: any[]) {
+function paramsToInterfaceLines(params: any[], prefix = "") {
   const interfaceLines: string[] = [];
 
   params.forEach(function (param: any) {
@@ -138,13 +138,13 @@ function paramsToInterfaceLines(params: any[]) {
         type = `${primitiveType}[]`
       }
       else if (isBare) {
-        type = "mt_message[]"
+        type = `${prefix}${vectorType.substring(1)}[]`
       }
       else if (vectorType === "future_salt") {
-        return "mt_future_salt[]"
+        type = "mt_future_salt[]"
       }
       else {
-        type = `${getTypeName(vectorType)}[]`
+        type = `${getTypeName(vectorType, prefix)}[]`
       }
     }
     else if ('!X' === type) {
@@ -160,7 +160,7 @@ function paramsToInterfaceLines(params: any[]) {
         type = `${primitiveType}`
       }
       else {
-        type = `${getTypeName(type)}`
+        type = `${getTypeName(type, prefix)}`
       }
     }
 
@@ -192,10 +192,11 @@ mtprotoSchema.constructors.forEach(function (constructor: any) {
     const interfaceName = `mt_${predicate}`
 
     typingInterfacesLines.push(`export interface ${interfaceName
-      } {\n  _: "mt_${predicate}"\n${paramsToInterfaceLines(params).join("\n")
+      } {\n  _: "mt_${predicate}"\n${paramsToInterfaceLines(params, "mt_").join("\n")
       }\n}\n`)
 
     if (type) {
+      typingTypes.append(`mt_${type}`, interfaceName)
       typingTypes.append("DecryptedMessage", interfaceName)
     }
   }
@@ -416,10 +417,6 @@ function paramsToLines(params: any[]) {
 
       const isBare = vectorType.charAt(0) === '%';
 
-      if (isBare) {
-        vectorType = 'mt_message';
-      }
-
       if (!aviableTypes.includes(vectorType)) {
         vectorType = 'predicate';
       }
@@ -522,8 +519,8 @@ function getInterfaceName(key: string) {
 /**
  * @example getTypeName("auth.SendCode") -> "Auth$SendCode"
  */
-function getTypeName(key: string) {
-  return key.split(".")
+function getTypeName(key: string, prefix = "") {
+  return prefix + key.split(".")
     .map(capitalizeFirstLetter)
     .join("$")
 }

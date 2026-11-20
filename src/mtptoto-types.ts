@@ -1,31 +1,31 @@
-export type ResPQ = mt_resPQ;
+export type mt_ResPQ = mt_resPQ;
 export type DecryptedMessage = mt_resPQ | mt_p_q_inner_data_dc | mt_p_q_inner_data_temp_dc | mt_server_DH_params_ok | mt_server_DH_inner_data | mt_client_DH_inner_data | mt_dh_gen_ok | mt_dh_gen_retry | mt_dh_gen_fail | mt_bind_auth_key_inner | mt_rpc_result | mt_rpc_error | mt_rpc_answer_unknown | mt_rpc_answer_dropped_running | mt_rpc_answer_dropped | mt_future_salt | mt_future_salts | mt_pong | mt_destroy_session_ok | mt_destroy_session_none | mt_new_session_created | mt_msg_container | mt_message | mt_msg_copy | mt_gzip_packed | mt_msgs_ack | mt_bad_msg_notification | mt_bad_server_salt | mt_msg_resend_req | mt_msgs_state_req | mt_msgs_state_info | mt_msgs_all_info | mt_msg_detailed_info | mt_msg_new_detailed_info | mt_destroy_auth_key_ok | mt_destroy_auth_key_none | mt_destroy_auth_key_fail;
-export type P_Q_inner_data = mt_p_q_inner_data_dc | mt_p_q_inner_data_temp_dc;
-export type Server_DH_Params = mt_server_DH_params_ok;
-export type Server_DH_inner_data = mt_server_DH_inner_data;
-export type Client_DH_Inner_Data = mt_client_DH_inner_data;
-export type Set_client_DH_params_answer = mt_dh_gen_ok | mt_dh_gen_retry | mt_dh_gen_fail;
-export type BindAuthKeyInner = mt_bind_auth_key_inner;
-export type RpcResult = mt_rpc_result;
-export type RpcError = mt_rpc_error;
-export type RpcDropAnswer = mt_rpc_answer_unknown | mt_rpc_answer_dropped_running | mt_rpc_answer_dropped;
-export type FutureSalt = mt_future_salt;
-export type FutureSalts = mt_future_salts;
-export type Pong = mt_pong;
-export type DestroySessionRes = mt_destroy_session_ok | mt_destroy_session_none;
-export type NewSession = mt_new_session_created;
-export type MessageContainer = mt_msg_container;
-export type Message = mt_message | $MessageEmpty | $Message | $MessageService;
-export type MessageCopy = mt_msg_copy;
-export type Object = mt_gzip_packed;
-export type MsgsAck = mt_msgs_ack;
-export type BadMsgNotification = mt_bad_msg_notification | mt_bad_server_salt;
-export type MsgResendReq = mt_msg_resend_req;
-export type MsgsStateReq = mt_msgs_state_req;
-export type MsgsStateInfo = mt_msgs_state_info;
-export type MsgsAllInfo = mt_msgs_all_info;
-export type MsgDetailedInfo = mt_msg_detailed_info | mt_msg_new_detailed_info;
-export type DestroyAuthKeyRes = mt_destroy_auth_key_ok | mt_destroy_auth_key_none | mt_destroy_auth_key_fail;
+export type mt_P_Q_inner_data = mt_p_q_inner_data_dc | mt_p_q_inner_data_temp_dc;
+export type mt_Server_DH_Params = mt_server_DH_params_ok;
+export type mt_Server_DH_inner_data = mt_server_DH_inner_data;
+export type mt_Client_DH_Inner_Data = mt_client_DH_inner_data;
+export type mt_Set_client_DH_params_answer = mt_dh_gen_ok | mt_dh_gen_retry | mt_dh_gen_fail;
+export type mt_BindAuthKeyInner = mt_bind_auth_key_inner;
+export type mt_RpcResult = mt_rpc_result;
+export type mt_RpcError = mt_rpc_error;
+export type mt_RpcDropAnswer = mt_rpc_answer_unknown | mt_rpc_answer_dropped_running | mt_rpc_answer_dropped;
+export type mt_FutureSalt = mt_future_salt;
+export type mt_FutureSalts = mt_future_salts;
+export type mt_Pong = mt_pong;
+export type mt_DestroySessionRes = mt_destroy_session_ok | mt_destroy_session_none;
+export type mt_NewSession = mt_new_session_created;
+export type mt_MessageContainer = mt_msg_container;
+export type mt_Message = mt_message;
+export type mt_MessageCopy = mt_msg_copy;
+export type mt_Object = mt_gzip_packed;
+export type mt_MsgsAck = mt_msgs_ack;
+export type mt_BadMsgNotification = mt_bad_msg_notification | mt_bad_server_salt;
+export type mt_MsgResendReq = mt_msg_resend_req;
+export type mt_MsgsStateReq = mt_msgs_state_req;
+export type mt_MsgsStateInfo = mt_msgs_state_info;
+export type mt_MsgsAllInfo = mt_msgs_all_info;
+export type mt_MsgDetailedInfo = mt_msg_detailed_info | mt_msg_new_detailed_info;
+export type mt_DestroyAuthKeyRes = mt_destroy_auth_key_ok | mt_destroy_auth_key_none | mt_destroy_auth_key_fail;
 export type Bool = $BoolFalse | $BoolTrue;
 export type True = $True;
 export type Error = $Error;
@@ -49,6 +49,7 @@ export type ChatFull = $ChatFull | $ChannelFull;
 export type ChatParticipant = $ChatParticipant | $ChatParticipantCreator | $ChatParticipantAdmin;
 export type ChatParticipants = $ChatParticipantsForbidden | $ChatParticipants;
 export type ChatPhoto = $ChatPhotoEmpty | $ChatPhoto;
+export type Message = $MessageEmpty | $Message | $MessageService;
 export type MessageMedia = $MessageMediaEmpty | $MessageMediaPhoto | $MessageMediaGeo | $MessageMediaContact | $MessageMediaUnsupported | $MessageMediaDocument | $MessageMediaWebPage | $MessageMediaVenue | $MessageMediaGame | $MessageMediaInvoice | $MessageMediaGeoLive | $MessageMediaPoll | $MessageMediaDice | $MessageMediaStory | $MessageMediaGiveaway | $MessageMediaGiveawayResults | $MessageMediaPaidMedia | $MessageMediaToDo;
 export type MessageAction = $MessageActionEmpty | $MessageActionChatCreate | $MessageActionChatEditTitle | $MessageActionChatEditPhoto | $MessageActionChatDeletePhoto | $MessageActionChatAddUser | $MessageActionChatDeleteUser | $MessageActionChatJoinedByLink | $MessageActionChannelCreate | $MessageActionChatMigrateTo | $MessageActionChannelMigrateFrom | $MessageActionPinMessage | $MessageActionHistoryClear | $MessageActionGameScore | $MessageActionPaymentSentMe | $MessageActionPaymentSent | $MessageActionPhoneCall | $MessageActionScreenshotTaken | $MessageActionCustomAction | $MessageActionBotAllowed | $MessageActionSecureValuesSentMe | $MessageActionSecureValuesSent | $MessageActionContactSignUp | $MessageActionGeoProximityReached | $MessageActionGroupCall | $MessageActionInviteToGroupCall | $MessageActionSetMessagesTTL | $MessageActionGroupCallScheduled | $MessageActionSetChatTheme | $MessageActionChatJoinedByRequest | $MessageActionWebViewDataSentMe | $MessageActionWebViewDataSent | $MessageActionGiftPremium | $MessageActionTopicCreate | $MessageActionTopicEdit | $MessageActionSuggestProfilePhoto | $MessageActionRequestedPeer | $MessageActionSetChatWallPaper | $MessageActionGiftCode | $MessageActionGiveawayLaunch | $MessageActionGiveawayResults | $MessageActionBoostApply | $MessageActionRequestedPeerSentMe | $MessageActionPaymentRefunded | $MessageActionGiftStars | $MessageActionPrizeStars | $MessageActionStarGift | $MessageActionStarGiftUnique | $MessageActionPaidMessagesRefunded | $MessageActionPaidMessagesPrice | $MessageActionConferenceCall | $MessageActionTodoCompletions | $MessageActionTodoAppendTasks | $MessageActionSuggestedPostApproval | $MessageActionSuggestedPostSuccess | $MessageActionSuggestedPostRefund | $MessageActionGiftTon;
 export type Dialog = $Dialog | $DialogFolder;
@@ -671,7 +672,7 @@ export interface mt_bind_auth_key_inner {
 export interface mt_rpc_result {
   _: "mt_rpc_result"
   req_msg_id: string;
-  result: Object;
+  result: mt_Object;
 }
 
 export interface mt_rpc_error {
@@ -708,6 +709,7 @@ export interface mt_future_salts {
   _: "mt_future_salts"
   req_msg_id: string;
   now: number;
+  salts: mt_future_salt[];
 }
 
 export interface mt_pong {
@@ -735,7 +737,7 @@ export interface mt_new_session_created {
 
 export interface mt_msg_container {
   _: "mt_msg_container"
-  messages: mt_message[];
+  messages: mt_Message[];
 }
 
 export interface mt_message {
@@ -743,12 +745,12 @@ export interface mt_message {
   msg_id: string;
   seqno: number;
   bytes: number;
-  body: Object;
+  body: mt_Object;
 }
 
 export interface mt_msg_copy {
   _: "mt_msg_copy"
-  orig_message: Message;
+  orig_message: mt_Message;
 }
 
 export interface mt_gzip_packed {

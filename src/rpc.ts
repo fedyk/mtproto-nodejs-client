@@ -650,7 +650,7 @@ export class RPC {
       this.debug('handling container');
 
       message.messages.forEach((message) => {
-        this.handleDecryptedMessage(message.body, {
+        this.handleDecryptedMessage(message.body as DecryptedMessage, {
           messageId: message.msg_id,
         });
       });
