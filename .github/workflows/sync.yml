@@ -1,0 +1,20 @@
+name: sync
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 1"
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+      - run: npm install
+      - run: npm run build
+      - run: npm run sync
+      - name: Ensure scheme/ is up to date
+        run: |
+          if ! git diff --exit-code -- scheme; then
+            echo "scheme folder is out of date. Run npm run sync and commit the changes."
+            exit 1
+          fi

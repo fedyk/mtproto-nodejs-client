@@ -3,10 +3,16 @@ import { readFileSync } from "node:fs"
 import { Storage } from "./storage.js"
 import { RPCError } from "./errors.js"
 import { Methods } from "./mtptoto-types.js"
-import { RPC, RPCEventEmitter, } from "./rpc.js"
-import type { DC, IStorage, InitConnectionParams } from "./types.js"
+import { RPC, } from "./rpc.js"
 import { debug } from "./debug.js"
 import { TEST_DC_LIST, PRODUCTION_DC_LIST } from "./config.js"
+import type {
+  DC,
+  IStorage,
+  InitConnectionParams,
+  UpdatesEmitter,
+  EventsEmitter
+} from "./types.js"
 
 export class MTProto {
   api_id: number
@@ -15,7 +21,8 @@ export class MTProto {
   dcList: DC[]
   rpcs: Map<number, RPC>
   storage: Storage
-  updates: RPCEventEmitter
+  updates: UpdatesEmitter
+  events: EventsEmitter
 
   constructor(options: {
     test: boolean
@@ -44,6 +51,7 @@ export class MTProto {
     this.rpcs = new Map<number, RPC>();
     this.storage = new Storage(storage);
     this.updates = new events.EventEmitter();
+    this.events = new events.EventEmitter();
   }
 
   destroy() {
@@ -160,6 +168,7 @@ export class MTProto {
       initConnectionParams: this.initConnectionParams,
       storage: this.storage,
       updates: this.updates,
+      events: this.events,
     });
 
     this.rpcs.set(dcId, rpc);

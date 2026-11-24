@@ -1,6 +1,5 @@
 import Debug from "debug"
 import fs from "node:fs"
-import qrcode from "qrcode-terminal"
 import { equal, ok } from "node:assert/strict"
 import { createInterface } from "node:readline/promises"
 import { stdin as input, stdout as output } from 'node:process';
@@ -51,6 +50,7 @@ mtproto.updates.on("updatesCombined", onUpdate)
 mtproto.updates.on("updateShortMessage", onUpdate)
 mtproto.updates.on("updateShortChatMessage", onUpdate)
 mtproto.updates.on("updateShortSentMessage", onUpdate)
+mtproto.events.on("new_session_created", onNewSessionCreated)
 
 function onUpdate(update: $Updates
   | $UpdateShort
@@ -61,6 +61,10 @@ function onUpdate(update: $Updates
   | $UpdateShortSentMessage
 ) {
   debug("updates %j", update)
+}
+
+function onNewSessionCreated() {
+  debug("new_session_started")
 }
 
 const config = await mtproto.call("help.getConfig")
