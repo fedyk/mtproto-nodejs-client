@@ -4,8 +4,8 @@ Telegram API (MTProto) client for Node.js.
 
 Written in TypeScript for typings. Use Node.js native API for crypto and hashing. Simple and more reliable thanks to removing browser support.
 
-* **Actual.** 195 layer in the API scheme
-* **Fast.** Uses the TCP and `node:crypto`.
+* **Actual.** 225 layer in the API scheme
+* **Fast.** Uses the `TCP` and `node:crypto`.
 * **Easy.** Cryptography is hidden. Work with the API at a high level
 * **Smart.** Automatically sync authorization on all DCs
 * **2FA.** Use the library's built-in function to calculate 2FA parameters
@@ -37,7 +37,7 @@ const mtproto = new MTProto({
 
 ```
 
-Sign in to your account
+#### Sign in to your account
 
 ```js
 const phone_number = "+1234567890"
@@ -74,21 +74,27 @@ function signIn(phone_code_hash: string, phone_code: string) {
 }
 ```
 
-Set updates listener
+#### Set updates listener
 
 ```js
-mtproto.updates.on("updateShort", console.log)
-mtproto.updates.on("updateShortChatMessage", console.log)
-mtproto.updates.on("updateShortMessage", console.log)
-mtproto.updates.on("updateShortSentMessage", console.log)
-mtproto.updates.on("updates", console.log)
-mtproto.updates.on("updatesCombined", console.log)
-mtproto.updates.on("updatesTooLong", console.log)
+mtproto.updates.on("updates", handler)
+mtproto.updates.on("updatesCombined", handler)
+mtproto.updates.on("updateShort", handler)
+mtproto.updates.on("updateShortChatMessage", handler)
+mtproto.updates.on("updateShortMessage", handler)
+mtproto.updates.on("updateShortSentMessage", handler)
+mtproto.updates.on("updatesTooLong", handler)
 
 // call getState to start receiving updates
 mtproto.call("updates.getState").then(function(state) {
   console.log("state", state)
 })
+```
+
+#### Set events listener
+
+```js
+mtproto.events.on("new_session_created", handler)
 ```
 
 ## Credits

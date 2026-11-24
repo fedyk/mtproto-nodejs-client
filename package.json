@@ -13,19 +13,18 @@
   },
   "scripts": {
     "build": "tsgo",
-    "prepare": "rm -rf lib",
-    "prepublishOnly": "tsgo",
+    "prepublishOnly": "rm -rf lib && tsgo",
     "watch": "tsgo --watch",
     "test": "node --test lib/**/*.test.js",
-    "sync-schema": "node lib/sync-schema.js",
+    "sync": "node lib/sync.js",
     "generate": "node lib/generate.js"
   },
   "license": "GPL-3.0",
   "dependencies": {
     "@types/aes-js": "^3.1.4",
-    "@types/debug": "^4.1.12",
+    "@types/debug": "^4.1.13",
     "@types/lodash.debounce": "^4.0.9",
-    "@types/node": "^24.10.2",
+    "@types/node": "^26.6.6",
     "@types/pako": "^2.0.4",
     "aes-js": "3.1.2",
     "big-integer": "1.6.52",
@@ -40,7 +39,7 @@
   },
   "devDependencies": {
     "@types/qrcode-terminal": "^0.12.2",
-    "@typescript/native-preview": "^7.0.0-dev.20260629.1",
+    "@typescript/native-preview": "^7.0.0-dev.20260707.2",
     "qrcode-terminal": "^0.12.0"
   }
 }

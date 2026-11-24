@@ -6,6 +6,9 @@ import fs from 'node:fs'
 
 const apiSchema = JSON.parse(fs.readFileSync("scheme/api.json", "utf8"))
 const mtprotoSchema = JSON.parse(fs.readFileSync("scheme/mtproto.json", "utf8"))
+const layers = fs.readFileSync("scheme/layers.md", "utf8")
+const readme = fs.readFileSync("README.md", "utf8")
+const layerVersion = getRecentLayerVersion(layers)
 
 const builder: string[] = [];
 const builderInterfaceLines: string[] = [];
@@ -37,6 +40,8 @@ const primitiveTypes = new Map([
   ["Bool", "boolean"],
   ["true", "boolean"],
 ])
+
+const builderMapLines: string[] = [];
 
 function builderParamsToLines(params: any) {
   const paramsLines: string[] = [];
@@ -173,8 +178,6 @@ function paramsToInterfaceLines(params: any[], prefix = "") {
   return interfaceLines;
 };
 
-const builderMapLines: string[] = [];
-
 mtprotoSchema.constructors.forEach(function (constructor: any) {
   const { id, predicate, params, type } = constructor;
 
@@ -304,7 +307,9 @@ builder.push(`export interface BuilderMap {`, builderInterfaceLines.join("\n"), 
 
 builder.push(`export const builderMap: BuilderMap = {\n${builderMapLines.join('\n')}\n};`);
 
-fs.writeFileSync('src/builder.ts', builder.join('\n'));
+fs.writeFileSync('src/builder.ts', builder.join('\n'), "utf-8")
+fs.writeFileSync('src/layer.ts', `export const LAYER = ${layerVersion}\n`, "utf-8")
+fs.writeFileSync('README.md', readme.replace(/\d+\slayer/g, `${layerVersion} layer`), "utf-8")
 
 const mtprotoTypesLines = new Array<string>()
 
@@ -551,4 +556,20 @@ function createGroupMap() {
       return this
     }
   }
+}
+
+function getRecentLayerVersion(changelog: string) {
+  const recent = /\[Layer\s(\d+)\]/i.exec(changelog)
+
+  if (!recent) {
+    throw new RangeError("no layer version found in changelog")
+  }
+  
+  const layer = Number(recent[1])
+
+  if (!Number.isInteger(layer)) {
+    throw new RangeError("layer version is not integer")
+  }
+
+  return layer
 }

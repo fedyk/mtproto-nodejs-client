@@ -3,10 +3,16 @@ import { readFileSync } from "node:fs"
 import { Storage } from "./storage.js"
 import { RPCError } from "./errors.js"
 import { Methods } from "./mtptoto-types.js"
-import { RPC, RPCEventEmitter, } from "./rpc.js"
-import type { DC, IStorage, InitConnectionParams } from "./types.js"
+import { RPC, } from "./rpc.js"
 import { debug } from "./debug.js"
 import { TEST_DC_LIST, PRODUCTION_DC_LIST } from "./config.js"
+import type {
+  DC,
+  IStorage,
+  InitConnectionParams,
+  UpdatesEmitter,
+  EventsEmitter
+} from "./types.js"
 
 export class MTProto {
   api_id: number
@@ -15,7 +21,8 @@ export class MTProto {
   dcList: DC[]
   rpcs: Map<number, RPC>
   storage: Storage
-  updates: RPCEventEmitter
+  updates: UpdatesEmitter
+  events: EventsEmitter
 
   constructor(options: {
     test: boolean
@@ -44,6 +51,7 @@ export class MTProto {
     this.rpcs = new Map<number, RPC>();
     this.storage = new Storage(storage);
     this.updates = new events.EventEmitter();
+    this.events = new events.EventEmitter();
   }
 
   destroy() {
@@ -55,11 +63,8 @@ export class MTProto {
   }
 
   async call<T extends keyof Methods>(method: T, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
-    const origin = new Error(`RPC requested: ${method}`)
-    Error.captureStackTrace(origin, this.call)
-
     try {
-      const result = await this._call(method, params, { origin })
+      const result = await this._call(method, params)
 
       return result
     }
@@ -67,7 +72,7 @@ export class MTProto {
       if (err instanceof RPCError && err.message.includes("_MIGRATE_") && err.status === 303) {
         const [type, dcIdAsString] = err.message.split("_MIGRATE_");
         const dcId = Number(dcIdAsString);
-        const options: { dcId?: number; origin: Error } = { origin }
+        const options: { dcId?: number } = {}
 
         // If auth.sendCode call on incorrect DC need change default DC, because
         // call auth.signIn on incorrect DC return PHONE_CODE_EXPIRED error
@@ -88,12 +93,11 @@ export class MTProto {
   private async _call<T extends keyof Methods>(method: T, params?: Methods[T]["params"], options?: {
     dcId?: number
     syncAuth?: boolean
-    origin?: Error
   }): Promise<Methods[T]["response"]> {
     const syncAuth = options?.syncAuth || true
     const dcId = options?.dcId || (await this.storage.get("defaultDcId")) || 2;
     const rpc = this.getRPC(Number(dcId));
-    const result = await rpc.call(method, params, options?.origin)
+    const result = await rpc.call(method, params)
 
     // @ts-ignore
     if (syncAuth && result._ === "auth.authorization") {
@@ -164,6 +168,7 @@ export class MTProto {
       initConnectionParams: this.initConnectionParams,
       storage: this.storage,
       updates: this.updates,
+      events: this.events,
     });
 
     this.rpcs.set(dcId, rpc);

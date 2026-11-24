@@ -5,16 +5,16 @@ import debounce from "lodash.debounce";
 import { Serializer, SerializerFn } from "./serializer.js";
 import { RSA } from "./rsa.js";
 import { debug } from "./debug.js";
-import type { InitConnectionParams, DC } from "./types.js";
+import type { InitConnectionParams, DC, UpdatesEmitter, EventsEmitter } from "./types.js";
 import { builderMap } from "./builder.js";
 import { Transport } from "./transport.js";
 import { Deserializer } from "./deserializer.js";
 import { ModeOfOperationIGE } from "./aes.js";
 import { pqPrimeFactorization } from "./pg.js";
-import { DecryptedMessage, Methods, mt_pong, Updates } from "./mtptoto-types.js";
+import { DecryptedMessage, Methods, mt_pong } from "./mtptoto-types.js";
 import { RPCError } from "./errors.js";
 import { Storage } from "./storage.js";
-import { LAYER } from "./config.js";
+import { LAYER } from "./layer.js";
 import {
   SHA1,
   SHA256,
@@ -40,18 +40,14 @@ export interface Message {
   createAt: number
 }
 
-export interface RPCEventEmitter extends events.EventEmitter {
-  on<T extends Updates>(eventName: T["_"], listener: (arg0: T) => void): this;
-  emit<T extends Updates>(eventName: T["_"], arg0: T): boolean
-}
-
 export class RPC {
   protected dc: DC;
   protected api_id: number
   protected api_hash: string
   protected initConnectionParams: InitConnectionParams
   protected storage: Storage;
-  protected updates: RPCEventEmitter;
+  protected updates: UpdatesEmitter;
+  protected events: EventsEmitter;
   protected transport: Transport;
   protected debug: Debugger;
   protected destroyed = false;
@@ -91,14 +87,16 @@ export class RPC {
     initConnectionParams,
     dc,
     storage,
-    updates
+    updates,
+    events,
   }: {
     api_id: number
     api_hash: string
     initConnectionParams: InitConnectionParams
     dc: DC;
     storage: Storage
-    updates: RPCEventEmitter;
+    updates: UpdatesEmitter
+    events: EventsEmitter
   }) {
     this.api_id = api_id
     this.api_hash = api_hash
@@ -106,6 +104,7 @@ export class RPC {
     this.dc = dc;
     this.storage = storage;
     this.updates = updates;
+    this.events = events;
     this.transport = new Transport(dc);
 
     this.debug = debug.extend(`rpc:${this.dc.id}`);
@@ -165,18 +164,32 @@ export class RPC {
     this.transport.off('message', this.handleTransportMessage);
 
     for (const message of this.messagesWaitResponse.values()) {
-      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to destroyed RPC (ack=${message.isAck}, time=${Date.now() - message.createAt}ms)`, 500, { cause: message.origin }));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive a response due to destroyed RPC`, 500, {
+        cause: message.origin
+      }, {
+        ack: message.isAck,
+        time: Date.now() - message.createAt,
+      }))
     }
 
     this.messagesWaitResponse.clear();
 
     for (const message of this.messagesWaitAuth) {
-      message.reject(new RPCError(`call to '${message.method}' failed to receive an auth due to destroyed RPC (ack=${message.isAck}, time=${Date.now() - message.createAt}ms)`, 500, { cause: message.origin }));
+      message.reject(new RPCError(`call to '${message.method}' failed to receive an auth due to destroyed RPC`, 500, {
+        cause: message.origin
+      }, {
+        ack: message.isAck,
+        time: Date.now() - message.createAt,
+      }))
     }
 
     this.messagesWaitAuth = []
 
     this.stopHeartbeat();
+  }
+
+  handleMessage(_: ArrayBufferLike) {
+    throw new Error("`handleMessage` needs to be implemented")
   }
 
   get isReady() {
@@ -242,10 +255,6 @@ export class RPC {
 
       this.messagesWaitResponse.delete(id)
     }
-  }
-
-  handleMessage(_: ArrayBufferLike) {
-    throw new Error("`handleMessage` needs to be implemented")
   }
 
   handlePQResponse(buffer: ArrayBufferLike) {
@@ -666,7 +675,8 @@ export class RPC {
         await this.setStorageItem('serverSalt', longToBytesRaw(message.new_server_salt));
       }
 
-      if ([16, 17].includes(message.error_code)) {
+      // https://core.telegram.org/mtproto/service_messages_about_messages#notice-of-ignored-error-message
+      if (message.error_code === 16 || message.error_code == 17) {
         const serverTime = bigInt(messageId).shiftRight(32).toJSNumber();
         const timeOffset = Math.floor(Date.now() / 1000) - serverTime;
 
@@ -674,6 +684,7 @@ export class RPC {
         this.lastMessageId = [0, 0];
       }
 
+      // retry ping
       if (this.pendingPindMessageId === message.bad_msg_id) {
         this.stopHeartbeat();
         void this.ping();
@@ -699,6 +710,8 @@ export class RPC {
       this.ackMessage(messageId);
 
       await this.setStorageItem('serverSalt', longToBytesRaw(message.server_salt));
+
+      this.events.emit('new_session_created');
 
       return;
     }
@@ -736,13 +749,15 @@ export class RPC {
       }
 
       // @ts-ignore
-      if (message.result._ === 'mt_rpc_error') {
+      if (message.result?._ === 'mt_rpc_error') {
         // @ts-ignore
         const errorCode = Number(message.result.error_code)
         // @ts-ignore
         const errorMessage = String(message.result.error_message || JSON.stringify(message.result))
 
-        waitMessage.reject(new RPCError(errorMessage, errorCode, { cause: waitMessage.origin }));
+        waitMessage.reject(new RPCError(errorMessage, errorCode, {
+          cause: waitMessage.origin
+        }));
       }
       else {
         waitMessage.resolve(message.result);
@@ -765,18 +780,16 @@ export class RPC {
     this.sendAcks();
   }
 
-  call<T extends keyof Methods>(method: T | string, params?: Methods[T]["params"], origin?: Error): Promise<Methods[T]["response"]> {
-    if (!origin) {
-      origin = new Error(`RPC requested: ${method}`);
-      Error.captureStackTrace(origin, this.call);
-    }
+  call<T extends keyof Methods>(method: T | string, params?: Methods[T]["params"]): Promise<Methods[T]["response"]> {
+    const origin = new Error(`RPC requested: ${method}`);
 
-    const requestOrigin = origin;
+    Error.captureStackTrace(origin, this.call);
+
     return new Promise((resolve, reject) => {
       const message: Message = {
         method,
         params,
-        origin: requestOrigin,
+        origin,
         resolve,
         reject,
         isAck: false,
@@ -881,7 +894,7 @@ export class RPC {
       this.bytesRaw(encryptedData);
     });
 
-      this.transport.send(serializer.getBytes());
+    this.transport.send(serializer.getBytes());
 
     return messageId;
   }
